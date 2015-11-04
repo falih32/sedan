@@ -22,7 +22,7 @@
     	<div class="panel panel-default transparent-bg">
         	<div class="panel-body">
                 <div class="col-md-12 text-center">
-                    <h3>SISTEM INFORMASI PERSURATAN ELEKTRONIK</h3>
+                    <h3>SISTEM INFORMASI PENGADAAN ONLINE</h3>
                     <h4>BIRO UMUM<br>SEKRETARIAT JENDERAL<br>KEMENTERIAN KELAUTAN DAN PERIKANAN</h4>
                 </div>
             </div>

@@ -1,11 +1,11 @@
 <?php
 	if($mode == 'edit'){
-		$id = $dataUnit->jbt_id;
-		$jbt_nama = $dataUnit->jbt_nama;
+		$id = $dataUnit->siz_id;
+		$siz_nama = $dataUnit->siz_nama;
 			}
 	else{
 		
-		$jbt_nama = "";
+		$siz_nama = "";
 			}
 ?>
 <div class="container-fluid">
@@ -15,13 +15,13 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."Jabatan/proses_edit_jabatan";}else{echo base_url()."Jabatan/proses_tambah_jabatan";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."SuratIzin/proses_edit_suratizin";}else{echo base_url()."SuratIzin/proses_tambah_suratizin";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="jbt_nama" class="col-sm-2 control-label text-left">Jabatan</label>
+                        <label for="siz_nama" class="col-sm-2 control-label text-left">SuratIzin</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="jbt_nama" name="jbt_nama" placeholder="Jabatan" value="<?php echo $jbt_nama; ?>" required>
+	                        <input type="text" class="form-control" id="siz_nama" name="siz_nama" placeholder="SuaratIzin" value="<?php echo $siz_nama; ?>" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>

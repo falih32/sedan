@@ -19,6 +19,7 @@
                 <tr>
                 	<th>Nama Surat Izin</th>
                         <th>Aksi</th>
+                        <th>id</th>
                 </tr>
                 </thead>
             </table>
@@ -58,36 +59,34 @@
     }
 
 $(document).ready(function() {
-	
 	var table = $('#tabel-suratizin').DataTable( {
-    	"paging": true, 
-		"search":true,
-                "scrollX":true,
-		"ordering": true, 
-		"responsive": false,
-		"processing":true, 
-		"serverSide": true,
-                "pageLength": 50,
-		"ajax":{
-			"url":"<?php echo site_url('SuratIzin/ajaxProcess');?>",
-			"type":"POST"
-		},
-		"columns": [
-                
+            "paging": true, 
+            "search":true,
+            "scrollX":true,
+            "ordering": true, 
+            "responsive": false,
+            "processing":true, 
+            "serverSide": true,
+            "pageLength": 50,
+            "ajax":{
+                "url":"<?php echo site_url('SuratIzin/ajaxProcess');?>",
+                "type":"POST"
+            },
+            "columns": [
                 { "data": "siz_nama" },
                 { "data": "aksi" },
                 { "data": "siz_id" }
-              ],
-		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 1 },
-                                { "visible":false, "targets": 2}
-			],
-		"order": [[ 2, "asc" ]],
-		"drawCallback": function( settings ) {
-			makeConfirmation();
-			makeTooltip();
-                        fixedButton();
-		}
+            ],
+            "columnDefs": [
+                { "searchable": false, "orderable":false, "targets": 1 },
+                { "visible":false, "targets": [2]}
+            ],
+            "order": [[ 0, "asc" ]],
+            "drawCallback": function( settings ) {
+                makeConfirmation();
+                makeTooltip();
+                fixedButton();
+            }
 	} );
 	
 });

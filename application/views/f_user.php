@@ -73,12 +73,16 @@
                     </div>
                       
                     <div class="form-group">
-                        <label for="pgw_nip" class="col-sm-2 control-label text-left">Role</label>
+                        <label for="usr_role" class="col-sm-2 control-label text-left">Role</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="usr_role" name="usr_role" placeholder="Role" value="<?php echo $usr_role; ?>" >
-                            <div class="help-block with-errors"></div>
+                            <select class="form-control" id="usr_role" name="usr_role" required>
+                            	<option value="">Select ...</option>
+                            	<option value="1"<?php if($usr_role=='1'){echo "selected";}?>>Admin</option>
+                                <option value="2"<?php if($usr_role=='2'){echo "selected";}?>>User</option>
+                            </select>
                         </div>
                     </div>
+
                     <div class="form-group">
                         <label for="usr_email" class="col-sm-2 control-label text-left">E-mail</label>
                         <div class="col-sm-10">

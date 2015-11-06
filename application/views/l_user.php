@@ -87,11 +87,9 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 5 },
-                                { "visible":false, "targets": [0]},
-                                { "searchable": false, "targets": [1,2,3] }
+                                { "searchable": false, "targets": [4] }
                         ],
-		"order": [[ 5, "asc" ]],
-                "dom": '<"row filter-row"<"col-md-2"l><"col-md-10"f><"col-md-12"p>><t><"row footer-row"<"col-md-6"i><"col-md-6"p>>',
+		"order": [[ 2, "asc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();

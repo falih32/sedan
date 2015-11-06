@@ -87,7 +87,6 @@ class M_user extends CI_Model{
                 "<form>".
                 "<div class='form-group'>".
                 "<a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus user ini?' href='User/deleteUser/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
-                "<a class='btn btn-warning btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Aktifkan' data-confirm='Anda yakin akan membuat user ini tidak aktif?' href='User/deactivate/$1'><span class='glyphicon glyphicon-user' aria-hidden='true'></span> Non-aktifkan</a>".
                 "<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='User/editUser/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                 "</div>".
                 "</form>".

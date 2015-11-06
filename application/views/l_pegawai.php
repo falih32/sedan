@@ -59,45 +59,40 @@
     }
 
 $(document).ready(function() {
-	
 	var table = $('#tabel-pegawai').DataTable( {
-    	"paging": true, 
-		"search":true,  
-		"scrollX":true,
-		"ordering": true, 
-		"responsive": false,
-		"processing":true, 
-		"serverSide": true,
-                "pageLength": 50,
-		"ajax":{
-			"url":"<?php echo site_url('Pegawai/ajaxProcess');?>",
-			"type":"POST"
-		},
-		"columns": [
+            "paging": true, 
+            "search":true,  
+            "scrollX":true,
+            "ordering": true, 
+            "responsive": false,
+            "processing":true, 
+            "serverSide": true,
+            "pageLength": 50,
+            "ajax":{
+                "url":"<?php echo site_url('Pegawai/ajaxProcess');?>",
+                "type":"POST"
+            },
+            "columns": [
                 { "data": "pgw_nama" },
                 { "data": "pgw_nip" },
                 { "data": "jbt_nama" },
                 { "data": "pgw_telp" },
                 { "data": "aksi" }
-              ],
-		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 4 },
-                                { "searchable": false, "targets": [4] }
-                        ],
-		"order": [[ 4, "asc" ]],
-              "dom": '<"row filter-row"<"col-md-1"l><"col-md-4"f><"col-md-4"p>><t><"row footer-row"<"col-md-1"i><"col-md-1"p>>',
-		"drawCallback": function( settings ) {
-			makeConfirmation();
-			makeTooltip();
-                        fixedButton();
-		},
-                "createdRow": function ( row, data, index ) {
-                    $(row).click(function(){window.location.href = '<?php echo site_url('Pegawai/detail_pegawai').'/'; ?>'+data.pgw_id;});
-                    $(row).css('cursor', 'pointer');
-                  
-                    $(row).find('a').click(function(e){e.stopPropagation();});
-                   }
+            ],
+            "columnDefs": [
+                { "searchable": false, "orderable":false, "targets": 4 }
+            ],
+            "order": [[ 1, "asc" ]],
+            "drawCallback": function( settings ) {
+                makeConfirmation();
+                makeTooltip();
+                fixedButton();
+            },
+            "createdRow": function ( row, data, index ) {
+                $(row).click(function(){window.location.href = '<?php echo site_url('Pegawai/detail_pegawai').'/'; ?>'+data.pgw_id;});
+                $(row).css('cursor', 'pointer');
+                $(row).find('a').click(function(e){e.stopPropagation();});
+            }
 	} );
-	
 });
 </script>

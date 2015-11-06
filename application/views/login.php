@@ -1,4 +1,4 @@
-
+<?php echo date("Y")?>
 <div id="card" class="card">
     <div class="front">
         <div class="panel panel-default transparent-bg">
@@ -22,6 +22,15 @@
                         </div>
                         <div class="form-group">
                             <input class="form-control" id="password" placeholder="password" name="password" type="password" value="<?php echo set_value('password')?>" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Tahun</label>
+                            <select class="form-control" id="year" name="thn_pilih" required>
+                            <?php while ($thn <= date("Y")) {?>
+                            	<option value="<?php echo $thn?>"><?php echo $thn?></option>
+                                <?php $thn = $thn + 1?>
+                             <?php } ?>
+                            </select>
                         </div>
                         <div class="text-right">
                             <a href="<?php echo site_url('ResetUser/forgot_password'); ?>"> Lupa password? </a>

@@ -5,6 +5,7 @@ class Login extends CI_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('m_user');
+        $this->load->model('M_pengadaan');
         $this->load->helper('url');
         $this->load->helper('form');
         $this->load->library('form_validation');
@@ -13,7 +14,8 @@ class Login extends CI_Controller{
     public function index(){
 		if($this->session->userdata('id_user') == ''){   
                     $data['content'] = 'login';
-                    $data['title'] = 'SISTEM INFORMASI DISPOSISI ELEKTRONIK';     
+                    $data['title'] = 'SISTEM INFORMASI DISPOSISI ELEKTRONIK'; 
+                    $data['thn'] = $this->M_pengadaan->getFirstYearInput();
                     if($this->session->flashdata('history')!= ""){
                         $this->session->set_flashdata('history', $this->session->flashdata('history'));
                     }
@@ -29,6 +31,7 @@ class Login extends CI_Controller{
     public function do_login(){
         $username = $this->input->post('username');
         $password = $this->input->post('password');
+        $tahun = $this->input->post('thn_pilih');
         $temp_account = $this->m_user->check_user_account($username, $password)->row();
         // check account
         $num_account = count($temp_account);
@@ -51,6 +54,7 @@ class Login extends CI_Controller{
                     'nama' => $temp_account->usr_nama,
                     'id_role' => $temp_account->usr_role,
                     'id_level' => $temp_account->jbt_level,
+                    'tahun' => $tahun,
                     'logged_in' => true);
                 $this->session->set_userdata($array_items);
                 $data['content'] = 'dashboard';

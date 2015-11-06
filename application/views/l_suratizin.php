@@ -14,7 +14,7 @@
             </div>
             <div class="panel-body">
             </div>
-            <table class="table table-responsive table-hover table-striped" id="tabel-suratizin">
+            <table class="table table-responsive table-hover table-striped" id="suratizin">
             	<thead>
                 <tr>
                 	<th>Nama Surat Izin</th>
@@ -59,7 +59,7 @@
 
 $(document).ready(function() {
 	
-	var table = $('#tabel-suratizin').DataTable( {
+	var table = $('#suratizin').DataTable( {
     	"paging": true, 
 		"search":true,
                 "scrollX":true,

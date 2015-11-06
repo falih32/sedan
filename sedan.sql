@@ -1,289 +1,454 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : zieg
+Source Server         : Mysql_local
 Source Server Version : 50621
-Source Host           : 127.0.0.1:3306
+Source Host           : localhost:3306
 Source Database       : sedan
 
 Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-04 14:15:55
+Date: 2015-11-06 14:06:12
 */
 
 SET FOREIGN_KEY_CHECKS=0;
-
--- ----------------------------
--- Table structure for tr_draft
--- ----------------------------
-DROP TABLE IF EXISTS `tr_draft`;
-CREATE TABLE `tr_draft` (
-  `drf_id` bigint(255) NOT NULL AUTO_INCREMENT,
-  `drf_pengadaan` bigint(255) DEFAULT NULL,
-  `drf_jumlah_sesudahppn` double(255,0) DEFAULT NULL,
-  `drf_jumlah_sebelumppn` double(255,0) DEFAULT NULL,
-  `drf_tanggal_input` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`drf_id`),
-  KEY `fk_draft_pengadaan` (`drf_pengadaan`),
-  CONSTRAINT `fk_draft_pengadaan` FOREIGN KEY (`drf_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tr_draft
--- ----------------------------
-
--- ----------------------------
--- Table structure for tr_pengadaan_supplier
--- ----------------------------
-DROP TABLE IF EXISTS `tr_pengadaan_supplier`;
-CREATE TABLE `tr_pengadaan_supplier` (
-  `pgs_pengadaan` bigint(255) DEFAULT NULL,
-  `pgs_supplier` int(255) DEFAULT NULL,
-  KEY `fk_pgs_supplier` (`pgs_supplier`),
-  KEY `fk_pgs_pengadaan` (`pgs_pengadaan`),
-  CONSTRAINT `fk_pgs_pengadaan` FOREIGN KEY (`pgs_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pgs_supplier` FOREIGN KEY (`pgs_supplier`) REFERENCES `t_supplier` (`spl_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tr_pengadaan_supplier
--- ----------------------------
-
--- ----------------------------
--- Table structure for tr_penyusun
--- ----------------------------
-DROP TABLE IF EXISTS `tr_penyusun`;
-CREATE TABLE `tr_penyusun` (
-  `pys_jabatan` varchar(20) NOT NULL,
-  `pys_draft` bigint(25) NOT NULL,
-  `pys_pegawai` bigint(25) NOT NULL,
-  PRIMARY KEY (`pys_pegawai`,`pys_draft`),
-  KEY `fk_penyusun_draft` (`pys_draft`),
-  CONSTRAINT `fk_penyusun_draft` FOREIGN KEY (`pys_draft`) REFERENCES `tr_draft` (`drf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_penyusun_pegawai` FOREIGN KEY (`pys_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tr_penyusun
--- ----------------------------
-
--- ----------------------------
--- Table structure for tr_suratizin_pengadaan
--- ----------------------------
-DROP TABLE IF EXISTS `tr_suratizin_pengadaan`;
-CREATE TABLE `tr_suratizin_pengadaan` (
-  `sip_pengadaan` bigint(25) NOT NULL,
-  `sip_surat_izin` int(25) NOT NULL,
-  PRIMARY KEY (`sip_surat_izin`,`sip_pengadaan`),
-  KEY `fk_sip_pengadaan` (`sip_pengadaan`),
-  CONSTRAINT `fk_sip_pengadaan` FOREIGN KEY (`sip_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_sip_suratizin` FOREIGN KEY (`sip_surat_izin`) REFERENCES `t_suratizin` (`siz_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of tr_suratizin_pengadaan
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_anggaran
 -- ----------------------------
 DROP TABLE IF EXISTS `t_anggaran`;
 CREATE TABLE `t_anggaran` (
-  `ang_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `ang_nama` varchar(255) DEFAULT NULL,
-  `ang_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`ang_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`ang_kode`  varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`ang_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`ang_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`ang_kode`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
 
 -- ----------------------------
 -- Records of t_anggaran
 -- ----------------------------
+BEGIN;
+INSERT INTO `t_anggaran` VALUES ('12345', 'Anggaran pendapatan negara', '0');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_detail_pengadaan
 -- ----------------------------
 DROP TABLE IF EXISTS `t_detail_pengadaan`;
 CREATE TABLE `t_detail_pengadaan` (
-  `dtp_jumlahharga` double(255,0) DEFAULT NULL,
-  `dtp_hargasatuan` double(255,0) DEFAULT NULL,
-  `dtp_volume` varchar(255) DEFAULT NULL,
-  `dtp_spec_pekerjaan` varchar(255) DEFAULT NULL,
-  `dtp_pekerjaan` varchar(255) DEFAULT NULL,
-  `dtp_pengadaan` bigint(25) DEFAULT NULL,
-  `dtp_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`dtp_id`),
-  KEY `fk_dtp_pengadaan` (`dtp_pengadaan`),
-  CONSTRAINT `fk_dtp_pengadaan` FOREIGN KEY (`dtp_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`dtp_jumlahharga`  double(255,0) NULL DEFAULT NULL ,
+`dtp_hargasatuan`  double(255,0) NULL DEFAULT NULL ,
+`dtp_volume`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`dtp_pekerjaan`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`dtp_draft`  bigint(25) NULL DEFAULT NULL ,
+`dtp_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
+PRIMARY KEY (`dtp_id`),
+FOREIGN KEY (`dtp_draft`) REFERENCES `t_draft_pengadaan` (`drp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_dtp_pengadaan` (`dtp_draft`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=2
+
+;
 
 -- ----------------------------
 -- Records of t_detail_pengadaan
 -- ----------------------------
+BEGIN;
+INSERT INTO `t_detail_pengadaan` VALUES ('50000', '5000', '10', 'Pembersihan kaca', '1', '1');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for t_draft_pengadaan
+-- ----------------------------
+DROP TABLE IF EXISTS `t_draft_pengadaan`;
+CREATE TABLE `t_draft_pengadaan` (
+`drp_id`  bigint(255) NOT NULL AUTO_INCREMENT ,
+`drp_pengadaan`  bigint(255) NULL DEFAULT NULL ,
+`drp_jumlah_sesudahppn`  double(255,0) NULL DEFAULT NULL ,
+`drp_jumlah_sebelumppn`  double(255,0) NULL DEFAULT NULL ,
+`drp_tanggal_input`  timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+`drp_anggaran`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`drp_user_input`  bigint(255) NULL DEFAULT NULL ,
+`drp_terpilih`  int(255) NULL DEFAULT NULL ,
+PRIMARY KEY (`drp_id`),
+FOREIGN KEY (`drp_anggaran`) REFERENCES `t_anggaran` (`ang_kode`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`drp_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`drp_user_input`) REFERENCES `t_user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_draft_pengadaan` (`drp_pengadaan`) USING BTREE ,
+INDEX `fk_draft_anggaran` (`drp_anggaran`) USING BTREE ,
+INDEX `fk_draft_user` (`drp_user_input`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=2
+
+;
+
+-- ----------------------------
+-- Records of t_draft_pengadaan
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_draft_pengadaan` VALUES ('1', '3', '500000', '40000', '2015-11-06 05:22:57', '12345', '1', '1');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_jabatan
 -- ----------------------------
 DROP TABLE IF EXISTS `t_jabatan`;
 CREATE TABLE `t_jabatan` (
-  `jbt_id` int(20) NOT NULL AUTO_INCREMENT,
-  `jbt_nama` varchar(255) DEFAULT NULL,
-  `jbt_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`jbt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+`jbt_id`  int(20) NOT NULL AUTO_INCREMENT ,
+`jbt_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`jbt_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`jbt_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=4
+
+;
 
 -- ----------------------------
 -- Records of t_jabatan
 -- ----------------------------
-INSERT INTO `t_jabatan` VALUES ('1', 'Kepala', '0');
-INSERT INTO `t_jabatan` VALUES ('2', 'Wakil Kepala 1', '1');
-INSERT INTO `t_jabatan` VALUES ('3', 'Wakil kepala 1', '0');
+BEGIN;
+INSERT INTO `t_jabatan` VALUES ('1', 'Kepala', '0'), ('2', 'Wakil Kepala 1', '1'), ('3', 'Wakil kepala 1', '0');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_memorandum
 -- ----------------------------
 DROP TABLE IF EXISTS `t_memorandum`;
 CREATE TABLE `t_memorandum` (
-  `mmr_tgl` date DEFAULT NULL,
-  `mmr_level` int(1) DEFAULT NULL,
-  `mmr_id` bigint(25) NOT NULL AUTO_INCREMENT,
-  `mmr_pengadaan` bigint(255) DEFAULT NULL,
-  `mmr_tgl_cetak` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `mmr_nomor` varchar(255) DEFAULT NULL,
-  `mmr_dari` bigint(255) DEFAULT NULL,
-  `mmr_kepada` bigint(255) DEFAULT NULL,
-  `mmr_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`mmr_id`),
-  KEY `fk_memo_pengadaan` (`mmr_pengadaan`),
-  KEY `fk_memo_dari` (`mmr_dari`),
-  KEY `fk_memo_kepada` (`mmr_kepada`),
-  CONSTRAINT `fk_memo_dari` FOREIGN KEY (`mmr_dari`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_memo_kepada` FOREIGN KEY (`mmr_kepada`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_memo_pengadaan` FOREIGN KEY (`mmr_pengadaan`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`mmr_tgl`  date NULL DEFAULT NULL ,
+`mmr_level`  int(1) NULL DEFAULT NULL ,
+`mmr_id`  bigint(25) NOT NULL AUTO_INCREMENT ,
+`mmr_pengadaan`  bigint(255) NULL DEFAULT NULL ,
+`mmr_tgl_cetak`  timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+`mmr_nomor`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`mmr_dari`  bigint(255) NULL DEFAULT NULL ,
+`mmr_kepada`  bigint(255) NULL DEFAULT NULL ,
+`mmr_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`mmr_id`),
+FOREIGN KEY (`mmr_dari`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`mmr_kepada`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`mmr_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_memo_pengadaan` (`mmr_pengadaan`) USING BTREE ,
+INDEX `fk_memo_dari` (`mmr_dari`) USING BTREE ,
+INDEX `fk_memo_kepada` (`mmr_kepada`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=1
+
+;
 
 -- ----------------------------
 -- Records of t_memorandum
 -- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_pegawai
 -- ----------------------------
 DROP TABLE IF EXISTS `t_pegawai`;
 CREATE TABLE `t_pegawai` (
-  `pgw_nama` varchar(255) DEFAULT NULL,
-  `pgw_jabatan` int(20) DEFAULT NULL,
-  `pgw_nip` varchar(25) NOT NULL,
-  `pgw_telp` varchar(255) DEFAULT NULL,
-  `pgw_id` bigint(20) NOT NULL AUTO_INCREMENT,
-  `pgw_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`pgw_id`),
-  KEY `pgw_id` (`pgw_id`),
-  KEY `fk_pegawai_jabatan` (`pgw_jabatan`),
-  CONSTRAINT `fk_pegawai_jabatan` FOREIGN KEY (`pgw_jabatan`) REFERENCES `t_jabatan` (`jbt_id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+`pgw_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`pgw_jabatan`  int(20) NULL DEFAULT NULL ,
+`pgw_nip`  varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`pgw_telp`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`pgw_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
+`pgw_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`pgw_id`),
+FOREIGN KEY (`pgw_jabatan`) REFERENCES `t_jabatan` (`jbt_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+INDEX `pgw_id` (`pgw_id`) USING BTREE ,
+INDEX `fk_pegawai_jabatan` (`pgw_jabatan`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=6
+
+;
 
 -- ----------------------------
 -- Records of t_pegawai
 -- ----------------------------
-INSERT INTO `t_pegawai` VALUES ('Mas Nopa', '1', '212121212121', '12121111111111111111', '4', '0');
-INSERT INTO `t_pegawai` VALUES ('Masnopa ika', '3', '33333333333333333', '111111111111111111', '5', '0');
+BEGIN;
+INSERT INTO `t_pegawai` VALUES ('Mas Nopa', '1', '212121212121', '12121111111111111111', '4', '0'), ('Masnopa ika', '3', '33333333333333333', '111111111111111111', '5', '0');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_pengadaan
 -- ----------------------------
 DROP TABLE IF EXISTS `t_pengadaan`;
 CREATE TABLE `t_pengadaan` (
-  `pgd_kode_anggaran` varchar(255) DEFAULT NULL,
-  `pgd_perihal` varchar(255) DEFAULT NULL,
-  `pgd_id` bigint(25) NOT NULL AUTO_INCREMENT,
-  `pgd_user_by` bigint(20) DEFAULT NULL,
-  `pgd_time_updated` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `pgd_deleted` int(255) DEFAULT '0',
-  `pgd_anggaran` bigint(20) DEFAULT NULL,
-  PRIMARY KEY (`pgd_id`),
-  KEY `fk_pengadaan_user` (`pgd_user_by`),
-  KEY `fk_pengadaan_anggaran` (`pgd_anggaran`),
-  CONSTRAINT `fk_pengadaan_anggaran` FOREIGN KEY (`pgd_anggaran`) REFERENCES `t_anggaran` (`ang_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_pengadaan_user` FOREIGN KEY (`pgd_user_by`) REFERENCES `t_user` (`usr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`pgd_perihal`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`pgd_id`  bigint(25) NOT NULL AUTO_INCREMENT ,
+`pgd_time_updated`  timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+`pgd_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`pgd_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=4
+
+;
 
 -- ----------------------------
 -- Records of t_pengadaan
 -- ----------------------------
+BEGIN;
+INSERT INTO `t_pengadaan` VALUES ('Pengadaan pembersihan kaca', '3', '2015-11-06 05:17:49', '0');
+COMMIT;
 
 -- ----------------------------
--- Table structure for t_perwakilan
+-- Table structure for t_perwakilan_supplier
 -- ----------------------------
-DROP TABLE IF EXISTS `t_perwakilan`;
-CREATE TABLE `t_perwakilan` (
-  `pws_telp` varchar(255) DEFAULT NULL,
-  `pws_idsup` int(25) DEFAULT NULL,
-  `pws_nama` varchar(255) DEFAULT NULL,
-  `pws_id` int(25) NOT NULL,
-  `pws_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`pws_id`),
-  KEY `idsupfk` (`pws_idsup`),
-  CONSTRAINT `idsupfk` FOREIGN KEY (`pws_idsup`) REFERENCES `t_supplier` (`spl_id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+DROP TABLE IF EXISTS `t_perwakilan_supplier`;
+CREATE TABLE `t_perwakilan_supplier` (
+`pws_telp`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`pws_idsup`  int(25) NULL DEFAULT NULL ,
+`pws_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`pws_id`  int(25) NOT NULL ,
+`pws_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`pws_id`),
+FOREIGN KEY (`pws_idsup`) REFERENCES `t_supplier` (`spl_id`) ON DELETE NO ACTION ON UPDATE CASCADE,
+INDEX `idsupfk` (`pws_idsup`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
 
 -- ----------------------------
--- Records of t_perwakilan
+-- Records of t_perwakilan_supplier
 -- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
+-- Table structure for t_spec_teknis
+-- ----------------------------
+DROP TABLE IF EXISTS `t_spec_teknis`;
+CREATE TABLE `t_spec_teknis` (
+`spt_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
+`spt_spec_teknis`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`spt_detail_pgd`  bigint(255) NULL DEFAULT NULL ,
+PRIMARY KEY (`spt_id`),
+FOREIGN KEY (`spt_detail_pgd`) REFERENCES `t_detail_pengadaan` (`dtp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_spek_draft` (`spt_detail_pgd`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=3
+
+;
+
+-- ----------------------------
+-- Records of t_spec_teknis
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_spec_teknis` VALUES ('1', 'safety equipment', '1'), ('2', 'gondola', '1');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_supplier
 -- ----------------------------
 DROP TABLE IF EXISTS `t_supplier`;
 CREATE TABLE `t_supplier` (
-  `spl_telp` varchar(255) DEFAULT NULL,
-  `spl_alamat` varchar(255) DEFAULT NULL,
-  `spl_nama` varchar(255) DEFAULT NULL,
-  `spl_id` int(25) NOT NULL,
-  `spl_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`spl_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`spl_telp`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`spl_alamat`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`spl_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`spl_id`  int(25) NOT NULL ,
+`spl_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`spl_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
 
 -- ----------------------------
 -- Records of t_supplier
 -- ----------------------------
+BEGIN;
+INSERT INTO `t_supplier` VALUES ('11111', 'Jalan Parahyangan', 'PT. Merdeka', '0', '0');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_suratizin
 -- ----------------------------
 DROP TABLE IF EXISTS `t_suratizin`;
 CREATE TABLE `t_suratizin` (
-  `siz_nama` varchar(255) NOT NULL,
-  `siz_id` int(25) NOT NULL AUTO_INCREMENT,
-  `siz_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`siz_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+`siz_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`siz_id`  int(25) NOT NULL AUTO_INCREMENT ,
+`siz_deleted`  int(255) NULL DEFAULT 0 ,
+PRIMARY KEY (`siz_id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=2
+
+;
 
 -- ----------------------------
 -- Records of t_suratizin
 -- ----------------------------
+BEGIN;
+INSERT INTO `t_suratizin` VALUES ('Surat Izin Usaha Perdangangan (SIUP) Kecil', '1', '0');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for t_user
 -- ----------------------------
 DROP TABLE IF EXISTS `t_user`;
 CREATE TABLE `t_user` (
-  `usr_role` int(11) DEFAULT NULL,
-  `usr_pegawai` bigint(25) DEFAULT NULL,
-  `usr_id` bigint(2) NOT NULL AUTO_INCREMENT,
-  `usr_username` varchar(15) NOT NULL,
-  `usr_password` varchar(75) NOT NULL,
-  `usr_email` varchar(100) DEFAULT NULL,
-  `usr_deleted` int(11) DEFAULT '0',
-  PRIMARY KEY (`usr_id`),
-  KEY `fk_user_pegawai` (`usr_pegawai`),
-  CONSTRAINT `fk_user_pegawai` FOREIGN KEY (`usr_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+`usr_role`  int(11) NULL DEFAULT NULL ,
+`usr_pegawai`  bigint(25) NULL DEFAULT NULL ,
+`usr_id`  bigint(2) NOT NULL AUTO_INCREMENT ,
+`usr_username`  varchar(15) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`usr_password`  varchar(75) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL ,
+`usr_email`  varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`usr_deleted`  int(11) NULL DEFAULT 0 ,
+PRIMARY KEY (`usr_id`),
+FOREIGN KEY (`usr_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_user_pegawai` (`usr_pegawai`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+AUTO_INCREMENT=5
+
+;
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES (null, null, '1', 'admin', '21232f297a57a5a743894a0e4a801fc3', null, '0');
-INSERT INTO `t_user` VALUES ('1', '4', '3', 'falih32', '21232f297a57a5a743894a0e4a801fc3', 'falih32@gmail.com', '0');
-INSERT INTO `t_user` VALUES ('1', '5', '4', 'Susis', 'e807f1fcf82d132f9bb018ca6738a19f', 'falih32@gmail.com', '1');
+BEGIN;
+INSERT INTO `t_user` VALUES (null, null, '1', 'admin', '21232f297a57a5a743894a0e4a801fc3', null, '0'), ('1', '4', '3', 'falih32', '21232f297a57a5a743894a0e4a801fc3', 'falih32@gmail.com', '0'), ('1', '5', '4', 'Susis', 'e807f1fcf82d132f9bb018ca6738a19f', 'falih32@gmail.com', '1');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tr_draft_penyusun
+-- ----------------------------
+DROP TABLE IF EXISTS `tr_draft_penyusun`;
+CREATE TABLE `tr_draft_penyusun` (
+`dpy_jabatan`  int(20) NOT NULL ,
+`dpy_draft`  bigint(25) NOT NULL ,
+`dpy_pegawai`  bigint(25) NOT NULL ,
+PRIMARY KEY (`dpy_pegawai`, `dpy_draft`),
+FOREIGN KEY (`dpy_draft`) REFERENCES `t_draft_pengadaan` (`drp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`dpy_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_penyusun_draft` (`dpy_draft`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
+
+-- ----------------------------
+-- Records of tr_draft_penyusun
+-- ----------------------------
+BEGIN;
+INSERT INTO `tr_draft_penyusun` VALUES ('0', '1', '4');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tr_draft_supplier
+-- ----------------------------
+DROP TABLE IF EXISTS `tr_draft_supplier`;
+CREATE TABLE `tr_draft_supplier` (
+`dsp_draft`  bigint(255) NULL DEFAULT NULL ,
+`dsp_supplier`  int(255) NULL DEFAULT NULL ,
+FOREIGN KEY (`dsp_draft`) REFERENCES `t_draft_pengadaan` (`drp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`dsp_supplier`) REFERENCES `t_supplier` (`spl_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_pgs_supplier` (`dsp_supplier`) USING BTREE ,
+INDEX `fk_pgs_pengadaan` (`dsp_draft`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
+
+-- ----------------------------
+-- Records of tr_draft_supplier
+-- ----------------------------
+BEGIN;
+INSERT INTO `tr_draft_supplier` VALUES ('1', '0');
+COMMIT;
+
+-- ----------------------------
+-- Table structure for tr_draft_suratizin
+-- ----------------------------
+DROP TABLE IF EXISTS `tr_draft_suratizin`;
+CREATE TABLE `tr_draft_suratizin` (
+`dsr_draft`  bigint(25) NOT NULL ,
+`dsr_surat_izin`  int(25) NOT NULL ,
+PRIMARY KEY (`dsr_surat_izin`, `dsr_draft`),
+FOREIGN KEY (`dsr_draft`) REFERENCES `t_draft_pengadaan` (`drp_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+FOREIGN KEY (`dsr_surat_izin`) REFERENCES `t_suratizin` (`siz_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+INDEX `fk_sip_pengadaan` (`dsr_draft`) USING BTREE 
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
+
+;
+
+-- ----------------------------
+-- Records of tr_draft_suratizin
+-- ----------------------------
+BEGIN;
+INSERT INTO `tr_draft_suratizin` VALUES ('1', '1');
+COMMIT;
+
+-- ----------------------------
+-- Auto increment value for t_detail_pengadaan
+-- ----------------------------
+ALTER TABLE `t_detail_pengadaan` AUTO_INCREMENT=2;
+
+-- ----------------------------
+-- Auto increment value for t_draft_pengadaan
+-- ----------------------------
+ALTER TABLE `t_draft_pengadaan` AUTO_INCREMENT=2;
+
+-- ----------------------------
+-- Auto increment value for t_jabatan
+-- ----------------------------
+ALTER TABLE `t_jabatan` AUTO_INCREMENT=4;
+
+-- ----------------------------
+-- Auto increment value for t_memorandum
+-- ----------------------------
+ALTER TABLE `t_memorandum` AUTO_INCREMENT=1;
+
+-- ----------------------------
+-- Auto increment value for t_pegawai
+-- ----------------------------
+ALTER TABLE `t_pegawai` AUTO_INCREMENT=6;
+
+-- ----------------------------
+-- Auto increment value for t_pengadaan
+-- ----------------------------
+ALTER TABLE `t_pengadaan` AUTO_INCREMENT=4;
+
+-- ----------------------------
+-- Auto increment value for t_spec_teknis
+-- ----------------------------
+ALTER TABLE `t_spec_teknis` AUTO_INCREMENT=3;
+
+-- ----------------------------
+-- Auto increment value for t_suratizin
+-- ----------------------------
+ALTER TABLE `t_suratizin` AUTO_INCREMENT=2;
+
+-- ----------------------------
+-- Auto increment value for t_user
+-- ----------------------------
+ALTER TABLE `t_user` AUTO_INCREMENT=5;

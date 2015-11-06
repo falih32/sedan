@@ -38,7 +38,7 @@ class M_jabatan extends CI_Model{
 			"</form>".
 		"",'jbt_id');
 		return $this->datatables->generate();
-    }
+	}
     function update($id, $data){
         $this->db->where('jbt_id', $id);
         $this->db->update('t_jabatan', $data);

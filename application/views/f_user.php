@@ -41,21 +41,17 @@
                 <?php } ?>
                 <div class="col-md-8">
                     <div class="form-group">
-                        <label for="usr_nip" class="col-sm-2 control-label text-left">NIP</label>
+                        <label for="pgw_nip" class="col-sm-2 control-label text-left">NIP</label>
                         <div class="col-sm-10">
-                        	
-	                        <input type="text" class="form-control" id="pgw_nip" name="pgw_nip" placeholder="Nomor Induk Pegawai" value="<?php echo $pgw_nip; ?>">
-                            
-                            <div class="help-block with-errors"></div>
-                            
+                            <input type="hidden" id="pgw_nip" name="pgw_nip" value="<?php echo $pgw_nip; ?>">
+                            <p class="form-control-static"><?php echo $pgw_nip; ?></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="usr_nama" class="col-sm-2 control-label text-left">Nama</label>
+                        <label for="pgw_nama" class="col-sm-2 control-label text-left">Nama</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="pgw_nama" name="pgw_nama" placeholder="Nama" value="<?php echo $pgw_nama; ?>" required data-minlength="3" pattern="^[a-zA-Z\s]*$">
-                            <p class="help-block">Minimal 3 karakter, hanya huruf dan spasi</p>
-                            <div class="help-block with-errors"></div>
+                        <input type="hidden" id="pgw_nama" name="pgw_nama" value="<?php echo $pgw_nama; ?>">
+                            <p class="form-control-static"><?php echo $pgw_nama; ?></p>
                         </div>
                     </div>
                     <div class="form-group">

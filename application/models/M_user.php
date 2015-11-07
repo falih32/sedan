@@ -64,8 +64,11 @@ class M_user extends CI_Model{
     
     function selectById($id){
         $this->db->select('*');
-        $this->db->from('t_user');
+        $this->db->from('t_user, t_pegawai');
+//        $this->db->from('t_pegawai');
+        $this->db->where('usr_deleted','0');
         $this->db->where('usr_id', $id);
+        $this->db->where('usr_pegawai = pgw_id');
         return $this->db->get();
     }
 	

@@ -1,30 +1,11 @@
 <?php 
 $role = $this->session->userdata('id_role'); 
 $level = $this->session->userdata('id_level');
-$chart2 = json_decode($chart2);
-if(isset($chart2->data)){$chart2data = json_encode($chart2->data);}else{$chart2data = json_encode(array());}
 ?>
 <div class="container-fluid">
     <h1>Dashboard</h1><hr>
     <div class="row">
-       <?php if ($statusxml==1){
-       if ($role==1 && $val<=300){       ?>
-        <div class="container-fluid">
-            <div class="row-fluid">
-                <div class="alert alert-danger alert-dismissible" role="alert">
-                    Sisa Kredit SMS anda adalah <?php echo $val ?>. Segera <a href=<?php echo site_url('CekKredit')?>>isi ulang </a> agar SMS Gateway dapat berjalan dengan baik.
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                </div>
-            </div>
-        </div>        
-       <?php }
-                  
-       }else{
-        ?> <div class="alert alert-danger alert-dismissible" role="alert">
-                 Terdapat gangguan pada jaringan internet server sehingga cek sms tidak berjalan dengan baik. Silakan coba lagi beberapa saat kemudian.
-                <a href="#" class="close" data-dismiss="alert">&times;</a>
-                </div>
-       <?php } ?>
+    
         
         <?php if ($role == 1 || $role == 2 || $role == 3 || $level == 1){?>
         <div class="col-sm-12"><h3>Surat Masuk (Biro Umum)</h3></div>

@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h1>
-            <i class="fa fa-users"></i> Jabatan
+            <i class="fa fa-building"></i> Jabatan
             <?php if($role <= 1){?>
             <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Jabatan' href="<?php echo base_url()."Jabatan/";?>tambah_jabatan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
             <?php } ?>
@@ -10,7 +10,7 @@
         <hr>
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <i class="fa fa-users"></i> Daftar Jabatan
+                <i class="fa fa-building"></i> Daftar Jabatan
             </div>
             <div class="panel-body">
             </div>

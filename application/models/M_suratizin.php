@@ -32,8 +32,8 @@ class M_suratizin extends CI_Model{
 		->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='Jabatan/delete_jabatan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
-			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='Jabatan/edit_jabatan/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+			"<a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='SuratIzin/delete_suratizin/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
+			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='SuratIzin/edit_suratizin/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
 			"</div>".
 			"</form>".
 		"",'siz_id');

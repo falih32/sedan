@@ -3,9 +3,6 @@
     <div class="row-fluid">
         <h1>
             <span class="glyphicon glyphicon-user" aria-hidden="true"></span> User
-            <?php if($role <= 1){?>
-            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah User' href="<?php echo base_url()."User/";?>addUser"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
-            <?php } ?>
         </h1>
         <hr>
     	<div class="panel panel-primary">

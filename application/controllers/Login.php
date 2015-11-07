@@ -49,11 +49,9 @@ class Login extends CI_Controller{
                 }
             	// kalau ada set session
                 $array_items = array('id_user' => $temp_account->usr_id,
-                    'id_jabatan' => $temp_account->usr_jabatan,
                     'username' => $temp_account->usr_username,
                     'nama' => $temp_account->usr_nama,
                     'id_role' => $temp_account->usr_role,
-                    'id_level' => $temp_account->jbt_level,
                     'tahun' => $tahun,
                     'logged_in' => true);
                 $this->session->set_userdata($array_items);

@@ -30,7 +30,6 @@ class Jabatan extends CI_Controller {
     }
     
     function postVariabel(){
-	//$data['utj_id']             = $this->input->post('utj_id');
 	$data['jbt_nama']    = $this->input->post('jbt_nama');
         return $data;
     }

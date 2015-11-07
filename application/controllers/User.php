@@ -69,7 +69,7 @@ class User extends CI_Controller{
         }
     }
     public function addUser($id_pgw){
-     //   $this->limitRole(array(1));    
+       $this->limitRole(array(1));    
         $idpgw=$id_pgw;
         $cekpegawai=count($this->m_user->selectUserbyPegawai($idpgw)->row());
         if($cekpegawai>0) {
@@ -84,7 +84,17 @@ class User extends CI_Controller{
             $this->load->view('layout', $data);
             }
     }
-        
+   function limitRole($limit){
+        $role = $this->session->userdata('id_role');
+        $access = false;
+        foreach ($limit as $row){
+            if ($row == $role){$access = true;}
+        }
+        if(!$access){
+                $this->session->set_flashdata('message', array('msg' => 'Anda <strong>tidak memiliki akses</strong> ke fitur yang anda pilih','class' => 'danger'));
+                redirect('Dashboard');
+        }
+    }     
     public function proses_addUser(){     
         $data = $this->postVariabel();
         $check = $this->m_user->check_username($data['usr_username']);
@@ -105,9 +115,8 @@ class User extends CI_Controller{
             $data['mode'] = 'edit';
             $data['content'] = 'f_user';
             $data['title'] = 'Edit Informasi user ';
-            $data['jbtlist']= $this->m_jabatan->selectAll()->result();
-            $data['jbt']= $this->m_user->selectById($id)->row()->pgw_jabatan;
-            if($data['userlist']->pgw_deleted == '0'){
+            //$data['jbt']= $this->m_user->selectById($id)->row()->usr_pegawai;
+            if($data['userlist']->usr_deleted == '0'){
                 $this->load->view('layout', $data);
             }else{
                 redirect(site_url('Sidoel404'));

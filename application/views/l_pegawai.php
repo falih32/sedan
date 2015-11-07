@@ -2,13 +2,13 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h1>
-            <span class="glyphicon glyphicon-pegawai" aria-hidden="true"></span> Pegawai
+            <i class="fa fa-users"></i> Pegawai
             <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Pegawai' href="<?php echo base_url()."Pegawai/";?>addPegawai"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
         </h1>
         <hr>
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <span class="glyphicon glyphicon-pegawai" aria-hidden="true"></span> Daftar Pegawai
+                <i class="fa fa-users"></i> Daftar Pegawai
             </div>
             <div class="panel-body">
             </div>

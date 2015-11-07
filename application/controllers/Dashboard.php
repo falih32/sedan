@@ -12,56 +12,18 @@ class Dashboard extends CI_Controller{
 		{
 			$this->load->helper('url');
 			$this->load->database();
-			$this->load->model('m_surat_masuk');
-			$this->load->model('m_disposisi');
-			$this->load->model('m_status_disposisi');
-			$this->load->model('m_disposisi_user');
-                        $this->load->model('m_dashboard');
                         $this->load->model('m_user');
-                        $this->load->model('m_departemen');
 		}
     }
 	
     public function index(){
-            $data['title'] = 'SIDOEL';
+            $data['title'] = 'SEDAN';
             $year = date('Y');
             $role = $this->session->userdata('id_role');
             $user = $this->session->userdata('id_user');
-            $data['content'] = 'dashboard';
-            $data['totalSuratPending'] = $this->m_dashboard->countStatusSuratMasuk(-1);
-            $data['totalSuratDisposisi'] = $this->m_dashboard->countStatusSuratMasuk(0);
-            $data['totalSuratSelesai'] = $this->m_dashboard->countStatusSuratMasuk(1);
-            /*$data['totalSuratPending'] = $this->m_dashboard->countSuratMasukPending();
-            $data['totalSuratDisposisi'] = $this->m_dashboard->countSuratMasukDisposisi();
-            $data['totalSuratSelesai'] = $this->m_dashboard->countSuratMasukSelesai();*/
-            $data['statusDisposisi'] = $this->m_dashboard->selectDashboardDisposisiPerUser($user)->result();
+            $data['content'] = 'l_user';
             $data['user'] = $this->m_user->selectById($this->session->userdata('id_user'))->row();
-            $data['bagian'] = $this->m_departemen->selectAll()->result();
-            $url = "http://reguler.sms-notifikasi.com/apps/smsapibalance.php?userkey=andhika1988&passkey=211188";
-            try{
-               
-                
-                
-                if(@simplexml_load_file($url)){
-                    $xxml = simplexml_load_file($url);
-                    $data['val'] = $xxml->message->value;
-                    $data['statusxml'] = 1;
-                   
-                }else{
-                    $data['statusxml'] = 0;
-                }
-                   
-                
-            } catch(Exception $e){
-                //echo 'XML sms error ',  $e->getMessage(), "\n";
-            }
             
-            foreach ($data['statusDisposisi'] as $row){
-                $data['dataStatusDispo'][$row->sds_id] = $this->m_dashboard->getBagianDispo($row->sds_id, $year)->result();
-            }
-            $data['chart1'] = $this->getChart1Ajaxx(12);
-            if ($role=='1'){$data['chart2'] = $this->getChart2Ajaxx(12);}
-            else{$data['chart2'] = $this->getChart2AjaxPerUserx(12);}
             $this->load->view('layout', $data);
     }
 

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-15 09:23:39
+Date: 2015-11-15 11:38:50
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -43,6 +43,7 @@ CREATE TABLE `tr_detail_surat` (
   `dsrt_tgl_cetak` date DEFAULT NULL,
   `dsrt_pencetak` int(255) NOT NULL,
   `dsrt_idpengadaan` int(255) NOT NULL,
+  `dsrt_nomor` varchar(255) NOT NULL,
   PRIMARY KEY (`dsrt_idkntsrt`,`dsrt_jenis_surat`,`dsrt_pencetak`,`dsrt_idpengadaan`),
   KEY `fk_dsrt_jenis_surat` (`dsrt_jenis_surat`),
   CONSTRAINT `fk_dsrt_idkntnsrt` FOREIGN KEY (`dsrt_idkntsrt`) REFERENCES `tr_detail_konten` (`dknt_idkonten`) ON DELETE NO ACTION ON UPDATE NO ACTION,

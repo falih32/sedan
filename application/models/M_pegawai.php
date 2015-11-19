@@ -24,7 +24,15 @@ class M_pegawai extends CI_Model{
     			
     function selectAll(){
        $this->db->select('*');
-       $this->db->from('t_user');
+       $this->db->from('t_pegawai');
+       return $this->db->get();
+    }
+    
+    function selectAllWithJabatan(){
+       $this->db->select('t_pegawai.*, jbt_id, jbt_nama');
+       $this->db->from('t_pegawai');
+       $this->db->join('t_jabatan', 't_jabatan.jbt_id = t_pegawai.pgw_jabatan','left');
+       $this->db->where('pgw_deleted', '0'); 
        return $this->db->get();
     }
     

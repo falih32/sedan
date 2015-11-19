@@ -5,7 +5,7 @@ select ifnull((SELECT YEAR(pgd_time_updated) as tahun
 				
 -- QUERY PENGADAAN
 --  1. list pengadaan 
-SELECT t_pengadaan.*, t_draft_pengadaan.*, spl_nama, pgw_nama
+SELECT t_pengadaan.*, t_draft_pengadaan.*, spl_nama, pgw_nama, DATE_FORMAT(drp_tanggal_input,"%e %M %Y")
 FROM t_pengadaan, t_draft_pengadaan
 LEFT JOIN tr_draft_penyusun
 ON  dpy_draft = drp_id

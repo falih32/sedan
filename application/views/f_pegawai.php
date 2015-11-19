@@ -25,7 +25,7 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."pegawai/proses_editPegawai";}else{echo base_url()."pegawai/proses_addPegawai";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form method="post" action="<?php if($mode == 'edit'){echo base_url()."pegawai/proses_editPegawai";}else{echo base_url()."pegawai/proses_addPegawai";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                 <?php if($mode == 'edit'){ ?>
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <input type="hidden" name="pgw_jabatan" value="<?php echo $userlist->pgw_jabatan; ?>">
@@ -87,4 +87,4 @@
             </div>
         </div>
     </div>
-</div>
+</div>  

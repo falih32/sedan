@@ -20,6 +20,8 @@
     <link href="<?php echo base_url();?>assets/css/select2-bootstrap.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/metisMenu/src/metisMenu.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/formValidation.min.css" rel="stylesheet" type="text/css">
+    
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>assets/js/jquery-1.11.2_min.js"></script>
     <![endif]-->
@@ -42,8 +44,21 @@
     <script src="<?php echo base_url();?>assets/js/amcharts.js"></script>
     <script src="<?php echo base_url();?>assets/js/serial.js"></script>
     <script src="<?php echo base_url();?>assets/metisMenu/src/metisMenu.js"></script>
+    <script src="<?php echo base_url();?>assets/js/formValidation.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/Framework/bootstrap.min.js"></script>
 
-    <script type="text/javascript">
+    
+</head>
+<body>
+	<div id="container">
+    	<div id="header"><?php $this->load->view('head'); ?></div>
+        <div id="content-wrapper" class="row">
+            <div id="content" ><?php $this->load->view($content); ?></div>
+        </div>
+        <div id="footer"><?php $this->load->view('footer'); ?></div>
+	</div>
+</body>
+<script type="text/javascript">
 	// <![CDATA[
 	$(document).ready(function () {
             $.datepicker.setDefaults(
@@ -59,14 +74,4 @@
 	});
 	// ]]>
 	</script>
-</head>
-<body>
-	<div id="container">
-    	<div id="header"><?php $this->load->view('head'); ?></div>
-        <div id="content-wrapper" class="row">
-            <div id="content" class="col-sm-10"><?php $this->load->view($content); ?></div>
-        </div>
-        <div id="footer"><?php $this->load->view('footer'); ?></div>
-	</div>
-</body>
 </html>

@@ -16,10 +16,12 @@ class Pengadaan extends CI_Controller{
             $this->load->helper('date');
             $this->load->database();
             $this->load->model('m_pengadaan');
-            $this->load->model('m_pegawai');
-            $this->load->model('m_supplier');
+            $this->load->model('M_anggaran');
             $this->load->model('m_user');
-            $this->load->model('m_log');
+            $this->load->model('M_supplier');
+            $this->load->model('M_suratizin');
+            $this->load->model('M_pegawai');
+       
         }
     }
 	
@@ -43,8 +45,8 @@ class Pengadaan extends CI_Controller{
     }
     
     public function index(){
-        $level = $this->session->userdata('id_level');
-        if($level != 1){$this->limitRole(array(1, 2, 3));}
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan';
         $data['title']= 'Daftar Pengadaan';
         $this->load->view('layout',$data);
@@ -55,19 +57,45 @@ class Pengadaan extends CI_Controller{
         $max=$this->input->post('max');
         if($min == '') $min = '0000-00-00';
         if($max == '') $max = '9999-12-31';
-        $result = $this->m_surat_masuk->selectAjax($min, $max);
+        $result = $this->m_pengadaan->ajaxProcess($min,$max);
         echo $result;
     }
-    	
-    public function ajaxProcessByUser(){
-        $user = $this->session->userdata('id_user');
-        $min=$this->input->post('min');
-        $max=$this->input->post('max');
-        if($min == '') $min = '0000-00-00';
-        if($max == '') $max = '9999-12-31';
-        $result = $this->m_surat_masuk->selectAjax($min, $max, $user);
-        echo $result;
+    
+     public function add_pengadaan(){
+        $data['content'] = 'f_pengadaan';
+        $data['title']= 'Tambah Pengadaan'; 
+        $data['anggaranList']= $this->M_anggaran->selectAll()->result();
+        $data['supplierList']= $this->M_supplier->selectAll()->result();
+        $data['pegawaiList']= $this->M_pegawai->selectAllWithJabatan()->result();
+        $data['suratList']= $this->M_suratizin->selectAll()->result();
+        $this->load->view('layout',$data);
     }
+  	
+    public function prosesInputAnggaran(){
+        $data['ang_kode']               = $this->input->post('ang_kode1');
+        $data['ang_nama']                = $this->input->post('ang_name');
+        
+        $kode = trim($data['ang_kode'],' ');
+        $nama = trim($data['ang_nama'],' ');
+        
+        try {
+            if($kode != '' && $nama != ''){
+                $count = count($this->M_anggaran->selectById($data['ang_kode'])->row());
+                echo $count;
+                if($count > 0){
+                    echo "duplicate";
+                }else{
+                    $this->M_anggaran->insert($data);
+                    echo "success";
+                }
+            }else{
+                echo "empty";
+            }
+        } catch (Exception $exc) {
+            echo $exc->getTraceAsString();
+        }
+    }
+    
 	
     public function getAllUnitTujuan(){       
         return $this->m_unit_tujuan->selectAll()->result();

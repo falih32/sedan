@@ -21,7 +21,7 @@ class Dashboard extends CI_Controller{
             $year = date('Y');
             $role = $this->session->userdata('id_role');
             $user = $this->session->userdata('id_user');
-            $data['content'] = 'l_user';
+            $data['content'] = 'l_pengadaan';
             $data['user'] = $this->m_user->selectById($this->session->userdata('id_user'))->row();
             
             $this->load->view('layout', $data);

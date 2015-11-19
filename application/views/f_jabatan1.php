@@ -2,14 +2,10 @@
 	if($mode == 'edit'){
 		$id = $dataUnit->jbt_id;
 		$jbt_nama = $dataUnit->jbt_nama;
-                $jbt_departemen = $dataUnit ->jbt_departemen;
-                $jbt_level =$dataUnit ->jbt_level;
 			}
 	else{
 		
 		$jbt_nama = "";
-                $jbt_departemen = "";
-                $jbt_level="";
 			}
 ?>
 <div class="container-fluid">
@@ -30,34 +26,6 @@
                         </div>
                     </div>
               
-                    <div class="form-group">
-                        <label for="jbt_departemen" class="col-sm-2 control-label text-left">Unit</label>
-                        <div class="col-sm-10">
-	                   		 <select class="form-control" id="jbt_departemen" name="jbt_departemen">
-                            	<?php foreach ($deptlist as $row) {?>
-                            	<option value="<?php echo $row->dpt_id; ?>" <?php if($row->dpt_id == $jbt_departemen){echo "selected";}?>><?php echo $row->dpt_nama; ?></option>
-                                <?php } ?>
-                            </select>
-                            
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="jbt_level" class="col-sm-2 control-label text-left">Tingkat Jabatan</label>
-                        <div class="col-sm-10">
-                            <select class="form-control" id="usr_departemen" name="jbt_level">
-                                <option value="">Select ...</option>
-                                <option value="1" <?php if($jbt_level == 1)  echo 'selected';?>>Eselon 2</option>
-                                <option value="2" <?php if($jbt_level == 2)  echo 'selected';?>>Eselon 3</option>
-                                <option value="3" <?php if($jbt_level == 3)  echo 'selected';?>>Eselon 4</option>
-                                <option value="99" <?php if($jbt_level == 99)  echo 'selected';?>>Pelaksana</option>
-                            	
-                            	 <?php echo $row->jbt_level ?></option>
-                               
-                            </select>
-                            
-                        </div>
-                    </div>
                     </div>
             
                 

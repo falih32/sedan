@@ -18,7 +18,7 @@
         <ul class="nav navbar-nav">
             <?php if($this->session->userdata('id_user') != '') {?>
             <li <?php if($onpage == "" || $onpage == "dashboard")echo "class='active'"; ?>><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
-            <li class='active'><a id = "dis-notif" href=""><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Pengadaan </a></li>
+            <li class='active'><a id = "dis-notif" href="<?php echo site_url("Pengadaan"); ?>"><span class="glyphicon glyphicon-import" aria-hidden="true"></span> Pengadaan </a></li>
             <li class="dropdown <?php if($onpage == "user" || $onpage == "unit" || $onpage == "unitterusan" || $onpage == "log" || $onpage == "jabatan" || $onpage == "jenissmasuk" || $onpage == "statusdisposisi")echo "active"; ?>">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Referensi <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">

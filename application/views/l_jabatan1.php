@@ -2,7 +2,7 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h1>
-            <i class="fa fa-users"></i> Jabatan
+            <i class="fa fa-building"></i> Jabatan
             <?php if($role <= 1){?>
             <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Jabatan' href="<?php echo base_url()."Jabatan/";?>tambah_jabatan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
             <?php } ?>
@@ -10,15 +10,14 @@
         <hr>
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <i class="fa fa-users"></i> Daftar Jabatan
+                <i class="fa fa-building"></i> Daftar Jabatan
             </div>
             <div class="panel-body">
             </div>
             <table class="table table-responsive table-hover table-striped" id="tabel-jabatan">
             	<thead>
                 <tr>
-                	<th>Jabatan</th>
-                        <th>Unit</th>
+                	<th>Nama Jabatan</th>
                         <th>Aksi</th>
                 </tr>
                 </thead>
@@ -76,16 +75,14 @@ $(document).ready(function() {
 		"columns": [
                 
                 { "data": "jbt_nama" },
-                { "data": "dpt_nama" },
                 { "data": "aksi" },
                 { "data": "jbt_id" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 2 },
-				{ "visible":false, "targets": [<?php if($role > 1) echo"2"; ?>]},
-                                { "visible":false, "targets": 3}
+				{ "searchable": false, "orderable":false, "targets": 1 },
+                                { "visible":false, "targets": 2}
 			],
-		"order": [[ 3, "asc" ]],
+		"order": [[ 2, "asc" ]],
 		"drawCallback": function( settings ) {
 			makeConfirmation();
 			makeTooltip();

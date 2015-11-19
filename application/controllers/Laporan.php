@@ -14,8 +14,8 @@ class Laporan extends CI_Controller {
             $this->load->helper('url');
             $this->load->database();
             $this->load->helper('date');
-            $this->load->model('m_pengadaan');
-            $this->load->model('m_jabatan');
+//            $this->load->model('m_pengadaan');
+            $this->load->model('m_laporan');
             $this->load->model('m_user');
         }
     }
@@ -50,7 +50,7 @@ class Laporan extends CI_Controller {
             $data['id'] = $id;
             $data['content'] = 'f_laporan';
             $data['title'] = 'cetak laporan';
-            $data['jbtlist']= $this->m_jabatan->selectAll()->result();
+            $data['jbtlist']= $this->m_laporan->selectAll()->result();
             
              $this->load->view('layout', $data);
             //$data['jbt']= $this->m_pegawai->selectById($id)->row()->pgw_jabatan;

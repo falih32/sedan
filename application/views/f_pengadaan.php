@@ -7,7 +7,7 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body bg-warning">
-                <form id = "pengadaan_form" method="post" action="" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id = "pengadaan_form" method="post" action = "<?php echo base_url()."Pengadaan/proses_tambah_pengadaan";?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">
                         <h4>Sumber Dana</h4>
                         <div class="row ">
@@ -428,6 +428,35 @@ $(document).ready(function() {
                 });
                     
               
+     });
+     
+     $("#pengadaan_form").submit(function(e) { 
+        e.preventDefault();
+        var TableDataPekerjaan = new Array();
+            $('#table_pekerjaan tr').each(function(row, tr){
+                TableDataPekerjaan[row]={
+                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
+                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
+                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
+                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
+                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
+            }    
+           }); 
+           TableDataPekerjaan.shift();  // first row will be empty - so remove
+           TableDataPekerjaan = JSON.stringify(TableDataPekerjaan);
+           //alert(TableData);
+           var TableDataPenyusun = new Array();
+            $('#table_pekerjaan tr').each(function(row, tr){
+                TableDataPenyusun[row]={
+                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
+                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
+                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
+                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
+                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
+            }    
+           }); 
+           TableDataPenyusun.shift();  // first row will be empty - so remove
+           TableDataPenyusun = JSON.stringify(TableDataPenyusun);
      });
             
     $('#pengadaan_form').formValidation({

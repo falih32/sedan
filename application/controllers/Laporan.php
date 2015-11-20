@@ -45,12 +45,21 @@ class Laporan extends CI_Controller {
         $this->load->view('layout',$data);
     }
     
+     function postVariabel(){
+   
+        $data['kepada']               = $this->input->post('kepada');
+        $data['dari']                = $this->input->post('dari');
+        $data['tanggal']            = $this->input->post('tanggal');
+        $data['pgw_nama']             = $this->input->post('pgw_nama');		
+        return $data;
+    }
+    
    public function cetaklaporan($id){
            // $data['pengadaanlist'] = $this->m_pengadaan->selectById($id)->row();
             $data['id'] = $id;
             $data['content'] = 'f_laporan';
             $data['title'] = 'cetak laporan';
-            $data['jbtlist']= $this->m_laporan->selectAll()->result();
+            $data['jbtlist']= $this->m_laporan->jabatanpegawai();
             
              $this->load->view('layout', $data);
             //$data['jbt']= $this->m_pegawai->selectById($id)->row()->pgw_jabatan;
@@ -61,4 +70,10 @@ class Laporan extends CI_Controller {
             }*/
         
     } 
+    public function cetakmemorandum1(){
+         $data = $this->postVariabel();
+            $this->m_pegawai->insert($data);
+            $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+        redirect(site_url('Pegawai'));
+    }
 }

@@ -15,10 +15,10 @@
                     </div>
                     <div class="col-sm-10">
                         <div class="form-group">
-                                <select class="form-control" id="pgw_jabatan" name="kepada" required>
+                                <select class="darimemo1 form-control" id="kepada" name="kepada" required>
                                     <option value="">Select ...</option>
                                     <?php foreach ($jbtlist as $row) {?>
-                                    <option value="<?php echo $row->jbt_id; ?>" ><?php echo $row->jbt_nama."-".$row->pgw_nama; ?></option>
+                                    <option value="<?php echo $row->pgw_id; ?>" ><?php echo $row->jbt_nama." (".$row->pgw_nama.")"; ?></option>
                                     <?php } ?>
                                 </select>
                         </div>
@@ -31,8 +31,10 @@
                                 <select class="darimemo1 form-control" id="dari" name="dari" required>
                                     <option value="">Select ...</option>
                                     <?php foreach ($jbtlist as $row) {?>
-                                    <option value="<?php echo $row->jbt_id; ?>"><?php echo $row->jbt_nama; ?></option>
-                                    <?php } ?>
+                                    <option value="<?php echo $row->pgw_id; ?>"><?php echo $row->jbt_nama." (".$row->pgw_nama.")"; ?></option>
+                                  
+                                        <?php } ?>
+                                    
                                 </select>
                         </div>    
                     </div>

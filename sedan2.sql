@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-19 23:20:39
+Date: 2015-11-20 10:42:03
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -26,7 +26,7 @@ CREATE TABLE `tr_detail_konten` (
   PRIMARY KEY (`dknt_idsurat`,`dknt_idkonten`),
   KEY `fk_dknten_idkonten` (`dknt_idkonten`) USING BTREE,
   CONSTRAINT `tr_detail_konten_ibfk_1` FOREIGN KEY (`dknt_idkonten`) REFERENCES `t_konten` (`knt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `tr_detail_konten_ibfk_2` FOREIGN KEY (`dknt_idsurat`) REFERENCES `tr_detail_surat` (`dsrt_idkntsrt`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `tr_detail_konten_idkntsurat` FOREIGN KEY (`dknt_idsurat`) REFERENCES `tr_detail_surat` (`dsrt_idkntsrt`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -38,14 +38,14 @@ CREATE TABLE `tr_detail_konten` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tr_detail_surat`;
 CREATE TABLE `tr_detail_surat` (
-  `dsrt_idkntsrt` int(255) NOT NULL,
+  `dsrt_idkntsrt` int(255) NOT NULL AUTO_INCREMENT,
   `dsrt_jenis_surat` int(11) NOT NULL,
   `dsrt_tgl_cetak` date DEFAULT NULL,
   `dsrt_pencetak` int(255) NOT NULL,
   `dsrt_idpengadaan` int(255) NOT NULL,
   PRIMARY KEY (`dsrt_idkntsrt`,`dsrt_jenis_surat`,`dsrt_pencetak`,`dsrt_idpengadaan`),
   KEY `fk_dsrt_jenis_surat` (`dsrt_jenis_surat`) USING BTREE,
-  CONSTRAINT `tr_detail_surat_ibfk_1` FOREIGN KEY (`dsrt_idkntsrt`) REFERENCES `tr_detail_konten` (`dknt_idkonten`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  KEY `dsrt_idkntsrt` (`dsrt_idkntsrt`),
   CONSTRAINT `tr_detail_surat_ibfk_2` FOREIGN KEY (`dsrt_jenis_surat`) REFERENCES `t_surat` (`srt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -273,12 +273,16 @@ DROP TABLE IF EXISTS `t_konten`;
 CREATE TABLE `t_konten` (
   `knt_nama` varchar(255) DEFAULT NULL,
   `knt_id` int(100) NOT NULL,
+  PRIMARY KEY (`knt_id`),
   KEY `knt_id` (`knt_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_konten
 -- ----------------------------
+INSERT INTO `t_konten` VALUES ('Dari', '1');
+INSERT INTO `t_konten` VALUES ('Kepada', '2');
+INSERT INTO `t_konten` VALUES ('Tanggal', '3');
 
 -- ----------------------------
 -- Table structure for t_memorandum
@@ -321,13 +325,14 @@ CREATE TABLE `t_pegawai` (
   PRIMARY KEY (`pgw_id`),
   KEY `pgw_id` (`pgw_id`) USING BTREE,
   KEY `fk_pegawai_jabatan` (`pgw_jabatan`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_pegawai
 -- ----------------------------
 INSERT INTO `t_pegawai` VALUES ('Mas Nopa', '1', '212121212121', '12121111111111111111', '4', '0');
 INSERT INTO `t_pegawai` VALUES ('Masnopa ika', '3', '33333333333333333', '111111111111111111', '5', '0');
+INSERT INTO `t_pegawai` VALUES ('Sukijan', '3', '1212121212', '111111111122222', '6', '0');
 
 -- ----------------------------
 -- Table structure for t_pengadaan
@@ -410,12 +415,15 @@ DROP TABLE IF EXISTS `t_surat`;
 CREATE TABLE `t_surat` (
   `srt_id` int(11) NOT NULL,
   `srt_nama` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`srt_id`),
   KEY `srt_id` (`srt_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_surat
 -- ----------------------------
+INSERT INTO `t_surat` VALUES ('1', 'Memorandum');
+INSERT INTO `t_surat` VALUES ('2', 'Memorandum');
 
 -- ----------------------------
 -- Table structure for t_suratizin

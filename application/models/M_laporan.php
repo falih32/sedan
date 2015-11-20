@@ -13,14 +13,13 @@ class M_laporan extends CI_Model{
         return $this->db->get();
 
     }    
-    function jabatanpegawai($data) {
-            $this->db
-		->select('pgw_id,pgw_nama,jbt_nama,A.dpt_nama,B.dpt_nama')
-                ->from('t_jabatan')
-		->join('t_pegawai', 'jbt_id = pgw_jabatan', 'left')
-		->join('t_departemen A ', 'jbt_departemen=A.dpt_id', 'left')
-                ->join('t_departemen B', 'A.dpt_parent=B.dpt_id', 'left');
-        return $this->db->get()->row();
+    function jabatanpegawai() {
+       $data = $this->db->query("SELECT pgw_id, pgw_nama, jbt_id, jbt_nama, A.dpt_nama as dep1, B.dpt_nama as dep2 "
+                . "FROM t_jabatan "
+                . "LEFT JOIN t_pegawai ON jbt_id = pgw_jabatan "
+                . "LEFT JOIN t_departemen A ON jbt_departemen=A.dpt_id "
+                . "LEFT JOIN t_departemen B ON A.dpt_parent=B.dpt_id ")->result();
+       return $data;
 
     }   
     

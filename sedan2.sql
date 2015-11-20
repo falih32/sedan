@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-20 10:42:03
+Date: 2015-11-20 10:59:37
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,12 +21,14 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `tr_detail_konten`;
 CREATE TABLE `tr_detail_konten` (
   `dknt_isi` varchar(255) DEFAULT NULL,
+  `dknt_id` bigint(255) NOT NULL AUTO_INCREMENT,
   `dknt_idkonten` int(255) NOT NULL,
-  `dknt_idsurat` int(255) NOT NULL,
-  PRIMARY KEY (`dknt_idsurat`,`dknt_idkonten`),
+  `dknt_detailsurat` bigint(255) NOT NULL,
+  PRIMARY KEY (`dknt_id`),
   KEY `fk_dknten_idkonten` (`dknt_idkonten`) USING BTREE,
+  KEY `tr_detailsurat` (`dknt_detailsurat`),
   CONSTRAINT `tr_detail_konten_ibfk_1` FOREIGN KEY (`dknt_idkonten`) REFERENCES `t_konten` (`knt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `tr_detail_konten_idkntsurat` FOREIGN KEY (`dknt_idsurat`) REFERENCES `tr_detail_surat` (`dsrt_idkntsrt`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  CONSTRAINT `tr_detailsurat` FOREIGN KEY (`dknt_detailsurat`) REFERENCES `tr_detail_surat` (`dsrt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- ----------------------------
@@ -38,14 +40,14 @@ CREATE TABLE `tr_detail_konten` (
 -- ----------------------------
 DROP TABLE IF EXISTS `tr_detail_surat`;
 CREATE TABLE `tr_detail_surat` (
-  `dsrt_idkntsrt` int(255) NOT NULL AUTO_INCREMENT,
+  `dsrt_id` bigint(255) NOT NULL AUTO_INCREMENT,
   `dsrt_jenis_surat` int(11) NOT NULL,
-  `dsrt_tgl_cetak` date DEFAULT NULL,
+  `dsrt_tgl_cetak` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `dsrt_pencetak` int(255) NOT NULL,
   `dsrt_idpengadaan` int(255) NOT NULL,
-  PRIMARY KEY (`dsrt_idkntsrt`,`dsrt_jenis_surat`,`dsrt_pencetak`,`dsrt_idpengadaan`),
+  PRIMARY KEY (`dsrt_id`),
   KEY `fk_dsrt_jenis_surat` (`dsrt_jenis_surat`) USING BTREE,
-  KEY `dsrt_idkntsrt` (`dsrt_idkntsrt`),
+  KEY `dsrt_idkntsrt` (`dsrt_id`),
   CONSTRAINT `tr_detail_surat_ibfk_2` FOREIGN KEY (`dsrt_jenis_surat`) REFERENCES `t_surat` (`srt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 

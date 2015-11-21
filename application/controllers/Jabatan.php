@@ -23,13 +23,6 @@ class Jabatan extends CI_Controller {
      function selectAllUnit(){
         return $this->m_departemen->selectAll()->result();
     }
-	
-    function writeLog($tabel, $aksi){
-        $data['log_user'] = $this->session->userdata('id_user');
-        $data['log_nama_tabel'] = $tabel;
-        $data['log_aksi'] = $aksi;
-        $this->m_log->insert($data);
-    }
     
     function limitRole($limit){
         $role = $this->session->userdata('id_role');
@@ -57,7 +50,7 @@ class Jabatan extends CI_Controller {
 	//$data['utj_id']             = $this->input->post('utj_id');
 	$data['jbt_nama']    = $this->input->post('jbt_nama');
         $data['jbt_departemen'] = $this->input->post('jbt_departemen');
-        $data['jbt_level'] = $this->input->post('jbt_level');
+        
         return $data;
     }
     
@@ -73,7 +66,6 @@ class Jabatan extends CI_Controller {
         $this->limitRole(array(1));
         $data = $this->postVariabel();
         $this->m_jabatan->insert($data);
-        $this->writeLog('Jabatan','Create');
         redirect(site_url('Jabatan'));
     }
     

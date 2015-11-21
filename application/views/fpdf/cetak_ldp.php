@@ -1,0 +1,94 @@
+<?php
+require('fpdf.php');
+
+$pdf = new FPDF('p','mm','A4');
+$pdf->AddPage();
+//Header
+		//Arial bold 15
+		$pdf->SetFont('Arial','B',16);
+				$pdf->Cell(80);
+		//judul
+		$pdf->Cell(30,10,'BAB III. LEMBAR DATA PENGADAAN',0,3,'C');
+		//buat garis horisontal
+		$pdf->Line(10,25,200,25);
+		$pdf->Ln(10);
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell(90,6,'A. LINGKUP PEKERJAAN ',0,0,'L');
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,'1.',0,0,'L');
+		$pdf->Cell(50,6,'Pejabat Pengadaan :',0,2,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(90,6,'Kepala xxxxxx xxxxxxxxxxx xxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxxxx xxxxxxx xxxxxxxxx xxxxx',0,'J');
+		$pdf->ln(5);
+		$pdf->Cell(90);
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,'2.',0,0,'L');
+		$pdf->Cell(50,6,'Alamat Pejabat Pengadaan :',0,2,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(90,6,'Jl. Medan Merdeka Timur No.16 Jakarta Pusat',0,'J');
+		$pdf->ln(5);
+		$pdf->Cell(90);
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,'3.',0,0,'L');
+		$pdf->Cell(50,6,'Website :',0,2,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(90,6,'www.kkp.go.id',0,'J');
+		$pdf->ln(5);
+		$pdf->Cell(90);
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,'4.',0,0,'L');
+		$pdf->Cell(50,6,'Nama paket pekerjaan :',0,2,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(90,6,'xxxxxxx xxxxxxxxxx xxxxxxxxxxxxx xxxxxxxxxx',0,'J');
+		$pdf->ln(5);
+		$pdf->Cell(90);
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,'5.',0,0,'L');
+		$pdf->Cell(50,6,'Uraian singkat pekerjaan :',0,2,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(90,6,'xxxxxxxxxx xxxxxxxxxxx xxxxxxxxx xxxxxxxxxx xxxxxxxxx xxxxxxxxxx',0,'J');
+		$pdf->ln(5);
+		$pdf->Cell(90);
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(10,6,'6.',0,0,'L');
+		$pdf->Cell(50,6,'Jangka waktu penyelesaian pekerjaan :',0,2,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(90,6,'xxx xxxx xxxxxx',0,'J');
+		$pdf->ln(5);
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell(90,6,'B. SUMBER DANA ',0,0,'L');
+		$pdf->SetFont('Arial','',12);
+		$pdf->MultiCell(100,6,'Pekerjaan ini dibiayai dari sumber pendanaan XXXXXXXXXxxx xxxx xxxxxxxx xxxxxxxxxxxx xxxxxxxxx xxxxxxxxxxxx xxxxx xxxxxxxxx xxxxxxxxx xxxxxxx xxxxxxxx xxxxxxxxxxxx xxxxxxxx xxxxxx xxxxxxxxx x xxxxxxxxxxx xxxxxxxx xxxxxxx xxxxxxxx xxxxxxxxxxxx xxxxxxxx xxxxxxxxxx XXXXXXXX',0,'J');
+		$pdf->ln(5);
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell(7,6,'C.',0,0,'L');
+		$pdf->Cell(83,6,'MASA BERLAKUNYA',0,0,'L');
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(82,6,'Masa berlakunya surat penawaran :',0,1,'J');
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell(7);
+		$pdf->Cell(83,6,'PENAWARAN',0,0,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->Cell(82,6,'xxx xxxxxxx xxxxxxxxxx',0,3,'J');
+		$pdf->ln(5);
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell(90,6,'D. DOKUMEN PENAWARAN ',0,0,'L');
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(70,6,'Bagian Pekerjaan yang Disub-kontrakkan',0,3,'J');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(100,6,'xxxxxxxx xxxx  ',0,'J');
+		$pdf->ln(5);
+		$pdf->SetFont('Arial','',14);
+		$pdf->Cell(90,6,'E. SYARAT PENYEDIA ',0,0,'L');
+		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(90,6,'Memiliki izin usaha bidang ',0,3,'L');
+		$pdf->SetFont('Arial','UI',12);
+		$pdf->MultiCell(100,6,'xxxxxxxx xxxxxxxxxx  xxxxx xxxxxxxxx xxxxxxx xxxxxxxxx xxxxxxxx xxxxxxxxxxxxxx x xxxxxxxxxxxxxxx xxxxxxxxx xxxxxxxxxxxxx xxxxxxx xxx xxxxxxxxxxx xxxxxxxxx xxxxxxxxx xxxxxxxxx x xxxxxxxxxxxxxxxx xxxxxxxxxxxx xxxx xxxxxxxxxxx xxxxxxxxxxx x xxxxxxxxxxxxxxxx xxxxxxxxxxxx xxxxxxxxxxxxxx xxxxxxxxxxxxxx xxxx xxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxxxxxxx xxxxx xxx xxxxxxxxxx xxxxxxxx xxxxxxxxxxx xxxxx xxxxxxxxxxx xxxxxxxxx xxxxxxxxxxxx xxxxxxxxxx xxxxxxxx xxxxxxx xxxxxxxxx xxxxxxxxxxx xxxxxxxxx xxxxxx xxxxxxx x xxxxxxxxxxxx  ',0,'J');
+		$pdf->ln(5);
+		$pdf->sety(-40);
+		$pdf->Cell(75);
+		$pdf->SetFont('Arial','',10);
+		$pdf->MultiCell(50,6,'Standar Dokumen Pengadaan Pengadaan Jasa Lainnya (Dengan Prakualifikasi)',0,'C');
+	
+$pdf->Output();
+?>

@@ -55,20 +55,19 @@ $(document).ready(function() {
 			}
 		},
 		"columns": [
-                { "data": "drp_anggaran" },
+                { "data": "pgd_anggaran" },
                 { "data": "nmpengadaan_tglbuat" },
-                { "data": "supplier" },
-                { "data": "ketua" },
-                { "data": "drp_jumlah_sesudahppn" },
+                { "data": "pgd_supplier" },
+                { "data": "lst_ketua" },
+                { "data": "pgd_jml_ssdh_ppn" },
                 { "data": "aksi" },
                 { "data": "pgd_perihal" },
-                { "data": "tgl_input" },
-                { "data": "pgd_id" },
-                { "data": "drp_id" }
+                { "data": "pgd_tanggal_input" },
+                { "data": "pgd_id" }
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 5 },
-                                { "searchable": false, "visible":false, "targets": [9,8]},
+                                { "searchable": false, "visible":false, "targets": [8]},
                                 {  "visible":false, "targets": [7,6] }
                         ],
 		"order": [[ 8, "asc" ]],

@@ -55,7 +55,7 @@ class Pengadaan extends CI_Controller{
     public function ajaxProcess(){
         $min=$this->input->post('min');
         $max=$this->input->post('max');
-        if($min == '') $min = '0000-00-00';
+        if($min == '') $min = '0000-01-01';
         if($max == '') $max = '9999-12-31';
         $result = $this->m_pengadaan->ajaxProcess($min,$max);
         echo $result;

@@ -43,27 +43,22 @@ class M_pengadaan extends CI_Model{
         return $insert_id;
     }
     function getFirstYearInput(){
-        return $this->db->query("select ifnull((SELECT YEAR(pgd_time_updated) as tahun "
+        return $this->db->query("select ifnull((SELECT YEAR(pgd_tanggal_input) as tahun "
                 . "FROM t_pengadaan ORDER BY tahun LIMIT 1),"
                 . "(select year(NOW()) from dual)) as thn from dual")->row()->thn;
     }
     function ajaxProcess($min, $max){
         
 	$this->datatables
-                ->select('t_pengadaan.*, t_draft_pengadaan.*, pgd_perihal, spl_nama as supplier,'
-                        . ' pgw_nama as ketua, DATE_FORMAT(drp_tanggal_input,"%e %M %Y") as tgl_input')
-                ->from('t_pengadaan, t_draft_pengadaan')
-                ->join('tr_draft_penyusun', 'dpy_draft = drp_id AND dpy_jabatan = 0','left')
-                ->join('t_pegawai', 'pgw_id = dpy_pegawai','left')
-                ->join('tr_draft_supplier', 'dsp_draft = drp_id','left')
-                ->join('t_supplier', 'dsp_supplier = spl_id','left')
-                ->where('drp_terpilih', '1')
-                ->where('drp_pengadaan = pgd_id')
+                ->select('t_pengadaan.*, lst_ketua')
+                ->from('t_pengadaan')
+                ->join('t_kelompok_penyusun', 'klp_pengadaan = pgd_id AND klp_terpilih = 1','left')
+                ->join('t_list_penyusun', 'lsp_kelompok = klp_id AND lsp_jabatan = 0','left')
                 ->where('pgd_deleted', '0')
-                ->where('YEAR(drp_tanggal_input)', $this->session->tahun)
-               ->where('drp_tanggal_input >= ', $min)
-		->where('drp_tanggal_input <= ', $max);
-        $this->datatables->add_column('nmpengadaan_tglbuat', '$1<br>$2', 'pgd_perihal, tgl_input');
+                ->where('YEAR(pgd_tanggal_input)', $this->session->tahun)
+                ->where('pgd_tanggal_input >= ', $min)
+		->where('pgd_tanggal_input <= ', $max);
+        $this->datatables->add_column('nmpengadaan_tglbuat', '$1<br>$2', 'pgd_perihal, pgd_tanggal_input');
         $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".

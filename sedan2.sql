@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-11-21 22:55:09
+Date: 2015-11-21 23:36:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -70,11 +70,13 @@ CREATE TABLE `tr_pgd_suratizin` (
   KEY `fk_psr_srz` (`psr_surat_izin`) USING BTREE,
   CONSTRAINT `tr_pgd_suratizin_ibfk_1` FOREIGN KEY (`psr_surat_izin`) REFERENCES `t_suratizin` (`siz_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tr_pgd_suratizin_ibfk_2` FOREIGN KEY (`psr_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_pgd_suratizin
 -- ----------------------------
+INSERT INTO `tr_pgd_suratizin` VALUES ('1', '15', '1');
+INSERT INTO `tr_pgd_suratizin` VALUES ('2', '15', '2');
 
 -- ----------------------------
 -- Table structure for t_anggaran
@@ -172,7 +174,7 @@ CREATE TABLE `t_jabatan` (
   PRIMARY KEY (`jbt_id`),
   KEY `fk_jabatan_departemen` (`jbt_departemen`) USING BTREE,
   CONSTRAINT `t_jabatan_ibfk_1` FOREIGN KEY (`jbt_departemen`) REFERENCES `t_departemen` (`dpt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_jabatan
@@ -209,6 +211,7 @@ INSERT INTO `t_jabatan` VALUES ('29', 'Bendahara  Pengeluaran', '0', null);
 INSERT INTO `t_jabatan` VALUES ('30', 'Pejabat Pengadaan Barang Jasa', '0', null);
 INSERT INTO `t_jabatan` VALUES ('31', 'Pejabat Penandatangan SPM', '0', null);
 INSERT INTO `t_jabatan` VALUES ('32', 'Kepala Biro Umum', '0', null);
+INSERT INTO `t_jabatan` VALUES ('33', 'Pejabat Pembuat Komitmen', '17', null);
 
 -- ----------------------------
 -- Table structure for t_kelompok_penyusun
@@ -315,8 +318,12 @@ CREATE TABLE `t_pengadaan` (
   `pgd_lama_penawaran` int(255) DEFAULT NULL,
   `pgd_tgl_mulai_pengadaan` date DEFAULT NULL,
   `pgd_supplier` int(255) DEFAULT NULL,
-  `pgd_jml_sblm_ppn` decimal(65,2) DEFAULT NULL,
-  `pgd_jml_ssdh_ppn` decimal(65,2) DEFAULT NULL,
+  `pgd_jml_sblm_ppn_hps` decimal(65,2) DEFAULT NULL,
+  `pgd_jml_ssdh_ppn_hps` decimal(65,2) DEFAULT NULL,
+  `pgd_jml_sblm_ppn_pnr` decimal(65,2) DEFAULT NULL,
+  `pgd_jml_ssdh_ppn_pnr` decimal(65,2) DEFAULT NULL,
+  `pgd_jml_sblm_ppn_fix` decimal(65,2) DEFAULT NULL,
+  `pgd_jml_ssdh_ppn_fix` decimal(65,2) DEFAULT NULL,
   PRIMARY KEY (`pgd_id`),
   KEY `fk_pgd_ang` (`pgd_anggaran`) USING BTREE,
   KEY `fk_pgd_usr` (`pgd_user_update`) USING BTREE,
@@ -329,7 +336,7 @@ CREATE TABLE `t_pengadaan` (
 -- ----------------------------
 -- Records of t_pengadaan
 -- ----------------------------
-INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-11-21 22:27:33', '12345', '1', '45', '30', '2015-11-21', '0', '113137500.00', '124451250.00');
+INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-11-21 22:27:33', '12345', '1', '45', '30', '2015-11-21', '0', '113137500.00', '124451250.00', null, null, null, null);
 
 -- ----------------------------
 -- Table structure for t_perwakilan_supplier
@@ -394,12 +401,13 @@ CREATE TABLE `t_suratizin` (
   `siz_id` int(25) NOT NULL AUTO_INCREMENT,
   `siz_deleted` int(255) DEFAULT '0',
   PRIMARY KEY (`siz_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_suratizin
 -- ----------------------------
 INSERT INTO `t_suratizin` VALUES ('Surat Izin Usaha Perdangangan (SIUP) Kecil', '1', '0');
+INSERT INTO `t_suratizin` VALUES ('Surat Izin Mengemudi', '2', '0');
 
 -- ----------------------------
 -- Table structure for t_user

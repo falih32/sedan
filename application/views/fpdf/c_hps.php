@@ -27,7 +27,7 @@ $header = array('No', 'Uraian Pekerjaan', 'Volume','Harga Satuan','Jumlah');
 		$no=0;
 		foreach ($listpeng as $row) {
 		$no++;	
-			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan,$row->dtp_hargasatuan,$row->dtp_jumlahharga)); 
+			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan,$row->dtp_hargasatuan_hps,$row->dtp_jumlahharga_hps)); 
 		}
 		$jum=124451250;
 		//$format = number_format($jum, 0, '','.');

@@ -136,7 +136,7 @@ class Laporan extends CI_Controller {
     }
     
      public function cetakhps(){
-     $datacetak['listpeng']=$this->m_laporan->detpengbyiddarft($this->input->post('idpengadaan'));    
+     $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
      $namappk=$this->m_laporan->selectPPK();
      $datacetak['namappk']=$namappk->pgw_nama;
 

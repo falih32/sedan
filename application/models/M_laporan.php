@@ -6,13 +6,6 @@ class M_laporan extends CI_Model{
         	$this->load->library('Datatables');
     }
 
-    function cetakmemo1($data) {
-        $this->db->select('*');
-        $this->db->from('t_draftjabatan');
-        $this->db->where('jbt_id', $id);
-        return $this->db->get();
-
-    }    
     function jabatanpegawai() {
        $data = $this->db->query("SELECT pgw_id, pgw_nama, jbt_id, jbt_nama, A.dpt_nama as dep1, B.dpt_nama as dep2 "
                 . "FROM t_jabatan "
@@ -41,10 +34,9 @@ class M_laporan extends CI_Model{
     }   
      function angdrppgd($id) {
        $data = $this->db->query("SELECT ang_kode, ang_nama, pgd_perihal "
-                . "FROM t_draft_pengadaan "
-                . "LEFT JOIN t_anggaran ON ang_kode = drp_anggaran "
-                . "LEFT JOIN t_pengadaan ON pgd_id=drp_pengadaan "
-                . "WHERE drp_id = '$id' ")->row();
+                . "FROM t_pengadaan "
+                . "LEFT JOIN t_anggaran ON ang_kode = pgd_anggaran "
+                . "WHERE pgd_id = '$id' ")->row();
        return $data;
     }   
     
@@ -55,11 +47,11 @@ class M_laporan extends CI_Model{
                 . "WHERE jbt_id = '33' ")->row();
        return $data;
     }
-     function detpengbyiddarft($id) {
-       $data = $this->db->query("SELECT dtp_pekerjaan, dtp_volume, dtp_satuan, dtp_hargasatuan, dtp_jumlahharga  "
+     function detpengbyid($id) {
+       $data = $this->db->query("SELECT dtp_pekerjaan, dtp_volume, dtp_satuan, dtp_hargasatuan_hps, dtp_jumlahharga_hps, pgd_jml_ssdh_ppn_hps, pgd_jml_sblm_ppn_hps "
                 . "FROM t_detail_pengadaan "
-                . "LEFT JOIN t_draft_pengadaan ON dtp_draft = drp_id "
-                . "WHERE drp_id = '$id' ")->result();
+                . "LEFT JOIN t_pengadaan ON dtp_pengadaan = pgd_id "
+                . "WHERE pgd_id = '$id' ")->result();
        return $data;
     }   
     

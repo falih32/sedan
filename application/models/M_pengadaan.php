@@ -7,12 +7,41 @@ class M_pengadaan extends CI_Model{
 		$this->load->library('Datatables');
     }
     
-	
-	
-    function insert($data){
-        $this->db->insert('t_surat_msk', $data);
+    function insertPengadaan($data){
+        $this->db->insert('t_pengadaan', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
     }
     
+    function insertDraftPengadaan($data){
+        $this->db->insert('t_draft_pengadaan', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+    
+    function insertPekerjaan($data){
+        $this->db->insert('t_detail_pengadaan', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+    
+     function insertPenyusun($data){
+        $this->db->insert('tr_draft_penyusun', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+    
+    function insertSuratIzin($data){
+        $this->db->insert('tr_draft_suratizin', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
+    
+    function insertSupplierPengadaan($data){
+        $this->db->insert('tr_draft_supplier', $data);
+        $insert_id = $this->db->insert_id();
+        return $insert_id;
+    }
     function getFirstYearInput(){
         return $this->db->query("select ifnull((SELECT YEAR(pgd_time_updated) as tahun "
                 . "FROM t_pengadaan ORDER BY tahun LIMIT 1),"
@@ -41,47 +70,18 @@ class M_pengadaan extends CI_Model{
 			"<a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='Pengadaan/delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='Pengadaan/edit_pengadaan/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan' href='/addUser/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='/add_penawaran/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
 			"</div>".
 			"</form>".
                         "",'pgd_id');
         return $this->datatables->generate();
     }	
-    function selectAll(){
-        // ganti pake procedure
-//        $this->db->select('*');
-//        $this->db->from('t_surat_masuk');
-//		$this->db->order_by('sms_id', 'desc');
-         $this->db->query("SET lc_time_names = 'id_ID'");
-        $data = $this->db->query("SELECT	t_surat_msk.sms_id, t_surat_msk.sms_nomor_surat, t_surat_msk.sms_tgl_srt, 
-			t_surat_msk.sms_tgl_srt_diterima, t_surat_msk.sms_tgl_srt_dtlanjut,
-			t_surat_msk.sms_tenggat_wkt, t_surat_msk.sms_perihal, t_surat_msk.sms_jenis_surat,t_surat_msk.sms_tkt_aman,t_surat_msk.sms_sifat,
-			t_surat_msk.sms_no_agenda, t_surat_msk.sms_unit_tujuan, t_surat_msk.sms_keterangan,t_surat_msk.sms_indek,t_surat_msk.sms_kode,t_surat_msk.sms_lampiran, 
-			t_surat_msk.sms_edited_by, t_surat_msk.sms_status_terkirim, t_surat_msk.sms_file, 
-			t_surat_msk.sms_pengirim, t_surat_msk.sms_deleted,
-			t_unit_tujuan.utj_unit_tujuan, t_jenis_surat_masuk.jsm_nama_jenis, t_sifat.sifat_nama, 
-			t_user.usr_userName		
-	FROM t_surat_msk
-	LEFT JOIN t_jenis_surat_masuk
-	ON t_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id
-        LEFT JOIN t_tkt_aman 
-	ON t_surat_msk.sms_tkt_aman = t_tkt_aman.tkt_id
-        LEFT JOIN t_sifat 
-	ON t_surat_msk.sms_sifat = t_sifat.sifat_id
-	LEFT JOIN t_unit_tujuan
-	ON t_surat_msk.sms_unit_tujuan = t_unit_tujuan.utj_id
-	LEFT JOIN t_user
-	ON t_surat_msk.sms_unit_tujuan = t_user.usr_id
-	WHERE t_surat_msk.sms_deleted = '0'
-	ORDER BY t_surat_msk.sms_id DESC")->result();
-        return $data;
-    }
+    
     function selectById($id){
-        // ganti pake procedure
-        $this->db->query("SET lc_time_names = 'id_ID'");
         $this->db
-		->select('*, DATE_FORMAT(sms_tgl_srt,"%e %M %Y") as sms_tgl_srt, DATE_FORMAT(sms_tgl_srt_diterima,"%e %M %Y") as sms_tgl_srt_diterima, A.usr_nama as perekam')
-        ->from('t_surat_msk')
-        ->where('sms_id', $id)
+		->select('*')
+                ->from('t_pengadaan')
+                ->where('sms_id', $id)
 		->where('sms_deleted', '0')
 		->join('t_jenis_surat_masuk', 't_surat_msk.sms_jenis_surat = t_jenis_surat_masuk.jsm_id', 'left')
                 ->join('t_tkt_aman', 't_surat_msk.sms_tkt_aman = t_tkt_aman.tkt_id', 'left')

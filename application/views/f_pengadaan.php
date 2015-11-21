@@ -1,13 +1,12 @@
 
-</style>
 <div class="container-fluid">
     <div class="row-fluid">
-        <div class="panel panel-success">
+        <div class="panel panel-info">
             <div class="panel-heading">
                 <h3><?php echo $title; ?></h3>
             </div>
-            <div class="panel-body bg-warning">
-                <form id = "pengadaan_form" method="post" action = "<?php echo base_url()."Pengadaan/proses_tambah_pengadaan";?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <div class="panel-body">
+                <form id = "pengadaan_form"  action = "<?php echo base_url()."Pengadaan/proses_add_pengadaan";?>" onsubmit="submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">
                         <h4>Sumber Dana</h4>
                         <div class="row ">
@@ -58,6 +57,12 @@
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="drp_tgl_mulai_pengadaan" class="col-sm-4 control-label text-left">Tanggal Mulai Pengadaan</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control tgl" id="drp_tgl_mulai_pengadaan" name="drp_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                 <label class="col-md-6 col-md-offset-3 control-label text-center">Uraian Singkat Pekerjaan</label>
                                 </div>
@@ -139,7 +144,7 @@
                            
                         <div class="row">
                             <div class="table-responsive">
-                               <table class="table table-striped text-center" id="table_pekerjaan">
+                               <table class="table table-hover table-striped table-bordered text-center" id="table_pekerjaan">
                                  <thead >
                                    <tr>
                                      <th class="text-center">Pekerjaan</th>
@@ -202,7 +207,7 @@
                            </div>
                         <div class="row">
                             <div class="table-responsive">
-                               <table class="table table-striped text-center" id="table_penyusun">
+                               <table class="table table-striped table-bordered text-center" id="table_penyusun">
                                  <thead >
                                    <tr>
                                      <th class="text-center">NIP</th>
@@ -244,9 +249,10 @@
                                 </button>
                             </div>
                            </div>
+                        
                         <div class="row">
                             <div class="table-responsive">
-                               <table class="table table-striped text-center" id="tablesuratusaha">
+                               <table class="table table-striped table-bordered text-center" id="tablesuratusaha">
                                  <thead >
                                    <tr>
                                      <th class="text-center" style="display:none;" >id surat usaha</th>
@@ -262,11 +268,25 @@
                            </div>
                         </div>
                     </div>
+                    <div class="row">
+                            <div class="form-group">     
+                                   <div class="col-sm-4">
+                                   <input type="hidden" class="form-control" id="list_pekerjaan" name="list_pekerjaan" placeholder="Detail Pekerjaan">
+                                   </div>
+                                    <div class="col-sm-4">
+                                   <input type="hidden" class="form-control" id="list_penyusun" name="list_penyusun" placeholder="Detail Pekerjaan">
+                                   </div>
+                                    <div class="col-sm-4">
+                                   <input type="hidden" class="form-control" id="list_suratizin" name="list_suratizin" placeholder="Detail Pekerjaan">
+                                   </div>
+                            </div>
+                        </div>
                     <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                             <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
-                            <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
+                            <button type="submit" class="btn btn-lg btn-success" id="btnPengadaan"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -308,11 +328,49 @@
                                  </div>
                                </div> 
 <script type="text/javascript">
- 
+function submitFormPengadaan() {
+   var TableDataPekerjaan = new Array();
+            $('#table_pekerjaan tr').each(function(row, tr){
+                TableDataPekerjaan[row]={
+                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
+                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
+                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
+                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
+                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
+            }    
+           }); 
+           TableDataPekerjaan.shift();  // first row will be empty - so remove
+           TableDataPekerjaan = JSON.stringify(TableDataPekerjaan);
+           //alert(TableData);
+           var TableDataPenyusun = new Array();
+            $('#table_penyusun tr').each(function(row, tr){
+                TableDataPenyusun[row]={
+                "dpy_pegawai" : $(tr).find('td:eq(0)').text()    //nip pegawai
+                , "dpy_jabatan" :$(tr).find('td:eq(2)').text()             //jabatan
+            }    
+           }); 
+           TableDataPenyusun.shift();  // first row will be empty - so remove
+           TableDataPenyusun = JSON.stringify(TableDataPenyusun);
+           //alert(TableDataPenyusun);
+           var TableDataSurat = new Array();
+            $('#tablesuratusaha tr').each(function(row, tr){
+                TableDataSurat[row]={
+                "dsr_surat_izin" : $(tr).find('td:eq(0)').text()    //id surat izin
+            }    
+           }); 
+           TableDataSurat.shift();  // first row will be empty - so remove
+           TableDataSurat = JSON.stringify(TableDataSurat);
+           //alert(TableDataSurat);
+           document.getElementById('list_pekerjaan').value = TableDataPekerjaan; 
+           document.getElementById('list_penyusun').value = TableDataPenyusun;
+           document.getElementById('list_suratizin').value = TableDataSurat;
+           //document.pengadaan_form.list_pekerjaan.value = TableDataPekerjaan;
+           return true;
+}
      
 $(document).ready(function() {
     
-    
+   // $('#btnSubmitPengadaan').hide();
     $(".anggaran-cbbox").select2({
        ajax: {
          url: "<?php echo site_url('Anggaran/select2All');?>",
@@ -430,34 +488,53 @@ $(document).ready(function() {
               
      });
      
-     $("#pengadaan_form").submit(function(e) { 
-        e.preventDefault();
-        var TableDataPekerjaan = new Array();
-            $('#table_pekerjaan tr').each(function(row, tr){
-                TableDataPekerjaan[row]={
-                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
-                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
-                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
-                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
-                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
-            }    
-           }); 
-           TableDataPekerjaan.shift();  // first row will be empty - so remove
-           TableDataPekerjaan = JSON.stringify(TableDataPekerjaan);
-           //alert(TableData);
-           var TableDataPenyusun = new Array();
-            $('#table_pekerjaan tr').each(function(row, tr){
-                TableDataPenyusun[row]={
-                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
-                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
-                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
-                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
-                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
-            }    
-           }); 
-           TableDataPenyusun.shift();  // first row will be empty - so remove
-           TableDataPenyusun = JSON.stringify(TableDataPenyusun);
-     });
+//     $("#btnEnterPengadaan").on("click", function(){
+////     $('#btnEnterPengadaan').submit(function(e){ 
+//        //e.preventDefault();
+//        var TableDataPekerjaan = new Array();
+//            $('#table_pekerjaan tr').each(function(row, tr){
+//                TableDataPekerjaan[row]={
+//                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
+//                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
+//                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
+//                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
+//                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
+//            }    
+//           }); 
+//           TableDataPekerjaan.shift();  // first row will be empty - so remove
+//           TableDataPekerjaan = JSON.stringify(TableDataPekerjaan);
+//           //alert(TableData);
+//           var TableDataPenyusun = new Array();
+//            $('#table_penyusun tr').each(function(row, tr){
+//                TableDataPenyusun[row]={
+//                "dpy_pegawai" : $(tr).find('td:eq(0)').text()    //nip pegawai
+//                , "dpy_jabatan" :$(tr).find('td:eq(2)').text()             //jabatan
+//            }    
+//           }); 
+//           TableDataPenyusun.shift();  // first row will be empty - so remove
+//           TableDataPenyusun = JSON.stringify(TableDataPenyusun);
+//           //alert(TableDataPenyusun);
+//           var TableDataSurat = new Array();
+//            $('#tablesuratusaha tr').each(function(row, tr){
+//                TableDataSurat[row]={
+//                "dsp_surat_izin" : $(tr).find('td:eq(0)').text()    //id surat izin
+//            }    
+//           }); 
+//           TableDataSurat.shift();  // first row will be empty - so remove
+//           TableDataSurat = JSON.stringify(TableDataSurat);
+//           //alert(TableDataSurat);
+//           document.getElementById('list_pekerjaan').value = TableDataPekerjaan;
+////           $.ajax({
+////                type: "POST",
+////                url: "<?php echo site_url('Pengadaan/proses_tambah_smasuk');?>",
+////                data: 'listPekerjaan=' + TableDataPekerjaan + '&listPenyusun=' + TableDataPenyusun + '&listSurat=' + TableDataSurat,
+////                success: function(msg){
+////                    // return value stored in msg variable
+////                    alert(msg);
+////                }
+////           });
+//           document.getElementById("pengadaan_form").submit();
+//        });
             
     $('#pengadaan_form').formValidation({
         framework: 'bootstrap',

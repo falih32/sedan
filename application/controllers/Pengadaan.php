@@ -70,6 +70,66 @@ class Pengadaan extends CI_Controller{
         $data['suratList']= $this->M_suratizin->selectAll()->result();
         $this->load->view('layout',$data);
     }
+    
+    public function proses_add_pengadaan(){
+//        //1. insert pgd
+        $pgd['pgd_perihal']            = $this->input->get('pgd_perihal');
+        $pgd['pgd_uraian_pekerjaan']            = $this->input->get('pgd_uraian_pekerjaan');
+        $idPengadaan = $this->m_pengadaan->insertPengadaan($pgd);
+//        
+//        //2. insert draft
+        $drp['drp_pengadaan']   = $idPengadaan;
+        $drp['drp_anggaran']   = $this->input->get('ang_kode');
+        $drp['drp_tgl_mulai_pengadaan']   = $this->input->get('drp_tgl_mulai_pengadaan');
+        $drp['drp_user_input'] = $this->session->userdata('id_user');
+        $drp['drp_terpilih'] = 1;       //set status terpilih
+        $drp['drp_lama_pekerjaan']   = $this->input->get('drp_lama_pekerjaan');
+        $drp['drp_lama_penawaran']        = $this->input->get('drp_lama_penawaran');
+        $idDraft = $this->m_pengadaan->insertDraftPengadaan($drp);
+//        
+        //3. insert Pekerjaan
+        $data['listPekerjaan']        = $this->input->get('list_pekerjaan');
+        // echo $data['listPekerjaan'];
+        $tableDataPkj = json_decode($data['listPekerjaan'],TRUE); 
+        $countPkj = count($tableDataPkj);
+        for ($i = 0; $i < $countPkj; $i++) {
+            $dtp['dtp_draft'] = $idDraft;
+            $dtp['dtp_pekerjaan'] = $tableDataPkj[$i]['dtp_pekerjaan'];
+            $dtp['dtp_spesifikasi'] = $tableDataPkj[$i]['dtp_spesifikasi'];
+            $dtp['dtp_volume'] = $tableDataPkj[$i]['dtp_volume'];
+            $dtp['dtp_satuan'] = $tableDataPkj[$i]['dtp_satuan'];
+            $dtp['dtp_hargasatuan'] = $tableDataPkj[$i]['dtp_hargasatuan'];
+            $this->m_pengadaan->insertPekerjaan($dtp);
+        }
+        
+//         //4. insert Penyusun
+        $data['listPenyusun']            = $this->input->get('list_penyusun');
+        $tableDataPys = json_decode($data['listPenyusun'],TRUE); 
+        $countPys = count($tableDataPys);
+        for ($i = 0; $i < $countPys; $i++) {
+            $dpy['dpy_draft'] = $idDraft;
+            $dpy['dpy_pegawai'] = $tableDataPys[$i]['dpy_pegawai'];
+            $dpy['dpy_jabatan'] = $tableDataPys[$i]['dpy_jabatan'];
+            $this->m_pengadaan->insertPenyusun($dpy);
+        }
+//        
+//        //5. insert Syarat penyedia
+        $data['listSurat']   = $this->input->get('list_suratizin');
+        $tableDataSrt = json_decode($data['listSurat'],TRUE); 
+        $countSrt = count($tableDataSrt);
+        for ($i = 0; $i < $countSrt; $i++) {
+            $dsr['dsr_draft'] = $idDraft;
+            $dsr['dsr_surat_izin'] = $tableDataSrt[$i]['dsr_surat_izin'];
+            $this->m_pengadaan->insertSuratIzin($dsr);
+        }
+        
+        //insert supplier
+        $dsp['dsp_draft'] = $idDraft;
+        $dsp['dsp_supplier'] = $this->input->get('spl_id');
+        $this->m_pengadaan->insertSupplierPengadaan($dsp);
+        $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+        redirect(site_url('Pengadaan'));
+    }
   	
     public function prosesInputAnggaran(){
         $data['ang_kode']               = $this->input->post('ang_kode1');
@@ -96,21 +156,15 @@ class Pengadaan extends CI_Controller{
         }
     }
     
-	
-    public function getAllUnitTujuan(){       
-        return $this->m_unit_tujuan->selectAll()->result();
-    }
-    
-    public function getAllJenisSurat(){
-        return $this->m_jenis_smasuk->selectAll()->result();
-    }
-    
-    public function getAllTingkatAman(){
-        return $this->m_tingkat_aman->selectAll()->result();
-    }
-    
-    public function getAllSifat(){
-        return $this->m_sifat->selectAll()->result();
+    function postVariableTable(){
+        $data['listPekerjaan']        = $this->input->post('listPekerjaan');
+        $data['listPenyusun']            = $this->input->post('listPenyusun');
+        $data['listSurat']   = $this->input->post('listSurat');
+        echo $data['listPekerjaan'];
+        $data['listPekerjaan'] = json_decode($data['listPekerjaan'],TRUE);
+        $data['listPenyusun']            = json_decode($data['listPenyusun'],TRUE);
+        $data['listSurat']   = json_decode($data['listSurat'],TRUE);
+        
     }
     
     function postVariabel(){

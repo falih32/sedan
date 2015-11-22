@@ -33,7 +33,7 @@ function Row($data)
     $nb=0;
     for($i=0;$i<count($data);$i++)
         $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
-    $h=5*$nb;
+    $h=6*$nb;
     //Issue a page break first if needed
     $this->CheckPageBreak($h);
     //Draw the cells of the row
@@ -48,13 +48,45 @@ function Row($data)
         //Draw the border
         $this->Rect($x,$y,$w,$h);
         //Print the text
-        $this->MultiCell($w,5,$data[$i],0,$a);
+        if($i==4||$i==3||$i==2){ $a='R'; }
+        $this->MultiCell($w,6,$data[$i],0,$a);
         //Put the position to the right of the cell
         $this->SetXY($x+$w,$y);
     }
     //Go to the next line
     $this->Ln($h);
 }
+
+function Row1($data)
+{
+    //Calculate the height of the row
+    $nb=0;
+    for($i=0;$i<count($data);$i++)
+        $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+    $h=6*$nb;
+    //Issue a page break first if needed
+    $this->CheckPageBreak($h);
+    //Draw the cells of the row
+    
+    for($i=0;$i<count($data);$i++)
+    {
+        $w=$this->widths[$i];
+        $a=isset($this->aligns[$i]) ? $this->aligns[$i] : $this->a;
+        //Save the current position
+        $x=$this->GetX();
+        $y=$this->GetY();
+        //Draw the border
+        $this->Rect($x,$y,$w,$h);
+        //Print the text
+        //if($i==4||$i==3||$i==2){ $a='R'; }
+        $this->MultiCell($w,6,$data[$i],0,$a);
+        //Put the position to the right of the cell
+        $this->SetXY($x+$w,$y);
+    }
+    //Go to the next line
+    $this->Ln($h);
+}
+
 
 function RowNoLines($data)
 {
@@ -219,5 +251,16 @@ function RotatedText($x,$y,$txt,$angle)
 			"Oktober","November","Desember");
 			return str_replace($en,$id,date($format,strtotime($nilai)));
 			}
+ //-------------------------------------------footerldp---------------------------------------------------------
+    function Foot($kata)
+{
+   //Geser posisi ke 1,5 cm dari bawah
+  $this->SetY(-30);
+   //Pilih font Arial italic 8
+   $this->Cell(75);
+		$this->SetFont('Arial','',8);
+		$this->MultiCell(40,3,$kata,0,'C');
+
+}                    
 }
 ?>

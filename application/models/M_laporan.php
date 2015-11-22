@@ -32,8 +32,8 @@ class M_laporan extends CI_Model{
                 . "WHERE pgw_id = '$id' ")->row();
        return $data;
     }   
-     function angdrppgd($id) {
-       $data = $this->db->query("SELECT ang_kode, ang_nama, pgd_perihal "
+     function angpgd($id) {
+       $data = $this->db->query("SELECT * "
                 . "FROM t_pengadaan "
                 . "LEFT JOIN t_anggaran ON ang_kode = pgd_anggaran "
                 . "WHERE pgd_id = '$id' ")->row();
@@ -48,14 +48,38 @@ class M_laporan extends CI_Model{
        return $data;
     }
      function detpengbyid($id) {
-       $data = $this->db->query("SELECT dtp_pekerjaan, dtp_volume, dtp_satuan, dtp_hargasatuan_hps, dtp_jumlahharga_hps, pgd_jml_ssdh_ppn_hps, pgd_jml_sblm_ppn_hps "
+       $data = $this->db->query("SELECT dtp_pekerjaan, dtp_volume, dtp_satuan, dtp_hargasatuan_hps, dtp_jumlahharga_hps, dtp_spesifikasi "
                 . "FROM t_detail_pengadaan "
                 . "LEFT JOIN t_pengadaan ON dtp_pengadaan = pgd_id "
                 . "WHERE pgd_id = '$id' ")->result();
        return $data;
     }   
-    
-    
-    
-    
+     function selectpengbyid($id) {
+        $this->db->select('*');
+        $this->db->from('t_pengadaan');
+        $this->db->where('pgd_id', $id);
+        return $this->db->get();
+     }
+     function selecttimpny($id) {
+        $data = $this->db->query("SELECT pgw_nama, lsp_jabatan "
+                . "FROM t_kelompok_penyusun "
+                . "LEFT JOIN t_list_penyusun ON lsp_kelompok = klp_id "
+                . "LEFT JOIN t_pegawai ON pgw_id = lsp_pegawai "
+                . "WHERE klp_pengadaan = '$id' ")->result();
+       return $data;
+     }
+    function selectPejPeng(){
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_pegawai "
+                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
+                . "WHERE jbt_id = '30' ")->row();
+       return $data;
+    }
+     function selectsizbypgd($id) {
+        $data = $this->db->query("SELECT siz_nama "
+                . "FROM t_suratizin "
+                . "LEFT JOIN tr_pgd_suratizin ON psr_surat_izin = siz_id "
+                . "WHERE psr_pengadaan = '$id' ")->result();
+       return $data;
+     }
 }

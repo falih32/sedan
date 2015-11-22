@@ -79,7 +79,7 @@ class Laporan extends CI_Controller {
          
          $dsrt ['dsrt_jenis_surat']=1;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
-         $dsrt ['dsrt_iddraftpengadaan']= $this->input->post('idpengadaan');
+         $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
   
          $dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt); 
         //dari
@@ -120,7 +120,7 @@ class Laporan extends CI_Controller {
          
          $datacetak['tanggal']=$data['tanggal'];
          $datacetak['ttd']=$datapegawaidari->pgw_nama;
-         $d=$this->m_laporan->angdrppgd($dsrt ['dsrt_iddraftpengadaan']);
+         $d=$this->m_laporan->angpgd($dsrt ['dsrt_idpengadaan']);
          $datacetak['pgd_perihal']=$d->pgd_perihal;
          $datacetak['ang_kode']=$d->ang_kode;
          $datacetak['ang_nama']=$d->ang_nama;
@@ -139,9 +139,45 @@ class Laporan extends CI_Controller {
      $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
      $namappk=$this->m_laporan->selectPPK();
      $datacetak['namappk']=$namappk->pgw_nama;
-
+     $d=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
+     $datacetak['jum_sblm_ppn']=$d->pgd_jml_sblm_ppn_hps;
+     $datacetak['jum_ssdh_ppn']=$d->pgd_jml_ssdh_ppn_hps;
+     $datacetak['perihal']=$d->pgd_perihal;
+     $datacetak['timpny']=$this->m_laporan->selecttimpny($this->input->post('idpengadaan'));
          
          $this->load->view('fpdf/c_hps',$datacetak); 
      }
+     public function cetak_dftr_harga(){
+     $datacetak['nomor']=$this->input->post('no_dftrh');
+     $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
+     $namapejpeng=$this->m_laporan->selectPejPeng();
+     $datacetak['namapejpeng']=$namapejpeng->pgw_nama;
+     
+     $dsrt ['dsrt_jenis_surat']=2;
+     $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+     $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+     //$dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt); 
+     //nomor
+         $dknt['dknt_idkonten']=9;
+         $dknt['dknt_isi']=$datacetak['nomor'];
+         //$this->m_laporan->insertdknt($dknt); 
+         $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+         $this->load->view('fpdf/c_dftr_harga',$datacetak); 
+     }
     
+     public function cetakspektek(){
+         
+            $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
+            $namappk=$this->m_laporan->selectPPK();
+            $datacetak['namappk']=$namappk->pgw_nama;
+            $d=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
+            $datacetak['perihal']=$d->pgd_perihal;
+
+                $this->load->view('fpdf/c_spektek',$datacetak); 
+     }
+      public function cetakldp(){
+            $datacetak['d']=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
+            $datacetak['listsiz']=$this->m_laporan->selectsizbypgd($this->input->post('idpengadaan'));
+            $this->load->view('fpdf/cetak_ldp', $datacetak); 
+     }
 }

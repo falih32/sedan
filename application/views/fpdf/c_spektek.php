@@ -1,64 +1,14 @@
 <?php
-require('fpdf.php');
-
-class PDF extends FPDF {
-			// Load data
-			function LoadData($file)
-			{
-				// Read file lines
-				$lines = file($file);
-				$data = array();
-				foreach($lines as $line)
-					$data[] = explode(';',trim($line));
-				return $data;
-			}
-
-			// Better table
-			function ImprovedTable($header, $data, $data2)
-			{
-				// Column widths
-				$w = array(20, 80, 80);
-				// Header
-				for($i=0;$i<count($header);$i++)
-					$this->Cell($w[$i],7,$header[$i],1,0,'C');
-				$this->Ln();
-				// Data
-				$n=0;
-				foreach($data as $row)
-				{
-					$n++;
-					$this->Cell($w[0],6,$n,'LR',0,'C');
-					$this->Cell($w[1],6,$row[1],'LRT');
-					$first = true;
-					foreach($data2 as $row) {
-						if(!$first){
-							$this->Cell($w[0],6,"",'LR');
-							$this->Cell($w[1],6,"",'LR');
-						}
-						$this->Cell($w[2],6,$row[0],'LRT');
-						$this->Ln();
-						$first = false;
-					}
-					
-				}
-				// Closing line
-				$this->Cell(array_sum($w),0,'','T');
-			}
-}
-
-
-$pdf = new PDF('p','mm','A4');
+$pdf=new PDF_MC_Table('p','mm','A4');
 $pdf->AddPage();
 
-$data = $pdf->LoadData('countries.txt');
-$data2 = $pdf->LoadData('countries2.txt');
 $header = array('No', 'Item Pekerjaan', 'Spesifikasi Teknis');
-
+$pdf->SetMargins(15,10,10);
 //Header
-		$pdf->Image('logokelautan.png',10,8,-400);
+		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
 		//Arial bold 15
 		$pdf->SetFont('Arial','B',16);
-				$pdf->Cell(80);
+				$pdf->Cell(85);
 				//judul
 		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
@@ -71,31 +21,46 @@ $header = array('No', 'Item Pekerjaan', 'Spesifikasi Teknis');
 		$pdf->SetFont('Arial','UI',14);
 		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
 		//buat garis horisontal
-		$pdf->Line(10,50,200,50);
+		$pdf->Line(15,50,200,50);
 		$pdf->SetLineWidth(1.5);
-		$pdf->Line(10,52,200,52);
+		$pdf->Line(15,52,200,52);
 		
 		$pdf->Ln(7);
 		$pdf->SetFont('Arial','',14);
-		$pdf->Cell(80);
+		$pdf->Cell(75);
 		$pdf->Cell(30,5,'SPESIFIKASI TEKNIS',0,2,'C');
-		$pdf->Cell(30,5,'XXXXXXXXXXXXXXXXXXXXXXXXXXX',0,2,'C');
+		$pdf->Cell(30,5,strtoupper($perihal),0,2,'C');
 		$pdf->Cell(30,5,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,5,'TAHUN XXXX',0,2,'C');
+		$pdf->Cell(30,5,'TAHUN '.date("Y"),0,2,'C');
 		$pdf->Ln(10);
 		
 		$pdf->SetLineWidth(0.2);
 		$pdf->SetFont('Arial','',12);
-		$pdf->ImprovedTable($header,$data, $data2 );	
+		$w = array(10,87,87);
+		$pdf->SetWidths($w);
+		
+		$pdf->SetAligns('C');
+		for($i=0;$i<1;$i++){
+			$pdf->Row1($header); 
+		}
+		
+		$pdf->SetAligns('L');
+		$no=0;
+		foreach ($listpeng as $row) {
+		$no++;	
+                    if($row->dtp_spesifikasi!=Null) {
+			$pdf->Row1(array('  '.$no,$row->dtp_pekerjaan,nl2br($row->dtp_spesifikasi)));
+                    }
+		}	
 		
 		$pdf->Ln(10);
 		$pdf->Cell(105); 
-		$pdf->Cell(100,6,'Jakarta, XX XXXX XXXX',0,3,'L');
+		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y") ,0,3,'L');
 		$pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
 		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0,3,'L');
 		$pdf->Ln(20);
 		$pdf->Cell(105); 
-		$pdf->Cell(100,10,'MAS NOPA',0,3,'L');
+		$pdf->Cell(100,10,$namappk,0,3,'L');
 		
 	$pdf->Output();	
 ?>		

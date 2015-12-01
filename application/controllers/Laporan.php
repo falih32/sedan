@@ -16,7 +16,6 @@ class Laporan extends CI_Controller {
             $this->load->library('pdf_mc_table');
             $this->load->database();
             $this->load->helper('date');
-//            $this->load->model('m_pengadaan');
             $this->load->model('m_laporan');
             $this->load->model('m_user');
         }
@@ -179,5 +178,10 @@ class Laporan extends CI_Controller {
             $datacetak['d']=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
             $datacetak['listsiz']=$this->m_laporan->selectsizbypgd($this->input->post('idpengadaan'));
             $this->load->view('fpdf/cetak_ldp', $datacetak); 
+     }
+      public function cetakUndangan(){
+            $datacetak['d']=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
+            $datacetak['listsiz']=$this->m_laporan->selectsizbypgd($this->input->post('idpengadaan'));
+            $this->load->view('fpdf/c_undangan', $datacetak); 
      }
 }

@@ -88,7 +88,7 @@ $pdf->AddPage();
 		
 		$pdf->SetAligns('L');
 		foreach ($listsiz as $row) {
-			$pdf->RowNoLines(array(' ',$row->siz_nama)); 
+			$pdf->RowNoLines(array('',$row->siz_nama)); 
                         $pdf->ln(3);
 		}
               	$pdf->ln(5);

@@ -11,10 +11,11 @@
                         <h4>Sumber Dana</h4>
                         <div class="row ">
                             <div class="form-group">
-                                <label for="pgd_anggaran" class="col-sm-2 control-label text-left">Angggaran</label>
+                                <label for="ang_kode" class="col-sm-2 control-label text-left">Angggaran</label>
                                 <div class="col-sm-8">
-                                    <select class="anggaran-cbbox form-control" style="width: 100%" name="ang_kode" id="ang_kode">
+                                    <select class="anggaran-cbbox form-control" style="width: 100%" name="ang_kode" id="ang_kode" data-error="Input tidak boleh kosong" required>
                                     </select>
+                                    <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalAnggaran">Tambah</button>
@@ -28,65 +29,71 @@
                                 <div class="form-group">
                                     <label for="pgd_perihal" class="col-sm-4 control-label text-left">Nama Pengadaan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="pgd_perihal" name="pgd_perihal" placeholder="Nama Pengadaan">
+                                        <input type="text" class="form-control" id="pgd_perihal" name="pgd_perihal" placeholder="Nama Pengadaan" data-error="Input tidak boleh kosong" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="drp_lama_pekerjaan" class="col-sm-4 control-label text-left">Jangka waktu penyelesaian pekerjaan</label>
+                                    <label for="pgd_lama_pekerjaan" class="col-sm-4 control-label text-left">Jangka waktu penyelesaian pekerjaan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="drp_lama" name="drp_lama_pekerjaan" placeholder="Lama Pekerjaan (/hari)">
+                                        <input required pattern='[0-9]*' type="text" class="form-control" id="pgd_lama_pekerjaan" name="pgd_lama_pekerjaan" placeholder="Lama Pekerjaan (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="drp_lama_penawaran" class="col-sm-4 control-label text-left">Masa berlaku penawaran</label>
+                                    <label for="pgd_lama_penawaran" class="col-sm-4 control-label text-left">Masa berlaku penawaran</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="drp_lama" name="drp_lama_penawaran" placeholder="Masa Berlaku Penawaran (/hari)">
+                                        <input required type="text" pattern='[0-9]*' class="form-control" id="pgd_lama_penawaran" name="pgd_lama_penawaran" placeholder="Masa Berlaku Penawaran (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="spl_id" class="col-sm-4 control-label text-left">Supplier</label>
+                                    <label for="pgd_supplier" class="col-sm-4 control-label text-left">Supplier</label>
                                     <div class="col-sm-8">
-                                        <select class="supplier-cbbox form-control" style="width: 100%" name="spl_id">
+                                        <select class="supplier-cbbox form-control" style="width: 100%" name="pgd_supplier" data-error="Input tidak boleh kosong" required>
                                         <?php foreach ($supplierList as $row) {?>
                                         <option value="<?php echo $row->spl_id; ?>">
                                                 <?php echo $row->spl_nama; ?>
                                         </option>
                                         <?php } ?>
                                         </select>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="drp_tgl_mulai_pengadaan" class="col-sm-4 control-label text-left">Tanggal Mulai Pengadaan</label>
+                                    <label for="pgd_tgl_mulai_pengadaan" class="col-sm-4 control-label text-left">Tanggal Mulai Pengadaan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control tgl" id="drp_tgl_mulai_pengadaan" name="drp_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$">
+                                        <input required readonly type="text" class="form-control tgl" id="pgd_tgl_mulai_pengadaan" name="pgd_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" data-error="Input tidak boleh kosong">
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                 <label class="col-md-6 col-md-offset-3 control-label text-center">Uraian Singkat Pekerjaan</label>
                                 </div>
                                 <div class="form-group">
-                                <textarea class="form-control" id="pgd_uraian_pekerjaan" name="pgd_uraian_pekerjaan" placeholder="Uraian Singkat Pekerjaan"></textarea>
+                                <textarea class="form-control" id="pgd_uraian_pekerjaan" name="pgd_uraian_pekerjaan" placeholder="Uraian Singkat Pekerjaan" data-error="Input tidak boleh kosong" required></textarea>
+                                <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
                                 <label class="col-md-6 col-md-offset-3 control-label text-center">Waktu Input Penawaran</label>
                                 </div>
                                 <div class="col-md-6">    
                                 <div class="form-group">
-                                    <label for="drp_dari" class="col-sm-4 control-label text-center">Dari</label>
+                                    <label for="pgd_wkt_awal_penawaran" class="col-sm-4 control-label text-center">Dari</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control tgl" id="drp_dari" name="drp_dari" placeholder="Tanggal Dari" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
-                                        
+                                        <input readonly type="text" class="form-control tgl" id="pgd_wkt_awal_penawaran" name="pgd_wkt_awal_penawaran" placeholder="Tanggal Dari" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 </div>
                                 <div class="col-md-6"> 
                                 <div class="form-group">
-                                    <label for="drp_sampai" class="col-sm-4 control-label text-left">Sampai</label>
+                                    <label for="pgd_wkt_akhir_penawaran" class="col-sm-4 control-label text-left">Sampai</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control tgl" id="drp_sampai" name="drp_sampai" placeholder="Tanggal Sampai" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
-                                        
+                                        <input readonly type="text" class="form-control tgl" id="pgd_wkt_akhir_penawaran" name="pgd_wkt_akhir_penawaran" placeholder="Tanggal Sampai" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                        <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 </div>
@@ -119,9 +126,9 @@
                                    </div>
                                 </div>
                                 <div class="form-group">                                    
-                                    <label for="dtp_hargasatuan" class="col-sm-4 control-label text-left">Harga Satuan</label>
+                                    <label for="dtp_hargasatuan_hps" class="col-sm-4 control-label text-left">Harga Satuan</label>
                                     <div class="col-sm-8">
-                                    <input type="text" class="form-control" id="dtp_hargasatuan" name="dtp_hargasatuan" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
+                                    <input type="text" class="form-control" id="dtp_hargasatuan_hps" name="dtp_hargasatuan_hps" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
                                     <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -132,7 +139,7 @@
                                     <label class="col-md-offset-4 control-label text-center">Spesifikasi Teknis</label>
                                 </div>
                                 <div class="form-group">
-                                    <textarea class="form-control" id="pgd_spesifikasi" name="pgd_spesifikasi" placeholder="Spesifikasi Teknis"></textarea>
+                                    <textarea class="form-control" id="dtp_spesifikasi" name="dtp_spesifikasi" placeholder="Spesifikasi Teknis"></textarea>
                                     <div class="help-block with-errors"></div>
                                 </div>
                                 <button  type="button" class='btn btn-primary pull-right' id="addnewpekerjaan">
@@ -164,8 +171,14 @@
                            </div>
                         </div>
                         <div class="row"> 
-                            <label id="total_value" class="control-label text-center pull-right">0</label> 
+                            <div class ='col-sm-3 pull-right'> 
                             <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
+                            <input type="text" class="form-control" id="pgd_jml_sblm_ppn_hps" name="pgd_jml_sblm_ppn_hps" value='0' readonly>
+                            </div> 
+                            <div class ='col-sm-3 pull-right'>
+                            <label id = "total_label" class="control-label text-center pull-right">Total(ppn 10%) : &nbsp;</label>
+                            <input type="text" class="form-control" id="pgd_jml_ssdh_ppn_hps" name="pgd_jml_ssdh_ppn_hps" value='0' readonly>
+                            </div> 
                         </div>
                         <br>
                         <h4>Detail Penyusun</h4>
@@ -336,7 +349,7 @@ function submitFormPengadaan() {
                 , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
                 , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
                 , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
-                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
+                , "dtp_hargasatuan_hps" : $(tr).find('td:eq(4)').text()        //harga
             }    
            }); 
            TableDataPekerjaan.shift();  // first row will be empty - so remove
@@ -345,8 +358,8 @@ function submitFormPengadaan() {
            var TableDataPenyusun = new Array();
             $('#table_penyusun tr').each(function(row, tr){
                 TableDataPenyusun[row]={
-                "dpy_pegawai" : $(tr).find('td:eq(0)').text()    //nip pegawai
-                , "dpy_jabatan" :$(tr).find('td:eq(2)').text()             //jabatan
+                "lsp_pegawai" : $(tr).find('td:eq(0)').text()    //nip pegawai
+                , "lsp_jabatan" :$(tr).find('td:eq(2)').text()             //jabatan
             }    
            }); 
            TableDataPenyusun.shift();  // first row will be empty - so remove
@@ -355,7 +368,7 @@ function submitFormPengadaan() {
            var TableDataSurat = new Array();
             $('#tablesuratusaha tr').each(function(row, tr){
                 TableDataSurat[row]={
-                "dsr_surat_izin" : $(tr).find('td:eq(0)').text()    //id surat izin
+                "psr_surat_izin" : $(tr).find('td:eq(0)').text()    //id surat izin
             }    
            }); 
            TableDataSurat.shift();  // first row will be empty - so remove
@@ -398,10 +411,10 @@ $(document).ready(function() {
 
     $("#addnewpekerjaan").on("click", function(){
         var pekerjaan = document.getElementById("dtp_pekerjaan").value;
-        var spesifikasi = document.getElementById("pgd_spesifikasi").value;
+        var spesifikasi = document.getElementById("dtp_spesifikasi").value;
         var volume = document.getElementById("dtp_volume").value;
         var satVolume = document.getElementById("dtp_satuan").value;
-        var harga = document.getElementById("dtp_hargasatuan").value;
+        var harga = document.getElementById("dtp_hargasatuan_hps").value;
         
         $('#table_pekerjaan tr:last').after("<tr><td><span>"+pekerjaan+"</span></td>\n\\n\
                                             <td><span>"+spesifikasi+"</span></td>\n\
@@ -410,19 +423,26 @@ $(document).ready(function() {
                                             <td><span>"+harga+"</span></td>\n\
                                             <td><span>"+(volume*harga)+"</span></td>\n\
                                             <td class='deleterow'><div class='glyphicon glyphicon-remove'></div></td></tr>");
-        var total =  parseFloat($("#total_value").text());
+        var total =  parseFloat(document.getElementById('pgd_jml_sblm_ppn_hps').value);
         total = (total + (volume*harga));
-        document.getElementById('total_value').innerHTML = total;
+        document.getElementById('pgd_jml_sblm_ppn_hps').value = total; 
+        document.getElementById('pgd_jml_ssdh_ppn_hps').value = total+(total*(0.1));
         $(".deleterow").on("click", function(){
             var $killrow = $(this).parent('tr');
             $killrow.addClass("danger");
             $killrow.fadeOut(2000, function(){
             $(this).remove();
             var totHarga = (volume*harga);
-            var total =  parseFloat($("#total_value").text());
+            var total =  parseFloat(document.getElementById('pgd_jml_sblm_ppn_hps').value);
             total = total - totHarga;
-            document.getElementById('total_value').innerHTML = total;
+            document.getElementById('pgd_jml_sblm_ppn_hps').value = total;
+            document.getElementById('pgd_jml_ssdh_ppn_hps').value = total+(total*(0.1));
         });});
+        document.getElementById("dtp_pekerjaan").value ='';
+        document.getElementById("dtp_spesifikasi").value='';
+        document.getElementById("dtp_volume").value='';
+        document.getElementById("dtp_satuan").value='';
+        document.getElementById("dtp_hargasatuan_hps").value='';
     });
     
     $("#addnewrowpenyusun").on("click", function(){
@@ -488,138 +508,91 @@ $(document).ready(function() {
               
      });
      
-//     $("#btnEnterPengadaan").on("click", function(){
-////     $('#btnEnterPengadaan').submit(function(e){ 
-//        //e.preventDefault();
-//        var TableDataPekerjaan = new Array();
-//            $('#table_pekerjaan tr').each(function(row, tr){
-//                TableDataPekerjaan[row]={
-//                "dtp_pekerjaan" : $(tr).find('td:eq(0)').text()    //pekerjaan
-//                , "dtp_spesifikasi" :$(tr).find('td:eq(1)').text()             //spesifikasi
-//                , "dtp_volume" : $(tr).find('td:eq(2)').text()        //volume
-//                , "dtp_satuan" : $(tr).find('td:eq(3)').text()        //satuan
-//                , "dtp_hargasatuan" : $(tr).find('td:eq(4)').text()        //harga
-//            }    
-//           }); 
-//           TableDataPekerjaan.shift();  // first row will be empty - so remove
-//           TableDataPekerjaan = JSON.stringify(TableDataPekerjaan);
-//           //alert(TableData);
-//           var TableDataPenyusun = new Array();
-//            $('#table_penyusun tr').each(function(row, tr){
-//                TableDataPenyusun[row]={
-//                "dpy_pegawai" : $(tr).find('td:eq(0)').text()    //nip pegawai
-//                , "dpy_jabatan" :$(tr).find('td:eq(2)').text()             //jabatan
-//            }    
-//           }); 
-//           TableDataPenyusun.shift();  // first row will be empty - so remove
-//           TableDataPenyusun = JSON.stringify(TableDataPenyusun);
-//           //alert(TableDataPenyusun);
-//           var TableDataSurat = new Array();
-//            $('#tablesuratusaha tr').each(function(row, tr){
-//                TableDataSurat[row]={
-//                "dsp_surat_izin" : $(tr).find('td:eq(0)').text()    //id surat izin
-//            }    
-//           }); 
-//           TableDataSurat.shift();  // first row will be empty - so remove
-//           TableDataSurat = JSON.stringify(TableDataSurat);
-//           //alert(TableDataSurat);
-//           document.getElementById('list_pekerjaan').value = TableDataPekerjaan;
-////           $.ajax({
-////                type: "POST",
-////                url: "<?php echo site_url('Pengadaan/proses_tambah_smasuk');?>",
-////                data: 'listPekerjaan=' + TableDataPekerjaan + '&listPenyusun=' + TableDataPenyusun + '&listSurat=' + TableDataSurat,
-////                success: function(msg){
-////                    // return value stored in msg variable
-////                    alert(msg);
-////                }
-////           });
-//           document.getElementById("pengadaan_form").submit();
-//        });
             
-    $('#pengadaan_form').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {
-            ang_kode: {
-                validators: {
-                    notEmpty: {
-                        message: 'Anggaran tidak boleh kosong'
-                    }
-                }
-            },
-            pgd_perihal: {
-                validators: {
-                    notEmpty: {
-                        message: 'Nama Pengadaan tidak boleh kosong'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9, \.,]+$/,
-                        message: 'Nama Pengadaan hanya boleh diisi alfabet, angka, titik, koma dan underscore'
-                    }
-                }
-            },
-            drp_lama_pekerjaan: {
-                validators: {
-                    notEmpty: {
-                        message: 'Lama waktu tidak boleh kosong'
-                    },
-                    numeric: {
-                        message: 'Data yang dimasukkan hanya boleh angka'
- 
-                    }         
-                }
-            },
-            drp_lama_penawaran: {
-                validators: {
-                    notEmpty: {
-                        message: 'Lama waktu tidak boleh kosong'
-                    },
-                    numeric: {
-                        message: 'Data yang dimasukkan hanya boleh angka'
- 
-                    }         
-                }
-            },
-            spl_id: {
-                validators: {
-                    notEmpty: {
-                        message: 'Data tidak boleh kosong'
-                    }
-                }
-            },
-            pgd_uraian_pekerjaan: {
-                validators: {
-                    notEmpty: {
-                        message: 'Data tidak boleh kosong'
-                    },
-                    regexp: {
-                        regexp: /^[a-zA-Z0-9, \.,]+$/,
-                        message: 'Uraian Pekerjaan hanya boleh diisi alfabet, angka, titik, koma dan underscore'
-                    }
-                }
-            }
-//            drp_dari: {
+//    $('#pengadaan_form').formValidation({
+//        framework: 'bootstrap',
+//        icon: {
+//            valid: 'glyphicon glyphicon-ok',
+//            invalid: 'glyphicon glyphicon-remove',
+//            validating: 'glyphicon glyphicon-refresh'
+//        },
+//        fields: {
+//            ang_kode: {
 //                validators: {
 //                    notEmpty: {
-//                        message: 'Tanggal tidak boleh kosong'
-//                    }          
+//                        message: 'Anggaran tidak boleh kosong'
+//                    }
 //                }
 //            },
-//            drp_sampai: {
+//            pgd_perihal: {
 //                validators: {
 //                    notEmpty: {
-//                        message: 'Tanggal tidak boleh kosong'
-//                    }          
+//                        message: 'Nama Pengadaan tidak boleh kosong'
+//                    },
+//                    regexp: {
+//                        regexp: /^[a-zA-Z0-9, \.,]+$/,
+//                        message: 'Nama Pengadaan hanya boleh diisi alfabet, angka, titik, koma dan underscore'
+//                    }
+//                }
+//            },
+//            pgd_lama_pekerjaan: {
+//                validators: {
+//                    notEmpty: {
+//                        message: 'Lama waktu tidak boleh kosong'
+//                    },
+//                    numeric: {
+//                        message: 'Data yang dimasukkan hanya boleh angka'
+// 
+//                    }         
+//                }
+//            },
+//            pgd_lama_penawaran: {
+//                validators: {
+//                    notEmpty: {
+//                        message: 'Lama waktu tidak boleh kosong'
+//                    },
+//                    numeric: {
+//                        message: 'Data yang dimasukkan hanya boleh angka'
+// 
+//                    }         
+//                }
+//            },
+//            spl_id: {
+//                validators: {
+//                    notEmpty: {
+//                        message: 'Data tidak boleh kosong'
+//                    }
+//                }
+//            },
+//            pgd_uraian_pekerjaan: {
+//                validators: {
+//                    notEmpty: {
+//                        message: 'Data tidak boleh kosong'
+//                    },
+//                    regexp: {
+//                        regexp: /^[a-zA-Z0-9, \.,]+$/,
+//                        message: 'Uraian Pekerjaan hanya boleh diisi alfabet, angka, titik, koma dan underscore'
+//                    }
 //                }
 //            }
-            
-            
-        }
-    });
+////            drp_dari: {
+////                validators: {
+////                    notEmpty: {
+////                        message: 'Tanggal tidak boleh kosong'
+////                    }          
+////                }
+////            },
+////            drp_sampai: {
+////                validators: {
+////                    notEmpty: {
+////                        message: 'Tanggal tidak boleh kosong'
+////                    }          
+////                }
+////            }
+//            
+//            
+//        }
+//    });
     $('#anggaran_form').formValidation({
         framework: 'bootstrap',
         icon: {

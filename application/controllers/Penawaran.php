@@ -41,7 +41,7 @@ class Penawaran {
         // 2. ambil data detail pekerjaan
         // 3. ambil data draft surat
         // 4. post ke view
-        data['dataPengadaan'] = $this->m_pengadaan->selectById($id);
+        $data['dataPengadaan'] = $this->m_pengadaan->selectById($id);
     }
             
     

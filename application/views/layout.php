@@ -46,6 +46,7 @@
     <script src="<?php echo base_url();?>assets/metisMenu/src/metisMenu.js"></script>
     <script src="<?php echo base_url();?>assets/js/formValidation.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/Framework/bootstrap.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/bootstrap-checkbox.min.js"></script>
 
     
 </head>

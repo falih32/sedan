@@ -57,9 +57,9 @@ $(document).ready(function() {
 		"columns": [
                 { "data": "pgd_anggaran" },
                 { "data": "nmpengadaan_tglbuat" },
-                { "data": "pgd_supplier" },
-                { "data": "lst_ketua" },
-                { "data": "pgd_jml_ssdh_ppn" },
+                { "data": "supplier_name" },
+                { "data": "ketua" },
+                { "data": "pgd_jml_ssdh_ppn_hps" },
                 { "data": "aksi" },
                 { "data": "pgd_perihal" },
                 { "data": "pgd_tanggal_input" },
@@ -79,7 +79,7 @@ $(document).ready(function() {
                         moveSearch();
 		},
                 "createdRow": function ( row, data, index ) {
-                    $(row).click(function(){window.location.href = '<?php echo site_url('Pengadaan/detail_pengadaan').'/'; ?>'+data.pgw_id;});
+                    $(row).click(function(){window.location.href = '<?php echo site_url('Pengadaan/detail_pengadaan').'/'; ?>'+data.pgd_id;});
                     $(row).css('cursor', 'pointer');
                     var temp = data.nmpengadaan_tglbuat;
                     $('td', row).eq(1).html(temp.replace('Pebruari','Februari'));

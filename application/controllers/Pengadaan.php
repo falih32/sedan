@@ -61,6 +61,18 @@ class Pengadaan extends CI_Controller{
         echo $result;
     }
     
+    public function detail_pengadaan($id){
+        $data['content'] = 'v_pengadaan';
+        $data['title']= 'Detail Pengadaan'; 
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+    }
+    
      public function add_pengadaan(){
         $data['content'] = 'f_pengadaan';
         $data['title']= 'Tambah Pengadaan'; 
@@ -72,44 +84,48 @@ class Pengadaan extends CI_Controller{
     }
     
     public function proses_add_pengadaan(){
-//        //1. insert pgd
+        //1. insert pgd
         $pgd['pgd_perihal']            = $this->input->get('pgd_perihal');
         $pgd['pgd_uraian_pekerjaan']            = $this->input->get('pgd_uraian_pekerjaan');
+        $pgd['pgd_anggaran']   = $this->input->get('ang_kode');
+        $pgd['pgd_tgl_mulai_pengadaan']   = $this->input->get('pgd_tgl_mulai_pengadaan');
+        $pgd['pgd_user_update'] = $this->session->userdata('id_user');
+        $pgd['pgd_lama_pekerjaan']   = $this->input->get('pgd_lama_pekerjaan');
+        $pgd['pgd_lama_penawaran']        = $this->input->get('pgd_lama_penawaran');
+        $pgd['pgd_supplier'] = $this->input->get('pgd_supplier');
+        $pgd['pgd_jml_sblm_ppn_hps'] = $this->input->get('pgd_jml_sblm_ppn_hps');
+        $pgd['pgd_jml_ssdh_ppn_hps'] = $this->input->get('pgd_jml_ssdh_ppn_hps');
+        $pgd['pgd_wkt_awal_penawaran'] = $this->input->get('pgd_wkt_awal_penawaran');
+        $pgd['pgd_wkt_akhir_penawaran'] = $this->input->get('pgd_wkt_akhir_penawaran');
+    
         $idPengadaan = $this->m_pengadaan->insertPengadaan($pgd);
-//        
-//        //2. insert draft
-        $drp['drp_pengadaan']   = $idPengadaan;
-        $drp['drp_anggaran']   = $this->input->get('ang_kode');
-        $drp['drp_tgl_mulai_pengadaan']   = $this->input->get('drp_tgl_mulai_pengadaan');
-        $drp['drp_user_input'] = $this->session->userdata('id_user');
-        $drp['drp_terpilih'] = 1;       //set status terpilih
-        $drp['drp_lama_pekerjaan']   = $this->input->get('drp_lama_pekerjaan');
-        $drp['drp_lama_penawaran']        = $this->input->get('drp_lama_penawaran');
-        $idDraft = $this->m_pengadaan->insertDraftPengadaan($drp);
-//        
         //3. insert Pekerjaan
         $data['listPekerjaan']        = $this->input->get('list_pekerjaan');
         // echo $data['listPekerjaan'];
         $tableDataPkj = json_decode($data['listPekerjaan'],TRUE); 
         $countPkj = count($tableDataPkj);
         for ($i = 0; $i < $countPkj; $i++) {
-            $dtp['dtp_draft'] = $idDraft;
+            $dtp['dtp_pengadaan'] = $idPengadaan;
             $dtp['dtp_pekerjaan'] = $tableDataPkj[$i]['dtp_pekerjaan'];
             $dtp['dtp_spesifikasi'] = $tableDataPkj[$i]['dtp_spesifikasi'];
             $dtp['dtp_volume'] = $tableDataPkj[$i]['dtp_volume'];
             $dtp['dtp_satuan'] = $tableDataPkj[$i]['dtp_satuan'];
-            $dtp['dtp_hargasatuan'] = $tableDataPkj[$i]['dtp_hargasatuan'];
+            $dtp['dtp_hargasatuan_hps'] = $tableDataPkj[$i]['dtp_hargasatuan_hps'];
+            //$dtp['dtp_jumlahharga_hps'] = $dtp['dtp_volume'] * $dtp['dtp_hargasatuan_hps'];
             $this->m_pengadaan->insertPekerjaan($dtp);
         }
         
 //         //4. insert Penyusun
+        $klp['klp_pengadaan'] = $idPengadaan;
+        $klp['klp_terpilih'] = 1;
+        $idKelompok = $this->m_pengadaan->insertKelompokPenyusun($klp);
         $data['listPenyusun']            = $this->input->get('list_penyusun');
         $tableDataPys = json_decode($data['listPenyusun'],TRUE); 
         $countPys = count($tableDataPys);
         for ($i = 0; $i < $countPys; $i++) {
-            $dpy['dpy_draft'] = $idDraft;
-            $dpy['dpy_pegawai'] = $tableDataPys[$i]['dpy_pegawai'];
-            $dpy['dpy_jabatan'] = $tableDataPys[$i]['dpy_jabatan'];
+            $dpy['lsp_kelompok'] = $idKelompok;
+            $dpy['lsp_pegawai'] = $tableDataPys[$i]['lsp_pegawai'];
+            $dpy['lsp_jabatan'] = $tableDataPys[$i]['lsp_jabatan'];
             $this->m_pengadaan->insertPenyusun($dpy);
         }
 //        
@@ -118,15 +134,15 @@ class Pengadaan extends CI_Controller{
         $tableDataSrt = json_decode($data['listSurat'],TRUE); 
         $countSrt = count($tableDataSrt);
         for ($i = 0; $i < $countSrt; $i++) {
-            $dsr['dsr_draft'] = $idDraft;
-            $dsr['dsr_surat_izin'] = $tableDataSrt[$i]['dsr_surat_izin'];
-            $this->m_pengadaan->insertSuratIzin($dsr);
+            $psr['psr_pengadaan'] = $idPengadaan;
+            $psr['psr_surat_izin'] = $tableDataSrt[$i]['psr_surat_izin'];
+            $this->m_pengadaan->insertSuratIzin($psr);
         }
         
-        //insert supplier
-        $dsp['dsp_draft'] = $idDraft;
-        $dsp['dsp_supplier'] = $this->input->get('spl_id');
-        $this->m_pengadaan->insertSupplierPengadaan($dsp);
+        //totalkan harga semua
+        $pajak = 0.1;
+        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+        
         $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
         redirect(site_url('Pengadaan'));
     }
@@ -154,6 +170,18 @@ class Pengadaan extends CI_Controller{
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();
         }
+    }
+    
+    public function add_penawaran($id){
+        $data['content'] = 'f_penawaran';
+        $data['title']= 'Input Penawaran'; 
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
     }
     
     function postVariableTable(){

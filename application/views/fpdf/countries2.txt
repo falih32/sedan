@@ -1,3 +1,0 @@
-Austria;Vienna;83859;8075
-Belgium;Brussels;30518;10192
-Denmark;Copenhagen;43094;5295

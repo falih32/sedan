@@ -55,7 +55,7 @@ class Laporan extends CI_Controller {
             $data['content'] = 'f_laporan';
             $data['title'] = 'cetak laporan';
             $data['jbtlist']= $this->m_laporan->jabatanpegawai();
-            
+            $data['pwklist']= $this->m_laporan->selectPengSUP($id)->result();
              $this->load->view('layout', $data);
             //$data['jbt']= $this->m_pegawai->selectById($id)->row()->pgw_jabatan;
            /* if($data['userlist']->pgw_deleted == '0'){
@@ -160,7 +160,7 @@ class Laporan extends CI_Controller {
          $dknt['dknt_idkonten']=9;
          $dknt['dknt_isi']=$datacetak['nomor'];
          //$this->m_laporan->insertdknt($dknt); 
-         $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+        // $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
          $this->load->view('fpdf/c_dftr_harga',$datacetak); 
      }
     
@@ -180,8 +180,35 @@ class Laporan extends CI_Controller {
             $this->load->view('fpdf/cetak_ldp', $datacetak); 
      }
       public function cetakUndangan(){
-            $datacetak['d']=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
-            $datacetak['listsiz']=$this->m_laporan->selectsizbypgd($this->input->post('idpengadaan'));
+            $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
+            $datacetak['nomor']=$this->input->post('no_undangan');
+            $datacetak['PDP']=$this->input->post('p_dok_penawaran');
+            $datacetak['klarifikasi']=$this->input->post('klarifikasi');
+            $datacetak['penandatanganan']=$this->input->post('penandatanganan');
+            $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
+           
             $this->load->view('fpdf/c_undangan', $datacetak); 
      }
+       public function cetakdftrhadir(){
+            $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
+            $datacetak['nomor']=$this->input->post('no_dftrhadir');
+            $datacetak['tgl']=$this->input->post('tgl_dftrhadir');
+            $datacetak['namap']=$this->input->post('nama_perwakilan');
+            $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
+            $this->load->view('fpdf/c_dftr_hadir', $datacetak); 
+     }
+     
+     public function LaporanPenawaran($id){
+        $data['idpengadaan'] = $id;
+        $data['content'] = 'f_laporanpenawaran';
+        $data['title']= 'Laporan Penawaran';
+        $data['pwklist']= $this->m_laporan->selectPengSUP($id)->result();
+        
+        $this->load->view('layout',$data); 
+        
+        
+        
+     }
+     
+      
 }

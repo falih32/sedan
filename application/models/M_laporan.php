@@ -82,4 +82,12 @@ class M_laporan extends CI_Model{
                 . "WHERE psr_pengadaan = '$id' ")->result();
        return $data;
      }
+     function selectPengSUP($id){
+        $data = $this->db->query("SELECT * "
+                . "FROM t_pengadaan "
+                . "LEFT JOIN t_supplier ON spl_id = pgd_supplier "
+                . "LEFT JOIN t_perwakilan_supplier ON spl_id = pws_idsup "
+                . "WHERE pgd_id = '$id' ");
+       return $data;
+    }
 }

@@ -21,7 +21,7 @@
     <link href="<?php echo base_url();?>assets/metisMenu/src/metisMenu.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/formValidation.min.css" rel="stylesheet" type="text/css">
-    
+    <link href="<?php echo base_url();?>assets/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>assets/js/jquery-1.11.2_min.js"></script>
     <![endif]-->
@@ -30,6 +30,7 @@
     <!--<![endif]-->
     <script src="<?php echo base_url();?>assets/js/jquery-ui.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/datepicker-id.js"></script>
+     <script src="<?php echo base_url();?>assets/js/jquery-ui-timepicker-addon.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery.dataTables.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/dataTables.tableTools.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/dataTables.bootstrap.min.js"></script>
@@ -68,10 +69,18 @@
                 )
             );
             $(function() {
-                $( ".tgl" ).datepicker({
+                $( ".tgl" ).datetimepicker({
                     dateFormat: 'yy-mm-dd'
                 });
             });
+            
+            $(function() {
+                $( ".tgl1" ).datetimepicker({
+                   'showTimepicker': false,
+                   dateFormat: 'yy-mm-dd'
+                });
+            });
+            
 	});
 	// ]]>
 	</script>

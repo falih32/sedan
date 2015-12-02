@@ -18,7 +18,7 @@ datepicker.regional['id'] = {
 	nextText: 'maju&#x3E;',
 	currentText: 'hari ini',
 	monthNames: ['Januari','Februari','Maret','April','Mei','Juni',
-	'Juli','Agustus','September','Oktober','Nopember','Desember'],
+	'Juli','Agustus','September','Oktober','November','Desember'],
 	monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun',
 	'Jul','Agus','Sep','Okt','Nop','Des'],
 	dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],

@@ -17,7 +17,6 @@ $pdf->AddPage();
 		$pdf->Cell(80);
 		$pdf->Cell(30,6,'MEMORANDUM',0,3,'C');
 		$pdf->SetFont('Arial','',12);
-		//$pdf->Cell(30,10,'Nomor :xxxxx/PPK.5/XX/tahun ',0,3,'C');
 		$pdf->Ln(10);
 		
 		$pdf->SetFont('Arial','',12);

@@ -1,31 +1,10 @@
 <?php
-require('mc_table.php');
-
-function GenerateWord()
-{
-    //Get a random word
-    $nb=rand(3,10);
-    $w='';
-    for($i=1;$i<=$nb;$i++)
-        $w.=chr(rand(ord('a'),ord('z')));
-    return $w;
-}
-
-function GenerateSentence()
-{
-    //Get a random sentence
-    $nb=rand(1,10);
-    $s='';
-    for($i=1;$i<=$nb;$i++)
-        $s.=GenerateWord().' ';
-    return substr($s,0,-1);
-}
-
 $pdf=new PDF_MC_Table('p','mm','A4');
+$pdf->SetMargins(15,10,10);
 $pdf->AddPage();
 
 //Header
-		$pdf->Image('logokelautan.png',10,8,-400);
+		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
 		//Arial bold 15
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
@@ -41,9 +20,9 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','UI',14);
 		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
 		//buat garis horisontal
-		$pdf->Line(10,50,200,50);
+		$pdf->Line(15,50,200,50);
 		$pdf->SetLineWidth(1.5);
-		$pdf->Line(10,52,200,52);
+		$pdf->Line(15,52,200,52);
 		$pdf->Ln(7);
 		
 		$pdf->SetFont('Arial','',12);

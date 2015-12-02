@@ -92,6 +92,16 @@ class Pengadaan extends CI_Controller{
         $this->load->view('layout',$data);
     }
     
+     public function PengadaanJasa(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '-1';
+        $this->load->view('layout',$data);
+    }
+    
     public function PengadaanJasaHPS(){
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}

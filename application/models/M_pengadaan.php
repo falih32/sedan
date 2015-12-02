@@ -113,7 +113,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option><a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
+			"<a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='CetakLaporanBarangHps/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
                         "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_barang/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
@@ -132,7 +132,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option>".
+			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Penawaran' href='CetakLaporanBarangPnr/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(PNR)</a>".
                         "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Harga Terakhir Barang' href='add_hargafix_barang/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Harga Deal</a>".
@@ -151,7 +151,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option>".
+			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanBarangFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
 			"</div>".
@@ -170,7 +170,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option>".
+			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanBarangFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
 			"</div>".
@@ -217,10 +217,10 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option><a class='btn btn-danger btn-sm delete btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
-			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='CetakLaporanJasaHps/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
-                        "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
+			"<a type ='button' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
+			"<a type ='button' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+                        "<a type ='button' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='CetakLaporanJasaHps/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
+                        "<a type ='button' class='btn btn-success btn-sm' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -236,7 +236,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option>".
+			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Penawaran' href='CetakLaporanJasaPnr/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(PNR)</a>".
                         "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Harga Terakhir Barang' href='add_hargafix_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Harga Deal</a>".
@@ -255,7 +255,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option>".
+			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
 			"</div>".
@@ -273,7 +273,7 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<option>".
+			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
 			"</div>".

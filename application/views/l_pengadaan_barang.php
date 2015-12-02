@@ -92,9 +92,10 @@ $(document).ready(function() {
                 { "data": "pgd_id" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": [7,6] },
+				{ "searchable": false,  "orderable":false, "targets": [1,5,6] },
                                 { "searchable": false, "visible":false, "targets": [9]},
-                                {  "visible":false, "targets": [8,7] }
+                                {  "visible":false, "targets": [8,7]},
+                                {  "orderable":false, "targets": [3,4]}
                         ],
 		"order": [[ 9, "asc" ]],
                 "dom": '<"row filter-row"<"col-md-2"l><"col-md-10"f><"col-md-12"p>><t><"row footer-row"<"col-md-6"i><"col-md-6"p>>',

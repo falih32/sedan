@@ -19,13 +19,36 @@
             <?php if($this->session->userdata('id_user') != '') {?>
             <li <?php if($onpage == "" || $onpage == "dashboard")echo "class='active'"; ?>><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
             <li class="dropdown">
-              <a class="active" href="<?php echo site_url("Pengadaan"); ?>" aria-expanded="true"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Pengadaan <span class="caret"></span></a>
+              <a class="active" href="#" aria-expanded="true"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Pengadaan Barang<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
-                    <li><a href="<?php echo site_url("HPS"); ?>"><i class="fa fa-user"></i> HPS</a></li>
-                     <li><a href="<?php echo site_url("Penawaran"); ?>"><i class="fa fa-users"></i> Penawaran</a></li>
-                    <li><a href="<?php echo site_url("Fix"); ?>"><i class="fa fa-building"></i> Fix</a></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanBarangHPS"); ?>"><i class="fa fa-user"></i> HPS</a></li>
+                     <li><a href="<?php echo site_url("Pengadaan/PengadaanBarangPenawaran"); ?>"><i class="fa fa-users"></i> Penawaran</a></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanBarangFix"); ?>"><i class="fa fa-building"></i> Fix</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanBarang"); ?>"><i class="fa fa-building"></i> All</a></li>
                 </ul>
             </li>
+            <li class="dropdown">
+              <a class="active" href="#" aria-expanded="true"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Pengadaan Jasa<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanJasaHPS"); ?>"><i class="fa fa-user"></i> HPS</a></li>
+                     <li><a href="<?php echo site_url("Pengadaan/PengadaanJasaPenawaran"); ?>"><i class="fa fa-users"></i> Penawaran</a></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanJasaFix"); ?>"><i class="fa fa-building"></i> Fix</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanJasa"); ?>"><i class="fa fa-building"></i> All</a></li>
+                </ul>
+            </li>
+            <li class="dropdown">
+              <a class="active" href="#" aria-expanded="true"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Pengadaan Konsultan<span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanKonsultanHPS"); ?>"><i class="fa fa-user"></i> HPS</a></li>
+                     <li><a href="<?php echo site_url("Pengadaan/PengadaanKonsultanPenawaran"); ?>"><i class="fa fa-users"></i> Penawaran</a></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanKonsultanFix"); ?>"><i class="fa fa-building"></i> Fix</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li><a href="<?php echo site_url("Pengadaan/PengadaanKonsultan"); ?>"><i class="fa fa-building"></i> All</a></li>
+                </ul>
+            </li>
+            <li><a href="<?php echo site_url("Laporan"); ?>"><i class="fa fa-user"></i> Laporan</a></li>
             <li class="dropdown <?php if($onpage == "user" || $onpage == "unit" || $onpage == "unitterusan" || $onpage == "log" || $onpage == "jabatan" || $onpage == "jenissmasuk" || $onpage == "statusdisposisi")echo "active"; ?>">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Referensi <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -35,7 +58,6 @@
                     <li><a href="<?php echo site_url("SuratIzin"); ?>"><i class="fa fa-book"></i> Surat Izin</a></li>
                 </ul>
             </li>
-       
         </ul>
         <ul class="nav navbar-nav navbar-right">
         

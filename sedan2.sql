@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-01 13:28:57
+Date: 2015-12-02 07:27:05
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -85,7 +85,7 @@ INDEX `fk_dtp_pengadaan` (`dtp_pengadaan`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=33
+AUTO_INCREMENT=52
 
 ;
 
@@ -93,7 +93,7 @@ AUTO_INCREMENT=33
 -- Records of t_detail_pengadaan
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_detail_pengadaan` VALUES ('18', '15', 'Pembersihan Kaca luar gedung', 'gondola safety equipment sabun dan bahan kimia pembersih lap dan peralatan pembersih', '6843.00', 'm2', '5000.00', '34215000.00', null, null, null, null), ('19', '15', 'plate sitting dan angkur ( pasang baru di top roof)', null, '3.00', 'unit', '1567000.00', '4701000.00', null, null, null, null), ('20', '15', 'Silent kaca yang bocor', null, '79.00', 'm\'', '30000.00', '2370000.00', null, null, null, null), ('27', '19', 'beli', '-pedang\n-kursi', '3.00', 'd4', '3000.00', '9000.00', null, null, null, null), ('28', '19', 'beli', '-pedang\n-kursi', '3.00', 'd4', '4000.00', null, null, null, null, null), ('29', '20', 'hah', 'gfgsd', '4.00', 'm3', '5000.00', '20000.00', null, null, null, null), ('30', '20', 'er', 'yty', '3.00', 'dfd', '4000.00', '12000.00', null, null, null, null), ('31', '20', 'af', 'afasdf', '2.00', 'm3', '2000.00', '4000.00', '0.00', '0.00', '0.00', '0.00'), ('32', '20', 'afds', 'ewwe', '3.00', 'bf', '2000.00', '6000.00', '0.00', '0.00', '0.00', '0.00');
+INSERT INTO `t_detail_pengadaan` VALUES ('18', '15', 'Pembersihan Kaca luar gedung', 'gondola safety equipment sabun dan bahan kimia pembersih lap dan peralatan pembersih', '6843.00', 'm2', '2000.00', '13686000.00', null, null, null, null), ('19', '15', 'plate sitting dan angkur ( pasang baru di top roof)', null, '3.00', 'unit', '2500.00', '7500.00', null, null, null, null), ('20', '15', 'Silent kaca yang bocor', null, '79.00', 'm\'', '1500.00', '118500.00', null, null, null, null), ('38', '22', 'Kayu', 'Panjang\nJati', '4.00', 'unit', '4000.00', '16000.00', '0.00', '0.00', '0.00', '0.00'), ('39', '22', 'Besi', 'pendek\nkuat', '3.00', 'unit', '1000.00', '3000.00', '0.00', '0.00', '0.00', '0.00'), ('42', '19', 'permen', '-manis\n-asam', '3.00', 'unit', '400.00', '1200.00', '0.00', '0.00', '0.00', '0.00'), ('43', '20', 'xx', 'ete', '3.00', 'xx', '100.00', '300.00', '50.00', '150.00', '50.00', '150.00'), ('44', '20', 'yy', 'tyt', '6.00', 'yt', '6000.00', '36000.00', '1000.00', '6000.00', '500.00', '3000.00'), ('45', '21', 'Baju', '- wol\n- Katun', '4.00', 'unit', '5000.00', '20000.00', '6000.00', '24000.00', '0.00', '0.00'), ('46', '21', 'Celana', '- jeans\n- panjang', '1.00', 'unit', '4000.00', '4000.00', '100.00', '100.00', '0.00', '0.00'), ('47', '21', 'Kemeja', 'hahaha', '2.00', 'm3', '2000.00', '4000.00', '100.00', '200.00', '0.00', '0.00'), ('48', '21', 'haha', 'ytty', '1.50', 'mh', '3000.00', '4500.00', '200.00', '300.00', '0.00', '0.00'), ('49', '23', 'Membersihkan Lantai 1', '- Pake Lap\n- Pake shampoo', '100.00', 'm2', '500.00', '50000.00', '450.00', '45000.00', '450.00', '45000.00'), ('50', '23', 'Membersihkan lantai 2', '- Lantai pavin block\n- disedot', '150.00', 'm2', '800.00', '120000.00', '750.00', '112500.00', '700.00', '105000.00'), ('51', '24', 'Membersihkan taman depan', '- Disemprot\n- Dipotong', '500.00', 'm2', '500.00', '250000.00', '500.00', '250000.00', '0.00', '0.00');
 COMMIT;
 
 -- ----------------------------
@@ -137,7 +137,7 @@ INDEX `fk_drp_pgd` (`klp_pengadaan`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=7
+AUTO_INCREMENT=18
 
 ;
 
@@ -145,7 +145,7 @@ AUTO_INCREMENT=7
 -- Records of t_kelompok_penyusun
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_kelompok_penyusun` VALUES ('1', '15', '1', '2015-11-21 23:12:09'), ('5', '19', '1', '2015-11-26 09:58:05'), ('6', '20', '1', '2015-11-26 11:01:04');
+INSERT INTO `t_kelompok_penyusun` VALUES ('1', '15', '1', '2015-11-21 23:12:09'), ('10', '22', '1', '2015-12-02 04:19:34'), ('13', '19', '1', '2015-12-02 04:58:34'), ('14', '20', '1', '2015-12-02 05:36:50'), ('15', '21', '1', '2015-12-02 05:52:58'), ('16', '23', '1', '2015-12-02 07:08:19'), ('17', '24', '1', '2015-12-02 07:13:51');
 COMMIT;
 
 -- ----------------------------
@@ -180,14 +180,14 @@ CREATE TABLE `t_list_penyusun` (
 `lsp_kelompok`  bigint(25) NOT NULL ,
 `lsp_jabatan`  int(20) NOT NULL ,
 PRIMARY KEY (`lsp_id`),
-FOREIGN KEY (`lsp_kelompok`) REFERENCES `t_kelompok_penyusun` (`klp_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+FOREIGN KEY (`lsp_kelompok`) REFERENCES `t_kelompok_penyusun` (`klp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 FOREIGN KEY (`lsp_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
 INDEX `fk_penyusun_draft` (`lsp_kelompok`) USING BTREE ,
 INDEX `fk_pys_pgw` (`lsp_pegawai`) USING BTREE 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=13
+AUTO_INCREMENT=32
 
 ;
 
@@ -195,7 +195,7 @@ AUTO_INCREMENT=13
 -- Records of t_list_penyusun
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_list_penyusun` VALUES ('1', '4', '1', '0'), ('2', '6', '1', '1'), ('4', '5', '1', '1'), ('9', '4', '5', '0'), ('10', '5', '5', '1'), ('11', '4', '6', '0'), ('12', '5', '6', '1');
+INSERT INTO `t_list_penyusun` VALUES ('1', '4', '1', '0'), ('2', '6', '1', '1'), ('4', '5', '1', '1'), ('19', '4', '10', '0'), ('20', '5', '10', '1'), ('23', '4', '13', '0'), ('24', '5', '13', '1'), ('25', '6', '13', '1'), ('26', '4', '14', '0'), ('27', '4', '15', '0'), ('28', '6', '15', '1'), ('29', '4', '16', '0'), ('30', '6', '16', '1'), ('31', '4', '17', '0');
 COMMIT;
 
 -- ----------------------------
@@ -251,6 +251,8 @@ CREATE TABLE `t_pengadaan` (
 `pgd_jml_ssdh_ppn_fix`  decimal(65,2) NULL DEFAULT 0.00 ,
 `pgd_wkt_awal_penawaran`  date NULL DEFAULT NULL ,
 `pgd_wkt_akhir_penawaran`  date NULL DEFAULT NULL ,
+`pgd_tipe_pengadaan`  int(255) NULL DEFAULT NULL COMMENT '0 : Barang 1:Jasa 2:Konsultan' ,
+`pgd_status_pengadaan`  int(255) NULL DEFAULT 0 COMMENT '0:HPS 1:penawaran 2:fix 3:selesai' ,
 PRIMARY KEY (`pgd_id`),
 FOREIGN KEY (`pgd_anggaran`) REFERENCES `t_anggaran` (`ang_kode`) ON DELETE RESTRICT ON UPDATE RESTRICT,
 FOREIGN KEY (`pgd_supplier`) REFERENCES `t_supplier` (`spl_id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
@@ -261,7 +263,7 @@ INDEX `fk_pgd_spl` (`pgd_supplier`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=21
+AUTO_INCREMENT=25
 
 ;
 
@@ -269,7 +271,7 @@ AUTO_INCREMENT=21
 -- Records of t_pengadaan
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-11-30 21:54:25', '12345', '1', '45', '30', '2015-11-21', '0', '41286000.00', '45414600.06', '0.00', '0.00', '0.00', '0.00', null, null), ('19', 'Pengadaan barang', '0', 'PEngadaan barang bagus', '2015-11-26 09:58:05', '12345', '1', '3', '4', '2015-11-26', '0', null, null, null, null, null, null, '2015-11-26', '2015-11-27'), ('20', 'dfs', '0', 're', '2015-11-26 11:01:04', '12345', '1', '3', '5', '2015-11-25', '0', '32000.00', '35200.00', null, null, null, null, '2015-11-26', '2015-11-27');
+INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-12-02 02:39:51', '12345', '1', '45', '30', '2015-11-21', '0', '13812000.00', '15193200.02', '0.00', '0.00', '0.00', '0.00', null, null, '1', '0'), ('19', 'Pengadaan barang yyy', '1', 'PEngadaan barang bagus yyy', '2015-12-02 07:26:15', '12345', '1', '30', '4', '2015-11-25', '0', '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', '2015-11-24', '2015-11-27', '0', '0'), ('20', 'dfshaasdasdas', '0', 're', '2015-12-02 06:48:18', '12345', '1', '3', '5', '2015-11-25', '0', '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', '2015-11-26', '2015-11-27', '0', '2'), ('21', 'Pengadaan keempat dsd', '0', 'asdff xxx', '2015-12-02 05:57:36', '54321', '1', '3', '45', '2015-12-02', '0', '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', '2015-12-02', '2015-12-25', '0', '1'), ('22', 'Pengadaan kelima', '0', '444', '2015-12-02 04:19:33', '54321', '1', '5', '5', '2015-12-02', '0', '19000.00', '20900.00', '0.00', '0.00', '0.00', '0.00', '2015-12-02', '2015-12-02', '0', '0'), ('23', 'Pekerjaan pembersihan lantai xxx', '0', 'Membersihkan lantai semuanya', '2015-12-02 07:19:48', '54321', '1', '6', '6', '2015-12-02', '0', '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', '2015-12-02', '2015-12-04', '1', '2'), ('24', 'Pekerjaan pembersihan taman ccc', '0', 'Membersihkan taman depan gedung', '2015-12-02 07:21:41', '12345', '1', '4', '4', '2015-12-02', '0', '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', '2015-12-02', '2015-12-04', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -468,7 +470,7 @@ INDEX `fk_psr_srz` (`psr_surat_izin`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=6
+AUTO_INCREMENT=15
 
 ;
 
@@ -476,7 +478,7 @@ AUTO_INCREMENT=6
 -- Records of tr_pgd_suratizin
 -- ----------------------------
 BEGIN;
-INSERT INTO `tr_pgd_suratizin` VALUES ('3', '19', '1', '0'), ('4', '20', '1', '0'), ('5', '20', '1', '0');
+INSERT INTO `tr_pgd_suratizin` VALUES ('8', '22', '1', '0'), ('10', '19', '1', '0'), ('11', '20', '1', '1'), ('12', '21', '1', '1'), ('13', '23', '1', '1'), ('14', '24', '1', '1');
 COMMIT;
 
 -- ----------------------------
@@ -545,7 +547,7 @@ DELIMITER ;
 -- ----------------------------
 -- Auto increment value for t_detail_pengadaan
 -- ----------------------------
-ALTER TABLE `t_detail_pengadaan` AUTO_INCREMENT=33;
+ALTER TABLE `t_detail_pengadaan` AUTO_INCREMENT=52;
 
 -- ----------------------------
 -- Auto increment value for t_jabatan
@@ -555,12 +557,12 @@ ALTER TABLE `t_jabatan` AUTO_INCREMENT=33;
 -- ----------------------------
 -- Auto increment value for t_kelompok_penyusun
 -- ----------------------------
-ALTER TABLE `t_kelompok_penyusun` AUTO_INCREMENT=7;
+ALTER TABLE `t_kelompok_penyusun` AUTO_INCREMENT=18;
 
 -- ----------------------------
 -- Auto increment value for t_list_penyusun
 -- ----------------------------
-ALTER TABLE `t_list_penyusun` AUTO_INCREMENT=13;
+ALTER TABLE `t_list_penyusun` AUTO_INCREMENT=32;
 
 -- ----------------------------
 -- Auto increment value for t_pegawai
@@ -570,7 +572,7 @@ ALTER TABLE `t_pegawai` AUTO_INCREMENT=7;
 -- ----------------------------
 -- Auto increment value for t_pengadaan
 -- ----------------------------
-ALTER TABLE `t_pengadaan` AUTO_INCREMENT=21;
+ALTER TABLE `t_pengadaan` AUTO_INCREMENT=25;
 
 -- ----------------------------
 -- Auto increment value for t_suratizin
@@ -595,4 +597,4 @@ ALTER TABLE `tr_detail_surat` AUTO_INCREMENT=1;
 -- ----------------------------
 -- Auto increment value for tr_pgd_suratizin
 -- ----------------------------
-ALTER TABLE `tr_pgd_suratizin` AUTO_INCREMENT=6;
+ALTER TABLE `tr_pgd_suratizin` AUTO_INCREMENT=15;

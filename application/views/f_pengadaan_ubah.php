@@ -1,5 +1,61 @@
-<?php   $role = $this->session->userdata('id_role'); 
+<?php
+		$pgd_id = $dataPengadaan->pgd_id;
+                $pgd_perihal = $dataPengadaan->pgd_perihal;
+		$pgd_uraian_pekerjaan = $dataPengadaan->pgd_uraian_pekerjaan;
+		$pgd_tanggal_input = $dataPengadaan->pgd_tanggal_input;
+		$ang_kode = $dataPengadaan->ang_kode;
+                $ang_nama = $dataPengadaan->ang_nama;
+                $usr_input = $dataPengadaan->pgw_nama;
+                $pgd_lama_pekerjaan = $dataPengadaan->pgd_lama_pekerjaan;
+                $pgd_lama_penawaran = $dataPengadaan->pgd_lama_penawaran;
+                $pgd_tgl_mulai_pengadaan = $dataPengadaan->pgd_tgl_mulai_pengadaan;
+                $pgd_supplier = $dataPengadaan->pgd_supplier;
+                $spl_nama = $dataPengadaan->spl_nama;
+                $pgd_jml_sblm_ppn_hps = $dataPengadaan->pgd_jml_sblm_ppn_hps;
+                $pgd_jml_ssdh_ppn_hps = $dataPengadaan->pgd_jml_ssdh_ppn_hps;
+                $pgd_jml_sblm_ppn_pnr = $dataPengadaan->pgd_jml_sblm_ppn_pnr;
+                $pgd_jml_ssdh_ppn_pnr = $dataPengadaan->pgd_jml_ssdh_ppn_pnr;
+                $pgd_jml_sblm_ppn_fix = $dataPengadaan->pgd_jml_sblm_ppn_fix;
+                $pgd_jml_ssdh_ppn_fix = $dataPengadaan->pgd_jml_ssdh_ppn_fix;
+                $pgd_wkt_awal_penawaran = $dataPengadaan->pgd_wkt_awal_penawaran;
+                $pgd_wkt_akhir_penawaran = $dataPengadaan->pgd_wkt_akhir_penawaran;
+                $pgd_tipe_pengadaan = $dataPengadaan->pgd_tipe_pengadaan;
+                $pgd_status_pengadaan = $dataPengadaan->pgd_status_pengadaan;
+        switch ($pgd_tipe_pengadaan) {
+        case "0":
+            $tipe_pengadaan = "Barang";
+            $detail_pengadaan = "Barang";
+            break;
+        case "1":
+           $tipe_pengadaan = "Jasa";
+            $detail_pengadaan = "Pekerjaan";
+            break;
+        case "2":
+            $tipe_pengadaan = "Konsultan";
+            $detail_pengadaan = "Pekerjaan";
+            break;
+        default:
+            $tipe_pengadaan = "";
+            $detail_pengadaan = "Pekerjaan/Barang";
 
+    } 
+        switch ($pgd_status_pengadaan) {
+        case "0":
+            $status_pengadaan = "HPS";
+            break;
+        case "1":
+           $status_pengadaan  = "Penawaran";
+            break;
+        case "2":
+            $status_pengadaan = "Deal/Fix";
+            break;
+        case "3":
+            $status_pengadaan = "Selesai";
+            break;
+        default:
+            $status_pengadaan = "";
+
+    } 
 ?>
 <div class="container-fluid">
     <div class="row-fluid">
@@ -8,7 +64,7 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-                <form id = "pengadaan_form"  action = "<?php echo base_url()."Pengadaan/proses_add_pengadaan";?>" onsubmit="submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id = "pengadaan_form"  action = "<?php echo base_url()."Pengadaan/proses_edit_pengadaan";?>" onsubmit="submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">
                         <h4>Sumber Dana</h4>
                         <div class="row ">
@@ -16,6 +72,7 @@
                                 <label for="ang_kode" class="col-sm-2 control-label text-left">Angggaran</label>
                                 <div class="col-sm-8">
                                     <select class="anggaran-cbbox form-control" style="width: 100%" name="ang_kode" id="ang_kode" data-error="Input tidak boleh kosong" required>
+                                        <option value="<?php echo $ang_kode ?>" selected="selected"><?php echo $ang_kode ?>-<?php echo $ang_nama ?></option>
                                     </select>
                                     <div class="help-block with-errors"></div>
                                 </div>
@@ -31,21 +88,21 @@
                                 <div class="form-group">
                                     <label for="pgd_perihal" class="col-sm-4 control-label text-left">Nama Pengadaan</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="pgd_perihal" name="pgd_perihal" placeholder="Nama Pengadaan" data-error="Input tidak boleh kosong" required>
+                                        <input value ="<?php echo $pgd_perihal ?>" type="text" class="form-control" id="pgd_perihal" name="pgd_perihal" placeholder="Nama Pengadaan" data-error="Input tidak boleh kosong" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="pgd_lama_pekerjaan" class="col-sm-4 control-label text-left">Jangka waktu penyelesaian pekerjaan</label>
                                     <div class="col-sm-8">
-                                        <input required pattern='[0-9]*' type="text" class="form-control" id="pgd_lama_pekerjaan" name="pgd_lama_pekerjaan" placeholder="Lama Pekerjaan (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
+                                        <input value ="<?php echo $pgd_lama_pekerjaan ?>" required pattern='[0-9]*' type="text" class="form-control" id="pgd_lama_pekerjaan" name="pgd_lama_pekerjaan" placeholder="Lama Pekerjaan (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="pgd_lama_penawaran" class="col-sm-4 control-label text-left">Masa berlaku penawaran</label>
                                     <div class="col-sm-8">
-                                        <input required type="text" pattern='[0-9]*' class="form-control" id="pgd_lama_penawaran" name="pgd_lama_penawaran" placeholder="Masa Berlaku Penawaran (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
+                                        <input value ="<?php echo $pgd_lama_penawaran ?>" required type="text" pattern='[0-9]*' class="form-control" id="pgd_lama_penawaran" name="pgd_lama_penawaran" placeholder="Masa Berlaku Penawaran (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -54,7 +111,7 @@
                                     <div class="col-sm-8">
                                         <select class="supplier-cbbox form-control" style="width: 100%" name="pgd_supplier" data-error="Input tidak boleh kosong" required>
                                         <?php foreach ($supplierList as $row) {?>
-                                        <option value="<?php echo $row->spl_id; ?>">
+                                        <option value="<?php echo $row->spl_id; ?> " <?php if ($row->spl_id == $pgd_supplier){echo 'selected';} ?>>
                                                 <?php echo $row->spl_nama; ?>
                                         </option>
                                         <?php } ?>
@@ -67,7 +124,7 @@
                                 <div class="form-group">
                                     <label for="pgd_tgl_mulai_pengadaan" class="col-sm-4 control-label text-left">Tanggal Mulai Pengadaan</label>
                                     <div class="col-sm-8">
-                                        <input required readonly type="text" class="form-control tgl" id="pgd_tgl_mulai_pengadaan" name="pgd_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" data-error="Input tidak boleh kosong">
+                                        <input value ="<?php echo $pgd_tgl_mulai_pengadaan ?>" required readonly type="text" class="form-control tgl" id="pgd_tgl_mulai_pengadaan" name="pgd_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" data-error="Input tidak boleh kosong">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -75,7 +132,7 @@
                                 <label class="col-md-6 col-md-offset-3 control-label text-center">Uraian Singkat Pekerjaan</label>
                                 </div>
                                 <div class="form-group">
-                                <textarea class="form-control" id="pgd_uraian_pekerjaan" name="pgd_uraian_pekerjaan" placeholder="Uraian Singkat Pekerjaan" data-error="Input tidak boleh kosong" required></textarea>
+                                <textarea class="form-control" id="pgd_uraian_pekerjaan" name="pgd_uraian_pekerjaan" placeholder="Uraian Singkat Pekerjaan" data-error="Input tidak boleh kosong" required><?php echo $pgd_uraian_pekerjaan ?></textarea>
                                 <div class="help-block with-errors"></div>
                                 </div>
                                 <div class="form-group">
@@ -85,7 +142,7 @@
                                 <div class="form-group">
                                     <label for="pgd_wkt_awal_penawaran" class="col-sm-4 control-label text-center">Dari</label>
                                     <div class="col-sm-8">
-                                        <input readonly type="text" class="form-control tgl" id="pgd_wkt_awal_penawaran" name="pgd_wkt_awal_penawaran" placeholder="Tanggal Dari" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                        <input value ="<?php echo $pgd_wkt_awal_penawaran ?>" readonly type="text" class="form-control tgl" id="pgd_wkt_awal_penawaran" name="pgd_wkt_awal_penawaran" placeholder="Tanggal Dari" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -94,7 +151,7 @@
                                 <div class="form-group">
                                     <label for="pgd_wkt_akhir_penawaran" class="col-sm-4 control-label text-left">Sampai</label>
                                     <div class="col-sm-8">
-                                        <input readonly type="text" class="form-control tgl" id="pgd_wkt_akhir_penawaran" name="pgd_wkt_akhir_penawaran" placeholder="Tanggal Sampai" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                        <input value ="<?php echo $pgd_wkt_akhir_penawaran ?>" readonly type="text" class="form-control tgl" id="pgd_wkt_akhir_penawaran" name="pgd_wkt_akhir_penawaran" placeholder="Tanggal Sampai" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>
@@ -103,6 +160,7 @@
                             </div>
                         </div>
                         <br>
+                        <?php if($pgd_status_pengadaan == 0){ ?>
                         <h4>Detail <?php echo $Judul?></h4>
                         <div class="row">
                             <div class ="col-md-6">
@@ -166,7 +224,16 @@
                                    </tr>
                                  </thead>
                                  <tbody>
-                                  
+                                     <?php foreach ($pekerjaanList as $row) {?>
+                                        <tr><td><?php echo $row->dtp_pekerjaan; ?></td>
+                                        <td><?php echo $row->dtp_spesifikasi; ?></td>
+                                        <td><?php echo $row->dtp_volume; ?></td>
+                                        <td><?php echo $row->dtp_satuan; ?></td>
+                                        <td><?php echo $row->dtp_hargasatuan_hps; ?></td>
+                                        <td><?php echo $row->dtp_jumlahharga_hps; ?></td>
+                                        <td class='deleterow'><div class='glyphicon glyphicon-remove'></div></td>
+                                        </tr>
+                                    <?php } ?>
                                  </tbody>
 
                                </table>
@@ -175,11 +242,11 @@
                         <div class="row"> 
                             <div class ='col-sm-3 pull-right'> 
                             <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_sblm_ppn_hps" name="pgd_jml_sblm_ppn_hps" value='0' readonly>
+                            <input type="text" class="form-control" id="pgd_jml_sblm_ppn_hps" name="pgd_jml_sblm_ppn_hps" value='<?php echo $pgd_jml_sblm_ppn_hps; ?>' readonly>
                             </div> 
                             <div class ='col-sm-3 pull-right'>
                             <label id = "total_label" class="control-label text-center pull-right">Total(ppn 10%) : &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_ssdh_ppn_hps" name="pgd_jml_ssdh_ppn_hps" value='0' readonly>
+                            <input type="text" class="form-control" id="pgd_jml_ssdh_ppn_hps" name="pgd_jml_ssdh_ppn_hps" value='<?php echo $pgd_jml_ssdh_ppn_hps; ?>' readonly>
                             </div> 
                         </div>
                         <br>
@@ -233,7 +300,18 @@
                                    </tr>
                                  </thead>
                                  <tbody>
-                                  
+                                     <?php foreach ($penyusunList as $row) {?>
+                                        <tr><td style="display:none;"><?php echo $row->lsp_pegawai; ?></td>
+                                            <td><?php echo $row->pgw_nip.'-'.$row->jbt_nama.'-'.$row->pgw_nama; ?></td>
+                                            <td style="display:none;"><?php echo $row->lsp_jabatan; ?></td>
+                                        <td><?php if ($row->lsp_jabatan == 0){
+                                            echo "Ketua";
+                                        }else{
+                                            echo "Anggota";
+                                        }?></td>
+                                        <td class='deleterow'><div class='glyphicon glyphicon-remove'></div></td>
+                                        </tr>
+                                    <?php } ?>
                                  </tbody>
 
                                </table>
@@ -276,12 +354,17 @@
                                    </tr>
                                  </thead>
                                  <tbody>
-                                  
+                                     <?php foreach ($suratList as $row) {?>
+                                    <tr><td style="display:none;"><?php echo $row->siz_id; ?></td>
+                                    <td><?php echo $row->siz_nama; ?></td>
+                                    <td class='deleterow'><div class='glyphicon glyphicon-remove'></div></td></tr>
+                        <?php } ?>
                                  </tbody>
 
                                </table>
                            </div>
                         </div>
+                        <?php } ?>
                     </div>
                     <div class="row">
                             <div class="form-group">     
@@ -294,10 +377,15 @@
                                     <div class="col-sm-4">
                                    <input type="hidden" class="form-control" id="list_suratizin" name="list_suratizin" placeholder="Detail Pekerjaan">
                                    </div>
-                                    <div class="col-sm-4">
+                                <div class="col-sm-4">
+                                   <input type="hidden" class="form-control" id="pgd_status_pengadaan" name="pgd_status_pengadaan" value= "<?php echo $pgd_status_pengadaan;?>" placeholder="Detail Pekerjaan">
+                                   </div>
+                                <div class="col-sm-4">
                                    <input type="hidden" class="form-control" id="pgd_tipe_pengadaan" name="pgd_tipe_pengadaan" value= "<?php echo $pgd_tipe_pengadaan;?>" placeholder="Detail Pekerjaan">
                                    </div>
-                                    
+                                    <div class="col-sm-4">
+                                   <input type="hidden" class="form-control" id="pgd_id" name="pgd_id" value="<?php echo $pgd_id?>" placeholder="Detail Pekerjaan">
+                                   </div>
                             </div>
                         </div>
                     <div class="col-md-12 text-center"><hr>
@@ -386,7 +474,7 @@ function submitFormPengadaan() {
            //document.pengadaan_form.list_pekerjaan.value = TableDataPekerjaan;
            return true;
 }
-     
+  
 $(document).ready(function() {
     
    // $('#btnSubmitPengadaan').hide();
@@ -451,6 +539,42 @@ $(document).ready(function() {
         document.getElementById("dtp_hargasatuan_hps").value='';
     });
     
+    $(".deleterow").on("click", function(){
+            var $killrow = $(this).parent('tr');
+            $killrow.addClass("danger");
+            $killrow.fadeOut(2000, function(){
+            $(this).remove();
+            totHarga();
+        });});
+    function totHarga() {
+        var TableData = new Array();
+
+        $('#table_pekerjaan tr').each(function(row, tr){
+            TableData[row]={
+                "jumlah" : $(tr).find('td:eq(5)').text()
+            }    
+        }); 
+        TableData.shift();  // first row will be empty - so remove
+        var totSemuaPnr = 0;
+        //alert(TableData.toString());
+        TableData.forEach( function (arrayItem)
+        {
+            var nilai = parseFloat(arrayItem.jumlah);
+            if(!isNaN(nilai)){
+                totSemuaPnr = totSemuaPnr + nilai;
+                //alert(nilai);
+            }
+            //alert(nilai);
+        });
+         //alert("tot "+totSemuaPnr);
+        //totSemuaPnr = parseFloat(totSemuaPnr).toFixed(2);                                       
+        if(!isNaN(totSemuaPnr)){
+            document.getElementById("pgd_jml_sblm_ppn_hps").value = parseFloat(totSemuaPnr).toFixed(2);
+            document.getElementById("pgd_jml_ssdh_ppn_hps").value = parseFloat(totSemuaPnr+(totSemuaPnr*0.1)).toFixed(2);
+        }else{
+            document.getElementById("pgd_jml_sblm_ppn_pnr").value = "Input tidak Valid";
+        }
+    }
     $("#addnewrowpenyusun").on("click", function(){
         var tagNIP = document.getElementById("dpy_pegawai");
         var NIP = tagNIP.options[tagNIP.selectedIndex].value;

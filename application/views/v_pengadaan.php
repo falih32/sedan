@@ -16,25 +16,51 @@
                 $pgd_jml_sblm_ppn_fix = $dataPengadaan->pgd_jml_sblm_ppn_fix;
                 $pgd_jml_ssdh_ppn_fix = $dataPengadaan->pgd_jml_ssdh_ppn_fix;
                 $pgd_wkt_awal_penawaran = $dataPengadaan->pgd_wkt_awal_penawaran;
-                $pgd_wkt_akhir_penawaran = $dataPengadaan->pgd_wkt_akhir_penawaran;               
+                $pgd_wkt_akhir_penawaran = $dataPengadaan->pgd_wkt_akhir_penawaran;
+                $pgd_tipe_pengadaan = $dataPengadaan->pgd_tipe_pengadaan;
+                $pgd_status_pengadaan = $dataPengadaan->pgd_status_pengadaan;
+        switch ($pgd_tipe_pengadaan) {
+        case "0":
+            $tipe_pengadaan = "Barang";
+            $detail_pengadaan = "Barang";
+            break;
+        case "1":
+           $tipe_pengadaan = "Jasa";
+            $detail_pengadaan = "Pekerjaan";
+            break;
+        case "2":
+            $tipe_pengadaan = "Konsultan";
+            $detail_pengadaan = "Pekerjaan";
+            break;
+        default:
+            $tipe_pengadaan = "";
+            $detail_pengadaan = "Pekerjaan/Barang";
+
+    } 
+        switch ($pgd_status_pengadaan) {
+        case "0":
+            $status_pengadaan = "HPS";
+            break;
+        case "1":
+           $status_pengadaan  = "Penawaran";
+            break;
+        case "2":
+            $status_pengadaan = "Deal/Fix";
+            break;
+        case "3":
+            $status_pengadaan = "Selesai";
+            break;
+        default:
+            $status_pengadaan = "";
+
+    } 
 ?>
 <div class="container-fluid">
     <div class="row-fluid">
     	<div class="panel panel-info">
             <div class="panel-heading">
-                <h3>Detail Info 
-                    <?php
-                        switch ($modeView) {
-                            case 'pengadaan':
-                                  echo "Pengadaan";
-                                  break;
-                            case 'hps':
-                                  echo "Pengadaan (HPS)";
-                                  break;
-                            case 'penawaran':
-                                  echo "penawaran";
-                                  break;
-                         }
+                <h3>Detail Info Pengadaan 
+                    <?php echo $tipe_pengadaan;
                     ?>
                 </h3>
             </div>
@@ -75,6 +101,10 @@
                                 <td><?php echo $spl_nama; ?></td>
                         </tr>
                         <tr>
+                        	<th>Status Pengadaan</th>
+                                <td><?php echo $status_pengadaan; ?></td>
+                        </tr>
+                        <tr>
                         	<th>Syarat Penyedia</th>
                                 <td><?php foreach ($suratList as $row) {?>
                                 <?php echo $row->siz_nama; }?></td>
@@ -84,7 +114,7 @@
                 <table class="table table-striped table-bordered table-hover" width="50%">
                     <thead>
                         <tr>
-                          <th>Pekerjaan/Barang</th>
+                          <th><?php echo $detail_pengadaan; ?></th>
                           <th>Volume</th>
                           <th>Harga Satuan(HPS)</th>
                           <th>Harga Satuan(Penawaran)</th>
@@ -105,6 +135,34 @@
                             <td><?php echo $row->dtp_jumlahharga_pnr; ?></td>
                             <td><?php echo $row->dtp_jumlahharga_fix; ?></td></tr>
                         <?php } ?>
+                    </tbody>
+                </table>
+                <table class="table table-striped table-bordered table-hover" width="50%">
+                    <tbody>
+                    	<tr>
+                        	<th>Total Keseluruhan(HPS)</th>
+                        	<td><?php echo $pgd_jml_sblm_ppn_hps; ?></td>
+                        </tr>
+                    	<tr>
+                        	<th>Total Keseluruhan(HPS) + PPN 10%</th>
+                        	<td><?php echo $pgd_jml_ssdh_ppn_hps; ?></td>
+                        </tr>
+                        <tr>
+                        	<th>Total Keseluruhan(Penawaran)</th>
+                        	<td><?php echo $pgd_jml_sblm_ppn_pnr; ?></td>
+                        </tr>
+                        <tr>
+                        	<th>Total Keseluruhan(Penawaran) + PPN 10%</th>
+                        	<td><?php echo $pgd_jml_ssdh_ppn_pnr; ?></td>
+                        </tr>
+                        <tr>
+                        	<th>Total Keseluruhan(Fix)</th>
+                        	<td><?php echo $pgd_jml_sblm_ppn_fix; ?></td>
+                        </tr>
+                        <tr>
+                        	<th>Total Keseluruhan(Fix) + PPN 10%</th>
+                        	<td><?php echo $pgd_jml_ssdh_ppn_fix; ?></td>
+                        </tr>
                     </tbody>
                 </table>
                 <table class="table table-striped table-bordered table-hover" width="50%">

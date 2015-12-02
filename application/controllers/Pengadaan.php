@@ -51,6 +51,76 @@ class Pengadaan extends CI_Controller{
         $data['title']= 'Daftar Pengadaan';
         $this->load->view('layout',$data);
     }
+    
+    public function PengadaanBarang(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang (HPS)';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '-1';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanBarangHPS(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang (HPS)';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '0';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanBarangPenawaran(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang (Penawaran)';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '1';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanBarangFix(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang (Fix)';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '2';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanJasaHPS(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa (HPS)';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '0';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanJasaPenawaran(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa (Penawaran)';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '1';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanJasaFix(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa (Fix)';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '2';
+        $this->load->view('layout',$data);
+    }
 		
     public function ajaxProcess(){
         $min=$this->input->post('min');
@@ -58,6 +128,24 @@ class Pengadaan extends CI_Controller{
         if($min == '') $min = '0000-01-01';
         if($max == '') $max = '9999-12-31';
         $result = $this->m_pengadaan->ajaxProcess($min,$max);
+        echo $result;
+    }
+    
+    public function ajaxProcessBarang($status){
+        $min=$this->input->post('min');
+        $max=$this->input->post('max');
+        if($min == '') $min = '0000-01-01';
+        if($max == '') $max = '9999-12-31';
+        $result = $this->m_pengadaan->ajaxProcessBarang($min,$max,$status);
+        echo $result;
+    }
+    
+    public function ajaxProcessJasa($status){
+        $min=$this->input->post('min');
+        $max=$this->input->post('max');
+        if($min == '') $min = '0000-01-01';
+        if($max == '') $max = '9999-12-31';
+        $result = $this->m_pengadaan->ajaxProcessJasa($min,$max,$status);
         echo $result;
     }
     
@@ -73,9 +161,34 @@ class Pengadaan extends CI_Controller{
         $this->load->view('layout',$data);
     }
     
-     public function add_pengadaan(){
+     public function add_pengadaan($tipePengadaan){
+        switch ($tipePengadaan) {
+        case "barang":
+            $data['title']= 'Tambah Pengadaan Barang'; 
+            $data['Judul']= 'Barang';
+            $data['lbl_detail_pengadaan']= 'Barang';
+            $data['pgd_tipe_pengadaan'] = 0;
+            break;
+        case "jasa":
+            $data['title']= 'Tambah Pengadaan Jasa'; 
+            $data['Judul']= 'Jasa';
+            $data['lbl_detail_pengadaan']= 'Pekerjaan';
+            $data['pgd_tipe_pengadaan'] = 1;
+            break;
+        case "konsultan":
+            $data['title']= 'Tambah Pengadaan Konsultan'; 
+            $data['Judul']= 'Konsultan';
+            $data['lbl_detail_pengadaan']= 'Pekerjaan';
+            $data['pgd_tipe_pengadaan'] = 2;
+            break;
+        default:
+            $data['title']= 'Tambah Pengadaan'; 
+            $data['Judul']= '';
+            $data['lbl_detail_pengadaan']= 'Pekerjaan/Barang';
+            $data['pgd_tipe_pengadaan'] = -1;
+        } 
+        
         $data['content'] = 'f_pengadaan';
-        $data['title']= 'Tambah Pengadaan'; 
         $data['anggaranList']= $this->M_anggaran->selectAll()->result();
         $data['supplierList']= $this->M_supplier->selectAll()->result();
         $data['pegawaiList']= $this->M_pegawai->selectAllWithJabatan()->result();
@@ -97,6 +210,8 @@ class Pengadaan extends CI_Controller{
         $pgd['pgd_jml_ssdh_ppn_hps'] = $this->input->get('pgd_jml_ssdh_ppn_hps');
         $pgd['pgd_wkt_awal_penawaran'] = $this->input->get('pgd_wkt_awal_penawaran');
         $pgd['pgd_wkt_akhir_penawaran'] = $this->input->get('pgd_wkt_akhir_penawaran');
+        $pgd['pgd_tipe_pengadaan'] = $this->input->get('pgd_tipe_pengadaan');
+       
     
         $idPengadaan = $this->m_pengadaan->insertPengadaan($pgd);
         //3. insert Pekerjaan
@@ -143,8 +258,174 @@ class Pengadaan extends CI_Controller{
         $pajak = 0.1;
         $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
         
-        $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-        redirect(site_url('Pengadaan'));
+        if ($pgd['pgd_tipe_pengadaan'] == 0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangHPS'));
+        } else if ($pgd['pgd_tipe_pengadaan'] == 1 ){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaHPS'));
+        } else if ($pgd['pgd_tipe_pengadaan'] == 2 ){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanHPS'));
+       
+        }
+    }
+    
+    public function edit_pengadaan($id,$tipe,$status){
+        switch ($tipe) {
+        case "0":
+            $data['title']= 'Tambah Pengadaan Barang'; 
+            $data['Judul']= 'Barang';
+            $data['lbl_detail_pengadaan']= 'Barang';
+            break;
+        case "1":
+            $data['title']= 'Tambah Pengadaan Jasa'; 
+            $data['Judul']= 'Jasa';
+            $data['lbl_detail_pengadaan']= 'Pekerjaan';
+            break;
+        case "2":
+            $data['title']= 'Tambah Pengadaan Konsultan'; 
+            $data['Judul']= 'Konsultan';
+            $data['lbl_detail_pengadaan']= 'Pekerjaan';
+            break;
+        default:
+            $data['title']= 'Tambah Pengadaan'; 
+            $data['Judul']= '';
+            $data['lbl_detail_pengadaan']= 'Pekerjaan/Barang';
+
+        } 
+        $data['content'] = 'f_pengadaan_ubah';
+        $data['title']= 'Detail Pengadaan'; 
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['anggaranList']= $this->M_anggaran->selectAll()->result();
+        $data['supplierList']= $this->M_supplier->selectAll()->result();
+        $data['pegawaiList']= $this->M_pegawai->selectAllWithJabatan()->result();
+        $data['suratList']= $this->M_suratizin->selectAll()->result();
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+        
+    }
+    
+    public function proses_edit_pengadaan($idPengadaan){
+        //1. update pgd
+        $pgd['pgd_id']            = $this->input->get('pgd_id');
+        $pgd['pgd_perihal']            = $this->input->get('pgd_perihal');
+        $pgd['pgd_uraian_pekerjaan']            = $this->input->get('pgd_uraian_pekerjaan');
+        $pgd['pgd_anggaran']   = $this->input->get('ang_kode');
+        $pgd['pgd_tgl_mulai_pengadaan']   = $this->input->get('pgd_tgl_mulai_pengadaan');
+        $pgd['pgd_user_update'] = $this->session->userdata('id_user');
+        $pgd['pgd_lama_pekerjaan']   = $this->input->get('pgd_lama_pekerjaan');
+        $pgd['pgd_lama_penawaran']        = $this->input->get('pgd_lama_penawaran');
+        $pgd['pgd_supplier'] = $this->input->get('pgd_supplier');
+        if ($pgd['pgd_status_pengadaan'] == 1){
+            $pgd['pgd_jml_sblm_ppn_hps'] = $this->input->get('pgd_jml_sblm_ppn_hps');
+            $pgd['pgd_jml_ssdh_ppn_hps'] = $this->input->get('pgd_jml_ssdh_ppn_hps');
+        }
+        $pgd['pgd_wkt_awal_penawaran'] = $this->input->get('pgd_wkt_awal_penawaran');
+        $pgd['pgd_wkt_akhir_penawaran'] = $this->input->get('pgd_wkt_akhir_penawaran');
+        
+        $pgd['pgd_status_pengadaan'] = $this->input->get('pgd_status_pengadaan');
+        $pgd['pgd_tipe_pengadaan'] = $this->input->get('pgd_tipe_pengadaan');
+        $this->m_pengadaan->update($pgd['pgd_id'],$pgd);
+        $idPengadaan = $pgd['pgd_id']  ;
+        if ($pgd['pgd_status_pengadaan'] == 0){
+            //3. delete Pekerjaan
+            $this->m_pengadaan->deletePekerjaan($idPengadaan);
+            //3. insert Pekerjaan
+            $data['listPekerjaan']        = $this->input->get('list_pekerjaan');
+            // echo $data['listPekerjaan'];
+            $tableDataPkj = json_decode($data['listPekerjaan'],TRUE); 
+            $countPkj = count($tableDataPkj);
+            for ($i = 0; $i < $countPkj; $i++) {
+                $dtp['dtp_pengadaan'] = $idPengadaan;
+                $dtp['dtp_pekerjaan'] = $tableDataPkj[$i]['dtp_pekerjaan'];
+                $dtp['dtp_spesifikasi'] = $tableDataPkj[$i]['dtp_spesifikasi'];
+                $dtp['dtp_volume'] = $tableDataPkj[$i]['dtp_volume'];
+                $dtp['dtp_satuan'] = $tableDataPkj[$i]['dtp_satuan'];
+                $dtp['dtp_hargasatuan_hps'] = $tableDataPkj[$i]['dtp_hargasatuan_hps'];
+                //$dtp['dtp_jumlahharga_hps'] = $dtp['dtp_volume'] * $dtp['dtp_hargasatuan_hps'];
+                $this->m_pengadaan->insertPekerjaan($dtp);
+            }
+
+            //3. delete penyusun
+            $this->m_pengadaan->deletePenyusun($idPengadaan);
+
+             //4. insert Penyusun
+            $klp['klp_pengadaan'] = $idPengadaan;
+            $klp['klp_terpilih'] = 1;
+            $idKelompok = $this->m_pengadaan->insertKelompokPenyusun($klp);
+            $data['listPenyusun']            = $this->input->get('list_penyusun');
+            $tableDataPys = json_decode($data['listPenyusun'],TRUE); 
+            $countPys = count($tableDataPys);
+            for ($i = 0; $i < $countPys; $i++) {
+                $dpy['lsp_kelompok'] = $idKelompok;
+                $dpy['lsp_pegawai'] = $tableDataPys[$i]['lsp_pegawai'];
+                $dpy['lsp_jabatan'] = $tableDataPys[$i]['lsp_jabatan'];
+                $this->m_pengadaan->insertPenyusun($dpy);
+            }
+    //        delete syarat penyedia
+            $this->m_pengadaan->deleteSyaratPenyedia($idPengadaan);
+    //        //5. insert Syarat penyedia
+            $data['listSurat']   = $this->input->get('list_suratizin');
+            $tableDataSrt = json_decode($data['listSurat'],TRUE); 
+            $countSrt = count($tableDataSrt);
+            for ($i = 0; $i < $countSrt; $i++) {
+                $psr['psr_pengadaan'] = $idPengadaan;
+                $psr['psr_surat_izin'] = $tableDataSrt[$i]['psr_surat_izin'];
+                $this->m_pengadaan->insertSuratIzin($psr);
+            }
+
+            //totalkan harga semua
+            $pajak = 0.1;
+            $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+            
+        }
+        if ($pgd['pgd_tipe_pengadaan'] == 0 && $pgd['pgd_status_pengadaan']==0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangHPS'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 0 && $pgd['pgd_status_pengadaan']==1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangPenawaran'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 0 && $pgd['pgd_status_pengadaan']==2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangFix'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 0 && $pgd['pgd_status_pengadaan']==3){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarang'));
+        }
+        
+        if ($pgd['pgd_tipe_pengadaan'] == 1 && $pgd['pgd_status_pengadaan']==0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaHPS'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 1 && $pgd['pgd_status_pengadaan']==1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaPenawaran'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 1 && $pgd['pgd_status_pengadaan']==2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaFix'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 1 && $pgd['pgd_status_pengadaan']==3){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasa'));
+        }
+        
+        if ($pgd['pgd_tipe_pengadaan'] == 2 && $pgd['pgd_status_pengadaan']==0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanHPS'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 2 && $pgd['pgd_status_pengadaan']==1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanPenawaran'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 2 && $pgd['pgd_status_pengadaan']==2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanFix'));
+        }else if ($pgd['pgd_tipe_pengadaan'] == 2 && $pgd['pgd_status_pengadaan']==3){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/Pengadaankonsultan'));
+        }
+        
     }
   	
     public function prosesInputAnggaran(){
@@ -182,6 +463,165 @@ class Pengadaan extends CI_Controller{
         $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
         $data['modeView']= "pengadaan";
         $this->load->view('layout',$data);
+    }
+    
+    public function add_penawaran_barang($id){
+        $data['content'] = 'f_penawaran';
+        $data['title']= 'Input Penawaran Barang'; 
+        $data['judul']= 'Barang';
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+    }
+    
+    public function add_penawaran_jasa($id){
+        $data['content'] = 'f_penawaran';
+        $data['title']= 'Input Penawaran Jasa'; 
+        $data['judul']= 'Pekerjaan';
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+    }
+    
+    public function proses_add_penawaran(){
+        
+        
+        // post idPengadaan
+        $idPengadaan = $this->input->get('pgd_id');
+        //5. update status pgd
+        $xx['pgd_status_pengadaan'] = '1';
+        $this->m_pengadaan->update($idPengadaan,$xx);
+        //1. post data syarat
+        $data2 = $this->input->get('psr_penawaran');
+         //3. Update data syarat
+        foreach((array)$data2 as $row){
+            $in['psr_id'] = $row;
+            $on['psr_status_penawaran'] = '1';
+            $this->m_pengadaan->updateSyaratPenyedia($in['psr_id'],$on);
+        }
+        //2. post data pekerjaan
+        $data3 = $this->input->get('dtp_id') ;
+        $data4 = $this->input->get('dtp_hargasatuan_pnr');
+        $length = count($data3);
+        echo $length;
+         //3. Update data pekerjaan
+        for( $i = 0; $i < $length; $i++ ) {
+            $ax['dtp_id'] = $data3[$i];
+            echo $ax['dtp_id'];
+            $ex['dtp_hargasatuan_pnr'] = $data4[$i];
+            echo $ex['dtp_hargasatuan_pnr'];
+            $this->m_pengadaan->updateHargaPenawaran( $ax['dtp_id'],$ex);
+        }
+
+        //4. Call procedure jumlah total
+      
+        //totalkan harga semua
+        $pajak = 0.1;
+        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+
+        $tipe = $this->input->get('pgd_tipe_pengadaan');
+        if($tipe == 0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangPenawaran'));
+        }else if($tipe == 1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaPenawaran'));
+        }else if($tipe == 2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanPenawaran'));
+        }
+        
+    }
+    
+    public function add_hargafix_barang($id){
+        $data['content'] = 'f_pengadaan_fix';
+        $data['title']= 'Input Harga Deal Pengadaan Barang'; 
+        $data['judul']= 'Barang';
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+    }
+    
+    public function add_hargafix_jasa($id){
+        $data['content'] = 'f_pengadaan_fix';
+        $data['title']= 'Input Harga Deal Pengadaan Jasa'; 
+        $data['judul']= 'Pekerjaan';
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $terpilih = 1;
+        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+    }
+    
+    public function proses_add_fix(){
+        
+        
+        // post idPengadaan
+        $idPengadaan = $this->input->get('pgd_id');
+        //5. update status pgd
+        $xx['pgd_status_pengadaan'] = '2';
+        $this->m_pengadaan->update($idPengadaan,$xx);
+        //2. post data pekerjaan
+        $data3 = $this->input->get('dtp_id') ;
+        $data4 = $this->input->get('dtp_hargasatuan_fix');
+        $length = count($data3);
+        echo $length;
+         //3. Update data pekerjaan
+        for( $i = 0; $i < $length; $i++ ) {
+            $ax['dtp_id'] = $data3[$i];
+            echo $ax['dtp_id'];
+            $ex['dtp_hargasatuan_fix'] = $data4[$i];
+            echo $ex['dtp_hargasatuan_fix'];
+            $this->m_pengadaan->updateHargaFix( $ax['dtp_id'],$ex);
+        }
+
+        //4. Call procedure jumlah total
+      
+        //totalkan harga semua
+        $pajak = 0.1;
+        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+
+        $tipe = $this->input->get('pgd_tipe_pengadaan');
+        if($tipe == 0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangFix'));
+        }else if($tipe == 1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaFix'));
+        }else if($tipe == 2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanFix'));
+        }
+        
+    }
+    
+    function delete_pengadaan($id){
+        $this->m_pengadaan->delete($id);
+        $tipe = $this->input->get('pgd_tipe_pengadaan');
+        if($tipe == 0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangPenawaran'));
+        }else if($tipe == 1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaPenawaran'));
+        }else if($tipe == 2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanPenawaran'));
+        }
     }
     
     function postVariableTable(){

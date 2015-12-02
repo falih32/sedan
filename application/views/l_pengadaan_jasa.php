@@ -1,16 +1,38 @@
 <?php   $role = $this->session->userdata('id_role'); 
-        
+
+    switch ($statusPengadaan) {
+        case "0":
+            $Judul = "Pengadaan Jasa(HPS)";
+            $SubJudul = "Pengadaan Jasa(HPS)";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessJasa/0');
+            break;
+        case "1":
+            $Judul = "Pengadaan Jasa(Penawaran)";
+            $SubJudul = "Pengadaan Jasa(HPS)";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessJasa/1');
+            break;
+        case "2":
+            $Judul = "Pengadaan Jasa(Fix)";
+            $SubJudul = "Pengadaan Jasa(Fix)";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessJasa/2');
+            break;
+        default:
+            $Judul = "Pengadaan Jasa";
+            $SubJudul = "Pengadaan Jasa";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessJasa/-1'); 
+
+    }       
 ?>
 <div class="container-fluid">
     <div class="row-fluid">
         <h1>
-            <span class="glyphicon glyphicon-pegawai" aria-hidden="true"></span> Pengadaan
-            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Pengadaan' href="<?php echo base_url()."Pengadaan/";?>add_Pengadaan"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+            <span class="glyphicon glyphicon-pegawai" aria-hidden="true"></span> <?php echo $Judul; ?>
+            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Pengadaan Jasa' href="<?php echo base_url()."Pengadaan/";?>add_Pengadaan/jasa"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
         </h1>
         <hr>
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <span class="glyphicon glyphicon-pegawai" aria-hidden="true"></span> Daftar Pengadaan
+                <span class="glyphicon glyphicon-pegawai" aria-hidden="true"></span> <?php echo $SubJudul; ?>
             </div>
              <div class="panel-body">
                 <div class="col-md-3 col-md-offset-9 text-right" id="date_search">
@@ -27,6 +49,7 @@
                         <th>Supplier</th>
                 	<th>Ketua</th>
                         <th>Total(+ppn)</th>
+                        <th>Status Selesai</th>
                 	<th>Aksi</th>
                 </tr>
                 </thead>
@@ -49,7 +72,7 @@ $(document).ready(function() {
 		"serverSide": true,
                 "pageLength": 50,
 		"ajax":{
-			"url":"<?php echo site_url('Pengadaan/ajaxProcess');?>",
+			"url":" <?php echo $linkAjax; ?>",
 			"type":"POST",
 			"data":function ( d ) {
 				d.min = $('#s_date_awal').val();
@@ -61,18 +84,19 @@ $(document).ready(function() {
                 { "data": "nmpengadaan_tglbuat" },
                 { "data": "supplier_name" },
                 { "data": "ketua" },
-                { "data": "pgd_jml_ssdh_ppn_hps" },
+                { "data": "total" },
+                { "data": "konfirm_selesai" },
                 { "data": "aksi" },
                 { "data": "pgd_perihal" },
                 { "data": "pgd_tanggal_input" },
                 { "data": "pgd_id" }
               ],
 		"columnDefs": [
-				{ "searchable": false, "orderable":false, "targets": 5 },
-                                { "searchable": false, "visible":false, "targets": [8]},
-                                {  "visible":false, "targets": [7,6] }
+				{ "searchable": false, "orderable":false, "targets": [7,6] },
+                                { "searchable": false, "visible":false, "targets": [9]},
+                                {  "visible":false, "targets": [8,7] }
                         ],
-		"order": [[ 8, "asc" ]],
+		"order": [[ 9, "asc" ]],
                 "dom": '<"row filter-row"<"col-md-2"l><"col-md-10"f><"col-md-12"p>><t><"row footer-row"<"col-md-6"i><"col-md-6"p>>',
 		"drawCallback": function( settings ) {
 			makeConfirmation();

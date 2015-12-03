@@ -111,24 +111,45 @@ $(document).ready(function() {
                     $(row).css('cursor', 'pointer');
                     var temp = data.nmpengadaan_tglbuat;
                     $('td', row).eq(1).html(temp.replace('Pebruari','Februari'));
+                    if ( data.pgd_status_selesai == "1") {
+                        $('td', row).eq(5).html('<a class="btn btn-success btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Batalkan konfirmasi" data-confirm="Anda yakin akan mengembalikan status pengadaan menjadi belum selesai?" data-href="batal_konfirmasi/'+data.pgd_id+'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
+                        $('td', row).eq(6).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
+                    }
                     $(row).find('a').click(function(e){e.stopPropagation();});
                    }
 	} );
         
         function makeConfirmation(){
-	var deleteLinks = document.querySelectorAll('.delete');
-	for (var i = 0, length = deleteLinks.length; i < length; i++) {
-            deleteLinks[i].addEventListener('click', function(event) {
-                event.preventDefault();
+                var deleteLinks = document.querySelectorAll('.delete');
+                for (var i = 0, length = deleteLinks.length; i < length; i++) {
+                        deleteLinks[i].addEventListener('click', function(event) {
+                                event.preventDefault();
 
-                var choice = confirm(this.getAttribute('data-confirm'));
+                                var choice = confirm(this.getAttribute('data-confirm'));
 
-                if (choice) {
-                    window.location.href = this.getAttribute('href');
+                                if (choice) {
+                                        window.location.href = this.getAttribute('href');
+                                }
+                        });
                 }
-            });
-	}
-    }
+
+                var confirmLinks = document.querySelectorAll('.confirm');
+                for (var i = 0, length = confirmLinks.length; i < length; i++) {
+                        confirmLinks[i].addEventListener('click', function(event) {
+                                event.preventDefault();
+
+                                var choice = confirm(this.getAttribute('data-confirm'));
+
+                                if (choice) {
+                                        $.ajax({
+                                                url: this.getAttribute('data-href'),
+                                                type: "POST",
+                                                success: function(){table.draw();}
+                                        });
+                                }
+                        });
+                }
+        }
 //     $('#tabel-pengadaan tr td:not(:last-child)').click(function ()    {
 //                    location.href = $(this).parent().find('td a').attr('href');
 //                   });

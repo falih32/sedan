@@ -124,7 +124,7 @@
                                 <div class="form-group">
                                     <label for="pgd_tgl_mulai_pengadaan" class="col-sm-4 control-label text-left">Tanggal Mulai Pengadaan</label>
                                     <div class="col-sm-8">
-                                        <input value ="<?php echo $pgd_tgl_mulai_pengadaan ?>" required readonly type="text" class="form-control tgl" id="pgd_tgl_mulai_pengadaan" name="pgd_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" data-error="Input tidak boleh kosong">
+                                        <input value ="<?php echo $pgd_tgl_mulai_pengadaan ?>" required readonly type="text" class="form-control tgl1" id="pgd_tgl_mulai_pengadaan" name="pgd_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" data-error="Input tidak boleh kosong">
                                         <div class="help-block with-errors"></div>
                                     </div>
                                 </div>

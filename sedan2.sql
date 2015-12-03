@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-03 03:39:00
+Date: 2015-12-03 10:56:46
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,11 +29,27 @@ CREATE TABLE `tr_detail_konten` (
   KEY `tr_detailsurat` (`dknt_detailsurat`) USING BTREE,
   CONSTRAINT `tr_detail_konten_ibfk_1` FOREIGN KEY (`dknt_idkonten`) REFERENCES `t_konten` (`knt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tr_detail_konten_ibfk_2` FOREIGN KEY (`dknt_detailsurat`) REFERENCES `tr_detail_surat` (`dsrt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_detail_konten
 -- ----------------------------
+INSERT INTO `tr_detail_konten` VALUES ('Kabag Perlengkapan ', '17', '1', '3');
+INSERT INTO `tr_detail_konten` VALUES ('Kabag TU Pimpinan ', '18', '2', '3');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-03', '19', '3', '3');
+INSERT INTO `tr_detail_konten` VALUES ('Masnopa ika', '20', '4', '3');
+INSERT INTO `tr_detail_konten` VALUES ('1066/PPK.5/VI/2015', '21', '5', '3');
+INSERT INTO `tr_detail_konten` VALUES ('Mas Nopa', '22', '6', '3');
+INSERT INTO `tr_detail_konten` VALUES ('114.7/PPK.5/VI/2015', '23', '7', '3');
+INSERT INTO `tr_detail_konten` VALUES ('Riyani Indarti', '24', '8', '3');
+INSERT INTO `tr_detail_konten` VALUES ('1066/PPK.5/VI/2015', '25', '9', '5');
+INSERT INTO `tr_detail_konten` VALUES ('b.114.8/ppk.5/vI/20015', '26', '9', '8');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-03 08:00', '27', '10', '8');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-03 16:00', '28', '11', '8');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-04', '29', '12', '8');
+INSERT INTO `tr_detail_konten` VALUES ('b.114.8/ppk.5/vI/20015', '30', '9', '9');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-03', '31', '3', '9');
+INSERT INTO `tr_detail_konten` VALUES ('Sugiri', '32', '13', '9');
 
 -- ----------------------------
 -- Table structure for tr_detail_surat
@@ -51,11 +67,18 @@ CREATE TABLE `tr_detail_surat` (
   KEY `fk_pgd_dsrt` (`dsrt_idpengadaan`) USING BTREE,
   CONSTRAINT `tr_detail_surat_ibfk_1` FOREIGN KEY (`dsrt_idpengadaan`) REFERENCES `t_pengadaan` (`pgd_id`),
   CONSTRAINT `tr_detail_surat_ibfk_2` FOREIGN KEY (`dsrt_jenis_surat`) REFERENCES `t_surat` (`srt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_detail_surat
 -- ----------------------------
+INSERT INTO `tr_detail_surat` VALUES ('3', '1', '2015-12-03 04:33:39', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('4', '2', '2015-12-03 04:34:08', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('5', '3', '2015-12-03 04:35:18', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('6', '4', '2015-12-03 09:49:32', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('7', '5', '2015-12-03 09:49:59', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('8', '6', '2015-12-03 10:48:57', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('9', '7', '2015-12-03 10:55:28', '3', '15');
 
 -- ----------------------------
 -- Table structure for tr_pgd_suratizin
@@ -277,6 +300,11 @@ INSERT INTO `t_konten` VALUES ('nomormemo2', '5');
 INSERT INTO `t_konten` VALUES ('ttdmemo2', '6');
 INSERT INTO `t_konten` VALUES ('nomormemo3', '7');
 INSERT INTO `t_konten` VALUES ('ttdmemo3', '8');
+INSERT INTO `t_konten` VALUES ('Nomor', '9');
+INSERT INTO `t_konten` VALUES ('tgl_udg_pembukaan', '10');
+INSERT INTO `t_konten` VALUES ('tgl_udg_klarifikasi', '11');
+INSERT INTO `t_konten` VALUES ('tgl_udg_penandatanganan', '12');
+INSERT INTO `t_konten` VALUES ('perwakilan', '13');
 
 -- ----------------------------
 -- Table structure for t_list_penyusun
@@ -327,7 +355,7 @@ CREATE TABLE `t_pegawai` (
   KEY `pgw_id` (`pgw_id`) USING BTREE,
   KEY `fk_pegawai_jabatan` (`pgw_jabatan`) USING BTREE,
   CONSTRAINT `t_pegawai_ibfk_1` FOREIGN KEY (`pgw_jabatan`) REFERENCES `t_jabatan` (`jbt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_pegawai
@@ -336,6 +364,7 @@ INSERT INTO `t_pegawai` VALUES ('Mas Nopa', '1', '212121212121', '12121111111111
 INSERT INTO `t_pegawai` VALUES ('Masnopa ika', '3', '33333333333333333', '111111111111111111', '5', '0');
 INSERT INTO `t_pegawai` VALUES ('Sukijan', '3', '1212121212', '111111111122222', '6', '0');
 INSERT INTO `t_pegawai` VALUES ('Prijaambodo Mardianto', '30', '2111111111111111113', null, '7', '0');
+INSERT INTO `t_pegawai` VALUES ('Riyani Indarti', '33', '', null, '8', '0');
 
 -- ----------------------------
 -- Table structure for t_pengadaan
@@ -437,6 +466,11 @@ CREATE TABLE `t_surat` (
 -- ----------------------------
 INSERT INTO `t_surat` VALUES ('1', 'Memorandum');
 INSERT INTO `t_surat` VALUES ('2', 'HPS');
+INSERT INTO `t_surat` VALUES ('3', 'Daftar Harga');
+INSERT INTO `t_surat` VALUES ('4', 'Spesifikasi Teknis');
+INSERT INTO `t_surat` VALUES ('5', 'LDP');
+INSERT INTO `t_surat` VALUES ('6', 'Undangan');
+INSERT INTO `t_surat` VALUES ('7', 'Daftar Hadir');
 
 -- ----------------------------
 -- Table structure for t_suratizin

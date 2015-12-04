@@ -1,6 +1,5 @@
 <?php 
     $role = $this->session->userdata('id_role');
-    $level = $this->session->userdata('id_level');
     $onpage= strtolower($this->uri->segment(1));
 ?>
 <nav class="navbar navbar-default navbar-static-top">
@@ -16,8 +15,8 @@
     </div>
     <div id="navbar" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <?php if($this->session->userdata('id_user') != '') {?>
-            <li <?php if($onpage == "" || $onpage == "dashboard")echo "class='active'"; ?>><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
+        <?php if($this->session->userdata('id_user') != '') {?>
+            <!--<li <?php if($onpage == "" || $onpage == "dashboard")echo "class='active'"; ?>><a href="<?php echo base_url(); ?>"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>-->
             <li class="dropdown">
               <a class="active" href="#" aria-expanded="true"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Pengadaan Barang<span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
@@ -49,7 +48,8 @@
                 </ul>
             </li>
             <li><a href="<?php echo site_url("Laporan"); ?>"><i class="fa fa-user"></i> Laporan</a></li>
-            <li class="dropdown <?php if($onpage == "user" || $onpage == "unit" || $onpage == "unitterusan" || $onpage == "log" || $onpage == "jabatan" || $onpage == "jenissmasuk" || $onpage == "statusdisposisi")echo "active"; ?>">
+            <?php if($role == "1"){ ?>
+            <li class="dropdown <?php if($onpage == "user" || $onpage == "pegawai" || $onpage == "jabatan" || $onpage == "suratizin")echo "active"; ?>">
               <a class="dropdown-toggle" data-toggle="dropdown" role="button" href="#" aria-expanded="false"><span class="glyphicon glyphicon-folder-open" aria-hidden="true"></span> Referensi <span class="caret"></span></a>
                 <ul class="dropdown-menu" role="menu">
                     <li><a href="<?php echo site_url("User"); ?>"><i class="fa fa-user"></i> User</a></li>
@@ -58,6 +58,7 @@
                     <li><a href="<?php echo site_url("SuratIzin"); ?>"><i class="fa fa-book"></i> Surat Izin</a></li>
                 </ul>
             </li>
+            <?php } ?>
         </ul>
         <ul class="nav navbar-nav navbar-right">
         
@@ -71,8 +72,9 @@
                     <li><a onclick="destroySession();" href="<?php echo site_url('login/logout'); ?>"><span class="glyphicon glyphicon-log-out" aria-hidden="true"></span> Logout</a></li>
                 </ul>
             </li>
-        <?php }?>
+        
         </ul>
+        <?php }?>
     </div><!--/.nav-collapse -->
   </div>
 </nav>               

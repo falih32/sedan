@@ -36,8 +36,8 @@
             </div>
              <div class="panel-body">
                 <div class="col-md-3 col-md-offset-9 text-right" id="date_search">
-                    <input type="text" class="form-control input-sm tgl" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal" readonly="true">
-                    <input type="text" class="form-control input-sm tgl" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir" readonly="true">
+                    <input type="text" class="form-control input-sm tgl1" name="s_date_awal" id="s_date_awal" placeholder="Tanggal awal" readonly="true">
+                    <input type="text" class="form-control input-sm tgl1" name="s_date_akhir" id="s_date_akhir" placeholder="Tanggal akhir" readonly="true">
                     <button type="button" data-toggle='tooltip' data-placement='top' title='Reload table' class="form-control btn btn-default btn-sm" id="refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
                 </div>
             </div>
@@ -80,22 +80,26 @@ $(document).ready(function() {
 			}
 		},
 		"columns": [
-                { "data": "pgd_anggaran" },
-                { "data": "nmpengadaan_tglbuat" },
-                { "data": "supplier_name" },
-                { "data": "ketua" },
-                { "data": "total" },
-                { "data": "konfirm_selesai" },
-                { "data": "aksi" },
-                { "data": "pgd_perihal" },
-                { "data": "pgd_tanggal_input" },
-                { "data": "pgd_id" }
+                { "data": "pgd_anggaran" },             //0
+                { "data": "nmpengadaan_tglbuat" },      //1
+                { "data": "supplier_name" },            //2
+                { "data": "ketua" },                    //3
+                { "data": "total" },                    //4
+                { "data": "konfirm_selesai" },          //5
+                { "data": "aksi" },                     //6
+                { "data": "pgd_perihal" },              //7
+                { "data": "pgd_tanggal_input" },        //8
+                { "data": "pgd_id" },                   //9
+                { "data": "namaketua" },                //10
+                { "data": "jbt_nama" },                 //11
+                { "data": "pgd_jml_ssdh_ppn_hps" },     //12
+                { "data": "pgd_jml_ssdh_ppn_pnr" },     //13
+                { "data": "pgd_jml_ssdh_ppn_fix" }      //14
               ],
 		"columnDefs": [
-				{ "searchable": false,  "orderable":false, "targets": [1,5,6] },
+				{ "searchable": false,  "orderable":false, "targets": [1,3,4,5,6] },
                                 { "searchable": false, "visible":false, "targets": [9]},
-                                {  "visible":false, "targets": [8,7]},
-                                {  "orderable":false, "targets": [3,4]}
+                                {  "visible":false, "targets": [8,7, 10, 11, 12,13,14]}
                         ],
 		"order": [[ 9, "asc" ]],
                 "dom": '<"row filter-row"<"col-md-2"l><"col-md-10"f><"col-md-12"p>><t><"row footer-row"<"col-md-6"i><"col-md-6"p>>',
@@ -112,12 +116,18 @@ $(document).ready(function() {
                     var temp = data.nmpengadaan_tglbuat;
                     $('td', row).eq(1).html(temp.replace('Pebruari','Februari'));
                     
-                    
+                    <?php if($role == 1){ ?>
                     if ( data.pgd_status_selesai == "1") {
                         $('td', row).eq(5).html('<a class="btn btn-success btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Batalkan konfirmasi" data-confirm="Anda yakin akan mengembalikan status pengadaan menjadi belum selesai?" data-href="batal_konfirmasi/'+data.pgd_id+'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
                         $('td', row).eq(6).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
                     }
-                    
+                    <?php }?>
+                    <?php if($role == 2){ ?>
+                    if ( data.pgd_status_selesai == "1") {
+                        $('td', row).eq(5).html('<a class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Konfirmasi selesai"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
+                        $('td', row).eq(6).html('<a class="btn btn-success btn-sm btn-aksi" data-toggle="tooltip" data-placement="top" title="Pengadaan telah selesai">Selesai</a>');
+                    }
+                    <?php }?>
                     
                     $(row).find('a').click(function(e){e.stopPropagation();});
                 }

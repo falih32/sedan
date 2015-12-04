@@ -87,10 +87,13 @@ class M_pengadaan extends CI_Model{
     function ajaxProcessBarang($min, $max, $status){
         $this->db->query("SET lc_time_names = 'id_ID'");
 	$this->datatables
-                ->select('t_pengadaan.*,pgd_id, pgd_perihal, '
-                        . 'DATE_FORMAT(pgd_tanggal_input,"%e %M %Y") as pgd_tanggal_input, '
-                        . 'spl_nama as supplier_name, pgw1.pgw_nama as namaketua, jbt_nama,'
-                        . 'pgd_tipe_pengadaan,pgd_status_pengadaan, pgd_jml_ssdh_ppn_hps, pgd_jml_ssdh_ppn_pnr, pgd_jml_ssdh_ppn_fix ')
+                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran, "
+                        . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
+                        . "spl_nama as supplier_name, pgw1.pgw_nama as namaketua, jbt_nama,"
+                        . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_hps, "
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_pnr,'2')) as pgd_jml_ssdh_ppn_pnr,"
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_fix ")
                 ->from('t_pengadaan')
                 ->join('t_kelompok_penyusun', 'klp_pengadaan = pgd_id AND klp_terpilih = 1','left')
                 ->join('t_list_penyusun', 'lsp_kelompok = klp_id AND lsp_jabatan = 0','left')
@@ -172,7 +175,7 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanBarangFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -191,10 +194,13 @@ class M_pengadaan extends CI_Model{
     function ajaxProcessJasa($min, $max, $status){
         $this->db->query("SET lc_time_names = 'id_ID'");
 	$this->datatables
-                ->select('t_pengadaan.*,pgd_id, pgd_perihal, '
-                        . 'DATE_FORMAT(pgd_tanggal_input,"%e %M %Y") as pgd_tanggal_input, '
-                        . 'spl_nama as supplier_name, pgw1.pgw_nama as namaketua, jbt_nama,'
-                        . 'pgd_tipe_pengadaan,pgd_status_pengadaan, pgd_jml_ssdh_ppn_hps, pgd_jml_ssdh_ppn_pnr, pgd_jml_ssdh_ppn_fix ')
+                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran, "
+                        . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
+                        . "spl_nama as supplier_name, pgw1.pgw_nama as namaketua, jbt_nama,"
+                        . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_hps, "
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_pnr,'2')) as pgd_jml_ssdh_ppn_pnr,"
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_fix ")
                 ->from('t_pengadaan')
                 ->join('t_kelompok_penyusun', 'klp_pengadaan = pgd_id AND klp_terpilih = 1','left')
                 ->join('t_list_penyusun', 'lsp_kelompok = klp_id AND lsp_jabatan = 0','left')
@@ -275,7 +281,7 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');

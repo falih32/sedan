@@ -634,15 +634,19 @@ class Pengadaan extends CI_Controller{
         }
     }
     
+    function KonfirmasiSelesai($id){
+        $data['pgd_status_selesai']   = 1;
+        $this->m_pengadaan->update( $id,$data);  
+    }
+    
+    function batal_konfirmasi($id){
+        $data['pgd_status_selesai']   = 0;
+        $this->m_pengadaan->update( $id,$data);  
+    }
+    
     function postVariableTable(){
-        $data['listPekerjaan']        = $this->input->post('listPekerjaan');
-        $data['listPenyusun']            = $this->input->post('listPenyusun');
-        $data['listSurat']   = $this->input->post('listSurat');
-        echo $data['listPekerjaan'];
-        $data['listPekerjaan'] = json_decode($data['listPekerjaan'],TRUE);
-        $data['listPenyusun']            = json_decode($data['listPenyusun'],TRUE);
-        $data['listSurat']   = json_decode($data['listSurat'],TRUE);
-        
+        $data['pgd_status_pengadaan']   = 3;
+        $this->m_pengadaan->update( $ax['dtp_id'],$ex);
     }
     
     function postVariabel(){
@@ -835,12 +839,7 @@ class Pengadaan extends CI_Controller{
         */
     }
 
-        public function batal_konfirmasi($id){
-        $this->limitRole(array(1, 3));
-        $data['sms_confirm_by'] = $this->session->userdata("id_user");
-        $data['sms_confirm_status'] = '0';
-        $this->m_surat_masuk->update($id, $data);
-    }
+   
     
     public function disposisi_cetak($id) {
         $data['suratMasuk']=  $this->m_surat_masuk->selectById($id);

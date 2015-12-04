@@ -2,6 +2,7 @@
 $pdf=new PDF_MC_Table('p','mm','A4');
 $pdf->SetMargins(15,10,10);
 $pdf->AddPage();
+
 $tanggalP=$tglpembukaan->dknt_isi;
 //Header
 		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);

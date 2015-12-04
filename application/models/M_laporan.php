@@ -23,6 +23,16 @@ class M_laporan extends CI_Model{
     function insertdknt($data){
         $this->db->insert('tr_detail_konten', $data);
     }
+    function updatedknt($idkonten,$idsurat, $data){
+        $this->db->where('dknt_idkonten', $idkonten);
+        $this->db->where('dknt_detailsurat', $idsurat);
+        $this->db->update('tr_detail_konten', $data);
+    }
+    function updatedsrt($idsurat,$idpeng, $data){
+        $this->db->where('dsrt_jenis_surat', $idsurat);
+        $this->db->where('dsrt_idpengadaan', $idpeng);
+        $this->db->update('tr_detail_surat', $data);
+    }
     function jabatanpegawaibyid($id) {
        $data = $this->db->query("SELECT pgw_nama,jbt_nama, A.dpt_nama as dep1, B.dpt_nama as dep2 "
                 . "FROM t_jabatan "
@@ -60,6 +70,14 @@ class M_laporan extends CI_Model{
         $this->db->where('pgd_id', $id);
         return $this->db->get();
      }
+     function selectdetsurat($idsurat,$idpeng) {
+        $this->db->select('*');
+        $this->db->from('tr_detail_surat');
+        $this->db->where('dsrt_jenis_surat', $idsurat);
+        $this->db->where('dsrt_idpengadaan', $idpeng);
+        return $this->db->get();
+     }
+     
      function selecttimpny($id) {
         $data = $this->db->query("SELECT pgw_nama, lsp_jabatan "
                 . "FROM t_kelompok_penyusun "
@@ -94,7 +112,21 @@ class M_laporan extends CI_Model{
         $data = $this->db->query("SELECT dknt_isi "
                 . "FROM tr_detail_konten "
                 . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
-                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6'  ")->result();
+                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='9' ")->row();
+       return $data;
+     }
+     function selecttglPmbkUndangan($id) {
+        $data = $this->db->query("SELECT dknt_isi "
+                . "FROM tr_detail_konten "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='10' ")->row();
+       return $data;
+     }
+     function selecttglUndangan($id) {
+        $data = $this->db->query("SELECT dknt_isi "
+                . "FROM tr_detail_konten "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='3' ")->row();
        return $data;
      }
 }

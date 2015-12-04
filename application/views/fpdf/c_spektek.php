@@ -55,7 +55,7 @@ $pdf->SetMargins(15,10,10);
 		
 		$pdf->Ln(10);
 		$pdf->Cell(105); 
-		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y") ,0,3,'L');
+		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y",$tgl) ,0,3,'L');
 		$pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
 		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0,3,'L');
 		$pdf->Ln(20);

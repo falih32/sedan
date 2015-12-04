@@ -7,34 +7,34 @@
             <div class="panel-body">
                 
       <div class="col-md-12 "><hr>
-                <form id="f0" method="post" action="<?php echo base_url()."laporan/cetakBAPemasukkan"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
+                <form id="f0" method="post" action="<?php echo base_url()."laporan/cetakBAklarifikasi"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
-                        <label for="dftrhadir" class="control-label text-left">Berita Acara </label>
+                        <label for="dftrhadir" class="control-label text-left">Berita Acara Klarifikasi dan Negoisasi Harga</label>
                     </div>
                   
                    <div class="form-group">
                         <label for="" class="col-sm-3 control-label text-left">Nomor</label>
                         <div class="col-sm-9">
    
-	                        <input type="text" class="form-control" id="no_BA_pemasukkan" name="no_BA_pemasukkan" placeholder="Nomor Surat Berita Acara Pemasukkan dan Pembukaaan Dokumen Penawaran" required>
+	                        <input type="text" class="form-control" id="no_BA_klarifikasi" name="no_BA_klarifikasi" placeholder="Nomor Surat Berita Acara Klarifikasi dan Negoisasi Harga" required>
                             
                             <div class="help-block with-errors"></div>
                             
                         </div>
                     </div>     
                  <div class="form-group">
-                        <label for="" class="col-sm-3 control-label text-left">Nomor Evaluasi Administrasi</label>
+                        <label for="" class="col-sm-3 control-label text-left">Nomor Keputusan Kuasa Pengguna Anggaran</label>
                         <div class="col-sm-9">
    
-	                        <input type="text" class="form-control" id="no_BA_evadministrasi" name="no_BA_evadministrasi" placeholder="Nomor Surat Berita Acara Evaluasi Administrasi" required>
+	                        <input type="text" class="form-control" id="no_BA_evadministrasi" name="no_kepkuas" placeholder="Nomor Surat Keputusan Kuasa Pengguna Anggaran" required>
                             
                             <div class="help-block with-errors"></div>
                             
                         </div>
                     </div> 
                 <div class="form-group">
-                        <label for="" class="col-sm-3 control-label text-left">Nomor Evaluasi Teknis</label>
+                        <label for="" class="col-sm-3 control-label text-left">Nomor Surat Penawaran</label>
                         <div class="col-sm-9">
    
 	                        <input type="text" class="form-control" id="no_BA_evateknis" name="no_BA_evateknis" placeholder="Nomor Surat Berita Acara Evaluasi Teknis" required>
@@ -42,27 +42,7 @@
                             <div class="help-block with-errors"></div>
                             
                         </div>
-                    </div> 
-                  <div class="form-group">
-                        <label for="" class="col-sm-3 control-label text-left">Nomor Evaluasi Harga</label>
-                        <div class="col-sm-9">
-   
-	                        <input type="text" class="form-control" id="no_BA_evaharga" name="no_BA_evaharga" placeholder="Nomor Surat Berita Acara Evaluasi Harga" required>
-                            
-                            <div class="help-block with-errors"></div>
-                            
-                        </div>
-                    </div>       
-                   <div class="form-group">
-                        <label for="" class="col-sm-3 control-label text-left">Nomor Evaluasi Kualifikasi</label>
-                        <div class="col-sm-9">
-   
-	                        <input type="text" class="form-control" id="no_BA_evakualifikasi" name="no_BA_evakualifikasi" placeholder="Nomor Surat Berita Acara Evaluasi Kualifikasi" required>
-                            
-                            <div class="help-block with-errors"></div>
-                            
-                        </div>
-                    </div>               
+                    </div>         
                       
                   <div class="form-group">
                    <label for="" class="col-sm-3 control-label text-left">Perwakilan Perusahaan</label>

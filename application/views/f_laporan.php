@@ -88,6 +88,12 @@
                     <div class="form-group">
                         <label for="mem2" class="control-label text-left">Harga Perkiraan Sementara (HPS)</label>
                     </div>
+                   <div class="form-group">
+                      <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
+                       <div class="col-sm-7"> 
+                            <input type="text" class="form-control tgl1" id="tgl" name="tgl" placeholder="Tanggal Surat Harga Perkiraan Sementara" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                       </div>
+                    </div> 
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                   </div>
                   <div class="col-md-4">
@@ -108,6 +114,13 @@
                     <div class="form-group">
                         <label for="" class="control-label text-left">Daftar Kuantitas dan Harga</label>
                     </div>
+                      <div class="form-group">
+                      <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
+                       <div class="col-sm-7"> 
+                            <input type="text" class="form-control tgl1" id="tgldkh" name="tgldkh" placeholder="Tanggal Surat Daftar Kuantitas dan Harga" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                       </div>
+                    </div> 
+                   
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                     <div class="form-group">
                         <label for="" class="col-sm-5 control-label text-left">Nomor</label>
@@ -139,6 +152,13 @@
                     <div class="form-group">
                         <label for="mem2" class="control-label text-left">Spesifikasi Teknis</label>
                     </div>
+                      <div class="form-group">
+                      <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
+                       <div class="col-sm-7"> 
+                            <input type="text" class="form-control tgl1" id="tglspektek" name="tglspektek" placeholder="Tanggal Surat Spesifikasi Teknis" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                       </div>
+                    </div> 
+                   
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                   </div>
                   <div class="col-md-4">
@@ -181,6 +201,13 @@
                     </div>
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                     <div class="form-group">
+                      <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
+                       <div class="col-sm-7"> 
+                            <input type="text" class="form-control tgl1" id="tgludg" name="tgludg" placeholder="Tanggal Surat Undangan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                       </div>
+                    </div> 
+                   
+                     <div class="form-group">
                         <label for="" class="col-sm-5 control-label text-left">Nomor</label>
                         <div class="col-sm-7">
 	                        <input type="text" class="form-control" id="no_undangan" name="no_undangan" placeholder="Nomor Surat Undangan" required>                          
@@ -222,57 +249,7 @@
                   </div>  
                 </form>
                 </div>
-                
-              <div class="col-md-12 "><hr>    
-                <form id="f7" method="post" action="<?php echo base_url()."laporan/cetakdftrhadir"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
-                  <div class="col-md-8">                 
-                    <div class="form-group">
-                        <label for="" class="control-label text-left">Daftar Hadir</label>
-                    </div>
-                     <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
-                    <div class="form-group">
-                        <label for="" class="col-sm-5 control-label text-left">Nomor</label>
-                        <div class="col-sm-7">
-   
-	                        <input type="text" class="form-control" id="no_dftrhadir" name="no_dftrhadir" placeholder="Nomor Surat Daftar Hadir" required>
-                            
-                        </div>
-                    </div>
-                    <div class="form-group">
-                      <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
-                       <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="tgl_dftrhadir" name="tgl_dftrhadir" placeholder="Tanggal Daftar Hadir" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
-                       </div>
-                    </div> 
-                     
-                   <div class="form-group">
-                   <label for="" class="col-sm-5 control-label text-left">Perwakilan</label>
-                   
-                    <div class="col-sm-7">
-                     
-                                <select class="nama_perwakilan form-control" id="nama_perwakilan" name="nama_perwakilan" required>
-                                    <option value="">Select ...</option>
-                                    <?php foreach ($pwklist as $pwk) {?>
-                                    <option value="<?php echo $pwk->pws_nama; ?>"><?php echo $pwk->pws_nama ; ?></option>
-                                  
-                                        <?php } ?>
-                                    
-                                </select>
-                        </div>    
-                    </div>
-                     
-                  </div>
-                  <div class="col-md-4">
-                   <div class="form-group">
-                       <div class="col-sm-2">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <button type="submit" class="btn btn-lg btn-success confirm" data-confirm ="halo "><span class="glyphicon glyphicon-floppy-disk"  aria-hidden="true"></span> Cetak</button>
-                        </div>
-                        </div>
-                    </div>
-                  </div>  
-                </form>
-            </div>
+
                      <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">

@@ -7,7 +7,7 @@ $pdf->SetMargins(15,10,10);
 $header = array('No', 'Uraian Pekerjaan', 'Volume','Harga Satuan (Rp.)','     Jumlah      (Rp.)');
 $pdf->SetMargins(15,10,10);
 //Header
-		$pdf->Cell(80);
+		$pdf->Cell(82);
 		$pdf->SetFont('Arial','B',14);
 		$pdf->Cell(30,6,'HARGA PERKIRAAN SENDIRI (HPS)',0,3,'C');
 		$pdf->Cell(30,6,strtoupper($perihal),0,3,'C');
@@ -55,7 +55,7 @@ $pdf->SetMargins(15,10,10);
 		}
 		
 		$pdf->Cell(115); 
-		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y"),0,3,'L');
+		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y",$tgl),0,3,'L');
 		$pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
 		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0,3,'L');
 		$pdf->Ln(15);

@@ -36,11 +36,11 @@ $pdf->AddPage();
 		
 		$pdf->Line(15,$pdf->gety(),200,$pdf->gety());
 		$pdf->Ln(10);
-                $pdf->MultiCell(0,6,'        Untuk menunjang kelancaran kegiatan Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Jl. Medan Merdeka Timur No.16 Jakarta, maka perlu dilakukan '.$pgd_perihal.' dengan menggunakan '.$ang_nama.' ('.$ang_kode.') '.$pgd_perihal.'.',0,'J');
+                $pdf->MultiCell(0,6,'     Untuk menunjang kelancaran kegiatan Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Jl. Medan Merdeka Timur No.16 Jakarta, maka perlu dilakukan '.$pgd_perihal.' dengan menggunakan '.$ang_nama.' ('.$ang_kode.') '.$pgd_perihal.'.',0,'J');
 		$pdf->Ln(5);
-		$pdf->MultiCell(0,6,'          Sehubungan dengan hal tersebut, mohon kiranya dapat diproses kegiatan tersebut.',0,'J');
+		$pdf->MultiCell(0,6,'     Sehubungan dengan hal tersebut, mohon kiranya dapat diproses kegiatan tersebut.',0,'J');
 		$pdf->Ln(5);
-		$pdf->MultiCell(0,6,'          Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
+		$pdf->MultiCell(0,6,'     Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
 		$pdf->Ln(35);
 		$pdf->Cell(170,10,$ttd,0,3,'R');
  
@@ -81,7 +81,7 @@ $pdf->SetMargins(15,10,10);
 		
 		$pdf->Line(15,$pdf->gety(),200,$pdf->gety());
 		$pdf->Ln(10);
-                $pdf->MultiCell(0,6,'          Sehubungan dengan Memorandum '.$dari.' tanggal '.$pdf->tanggal("j M Y",$tanggal).' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
+                $pdf->MultiCell(0,6,'    Sehubungan dengan Memorandum '.$dari.' tanggal '.$pdf->tanggal("j M Y",$tanggal).' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,6,'          Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
 		$pdf->Ln(35);

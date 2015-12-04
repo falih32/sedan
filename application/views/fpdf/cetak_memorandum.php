@@ -8,7 +8,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
 		//judul
-		$pdf->Cell(30,10,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,10,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,10,'SEKRETARIAT JENDRAL',0,2,'C');
 		//buat garis horisontal
 		$pdf->Line(15,35,200,35);
@@ -36,7 +36,7 @@ $pdf->AddPage();
 		
 		$pdf->Line(15,$pdf->gety(),200,$pdf->gety());
 		$pdf->Ln(10);
-                $pdf->MultiCell(0,6,'       Untuk menunjang kelancaran kegiatan Biro Umum Sekretariat Jendral Kementrian Kelautan dan Perikanan Jl. Medan Merdeka Timur No.16 Jakarta, maka perlu dilakukan '.$pgd_perihal.' dengan menggunakan '.$ang_nama.' ('.$ang_kode.') '.$pgd_perihal.'.',0,'J');
+                $pdf->MultiCell(0,6,'        Untuk menunjang kelancaran kegiatan Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Jl. Medan Merdeka Timur No.16 Jakarta, maka perlu dilakukan '.$pgd_perihal.' dengan menggunakan '.$ang_nama.' ('.$ang_kode.') '.$pgd_perihal.'.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,6,'          Sehubungan dengan hal tersebut, mohon kiranya dapat diproses kegiatan tersebut.',0,'J');
 		$pdf->Ln(5);
@@ -52,7 +52,7 @@ $pdf->SetMargins(15,10,10);
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
 		//judul
-		$pdf->Cell(30,10,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,10,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,10,'SEKRETARIAT JENDRAL',0,2,'C');
 		//buat garis horisontal
 		$pdf->Line(15,35,200,35);
@@ -81,7 +81,7 @@ $pdf->SetMargins(15,10,10);
 		
 		$pdf->Line(15,$pdf->gety(),200,$pdf->gety());
 		$pdf->Ln(10);
-                $pdf->MultiCell(0,6,'Sehubungan dengan Memorandum '.$dari.' tanggal '.$pdf->tanggal("j M Y",$tanggal).' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
+                $pdf->MultiCell(0,6,'          Sehubungan dengan Memorandum '.$dari.' tanggal '.$pdf->tanggal("j M Y",$tanggal).' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,6,'          Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
 		$pdf->Ln(35);
@@ -95,7 +95,7 @@ $pdf->SetMargins(15,10,10);
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
 		//judul
-		$pdf->Cell(30,10,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,10,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,10,'SEKRETARIAT JENDRAL',0,2,'C');
 		//buat garis horisontal
 		$pdf->Line(15,35,200,35);
@@ -124,7 +124,7 @@ $pdf->SetMargins(15,10,10);
 		
 		$pdf->Line(15,$pdf->gety(),200,$pdf->gety());
 		$pdf->Ln(10);
-                $pdf->MultiCell(0,6,'Sehubungan dengan Memorandum '.$kepada.' tanggal '.$pdf->tanggal("j M Y",$tanggal).' Nomor '.$no_mem2.' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
+                $pdf->MultiCell(0,6,'          Sehubungan dengan Memorandum '.$kepada.' tanggal '.$pdf->tanggal("j M Y",$tanggal).' Nomor '.$no_mem2.' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,6,'          Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
 		$pdf->Ln(35);

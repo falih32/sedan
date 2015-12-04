@@ -7,16 +7,27 @@
             <div class="panel-body">
                 
       <div class="col-md-12 "><hr>
-                <form id="f2" method="post" action="<?php echo base_url()."laporan/cetakdftrhadir"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id="f0" method="post" action="<?php echo base_url()."laporan/cetakBAPemasukkan"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="dftrhadir" class="control-label text-left">Berita Acara Pemasukan dan Pembukaan Dokumen</label>
                     </div>
-                      
-                            <div class="form-group">
-                   <label for="" class="col-sm-5 control-label text-left">Perwakilan</label>
+                  
+                   <div class="form-group">
+                        <label for="" class="col-sm-3 control-label text-left">Nomor</label>
+                        <div class="col-sm-9">
+   
+	                        <input type="text" class="form-control" id="no_BA_pemasukkan" name="no_BA_pemasukkan" placeholder="Nomor Surat Berita Acara Pemasukkan dan Pembukaaan Dokumen Penawaran" required>
+                            
+                            <div class="help-block with-errors"></div>
+                            
+                        </div>
+                    </div>     
+                 
+                  <div class="form-group">
+                   <label for="" class="col-sm-3 control-label text-left">Perwakilan</label>
                    
-                    <div class="col-sm-7">
+                    <div class="col-sm-9">
                      
                                 <select class="nama_perwakilan form-control" id="nama_perwakilan" name="nama_perwakilan" required>
                                     <option value="">Select ...</option>
@@ -28,6 +39,21 @@
                                 </select>
                         </div>    
                     </div>
+                      
+               <div class="form-group">
+                   <label for="" class="col-sm-3 control-label text-left">Nomor Undangan</label>
+                   
+                    <div class="col-sm-9">
+                     
+                                <select class="nama_perwakilan form-control" id="no_undangan" name="no_undangan" required>
+                                    <option value="">Select ...</option>
+                                    <?php foreach ($no_udanganlist as $nound) {?>
+                                    <option value="<?php echo $nound->dknt_isi; ?>"><?php echo $nound->dknt_isi; ?></option>
+                                     <?php } ?>
+                                </select>
+                      
+                   
+                      
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                   
                   

@@ -30,7 +30,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
 		//judul
-		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
@@ -56,7 +56,7 @@ $pdf->AddPage();
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementrian Kelautan dan Perikanan Tahun Anggaran XXXX','Berita Acara Evaluasi Administrasi')); 
+			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran XXXX','Berita Acara Evaluasi Administrasi')); 
 			}
 
 		//isi

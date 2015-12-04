@@ -11,7 +11,7 @@ $pdf->SetMargins(15,10,10);
 		$pdf->SetFont('Arial','B',14);
 		$pdf->Cell(30,6,'HARGA PERKIRAAN SENDIRI (HPS)',0,3,'C');
 		$pdf->Cell(30,6,strtoupper($perihal),0,3,'C');
-		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,3,'C');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,3,'C');
 		$pdf->Cell(30,6,'TAHUN '.date("Y"),0,3,'C');
 		$pdf->Ln(10);
 		

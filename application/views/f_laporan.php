@@ -5,7 +5,7 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-                <form id="f0" method="post" action="<?php echo base_url()."laporan/cetakmemorandum1"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id="f0" method="post" action="<?php echo base_url()."laporan/cetakmemorandum1"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                 <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="mem2" class="control-label text-left">Memorandum</label>
@@ -83,7 +83,7 @@
          
             
       <div class="col-md-12 "><hr>
-                <form id="f2" method="post" action="<?php echo base_url()."laporan/cetakhps"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id="f2" method="post" action="<?php echo base_url()."laporan/cetakhps"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="mem2" class="control-label text-left">Harga Perkiraan Sementara (HPS)</label>
@@ -103,7 +103,7 @@
             </div>
              
               <div class="col-md-12 "><hr>    
-                <form id="f3" method="post" action="<?php echo base_url()."laporan/cetak_dftr_harga"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id="f3" method="post" action="<?php echo base_url()."laporan/cetak_dftr_harga"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="" class="control-label text-left">Daftar Kuantitas dan Harga</label>
@@ -134,7 +134,7 @@
             </div>
                 
               <div class="col-md-12 "><hr>    
-                 <form id="f4" method="post" action="<?php echo base_url()."laporan/cetakspektek"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                 <form id="f4" method="post" action="<?php echo base_url()."laporan/cetakspektek"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="mem2" class="control-label text-left">Spesifikasi Teknis</label>
@@ -154,7 +154,7 @@
             </div>
                 
           <div class="col-md-12 "><hr>        
-                 <form id="f5" method="post" action="<?php echo base_url()."laporan/cetakldp"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                 <form id="f5" method="post" action="<?php echo base_url()."laporan/cetakldp"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="mem2" class="control-label text-left">Lembar Data Pengadaan (LDP)</label>
@@ -174,7 +174,7 @@
             </div>
             
                 <div class="col-md-12 "><hr>
-               <form id="f6" method="post" action="<?php echo base_url()."laporan/cetakundangan"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+               <form id="f6" method="post" action="<?php echo base_url()."laporan/cetakundangan"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <h4>Undangan</h4>
@@ -224,7 +224,7 @@
                 </div>
                 
               <div class="col-md-12 "><hr>    
-                <form id="f7" method="post" action="<?php echo base_url()."laporan/cetakdftrhadir"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id="f7" method="post" action="<?php echo base_url()."laporan/cetakdftrhadir"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
                         <label for="" class="control-label text-left">Daftar Hadir</label>

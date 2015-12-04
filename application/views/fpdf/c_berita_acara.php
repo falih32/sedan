@@ -9,7 +9,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
 		//judul
-		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
@@ -28,10 +28,10 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','',12);
 	
 		$pdf->Cell(190,6,'BERITA ACARA PEMASUKAN DAN PEMBUKAAN DOKUMEN PENAWARAN',0,2,'C');
-		$pdf->MultiCell(190,6,'PENGADAAN LANGSUNG PEKERJAAN XXXXXXXX XXX XXXXXX XXXX XXXXX',0,'C');
-		$pdf->Cell(190,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->MultiCell(190,6,'PENGADAAN LANGSUNG '.strtoupper($d->pgd_perihal),0,'C');
+		$pdf->Cell(190,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Ln(3);
-		$pdf->Cell(190,6,'NOMOR : XX.XXX.X/XXX.X/XXX/XXXX',0,2,'C');
+		$pdf->Cell(190,6,$nomor,0,2,'C');
 	
 		$pdf->Ln(5);
 		$pdf->MultiCell(190,5,'Pada hari ini, XXXX tanggal xxxxx xxxx bulan xxxxxx tahun xxxx, bertempat di xxxxx xxxxx xxxxxx xxxxxx xxxxx  xxxx berdasarkan surat undangan Pejabat Pengadaan Nomor xxxxxx/xxx.x/xx/xxxx tanggal xx xxxx xxxx, telah diadakan pemasukan dan pembukaan dokumen penawaran pengadaan langsung Pekerjaan xxxxx xxxxx xxxx xxxxx xxxxxx xxxxx xxxxx pada Tahun Anggaran xxxx.',0,'J');

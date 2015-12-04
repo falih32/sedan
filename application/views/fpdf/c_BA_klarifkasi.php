@@ -30,7 +30,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
 		//judul
-		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
@@ -50,7 +50,7 @@ $pdf->AddPage();
 	
 		$pdf->Cell(190,6,'BERITA ACARA KLARIFIKASI DAN NEGOISASI HARGA',0,2,'C');
 		$pdf->MultiCell(190,6,'PEKERJAAN XXXXXXX XXXXXXXXX XXXXXX XXXXXXXX XXX XXXXXX XXXX XXXXX',0,'C');
-		$pdf->Cell(190,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(190,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Ln(3);
 		$pdf->SetFont('Arial','UB',12);
 		$pdf->Cell(190,6,'NOMOR : XX.XXX.X/XXX.X/XXX/XXXX',0,2,'C');

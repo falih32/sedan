@@ -249,12 +249,32 @@ class Laporan extends CI_Controller {
         $data['content'] = 'f_laporanpenawaran';
         $data['title']= 'Laporan Penawaran';
         $data['pwklist']= $this->m_laporan->selectPengSUP($id)->result();
+        $data['no_udanganlist']=$this->m_laporan->selectNoUndangan($id);
         
         $this->load->view('layout',$data); 
         
-        
-        
      }
-     
+      public function cetakBAPemasukkan(){
+            $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
+            $datacetak['nomor']=$this->input->post('no_BA_pemasukkan');
+            $datacetak['pwk']=$this->input->post('nama_perwakilan');
+            $datacetak['noundangan']=$this->input->post('no_undangan');
+            $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
+//            $dsrt ['dsrt_jenis_surat']=7;
+//            $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+//            $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+//            $dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt);
+//                   $dknt['dknt_idkonten']=9;
+//                   $dknt['dknt_isi']=$this->input->post('no_dftrhadir');
+//                   $this->m_laporan->insertdknt($dknt);
+//                   $dknt['dknt_idkonten']=3;
+//                   $dknt['dknt_isi']=$this->input->post('tgl_dftrhadir');
+//                   $this->m_laporan->insertdknt($dknt);
+//                   $dknt['dknt_idkonten']=13;
+//                   $dknt['dknt_isi']=$this->input->post('nama_perwakilan');
+//                   $this->m_laporan->insertdknt($dknt);
+            
+            $this->load->view('fpdf/c_berita_acara', $datacetak); 
+     }
       
 }

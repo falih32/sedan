@@ -10,7 +10,7 @@ $pdf->SetMargins(15,10,10);
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(85);
 				//judul
-		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
@@ -30,7 +30,7 @@ $pdf->SetMargins(15,10,10);
 		$pdf->Cell(75);
 		$pdf->Cell(30,5,'SPESIFIKASI TEKNIS',0,2,'C');
 		$pdf->Cell(30,5,strtoupper($perihal),0,2,'C');
-		$pdf->Cell(30,5,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,5,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,5,'TAHUN '.date("Y"),0,2,'C');
 		$pdf->Ln(10);
 		
@@ -49,7 +49,7 @@ $pdf->SetMargins(15,10,10);
 		foreach ($listpeng as $row) {
 		$no++;	
                     if($row->dtp_spesifikasi!=Null) {
-			$pdf->Row1(array('  '.$no,$row->dtp_pekerjaan,nl2br($row->dtp_spesifikasi)));
+			$pdf->Row1(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_spesifikasi));
                     }
 		}	
 		

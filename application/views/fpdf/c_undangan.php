@@ -10,7 +10,7 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->SetFont('Arial','B',14);
 				$pdf->Cell(85);
 		//judul
-		$pdf->Cell(30,6,'KEMENTRIAN KELAUTAN DAN PERIKANAN',0,2,'C');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
 		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',12);
@@ -46,8 +46,8 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->SetFont('Arial','B',11);
 		$pdf->Cell(5,5,'1.',0,0,'L'); $pdf->Cell(100,5,'Paket Pekerjaan',0,2,'L'); $pdf->SetFont('Arial','',11);
 									  $pdf->Cell(45,5,'Nama paket pekerjaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->MultiCell(0,5,$d->pgd_perihal,0,'L');
-									  $pdf->Cell(5); $pdf->Cell(45,5,'Lingkup Pekerjaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->Cell(0,5,'Kementrian Kelautan dan Perikanan',0,1,'L');
-									  $pdf->Cell(5); $pdf->Cell(45,5,'Nilai total HPS',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->MultiCell(0,5,$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_hps).' ('.$b.'rupiah)',0,'L');
+									  $pdf->Cell(5); $pdf->Cell(45,5,'Lingkup Pekerjaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->Cell(0,5,'Kementerian Kelautan dan Perikanan',0,1,'L');
+									  $pdf->Cell(5); $pdf->Cell(45,5,'Nilai total HPS',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->MultiCell(0,5,'Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_hps).' ('.$b.'rupiah)',0,'L');
 									  $pdf->Cell(5); $pdf->Cell(45,5,'Sumber pendanaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->Cell(0,5,'APBN tahun anggaran '.date("Y"),0,1,'L');
 		$pdf->Ln(3);
 		$pdf->SetFont('Arial','B',11);
@@ -80,7 +80,7 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->MultiCell(0,5,'Demikian disampaikan untuk diketahui.',0,'J');
 		$pdf->Ln(3);
 		$pdf->Cell(100,6,'Pejabat Pengadaan pada Satuan Kerja Biro Umum',0,2,'L');
-		$pdf->Cell(100,6,'Setjen Kementrian Kelautan dan Perikanan',0,2,'L');
+		$pdf->Cell(100,6,'Setjen Kementerian Kelautan dan Perikanan',0,2,'L');
 		$pdf->Ln(11); 
 		$pdf->Cell(100,10,$pejpeng->pgw_nama,0,3,'L');
 		

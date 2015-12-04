@@ -90,4 +90,11 @@ class M_laporan extends CI_Model{
                 . "WHERE pgd_id = '$id' ");
        return $data;
     }
+     function selectNoUndangan($id) {
+        $data = $this->db->query("SELECT dknt_isi "
+                . "FROM tr_detail_konten "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6'  ")->result();
+       return $data;
+     }
 }

@@ -315,13 +315,19 @@ class Laporan extends CI_Controller {
             $datacetak['tglpembukaan']=$this->m_laporan->selecttglPmbkUndangan($this->input->post('idpengadaan'));
             $datacetak['tglundangan']=$this->m_laporan->selecttglUndangan($this->input->post('idpengadaan'));
             $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
-         $dsrt ['dsrt_jenis_surat']=2;
+        
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
          $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
-         $dknt ['dknt_isi']= $this->input->post('tgl');
-for($i=7;$i<=11;$i++){    
+         $dknt7['dknt_isi']= $this->input->post('no_BA_pemasukkan');
+         $dknt8['dknt_isi']= $this->input->post('no_BA_evadministrasi');
+         $dknt9['dknt_isi']= $this->input->post('no_BA_evaharga');
+         $dknt10['dknt_isi']= $this->input->post('no_BA_evateknis');
+         $dknt11['dknt_isi']= $this->input->post('no_BA_evakualifikasi');       
+for($i=7;$i<=11;$i++){ 
+         $dknt['dknt_isi']=${"dknt".$i}['dknt_isi'];
          $tempnum=$this->m_laporan->selectdetsurat($i,$this->input->post('idpengadaan'))->row();
          $count=count($tempnum);
+         $dsrt ['dsrt_jenis_surat']=$i;
          if($count>0){
          $this->m_laporan->updatedsrt($i,$this->input->post('idpengadaan'), $dsrt);
          $this->m_laporan->updatedknt('3',$tempnum->dsrt_id, $dknt);

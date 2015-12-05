@@ -48,7 +48,7 @@ function Row($data)
         //Draw the border
         $this->Rect($x,$y,$w,$h);
         //Print the text
-        if($i==4||$i==3||$i==2){ $a='R'; }
+        if($i>=2){ $a='R'; }
         $this->MultiCell($w,6,$data[$i],0,$a);
         //Put the position to the right of the cell
         $this->SetXY($x+$w,$y);
@@ -261,6 +261,7 @@ function RotatedText($x,$y,$txt,$angle)
 		$this->SetFont('Arial','',8);
 		$this->MultiCell(40,3,$kata,0,'C');
 
-}                    
+}
+
 }
 ?>

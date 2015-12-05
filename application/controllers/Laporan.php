@@ -304,6 +304,7 @@ class Laporan extends CI_Controller {
         
      }
       public function cetakBAPemasukkan(){
+//$i=jenis surat          
             $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
             $datacetak['noundangan']=$this->m_laporan->selectNoUndangan($this->input->post('idpengadaan'));
             $datacetak['nomor']=$this->input->post('no_BA_pemasukkan');
@@ -330,10 +331,10 @@ for($i=7;$i<=11;$i++){
          $dsrt ['dsrt_jenis_surat']=$i;
          if($count>0){
          $this->m_laporan->updatedsrt($i,$this->input->post('idpengadaan'), $dsrt);
-         $this->m_laporan->updatedknt('3',$tempnum->dsrt_id, $dknt);
+         $this->m_laporan->updatedknt('9',$tempnum->dsrt_id, $dknt);
          }else {
          $dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt); 
-         $dknt['dknt_idkonten']=3;
+         $dknt['dknt_idkonten']=9;
          $this->m_laporan->insertdknt($dknt);
          }
 }
@@ -351,18 +352,85 @@ for($i=7;$i<=11;$i++){
         $this->load->view('layout',$data); 
         
      }
-      public function cetakBA_Fix(){
+      public function cetakBAklarifikasi(){
             $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
          // $datacetak['noundangan']=$this->input->post('no_undangan');
-            $datacetak['nomor']=$this->input->post('no_BA_pemasukkan');
-            $datacetak['noevadministrasi']=$this->input->post('no_BA_evadministrasi');
-            $datacetak['noevateknis']=$this->input->post('no_BA_evateknis');
-            $datacetak['noevaharga']=$this->input->post('no_BA_evaharga');
-            $datacetak['noevakualifikasi']=$this->input->post('no_BA_evakualifikasi');
+            $datacetak['nomor']=$this->input->post('no_BA_klarifikasi');
+            $datacetak['nokepkuas']=$this->input->post('no_kepkuas');
+            $datacetak['tglkepkuas']=$this->input->post('tglkepkuas');
+            $datacetak['nosp']=$this->input->post('no_sp');
+            $datacetak['tglsp']=$this->input->post('tglsp');
+            $datacetak['tglklarifikasi']=$this->m_laporan->selecttglklarifikasiUndangan($this->input->post('idpengadaan'));
             $datacetak['pwk']=$this->input->post('nama_perwakilan');
-         
             $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
-
+            $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));
+         $dsrt ['dsrt_jenis_surat']=12;
+         $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+         $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+         
+                   $dknt0['dknt_idkonten']=9;
+                   $dknt0['dknt_isi']=$this->input->post('no_BA_klarifikasi');
+                   $dknt1['dknt_idkonten']=14;
+                   $dknt1['dknt_isi']=$this->input->post('no_kepkuas');
+                   $dknt2['dknt_idkonten']=15;
+                   $dknt2['dknt_isi']=$this->input->post('no_sp');
+                   $dknt3['dknt_idkonten']=16;
+                   $dknt3['dknt_isi']=$this->input->post('tglkepkuas');
+                   $dknt4['dknt_isi']= $this->input->post('tglsp');
+                   $dknt4['dknt_idkonten']=17;
+         $tempnum=$this->m_laporan->selectdetsurat('12',$this->input->post('idpengadaan'))->row();
+         $count=count($tempnum);
+         if($count>0){
+         $this->m_laporan->updatedsrt('12',$this->input->post('idpengadaan'), $dsrt);
+         $i=0;   
+            while ($i<5){
+                $this->m_laporan->updatedknt(${"dknt" . $i}['dknt_idkonten'],$tempnum->dsrt_id, ${"dknt" . $i});
+                $i++;
+            }
+         }else {
+         $dknt= $this->m_laporan->insertdsrt($dsrt);
+         $i=0;   
+            while ($i<5){
+                ${"dknt".$i}['dknt_detailsurat']=$dknt;
+                $this->m_laporan->insertdknt(${"dknt".$i});
+                $i++;
+            }
+         }     
+            $this->load->view('fpdf/c_BA_klarifkasi', $datacetak); 
       }
+      
+ public function cetakBAHasilPenetapanPengumuman(){
+            $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
+            $datacetak['noBAPemasukan']=$this->m_laporan->selectNoBAPemasukkan($this->input->post('idpengadaan'));
+            $datacetak['nomorBAH']=$this->input->post('no_BA_hasil');
+            $datacetak['nopeng']=$this->input->post('no_peng');
+            $datacetak['nopet']=$this->input->post('no_penetapan');
+            $datacetak['tglklarifikasi']=$this->m_laporan->selecttglklarifikasiUndangan($this->input->post('idpengadaan'));
+             $datacetak['tglpembukaan']=$this->m_laporan->selecttglPmbkUndangan($this->input->post('idpengadaan'));
+            $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
+     //----------------------------------------------------------------------------------------------------   
+         $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+         $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+         $dknt13['dknt_isi']= $this->input->post('no_BA_hasil');
+         $dknt14['dknt_isi']= $this->input->post('no_penetapan');
+         $dknt15['dknt_isi']= $this->input->post('no_peng');
+    
+for($i=13;$i<=15;$i++){ 
+         $dknt['dknt_isi']=${"dknt".$i}['dknt_isi'];
+         $tempnum=$this->m_laporan->selectdetsurat($i,$this->input->post('idpengadaan'))->row();
+         $count=count($tempnum);
+         $dsrt ['dsrt_jenis_surat']=$i;
+         if($count>0){
+         $this->m_laporan->updatedsrt($i,$this->input->post('idpengadaan'), $dsrt);
+         $this->m_laporan->updatedknt('9',$tempnum->dsrt_id, $dknt);
+         }else {
+         $dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt); 
+         $dknt['dknt_idkonten']=9;
+         $this->m_laporan->insertdknt($dknt);
+         }
+}
+            
+            $this->load->view('fpdf/c_BA_hasil_pengadaan', $datacetak); 
+     }        
 }
  

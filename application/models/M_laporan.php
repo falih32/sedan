@@ -58,7 +58,7 @@ class M_laporan extends CI_Model{
        return $data;
     }
      function detpengbyid($id) {
-       $data = $this->db->query("SELECT dtp_pekerjaan, dtp_volume, dtp_satuan, dtp_hargasatuan_hps, dtp_jumlahharga_hps, dtp_spesifikasi "
+       $data = $this->db->query("SELECT * "
                 . "FROM t_detail_pengadaan "
                 . "LEFT JOIN t_pengadaan ON dtp_pengadaan = pgd_id "
                 . "WHERE pgd_id = '$id' ")->result();
@@ -122,11 +122,25 @@ class M_laporan extends CI_Model{
                 . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='10' ")->row();
        return $data;
      }
+      function selecttglklarifikasiUndangan($id) {
+        $data = $this->db->query("SELECT dknt_isi "
+                . "FROM tr_detail_konten "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='11' ")->row();
+       return $data;
+     }
      function selecttglUndangan($id) {
         $data = $this->db->query("SELECT dknt_isi "
                 . "FROM tr_detail_konten "
                 . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
                 . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='3' ")->row();
+       return $data;
+     }
+     function selectNoBAPemasukkan($id) {
+        $data = $this->db->query("SELECT dknt_isi "
+                . "FROM tr_detail_konten "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='7' and dknt_idkonten='9' ")->row();
        return $data;
      }
 }

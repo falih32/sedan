@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-05 17:01:11
+Date: 2015-12-05 23:57:33
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -397,7 +397,6 @@ CREATE TABLE `t_pengadaan` (
   `pgd_lama_pekerjaan` int(255) DEFAULT NULL,
   `pgd_lama_penawaran` int(255) DEFAULT NULL,
   `pgd_tgl_mulai_pengadaan` date DEFAULT NULL,
-  `pgd_supplier` int(255) DEFAULT NULL,
   `pgd_jml_sblm_ppn_hps` decimal(65,2) DEFAULT '0.00',
   `pgd_jml_ssdh_ppn_hps` decimal(65,2) DEFAULT '0.00',
   `pgd_jml_sblm_ppn_pnr` decimal(65,2) DEFAULT '0.00',
@@ -408,45 +407,26 @@ CREATE TABLE `t_pengadaan` (
   `pgd_wkt_akhir_penawaran` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   `pgd_tipe_pengadaan` int(255) DEFAULT NULL COMMENT '0 : Barang 1:Jasa 2:Konsultan',
   `pgd_status_pengadaan` int(255) DEFAULT '0' COMMENT '0:HPS 1:penawaran 2:fix 3:selesai',
+  `pgd_supplier` int(255) DEFAULT NULL,
   PRIMARY KEY (`pgd_id`),
   KEY `fk_pgd_ang` (`pgd_anggaran`) USING BTREE,
   KEY `fk_pgd_usr` (`pgd_user_update`) USING BTREE,
-  KEY `fk_pgd_spl` (`pgd_supplier`) USING BTREE,
+  KEY `sdfs` (`pgd_supplier`),
+  CONSTRAINT `sdfs` FOREIGN KEY (`pgd_supplier`) REFERENCES `t_supplier` (`spl_id`),
   CONSTRAINT `t_pengadaan_ibfk_1` FOREIGN KEY (`pgd_anggaran`) REFERENCES `t_anggaran` (`ang_kode`),
-  CONSTRAINT `t_pengadaan_ibfk_2` FOREIGN KEY (`pgd_supplier`) REFERENCES `t_supplier` (`spl_id`),
   CONSTRAINT `t_pengadaan_ibfk_3` FOREIGN KEY (`pgd_user_update`) REFERENCES `t_user` (`usr_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_pengadaan
 -- ----------------------------
-INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-12-05 10:03:49', '12345', '1', '45', '30', '2015-11-21', '0', '13812000.00', '15193200.02', '13812000.00', '15193200.00', '0.00', '15003200.00', '2015-12-05 10:03:49', '2015-12-05 10:03:49', '1', '0');
-INSERT INTO `t_pengadaan` VALUES ('19', 'Pengadaan barang yyy', '1', 'PEngadaan barang bagus yyy', '2015-12-02 07:26:15', '12345', '1', '30', '4', '2015-11-25', '0', '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', null, null, '0', '0');
-INSERT INTO `t_pengadaan` VALUES ('20', 'dfshaasdasdas', '0', 're', '2015-12-02 06:48:18', '12345', '1', '3', '5', '2015-11-25', '0', '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', null, null, '0', '2');
-INSERT INTO `t_pengadaan` VALUES ('21', 'Pengadaan keempat dsd', '0', 'asdff xxx', '2015-12-02 05:57:36', '54321', '1', '3', '45', '2015-12-02', '0', '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', null, null, '0', '1');
-INSERT INTO `t_pengadaan` VALUES ('22', 'Pengadaan kelima', '0', '444', '2015-12-02 23:59:51', '54321', '1', '5', '5', '2015-12-02', '0', '19000.00', '20900.00', '14727.00', '16199.70', '12900.00', '14190.00', null, null, '0', '2');
-INSERT INTO `t_pengadaan` VALUES ('23', 'Pekerjaan pembersihan lantai xxx', '0', 'Membersihkan lantai semuanya', '2015-12-02 07:19:48', '54321', '1', '6', '6', '2015-12-02', '0', '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', null, null, '1', '2');
-INSERT INTO `t_pengadaan` VALUES ('24', 'Pekerjaan pembersihan taman ccc', '0', 'Membersihkan taman depan gedung', '2015-12-02 07:21:41', '12345', '1', '4', '4', '2015-12-02', '0', '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', null, null, '1', '1');
-
--- ----------------------------
--- Table structure for t_perwakilan_supplier
--- ----------------------------
-DROP TABLE IF EXISTS `t_perwakilan_supplier`;
-CREATE TABLE `t_perwakilan_supplier` (
-  `pws_telp` varchar(255) DEFAULT NULL,
-  `pws_idsup` int(25) DEFAULT NULL,
-  `pws_nama` varchar(255) DEFAULT NULL,
-  `pws_id` int(25) NOT NULL,
-  `pws_deleted` int(255) DEFAULT '0',
-  PRIMARY KEY (`pws_id`),
-  KEY `idsupfk` (`pws_idsup`) USING BTREE,
-  CONSTRAINT `t_perwakilan_supplier_ibfk_1` FOREIGN KEY (`pws_idsup`) REFERENCES `t_supplier` (`spl_id`) ON DELETE NO ACTION ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- ----------------------------
--- Records of t_perwakilan_supplier
--- ----------------------------
-INSERT INTO `t_perwakilan_supplier` VALUES ('0987777777', '0', 'Sugiri', '0', '0');
+INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-12-05 10:03:49', '12345', '1', '45', '30', '2015-11-21', '13812000.00', '15193200.02', '13812000.00', '15193200.00', '0.00', '15003200.00', '2015-12-05 10:03:49', '2015-12-05 10:03:49', '1', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('19', 'Pengadaan barang yyy', '1', 'PEngadaan barang bagus yyy', '2015-12-02 07:26:15', '12345', '1', '30', '4', '2015-11-25', '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', null, null, '0', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('20', 'dfshaasdasdas', '0', 're', '2015-12-02 06:48:18', '12345', '1', '3', '5', '2015-11-25', '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', null, null, '0', '2', null);
+INSERT INTO `t_pengadaan` VALUES ('21', 'Pengadaan keempat dsd', '0', 'asdff xxx', '2015-12-02 05:57:36', '54321', '1', '3', '45', '2015-12-02', '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', null, null, '0', '1', null);
+INSERT INTO `t_pengadaan` VALUES ('22', 'Pengadaan kelima', '0', '444', '2015-12-02 23:59:51', '54321', '1', '5', '5', '2015-12-02', '19000.00', '20900.00', '14727.00', '16199.70', '12900.00', '14190.00', null, null, '0', '2', null);
+INSERT INTO `t_pengadaan` VALUES ('23', 'Pekerjaan pembersihan lantai xxx', '0', 'Membersihkan lantai semuanya', '2015-12-02 07:19:48', '54321', '1', '6', '6', '2015-12-02', '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', null, null, '1', '2', null);
+INSERT INTO `t_pengadaan` VALUES ('24', 'Pekerjaan pembersihan taman ccc', '0', 'Membersihkan taman depan gedung', '2015-12-02 07:21:41', '12345', '1', '4', '4', '2015-12-02', '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', null, null, '1', '1', null);
 
 -- ----------------------------
 -- Table structure for t_supplier
@@ -459,15 +439,15 @@ CREATE TABLE `t_supplier` (
   `spl_telp` varchar(255) DEFAULT NULL,
   `spl_alamat` varchar(255) DEFAULT NULL,
   `spl_nama` varchar(255) DEFAULT NULL,
-  `spl_id` int(25) NOT NULL,
+  `spl_id` int(25) NOT NULL AUTO_INCREMENT,
   `spl_deleted` int(255) DEFAULT '0',
   PRIMARY KEY (`spl_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_supplier
 -- ----------------------------
-INSERT INTO `t_supplier` VALUES ('Direktur', 'Sugiri', '02-248.853.0-039.000', '11111', 'Jalan Parahyangan', 'PT. Merdeka', '0', '0');
+INSERT INTO `t_supplier` VALUES ('Direktur', 'Sugiri', '02-248.853.0-039.000', '11111', 'Jalan Parahyangan', 'PT. Merdeka', '1', '0');
 
 -- ----------------------------
 -- Table structure for t_surat

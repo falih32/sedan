@@ -56,6 +56,7 @@
                      <li><a href="<?php echo site_url("Pegawai"); ?>"><i class="fa fa-users"></i> Pegawai</a></li>
                     <li><a href="<?php echo site_url("Jabatan"); ?>"><i class="fa fa-building"></i> Jabatan</a></li>
                     <li><a href="<?php echo site_url("SuratIzin"); ?>"><i class="fa fa-book"></i> Surat Izin</a></li>
+                    <li><a href="<?php echo site_url("Supplier"); ?>"><i class="fa fa-users"></i> Supplier</a></li>
                 </ul>
             </li>
             <?php } ?>

@@ -7,7 +7,7 @@ class M_supplier extends CI_Model{
     }
     
     function insert($data){
-        $this->db->insert('t_jabatan', $data);
+        $this->db->insert('t_supplier', $data);
     }
     
     function selectAll(){
@@ -26,7 +26,7 @@ class M_supplier extends CI_Model{
   
     function ajaxProcess(){
 		$this->datatables
-		->select('spl_id, spl_nama')
+		->select('spl_id, spl_nama, spl_alamat, spl_npwp, spl_perwakilan ')
 		->from('t_supplier')    
                 ->where('spl_deleted', '0')
 		->edit_column('aksi',"".

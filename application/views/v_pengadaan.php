@@ -1,5 +1,6 @@
 <?php
-		$pgd_perihal = $dataPengadaan->pgd_perihal;
+		$pgd_id = $dataPengadaan->pgd_id;
+                $pgd_perihal = $dataPengadaan->pgd_perihal;
 		$pgd_uraian_pekerjaan = $dataPengadaan-> pgd_uraian_pekerjaan;
 		$pgd_tanggal_input = $dataPengadaan->pgd_tanggal_input;
 		$ang_kode = $dataPengadaan->ang_kode;
@@ -186,7 +187,18 @@
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
-                        	<a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                            <form target="_blank" id = "histori_percetakan" method="post" action="<?php echo site_url('Pengadaan/historiPercetakan/'.$pgd_id);?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">                              
+                               
+                                <input type="hidden" class="form-control" id="pgd_perihal" name="pgd_perihal" value="<?php echo $pgd_perihal?>" placeholder="Detail Pekerjaan">
+                                 
+                              
+                                <input type="hidden" class="form-control" id="pgd_id" name="pgd_id" value="<?php echo $pgd_id?>" placeholder="Detail Pekerjaan">
+                              
+                                <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+
+                                <button type="submit" class="btn btn-lg btn-success" id="btnPengadaan" ><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Histori Percetakan</button>
+                           </form>
+                                
                          </div>
                     </div>
                 </div>

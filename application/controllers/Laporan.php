@@ -291,41 +291,7 @@ class Laporan extends CI_Controller {
          } 
             $this->load->view('fpdf/c_undangan', $datacetak); 
      }
-//       public function cetakdftrhadir(){
-//            $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
-//            $datacetak['nomor']=$this->input->post('no_dftrhadir');
-//            $datacetak['tgl']=$this->input->post('tgl_dftrhadir');
-//            $datacetak['namap']=$this->input->post('nama_perwakilan');
-//            $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
-//            $dsrt ['dsrt_jenis_surat']=7;
-//            $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
-//            $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
-//                   $dknt0['dknt_idkonten']=9;
-//                   $dknt0['dknt_isi']=$this->input->post('no_dftrhadir');
-//                   $dknt1['dknt_idkonten']=3;
-//                   $dknt1['dknt_isi']=$this->input->post('tgl_dftrhadir');
-//                   $dknt2['dknt_idkonten']=13;
-//                   $dknt2['dknt_isi']=$this->input->post('nama_perwakilan');
-//         $tempnum=$this->m_laporan->selectdetsurat('7',$this->input->post('idpengadaan'))->row();
-//         $count=count($tempnum);
-//         if($count>0){
-//         $this->m_laporan->updatedsrt('7',$this->input->post('idpengadaan'), $dsrt);
-//         $i=0;   
-//            while ($i<3){
-//                $this->m_laporan->updatedknt(${"dknt" . $i}['dknt_idkonten'],$tempnum->dsrt_id, ${"dknt" . $i});
-//                $i++;
-//            }
-//         }else {
-//         $dknt= $this->m_laporan->insertdsrt($dsrt);
-//         $i=0;   
-//            while ($i<3){
-//                ${"dknt".$i}['dknt_detailsurat']=$dknt;
-//                $this->m_laporan->insertdknt(${"dknt".$i});
-//                $i++;
-//            }
-//         } 
-//            $this->load->view('fpdf/c_dftr_hadir', $datacetak); 
-//     }
+//     
      
      public function LaporanPenawaran($id){
         $data['idpengadaan'] = $id;
@@ -349,21 +315,22 @@ class Laporan extends CI_Controller {
             $datacetak['tglpembukaan']=$this->m_laporan->selecttglPmbkUndangan($this->input->post('idpengadaan'));
             $datacetak['tglundangan']=$this->m_laporan->selecttglUndangan($this->input->post('idpengadaan'));
             $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
-            
-            
-//            $dsrt ['dsrt_jenis_surat']=7;
-//            $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
-//            $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
-//            $dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt);
-//                   $dknt['dknt_idkonten']=9;
-//                   $dknt['dknt_isi']=$this->input->post('no_dftrhadir');
-//                   $this->m_laporan->insertdknt($dknt);
-//                   $dknt['dknt_idkonten']=3;
-//                   $dknt['dknt_isi']=$this->input->post('tgl_dftrhadir');
-//                   $this->m_laporan->insertdknt($dknt);
-//                   $dknt['dknt_idkonten']=13;
-//                   $dknt['dknt_isi']=$this->input->post('nama_perwakilan');
-//                   $this->m_laporan->insertdknt($dknt);
+         $dsrt ['dsrt_jenis_surat']=2;
+         $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+         $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+         $dknt ['dknt_isi']= $this->input->post('tgl');
+for($i=7;$i<=11;$i++){    
+         $tempnum=$this->m_laporan->selectdetsurat($i,$this->input->post('idpengadaan'))->row();
+         $count=count($tempnum);
+         if($count>0){
+         $this->m_laporan->updatedsrt($i,$this->input->post('idpengadaan'), $dsrt);
+         $this->m_laporan->updatedknt('3',$tempnum->dsrt_id, $dknt);
+         }else {
+         $dknt['dknt_detailsurat']= $this->m_laporan->insertdsrt($dsrt); 
+         $dknt['dknt_idkonten']=3;
+         $this->m_laporan->insertdknt($dknt);
+         }
+}
             
             $this->load->view('fpdf/c_berita_acara', $datacetak); 
      }  

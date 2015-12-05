@@ -64,7 +64,7 @@
                         </div>
                     </div>               
                       
-                  <div class="form-group">
+<!--                  <div class="form-group">
                    <label for="" class="col-sm-3 control-label text-left">Perwakilan Perusahaan</label>
                    
                     <div class="col-sm-9">
@@ -81,7 +81,7 @@
                     </div>
                       
            
-                      
+                      -->
                    
                       
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">

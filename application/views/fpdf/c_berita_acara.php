@@ -61,15 +61,7 @@ $tanggalP=$tglpembukaan->dknt_isi;
 		$pdf->Cell($w[0],7,'Nama','LR',0,'C',0); $pdf->Cell($w[1],7,' ','LR',0,'L',0); $pdf->Cell($w[2],7,' ','LR',0,'L',0); $pdf->Cell($w[3],7,' ','LR',0,'L',0); $pdf->Cell($w[4],7,' ','LR',0,'L',0); $pdf->Cell($w[5],7,'Nilai Penawaran','LR',1,'C',0);
 		$pdf->Cell($w[0],7,'Perusahaan','LR',0,'C',0); $pdf->Cell($w[1],7,' ','LR',0,'L',0); $pdf->Cell($w[2],7,' ','LR',0,'L',0); $pdf->Cell($w[3],7,' ','LR',0,'L',0); $pdf->Cell($w[4],7,' ','LR',0,'L',0); $pdf->Cell($w[5],7,'','LR',1,'C',0);		
 		$pdf->Cell($w[0],7,'','LBR',0,'L',0); $pdf->Cell($w[1],7,' ','LBR',0,'L',0); $pdf->Cell($w[2],7,' ','LBR',0,'L',0); $pdf->Cell($w[3],7,' ','LBR',0,'L',0); $pdf->Cell($w[4],7,' ','LBR',0,'L',0); $pdf->Cell($w[5],7,'','LBR',1,'C',0);
-		/*srand(microtime()*1000000);
-
-		$n=0;
-		for($i=0;$i<4;$i++){
-			$n++;
-			$pdf->Row(array($n.'.',GenerateSentence(),GenerateSentence(),GenerateSentence())); 
-			}
-		$pdf->Ln(5);	
-		*/
+	
 		$x=$pdf->getX();
 		$y=$pdf->getY();
 		$pdf->RotatedText($x+58,$y-10,'Surat',90);$pdf->RotatedText($x+63,$y-5,'Penawaran',90);
@@ -80,7 +72,7 @@ $tanggalP=$tglpembukaan->dknt_isi;
 		$b = ucfirst(strtolower($cAngka));
 		for($i=0;$i<1;$i++){
 
-			$pdf->Row(array($d->spl_nama,$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+55, $pdf->GetY()+1, 4),$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+77, $pdf->GetY()+1, 4),$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+99, $pdf->GetY()+1, 4),$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+118, $pdf->GetY()+1, 4),'Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$b.'rupiah)')); 
+			$pdf->Row1(array($d->spl_nama,$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+55, $pdf->GetY()+1, 4),$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+77, $pdf->GetY()+1, 4),$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+99, $pdf->GetY()+1, 4),$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+118, $pdf->GetY()+1, 4),'Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$b.'rupiah)')); 
 			}
 		$pdf->Ln(4);
 		//$pdf->Cell(90,6,$pdf->getY(),0,1,'L');
@@ -91,7 +83,7 @@ $tanggalP=$tglpembukaan->dknt_isi;
 		$pdf->Ln(2);
 		$pdf->Cell(90,6,'Penyedia Barang / Jasa',0,0,'L');	$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,1,'L'); 
 		$pdf->Cell(90,6,$d->spl_nama,0,0,'L');	$pdf->Cell(90,6,'Satker Biro Umum Setjen KKP',0,1,'L');
-		$pdf->Cell(90,6,'Nama : '.$pwk,0,1,'L');
+		$pdf->Cell(90,6,'Nama : '.$d->spl_perwakilan,0,1,'L');
 		$pdf->Ln(2);
 		$pdf->Cell(90,6,'TTD  :.....................',0,0,'L');	$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');
                 
@@ -131,7 +123,7 @@ $pdf->AddPage();
 		$pdf->SetWidths($w);
 		$header = array('No', 'Nama Perusahaan', 'Nama Yang Hadir','Tanda Tangan');
                 $np = array($d->spl_nama, '', '');
-                $p = array($pwk, '', '');
+                $p = array($d->spl_perwakilan, '', '');
 		$pdf->SetHeaders($header,$w);
 		$n=0;
 		for($i=0;$i<3;$i++){
@@ -277,7 +269,7 @@ $pdf->AddPage();
 			$n=0;
 		for($i=0;$i<1;$i++){
 		$n++;
-			$pdf->Row1(array($n,$d->spl_nama,$pwk,'Rp.'.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$b.'rupiah)',$d->pgd_lama_pekerjaan.' Hari Kalender','GenerateSentence()','Memenuhi Syarat')); 
+			$pdf->Row1(array($n,$d->spl_nama,$d->spl_perwakilan,'Rp.'.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$b.'rupiah)',$d->pgd_lama_pekerjaan.' Hari Kalender',$pdf->tanggal("j M Y", $tanggalP),'Memenuhi Syarat')); 
 			}
 		$pdf->Ln(5);
 
@@ -399,14 +391,14 @@ $pdf->AddPage();
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Harga')); 
+			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Harga')); 
 			}
 
 		//isi
 		$pdf->SetFont('Arial','',12);
 		$pdf->SetAligns('L');
 		for($i=0;$i<1;$i++){
-			$pdf->Row(array('Pekerjaan : '.$d->pgd_perihal,'Nomor   : '.$noevaharga.'
+			$pdf->Row1(array('Pekerjaan : '.$d->pgd_perihal,'Nomor   : '.$noevaharga.'
 Tanggal : '.$pdf->tanggal("j M Y", $tanggalP))); 
 			}
 		$pdf->Ln(5);

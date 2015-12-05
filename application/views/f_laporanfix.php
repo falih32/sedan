@@ -44,21 +44,7 @@
                        </div>
                     </div>   
                       
-                  <div class="form-group">
-                   <label for="" class="col-sm-3 control-label text-left">Perwakilan Perusahaan</label>
-                   
-                    <div class="col-sm-9">
-                     
-                                <select class="nama_perwakilan form-control" id="nama_perwakilan" name="nama_perwakilan" required>
-                                    <option value="">Select ...</option>
-                                    <?php foreach ($pwklist as $pwk) {?>
-                                    <option value="<?php echo $pwk->pws_nama; ?>"><?php echo $pwk->pws_nama ; ?></option>
-                                  
-                                        <?php } ?>
-                                    
-                                </select>
-                        </div>    
-                    </div>
+    
 
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                   
@@ -78,7 +64,7 @@
              
                   <div class="col-md-12 "><hr>
                 <form id="f0" method="post" action="<?php echo base_url()."laporan/cetakBAHasilPenetapanPengumuman"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
-                  <div class="col-md-8">                 
+                  <div class="col-md-10">                 
                     <div class="form-group">
                         <label for="dftrhadir" class="control-label text-left">Berita Acara Hasil Pengadaan, Penetapan Barang dan Jasa, Pengumuman Penyedia Barang dan Jasa   </label>
                     </div>
@@ -119,7 +105,7 @@
                   
                   
                   </div>
-                  <div class="col-md-4">
+                  <div class="col-md-2">
                    <div class="form-group">
                        <div class="col-sm-2">
                         <div class="btn-group" role="group" aria-label="...">

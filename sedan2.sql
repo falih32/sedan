@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-05 16:27:25
+Date: 2015-12-05 17:01:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -51,8 +51,8 @@ INSERT INTO `tr_detail_konten` VALUES ('BA.118.10/PPK.5/VI/2015', '78', '3', '35
 INSERT INTO `tr_detail_konten` VALUES ('1122222222', '79', '9', '36');
 INSERT INTO `tr_detail_konten` VALUES ('1233445', '80', '14', '36');
 INSERT INTO `tr_detail_konten` VALUES ('11212121111112', '81', '15', '36');
-INSERT INTO `tr_detail_konten` VALUES ('2015-12-06', '82', '16', '36');
-INSERT INTO `tr_detail_konten` VALUES ('2015-12-12', '83', '17', '36');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-03', '82', '16', '36');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-02', '83', '17', '36');
 INSERT INTO `tr_detail_konten` VALUES ('BA.119.10/PPK.5/VI/2015', '84', '9', '37');
 INSERT INTO `tr_detail_konten` VALUES ('BA.119.11/PPK.5/VI/2015', '85', '9', '38');
 INSERT INTO `tr_detail_konten` VALUES ('BA.119.12/PPK.5/VI/2015', '86', '9', '39');
@@ -453,6 +453,7 @@ INSERT INTO `t_perwakilan_supplier` VALUES ('0987777777', '0', 'Sugiri', '0', '0
 -- ----------------------------
 DROP TABLE IF EXISTS `t_supplier`;
 CREATE TABLE `t_supplier` (
+  `spl_jabatan` varchar(255) DEFAULT NULL,
   `spl_perwakilan` varchar(255) DEFAULT NULL,
   `spl_NPWP` varchar(255) DEFAULT NULL,
   `spl_telp` varchar(255) DEFAULT NULL,
@@ -466,7 +467,7 @@ CREATE TABLE `t_supplier` (
 -- ----------------------------
 -- Records of t_supplier
 -- ----------------------------
-INSERT INTO `t_supplier` VALUES (null, null, '11111', 'Jalan Parahyangan', 'PT. Merdeka', '0', '0');
+INSERT INTO `t_supplier` VALUES ('Direktur', 'Sugiri', '02-248.853.0-039.000', '11111', 'Jalan Parahyangan', 'PT. Merdeka', '0', '0');
 
 -- ----------------------------
 -- Table structure for t_surat

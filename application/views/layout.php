@@ -22,6 +22,7 @@
     <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/formValidation.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
+   
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>assets/js/jquery-1.11.2_min.js"></script>
     <![endif]-->
@@ -54,9 +55,11 @@
 <body>
 	<div id="container">
     	<div id="header"><?php $this->load->view('head'); ?></div>
+        <section id="home">	
         <div id="content-wrapper" class="row">
             <div id="content" ><?php $this->load->view($content); ?></div>
         </div>
+        </section>>
         <div id="footer"><?php $this->load->view('footer'); ?></div>
 	</div>
 </body>

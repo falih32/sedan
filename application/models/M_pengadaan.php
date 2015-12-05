@@ -223,10 +223,10 @@ class M_pengadaan extends CI_Model{
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
-			"<a type ='button' class='btn btn-danger btn-sm' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
-			"<a type ='button' class='btn btn-info btn-sm' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a type ='button' class='btn btn-warning btn-sm' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='CetakLaporanJasaHps/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
-                        "<a type ='button' class='btn btn-success btn-sm' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
+			"<a type ='button' class='btn btn-danger btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
+			"<a type ='button' class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+                        "<a type ='button' class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='CetakLaporanJasaHps/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
+                        "<a type ='button' class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -318,6 +318,18 @@ class M_pengadaan extends CI_Model{
         return $this->db->get()->result();
     }
     
+    function historiSurat($id){
+        $this->db
+		->select('*')
+                ->from('tr_detail_surat, tr_detail_konten, t_konten, t_surat')
+                ->where('dsrt_idpengadaan', $id)
+                 ->where('dsrt_jenis_surat = srt_id')
+                ->where('dknt_idkonten = knt_id')
+                ->where('dknt_detailsurat = dsrt_id')
+                ->order_by('srt_id'); 
+        return $this->db->get()->result();
+    }
+    
      function selectListPenyusun($id, $active){
         $this->db
 		->select('t_list_penyusun.*, pgw_nama, jbt_nama, pgw_nip')
@@ -364,6 +376,7 @@ class M_pengadaan extends CI_Model{
         $this->db->where('pgd_id', $id);
         $this->db->update('t_pengadaan', $data);
     }
+    
     
     function selectTracking($id){
         $data = $this->db->query("SELECT *, ts.usr_nama as pnama, jbt.jbt_nama as jnama, DATE_FORMAT(fds_tgl_disposisi, '%e %M %Y %T') as fds_tgl_disposisi_show "

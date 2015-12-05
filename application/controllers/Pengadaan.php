@@ -644,6 +644,16 @@ class Pengadaan extends CI_Controller{
         $this->m_pengadaan->update( $id,$data);  
     }
     
+    function historiPercetakan($id){
+        $data['content'] = 'v_histori_percetakan';
+        $data['title']= 'Histori Percetakan Pengadaan'; 
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['histori_surat'] = $this->m_pengadaan->historiSurat($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+        
+    }
+    
     function postVariableTable(){
         $data['pgd_status_pengadaan']   = 3;
         $this->m_pengadaan->update( $ax['dtp_id'],$ex);

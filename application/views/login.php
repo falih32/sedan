@@ -1,4 +1,4 @@
-<?php echo date("Y")?>
+
 <div id="card" class="card">
     <div class="front">
         <div class="panel panel-default transparent-bg">

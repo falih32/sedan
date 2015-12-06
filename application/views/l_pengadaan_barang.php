@@ -119,7 +119,7 @@ $(document).ready(function() {
                     <?php if($role == 1){ ?>
                     if ( data.pgd_status_selesai == "1") {
                         $('td', row).eq(5).html('<a class="btn btn-success btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Batalkan konfirmasi" data-confirm="Anda yakin akan mengembalikan status pengadaan menjadi belum selesai?" data-href="batal_konfirmasi/'+data.pgd_id+'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
-                        $('td', row).eq(6).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
+                        $('td', row).eq(6).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='<?php echo site_url('Laporan/LaporanFix').'/'; ?>"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
                     }
                     <?php }?>
                     <?php if($role == 2){ ?>

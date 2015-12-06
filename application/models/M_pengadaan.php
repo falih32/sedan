@@ -156,7 +156,7 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanBarangFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='http://".$_SERVER['SERVER_NAME']."/sedan/Laporan/LaporanFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -225,7 +225,7 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			"<a type ='button' class='btn btn-danger btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
 			"<a type ='button' class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a type ='button' class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='CetakLaporanJasaHps/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
+                        "<a type ='button' class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='http://".$_SERVER['SERVER_NAME']."/sedan/Laporan/cetaklaporan/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
                         "<a type ='button' class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
 			"</div>".
 			"</form>".
@@ -244,7 +244,7 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Penawaran' href='CetakLaporanJasaPnr/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(PNR)</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Penawaran' href='http://".$_SERVER['SERVER_NAME']."/sedan/Laporan/LaporanPenawaran/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(PNR)</a>".
                         "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Harga Terakhir Barang' href='add_hargafix_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Harga Deal</a>".
 			"</div>".
 			"</form>".
@@ -263,7 +263,7 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='CetakLaporanJasaFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='http://".$_SERVER['SERVER_NAME']."/sedan/Laporan/LaporanFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');

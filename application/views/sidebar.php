@@ -1,5 +1,10 @@
-<div id="bg-div"></div>
-<div class="navbar-default container-fluid" role="navigation">
+<?php 
+    $role = $this->session->userdata('id_role');
+    $onpage= strtolower($this->uri->segment(1));
+?>
+
+<div class="navbar-default sidebar" role="navigation">
+    <?php if($this->session->userdata('id_user') != '') {?>
                 <div class="sidebar-nav navbar-collapse row-fluid">
                     <ul class="nav" id="side-menu">
                         <li class="sidebar-search">
@@ -14,93 +19,93 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="index.html"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                            <a href="<?php echo base_url(); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-bar-chart-o fa-fw"></i> Pengadaan Barang<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangHPS"); ?>">HPS</a>
                                 </li>
                                 <li>
-                                    <a href="morris.html">Morris.js Charts</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangPenawaran"); ?>">Penawaran</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangFix"); ?>">Fix</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarang"); ?>">All</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>                
+                        <li>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Pengadaan Jasa<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaHPS"); ?>">HPS</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaPenawaran"); ?>">Penawaran</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaFix"); ?>">Fix</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasa"); ?>">All</a>
+                                </li>      
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Pengadaan Konsultan<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="#">HPS</a>
+                                </li>
+                                <li>
+                                    <a href="#">Penawaran</a>
+                                </li>
+                                <li>
+                                    <a href="#">Fix</a>
+                              
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="tables.html"><i class="fa fa-table fa-fw"></i> Tables</a>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Laporan</a>
+                 
                         </li>
+                        <?php if($role == "1"){ ?>
                         <li>
-                            <a href="forms.html"><i class="fa fa-edit fa-fw"></i> Forms</a>
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Referensi<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="panels-wells.html">Panels and Wells</a>
+                                    <a href="<?php echo site_url("User"); ?>">User</a>
                                 </li>
                                 <li>
-                                    <a href="buttons.html">Buttons</a>
+                                    <a href="<?php echo site_url("Pegawai"); ?>">Pegawai</a>
                                 </li>
                                 <li>
-                                    <a href="notifications.html">Notifications</a>
+                                    <a href="<?php echo site_url("Jabatan"); ?>">Jabatan</a>
                                 </li>
+                                
                                 <li>
-                                    <a href="typography.html">Typography</a>
-                                </li>
-                                <li>
-                                    <a href="icons.html"> Icons</a>
-                                </li>
-                                <li>
-                                    <a href="grid.html">Grid</a>
-                                </li>
+                                    <a href="<?php echo site_url("SuratIzin"); ?>">Surat Izin</a>
+                                </li>      
+                                 <li>
+                                    <a href="<?php echo site_url("Supplier"); ?>">Supplier</a>
+                                </li>  
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Second Level Item</a>
-                                </li>
-                                <li>
-                                    <a href="#">Third Level <span class="fa arrow"></span></a>
-                                    <ul class="nav nav-third-level">
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">Third Level Item</a>
-                                        </li>
-                                    </ul>
-                                    <!-- /.nav-third-level -->
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
-                        <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="blank.html">Blank Page</a>
-                                </li>
-                                <li>
-                                    <a href="login.html">Login Page</a>
-                                </li>
-                            </ul>
-                            <!-- /.nav-second-level -->
-                        </li>
+                        <?php }?>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->
+                <?php }?>
+                
             </div>

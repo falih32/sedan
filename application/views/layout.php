@@ -61,16 +61,15 @@
     
 </head>
 <body>
-	<div id="container">
-    	<div id="header"><?php $this->load->view('head'); ?></div>
-        <section id="home">
+	<div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div id="header"><?php $this->load->view('head'); ?></div>
+            <div id="sidebar" class="bg-div"><?php $this->load->view('sidebar'); ?></div>
+        </nav>        
+        <div id="page-wrapper">
+            <div id="content" class="panel-body"><?php $this->load->view($content); ?></div>
+        </div>    
         
-        <div id="content-wrapper" class="row">
-            <div id="sidebar" class="col-md-2"><?php $this->load->view('sidebar'); ?></div>
-            <div id="content" class="panel-body col-md-10"><?php $this->load->view($content); ?></div>
-       
-        </div>
-        </section>
         <div id="footer"><?php $this->load->view('footer'); ?></div>
 	</div>
 </body>

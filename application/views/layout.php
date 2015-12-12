@@ -22,7 +22,14 @@
     <link href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/formValidation.min.css" rel="stylesheet" type="text/css">
     <link href="<?php echo base_url();?>assets/css/jquery-ui-timepicker-addon.css" rel="stylesheet" type="text/css">
-   
+    
+    <link href="<?php echo base_url();?>assets/css/header/demo.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/header/header-user-dropdown.css" rel="stylesheet" type="text/css">
+    
+    
+    <link href="<?php echo base_url();?>assets/css/footer/demo.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo base_url();?>assets/css/footer/footer-distributed-with-address-and-phones.css" rel="stylesheet" type="text/css">
+    
     <!--[if lt IE 9]>
     <script src="<?php echo base_url();?>assets/js/jquery-1.11.2_min.js"></script>
     <![endif]-->
@@ -49,17 +56,21 @@
     <script src="<?php echo base_url();?>assets/js/formValidation.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/Framework/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap-checkbox.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/sb-admin-2.js"></script>
 
     
 </head>
 <body>
 	<div id="container">
     	<div id="header"><?php $this->load->view('head'); ?></div>
-        <section id="home">	
+        <section id="home">
+        
         <div id="content-wrapper" class="row">
-            <div id="content" ><?php $this->load->view($content); ?></div>
+            <div id="sidebar" class="col-md-2"><?php $this->load->view('sidebar'); ?></div>
+            <div id="content" class="panel-body col-md-10"><?php $this->load->view($content); ?></div>
+       
         </div>
-        </section>>
+        </section>
         <div id="footer"><?php $this->load->view('footer'); ?></div>
 	</div>
 </body>

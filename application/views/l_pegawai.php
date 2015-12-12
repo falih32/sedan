@@ -89,7 +89,7 @@ $(document).ready(function() {
                 fixedButton();
             },
             "createdRow": function ( row, data, index ) {
-                $(row).click(function(){window.location.href = '<?php echo site_url('Pegawai/detail_pegawai').'/'; ?>'+data.pgw_id;});
+              //  $(row).click(function(){window.location.href = '<?php echo site_url('Pegawai/detail_pegawai').'/'; ?>'+data.pgw_id;});
                 $(row).css('cursor', 'pointer');
                 $(row).find('a').click(function(e){e.stopPropagation();});
             }

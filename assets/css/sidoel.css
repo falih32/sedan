@@ -142,7 +142,7 @@ body{
 
 #bg-div{
     position: absolute;
-    right: 0px; top: 0px;
+    left: 0px; top: 0px;
     background: #f8f8f8;
     height: 9999px;
     width: 100%;

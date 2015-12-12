@@ -93,7 +93,7 @@ $(document).ready(function() {
                         fixedButton();
 		},
                 "createdRow": function ( row, data, index ) {
-                    $(row).click(function(){window.location.href = '<?php echo site_url('User/detail_user').'/'; ?>'+data.usr_id;});
+                    //$(row).click(function(){window.location.href = '<?php echo site_url('User/detail_user').'/'; ?>'+data.usr_id;});
                     $(row).find('a').click(function(e){e.stopPropagation();});
                    }
 	} );

@@ -14,7 +14,7 @@ class ResetUser extends CI_Controller{
 	
 	public function forgot_password(){
             $data['content'] = 'password_forgot';
-            $data['title'] = 'SISTEM DISPOSISI ELEKTRONIK';        
+            $data['title'] = 'SISTEM PENGADAAN ONLINE';        
                             
             $this->load->view('layout2',$data);
 	}

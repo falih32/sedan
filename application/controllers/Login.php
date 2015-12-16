@@ -14,7 +14,7 @@ class Login extends CI_Controller{
     public function index(){
 		if($this->session->userdata('id_user') == ''){   
                     $data['content'] = 'login';
-                    $data['title'] = 'SISTEM INFORMASI DISPOSISI ELEKTRONIK'; 
+                    $data['title'] = 'SISTEM INFORMASI PENGADAAN ONLINE'; 
                     $data['thn'] = $this->M_pengadaan->getFirstYearInput();
                     if($this->session->flashdata('history')!= ""){
                         $this->session->set_flashdata('history', $this->session->flashdata('history'));

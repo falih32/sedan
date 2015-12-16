@@ -43,7 +43,7 @@ class User extends CI_Controller{
     function postVariabelEdit(){
    
         $data['usr_username']           = $this->input->post('usr_username');
-        $data['usr_password']           = md5($this->input->post('usr_password'));
+        //$data['usr_password']           = md5($this->input->post('usr_password'));
         $data['usr_pegawai']               = $this->input->post('usr_pegawai');
         $data['usr_role']               = $this->input->post('usr_role');   
         $data['usr_email']              = $this->input->post('usr_email');	

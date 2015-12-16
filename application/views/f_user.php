@@ -3,9 +3,9 @@
 	if($mode == 'edit'){
 	
 		$usr_username = $userlist-> usr_username;
-                $usr_pegawai = $userlist-> usr_pegawai;
+               $usr_pegawai = $userlist-> usr_pegawai;
                 $usr_role = $userlist->usr_role;
-                $usr_password = $userlist->usr_password;
+              //  $usr_password = $userlist->usr_password;
                 $konfirm = "";
                 $usr_email = $userlist->usr_email;
                 $pgw_nama=$userlist->pgw_nama;
@@ -36,6 +36,8 @@
                 <?php if($mode == 'edit'){ ?>
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
                 <input type="hidden" name="usr_role" value="<?php echo $userlist->usr_role; ?>">
+                <input type="hidden" name="usr_pegawai" value="<?php echo $userlist->usr_pegawai; ?>">
+              //  <input type="hidden" name="usr_password" value="<?php echo $userlist->usr_password; ?>">
                 <?php } else if($mode == 'add') { ?>
                 <input type="hidden" name="usr_pegawai" value="<?php echo $pegawai->pgw_id; ?>">
                 <?php } ?>
@@ -101,14 +103,6 @@
                         <div class="col-sm-10">
                             <input type="password" class="form-control" id="konfirm" name="konfirm" placeholder="User Password" value="" required data-match="#usr_password">
                             <p class="help-block">Ketik ulang password</p>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    <?php } elseif ($mode == "edit" && $role != 1) { ?>
-                    <div class="form-group">
-                        <label for="usr_password" class="col-sm-2 control-label text-left">Password Anda</label>
-                        <div class="col-sm-10">
-                            <input type="password" class="form-control" id="usr_password_confirm" name="usr_password_confirm" placeholder="Password anda" value="" required data-minlength="5">
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>

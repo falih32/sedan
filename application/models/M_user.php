@@ -46,7 +46,8 @@ class M_user extends CI_Model{
         $this->db
         ->select('*')
         ->from('t_user')
-        ->where('usr_username', $username);
+        ->where('usr_username', $username)
+        ->where('usr_deleted', '0');
         return $this->db->get();
     }
 		

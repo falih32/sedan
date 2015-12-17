@@ -63,10 +63,20 @@
 <body>
 	<div id="wrapper">
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
-            <div id="header"><?php $this->load->view('head'); ?></div>
-            <div id="sidebar" class="bg-div"><?php $this->load->view('sidebar'); ?></div>
+            <?php $this->load->view('head'); ?>
+            <?php $this->load->view('sidebar'); ?>
         </nav>        
         <div id="page-wrapper">
+            <?php if($this->session->flashdata('message') != ""){ $msg=$this->session->flashdata('message');?>
+            <div class="container-fluid">
+                <div class="row-fluid">
+                    <div class="alert alert-<?php echo $msg['class']?> alert-dismissible" role="alert">
+                    <?php echo $msg['msg']; ?>
+                    <a href="#" class="close" data-dismiss="alert">&times;</a>
+                    </div>
+                </div>
+            </div>
+            <?php } ?>
             <div id="content" class="panel-body"><?php $this->load->view($content); ?></div>
         </div>    
         

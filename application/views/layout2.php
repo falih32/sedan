@@ -19,7 +19,7 @@
 <body>
 <div class="container-fluid">
     <div class="row">
-    	<div class="panel panel-default transparent-bg">
+    	<div class="panel panel-default transparent-bg2">
         	<div class="panel-body">
                 <div class="col-md-12 text-center">
                     <h3>SISTEM INFORMASI PENGADAAN ONLINE</h3>
@@ -49,8 +49,8 @@
     
 <script>
     $.backstretch([
-        "<?php echo base_url();?>assets/css/images/bglogin1.jpg",
-        "<?php echo base_url();?>assets/css/images/bglogin3.jpg"],
+        "<?php echo base_url();?>assets/css/images/raja-ampat.jpg",
+        "<?php echo base_url();?>assets/css/images/raja-ampat2.jpg"],
         {duration: 3000, fade: 750});
     $("#card").flip({
       trigger: 'manual'

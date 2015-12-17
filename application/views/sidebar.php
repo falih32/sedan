@@ -76,7 +76,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Laporan</a>
+                            <a href="#"><i class="fa fa-files-o fa-fw"></i> Upload Laporan</a>
                  
                         </li>
                         <?php if($role == "1"){ ?>

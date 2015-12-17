@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2015-12-05 23:57:33
+Date: 2015-12-17 11:56:39
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `tr_detail_konten` (
   KEY `tr_detailsurat` (`dknt_detailsurat`) USING BTREE,
   CONSTRAINT `tr_detail_konten_ibfk_1` FOREIGN KEY (`dknt_idkonten`) REFERENCES `t_konten` (`knt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tr_detail_konten_ibfk_2` FOREIGN KEY (`dknt_detailsurat`) REFERENCES `tr_detail_surat` (`dsrt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=87 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_detail_konten
@@ -39,10 +39,10 @@ INSERT INTO `tr_detail_konten` VALUES ('1066/PPK.5/VI/2015', '66', '9', '28');
 INSERT INTO `tr_detail_konten` VALUES ('2015-12-05', '67', '3', '28');
 INSERT INTO `tr_detail_konten` VALUES ('2015-12-06', '68', '3', '29');
 INSERT INTO `tr_detail_konten` VALUES ('b.114.8/ppk.5/vI/20015', '69', '9', '30');
-INSERT INTO `tr_detail_konten` VALUES ('2015-12-02 09:30', '70', '10', '30');
-INSERT INTO `tr_detail_konten` VALUES ('2015-12-05 17:00', '71', '11', '30');
-INSERT INTO `tr_detail_konten` VALUES ('2015-12-06', '72', '12', '30');
-INSERT INTO `tr_detail_konten` VALUES ('2015-12-08', '73', '3', '30');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-16 08:00', '70', '10', '30');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-19 19:00', '71', '11', '30');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-20', '72', '12', '30');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-05', '73', '3', '30');
 INSERT INTO `tr_detail_konten` VALUES ('BA.118.6/PPK.5/VI/2015', '74', '3', '31');
 INSERT INTO `tr_detail_konten` VALUES ('BA.118.7/PPK.5/VI/2015', '75', '3', '32');
 INSERT INTO `tr_detail_konten` VALUES ('BA.118.9/PPK.5/VI/2015', '76', '3', '33');
@@ -56,6 +56,12 @@ INSERT INTO `tr_detail_konten` VALUES ('2015-12-02', '83', '17', '36');
 INSERT INTO `tr_detail_konten` VALUES ('BA.119.10/PPK.5/VI/2015', '84', '9', '37');
 INSERT INTO `tr_detail_konten` VALUES ('BA.119.11/PPK.5/VI/2015', '85', '9', '38');
 INSERT INTO `tr_detail_konten` VALUES ('BA.119.12/PPK.5/VI/2015', '86', '9', '39');
+INSERT INTO `tr_detail_konten` VALUES ('2015-12-13', '87', '3', '40');
+INSERT INTO `tr_detail_konten` VALUES ('BA.118.6/PPK.5/VI/2015', '88', '9', '41');
+INSERT INTO `tr_detail_konten` VALUES ('BA.118.7/PPK.5/VI/2015', '89', '9', '42');
+INSERT INTO `tr_detail_konten` VALUES ('BA.118.9/PPK.5/VI/2015', '90', '9', '43');
+INSERT INTO `tr_detail_konten` VALUES ('BA.118.8/PPK.5/VI/2015', '91', '9', '44');
+INSERT INTO `tr_detail_konten` VALUES ('BA.118.10/PPK.5/VI/2015', '92', '9', '45');
 
 -- ----------------------------
 -- Table structure for tr_detail_surat
@@ -73,7 +79,7 @@ CREATE TABLE `tr_detail_surat` (
   KEY `fk_pgd_dsrt` (`dsrt_idpengadaan`) USING BTREE,
   CONSTRAINT `tr_detail_surat_ibfk_1` FOREIGN KEY (`dsrt_idpengadaan`) REFERENCES `t_pengadaan` (`pgd_id`),
   CONSTRAINT `tr_detail_surat_ibfk_2` FOREIGN KEY (`dsrt_jenis_surat`) REFERENCES `t_surat` (`srt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=46 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_detail_surat
@@ -81,16 +87,22 @@ CREATE TABLE `tr_detail_surat` (
 INSERT INTO `tr_detail_surat` VALUES ('27', '2', '2015-12-04 22:44:29', '3', '15');
 INSERT INTO `tr_detail_surat` VALUES ('28', '3', '2015-12-04 23:04:40', '3', '15');
 INSERT INTO `tr_detail_surat` VALUES ('29', '4', '2015-12-04 23:25:08', '3', '15');
-INSERT INTO `tr_detail_surat` VALUES ('30', '6', '2015-12-04 23:28:04', '3', '15');
-INSERT INTO `tr_detail_surat` VALUES ('31', '7', '2015-12-05 08:15:45', '3', '15');
-INSERT INTO `tr_detail_surat` VALUES ('32', '8', '2015-12-05 08:15:45', '3', '15');
-INSERT INTO `tr_detail_surat` VALUES ('33', '9', '2015-12-05 08:15:45', '3', '15');
-INSERT INTO `tr_detail_surat` VALUES ('34', '10', '2015-12-05 08:15:45', '3', '15');
-INSERT INTO `tr_detail_surat` VALUES ('35', '11', '2015-12-05 08:15:46', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('30', '6', '2015-12-16 18:43:32', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('31', '7', '2015-12-16 18:54:11', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('32', '8', '2015-12-16 18:54:11', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('33', '9', '2015-12-16 18:54:11', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('34', '10', '2015-12-16 18:54:11', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('35', '11', '2015-12-16 18:54:11', '1', '15');
 INSERT INTO `tr_detail_surat` VALUES ('36', '12', '2015-12-05 12:40:40', '3', '15');
 INSERT INTO `tr_detail_surat` VALUES ('37', '13', '2015-12-05 15:28:01', '3', '15');
 INSERT INTO `tr_detail_surat` VALUES ('38', '14', '2015-12-05 15:28:01', '3', '15');
 INSERT INTO `tr_detail_surat` VALUES ('39', '15', '2015-12-05 15:28:01', '3', '15');
+INSERT INTO `tr_detail_surat` VALUES ('40', '2', '2015-12-13 12:08:04', '3', '25');
+INSERT INTO `tr_detail_surat` VALUES ('41', '7', '2015-12-16 18:47:37', '1', '24');
+INSERT INTO `tr_detail_surat` VALUES ('42', '8', '2015-12-16 18:47:38', '1', '24');
+INSERT INTO `tr_detail_surat` VALUES ('43', '9', '2015-12-16 18:47:38', '1', '24');
+INSERT INTO `tr_detail_surat` VALUES ('44', '10', '2015-12-16 18:47:38', '1', '24');
+INSERT INTO `tr_detail_surat` VALUES ('45', '11', '2015-12-16 18:47:38', '1', '24');
 
 -- ----------------------------
 -- Table structure for tr_pgd_suratizin
@@ -106,7 +118,7 @@ CREATE TABLE `tr_pgd_suratizin` (
   KEY `fk_psr_srz` (`psr_surat_izin`) USING BTREE,
   CONSTRAINT `tr_pgd_suratizin_ibfk_1` FOREIGN KEY (`psr_surat_izin`) REFERENCES `t_suratizin` (`siz_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tr_pgd_suratizin_ibfk_2` FOREIGN KEY (`psr_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_pgd_suratizin
@@ -117,6 +129,8 @@ INSERT INTO `tr_pgd_suratizin` VALUES ('11', '20', '1', '1');
 INSERT INTO `tr_pgd_suratizin` VALUES ('12', '21', '1', '1');
 INSERT INTO `tr_pgd_suratizin` VALUES ('13', '23', '1', '1');
 INSERT INTO `tr_pgd_suratizin` VALUES ('14', '24', '1', '1');
+INSERT INTO `tr_pgd_suratizin` VALUES ('15', '25', '1', '0');
+INSERT INTO `tr_pgd_suratizin` VALUES ('16', '15', '1', '0');
 
 -- ----------------------------
 -- Table structure for t_anggaran
@@ -134,11 +148,7 @@ CREATE TABLE `t_anggaran` (
 -- Records of t_anggaran
 -- ----------------------------
 INSERT INTO `t_anggaran` VALUES ('12345', 'Anggaran pendapatan negara', '0', '2015-11-18 22:30:57');
-INSERT INTO `t_anggaran` VALUES ('12345s', 'jlj', '0', '2015-11-18 23:18:41');
 INSERT INTO `t_anggaran` VALUES ('54321', 'Anggaran baru', '0', '2015-11-18 23:11:09');
-INSERT INTO `t_anggaran` VALUES ('esa', 'esa', '0', '2015-11-18 22:30:57');
-INSERT INTO `t_anggaran` VALUES ('esas', 'esa', '0', '2015-11-18 22:30:57');
-INSERT INTO `t_anggaran` VALUES ('haha', 'esa', '0', '2015-11-18 22:30:57');
 
 -- ----------------------------
 -- Table structure for t_departemen
@@ -193,14 +203,11 @@ CREATE TABLE `t_detail_pengadaan` (
   PRIMARY KEY (`dtp_id`),
   KEY `fk_dtp_pengadaan` (`dtp_pengadaan`) USING BTREE,
   CONSTRAINT `t_detail_pengadaan_ibfk_1` FOREIGN KEY (`dtp_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=52 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_detail_pengadaan
 -- ----------------------------
-INSERT INTO `t_detail_pengadaan` VALUES ('18', '15', 'Pembersihan Kaca luar gedung', 'gondola safety equipment sabun dan bahan kimia pembersih lap dan peralatan pembersih', '6843.00', 'm2', '2000.00', '13686000.00', '2000.00', '13686000.00', '1920.00', '13138560.00');
-INSERT INTO `t_detail_pengadaan` VALUES ('19', '15', 'plate sitting dan angkur ( pasang baru di top roof)', null, '3.00', 'unit', '2500.00', '7500.00', '2500.00', '7500.00', '2400.00', '7200.00');
-INSERT INTO `t_detail_pengadaan` VALUES ('20', '15', 'Silent kaca yang bocor', null, '79.00', 'm\'', '1500.00', '118500.00', '1500.00', '118500.00', '1300.00', '102700.00');
 INSERT INTO `t_detail_pengadaan` VALUES ('38', '22', 'Kayu', 'Panjang\nJati', '4.00', 'unit', '4000.00', '16000.00', '3000.00', '12000.00', '3000.00', '12000.00');
 INSERT INTO `t_detail_pengadaan` VALUES ('39', '22', 'Besi', 'pendek\nkuat', '3.00', 'unit', '1000.00', '3000.00', '909.00', '2727.00', '300.00', '900.00');
 INSERT INTO `t_detail_pengadaan` VALUES ('42', '19', 'permen', '-manis\n-asam', '3.00', 'unit', '400.00', '1200.00', '0.00', '0.00', '0.00', '0.00');
@@ -213,6 +220,10 @@ INSERT INTO `t_detail_pengadaan` VALUES ('48', '21', 'haha', 'ytty', '1.50', 'mh
 INSERT INTO `t_detail_pengadaan` VALUES ('49', '23', 'Membersihkan Lantai 1', '- Pake Lap\n- Pake shampoo', '100.00', 'm2', '500.00', '50000.00', '450.00', '45000.00', '450.00', '45000.00');
 INSERT INTO `t_detail_pengadaan` VALUES ('50', '23', 'Membersihkan lantai 2', '- Lantai pavin block\n- disedot', '150.00', 'm2', '800.00', '120000.00', '750.00', '112500.00', '700.00', '105000.00');
 INSERT INTO `t_detail_pengadaan` VALUES ('51', '24', 'Membersihkan taman depan', '- Disemprot\n- Dipotong', '500.00', 'm2', '500.00', '250000.00', '500.00', '250000.00', '0.00', '0.00');
+INSERT INTO `t_detail_pengadaan` VALUES ('52', '25', 'susu', 'susu enak', '10.00', 'liter', '150000.00', '1500000.00', '0.00', '0.00', '0.00', '0.00');
+INSERT INTO `t_detail_pengadaan` VALUES ('53', '15', 'Pembersihan Kaca luar gedung', 'gondola safety equipment sabun dan bahan kimia pembersih lap dan peralatan pembersih', '6843.00', 'm2', '2000.00', '13686000.00', '0.00', '0.00', '0.00', '0.00');
+INSERT INTO `t_detail_pengadaan` VALUES ('54', '15', 'plate sitting dan angkur ( pasang baru di top roof)', '', '3.00', 'unit', '2500.00', '7500.00', '0.00', '0.00', '0.00', '0.00');
+INSERT INTO `t_detail_pengadaan` VALUES ('55', '15', 'Silent kaca yang bocor', '', '79.00', 'm\'', '1500.00', '118500.00', '0.00', '0.00', '0.00', '0.00');
 
 -- ----------------------------
 -- Table structure for t_jabatan
@@ -277,18 +288,12 @@ CREATE TABLE `t_kelompok_penyusun` (
   PRIMARY KEY (`klp_id`),
   KEY `fk_drp_pgd` (`klp_pengadaan`) USING BTREE,
   CONSTRAINT `t_kelompok_penyusun_ibfk_1` FOREIGN KEY (`klp_pengadaan`) REFERENCES `t_pengadaan` (`pgd_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_kelompok_penyusun
 -- ----------------------------
-INSERT INTO `t_kelompok_penyusun` VALUES ('1', '15', '1', '2015-11-21 23:12:09');
-INSERT INTO `t_kelompok_penyusun` VALUES ('10', '22', '1', '2015-12-02 04:19:34');
-INSERT INTO `t_kelompok_penyusun` VALUES ('13', '19', '1', '2015-12-02 04:58:34');
-INSERT INTO `t_kelompok_penyusun` VALUES ('14', '20', '1', '2015-12-02 05:36:50');
-INSERT INTO `t_kelompok_penyusun` VALUES ('15', '21', '1', '2015-12-02 05:52:58');
-INSERT INTO `t_kelompok_penyusun` VALUES ('16', '23', '1', '2015-12-02 07:08:19');
-INSERT INTO `t_kelompok_penyusun` VALUES ('17', '24', '1', '2015-12-02 07:13:51');
+INSERT INTO `t_kelompok_penyusun` VALUES ('2', '15', '1', '2015-12-17 11:54:01');
 
 -- ----------------------------
 -- Table structure for t_konten
@@ -336,25 +341,14 @@ CREATE TABLE `t_list_penyusun` (
   KEY `fk_pys_pgw` (`lsp_pegawai`) USING BTREE,
   CONSTRAINT `t_list_penyusun_ibfk_1` FOREIGN KEY (`lsp_kelompok`) REFERENCES `t_kelompok_penyusun` (`klp_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `t_list_penyusun_ibfk_2` FOREIGN KEY (`lsp_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_list_penyusun
 -- ----------------------------
-INSERT INTO `t_list_penyusun` VALUES ('1', '4', '1', '0');
-INSERT INTO `t_list_penyusun` VALUES ('2', '6', '1', '1');
-INSERT INTO `t_list_penyusun` VALUES ('4', '5', '1', '1');
-INSERT INTO `t_list_penyusun` VALUES ('19', '4', '10', '0');
-INSERT INTO `t_list_penyusun` VALUES ('20', '5', '10', '1');
-INSERT INTO `t_list_penyusun` VALUES ('23', '4', '13', '0');
-INSERT INTO `t_list_penyusun` VALUES ('24', '5', '13', '1');
-INSERT INTO `t_list_penyusun` VALUES ('25', '6', '13', '1');
-INSERT INTO `t_list_penyusun` VALUES ('26', '4', '14', '0');
-INSERT INTO `t_list_penyusun` VALUES ('27', '4', '15', '0');
-INSERT INTO `t_list_penyusun` VALUES ('28', '6', '15', '1');
-INSERT INTO `t_list_penyusun` VALUES ('29', '4', '16', '0');
-INSERT INTO `t_list_penyusun` VALUES ('30', '6', '16', '1');
-INSERT INTO `t_list_penyusun` VALUES ('31', '4', '17', '0');
+INSERT INTO `t_list_penyusun` VALUES ('5', '4', '2', '0');
+INSERT INTO `t_list_penyusun` VALUES ('6', '6', '2', '1');
+INSERT INTO `t_list_penyusun` VALUES ('7', '5', '2', '1');
 
 -- ----------------------------
 -- Table structure for t_pegawai
@@ -371,16 +365,32 @@ CREATE TABLE `t_pegawai` (
   KEY `pgw_id` (`pgw_id`) USING BTREE,
   KEY `fk_pegawai_jabatan` (`pgw_jabatan`) USING BTREE,
   CONSTRAINT `t_pegawai_ibfk_1` FOREIGN KEY (`pgw_jabatan`) REFERENCES `t_jabatan` (`jbt_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_pegawai
 -- ----------------------------
-INSERT INTO `t_pegawai` VALUES ('Mas Nopa', '1', '212121212121', '12121111111111111111', '4', '0');
-INSERT INTO `t_pegawai` VALUES ('Masnopa ika', '3', '33333333333333333', '111111111111111111', '5', '0');
-INSERT INTO `t_pegawai` VALUES ('Sukijan', '3', '1212121212', '111111111122222', '6', '0');
-INSERT INTO `t_pegawai` VALUES ('Prijaambodo Mardianto', '30', '2111111111111111113', null, '7', '0');
-INSERT INTO `t_pegawai` VALUES ('Riyani Indarti', '33', '', null, '8', '0');
+INSERT INTO `t_pegawai` VALUES ('tets1', '17', '212121212121', '12121111111111111111', '4', '0');
+INSERT INTO `t_pegawai` VALUES ('Admin', '17', '33333333333333333', '111111111111111111', '5', '0');
+INSERT INTO `t_pegawai` VALUES ('Sukijan', '17', '999999999', '111111111122222', '6', '0');
+INSERT INTO `t_pegawai` VALUES ('Prijaambodo Mardianto', '30', '19680325 199403 1 007', '08129454602', '7', '0');
+INSERT INTO `t_pegawai` VALUES ('Riyani Indarti', '33', '19571118 198403 2 001', '08111907102', '8', '0');
+INSERT INTO `t_pegawai` VALUES ('Drama Panca Putra', '1', '19730930 200112 1 001', '08129066507', '9', '0');
+INSERT INTO `t_pegawai` VALUES ('Jaulim Sirait', '2', '19631231 198508 1 001', '0811106625', '10', '0');
+INSERT INTO `t_pegawai` VALUES ('Gun Yanto', '3', '19610817 198703 1 001', '082112923699', '11', '0');
+INSERT INTO `t_pegawai` VALUES ('Bastian Siri', '4', '19590329 198603 1 001', '081398447159', '12', '0');
+INSERT INTO `t_pegawai` VALUES ('Mahfudl Umar', '5', '19810308 200604 1 005', '081318573945', '13', '0');
+INSERT INTO `t_pegawai` VALUES ('Ety Dwi Wijayanti', '6', '19701015 199903 2 002', '082114194660', '14', '0');
+INSERT INTO `t_pegawai` VALUES ('Arif Budiman', '7', '19781208 200312 1 005', '08111346285', '15', '0');
+INSERT INTO `t_pegawai` VALUES ('Abadi Yanto', '8', '19660401 198603 1 001', '081297221881', '16', '0');
+INSERT INTO `t_pegawai` VALUES ('Andrian Ernanto', '9', '19670731 199903  1 001', '081381041775', '17', '0');
+INSERT INTO `t_pegawai` VALUES ('Veramon', '10', '19710401 199803 1 004', '08111991971', '18', '0');
+INSERT INTO `t_pegawai` VALUES ('Suko Hariyanto', '11', '19640220 198603 1 001', '08161387429', '19', '0');
+INSERT INTO `t_pegawai` VALUES ('Ferry Hardiyanto', '12', '19780119 200312 1 003', '08159744595', '20', '0');
+INSERT INTO `t_pegawai` VALUES ('Achmad Al Farisi', '14', '19790215 200502 1 001', '08179800413', '21', '0');
+INSERT INTO `t_pegawai` VALUES ('Sunarto', '15', '19631008 198603 1 004', '085717722245', '22', '0');
+INSERT INTO `t_pegawai` VALUES ('Triono Probo Pangesti', '16', '19750308 199903 1 001 ', '081295964578', '23', '0');
+INSERT INTO `t_pegawai` VALUES ('Onny', '26', '198304172009011004', '085642504390', '24', '0');
 
 -- ----------------------------
 -- Table structure for t_pengadaan
@@ -403,10 +413,11 @@ CREATE TABLE `t_pengadaan` (
   `pgd_jml_ssdh_ppn_pnr` decimal(65,2) DEFAULT '0.00',
   `pgd_jml_sblm_ppn_fix` decimal(65,2) DEFAULT '0.00',
   `pgd_jml_ssdh_ppn_fix` decimal(65,2) DEFAULT '0.00',
-  `pgd_wkt_awal_penawaran` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  `pgd_wkt_akhir_penawaran` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `pgd_wkt_awal_penawaran` timestamp NULL DEFAULT NULL,
+  `pgd_wkt_akhir_penawaran` timestamp NULL DEFAULT NULL,
   `pgd_tipe_pengadaan` int(255) DEFAULT NULL COMMENT '0 : Barang 1:Jasa 2:Konsultan',
   `pgd_status_pengadaan` int(255) DEFAULT '0' COMMENT '0:HPS 1:penawaran 2:fix 3:selesai',
+  `pgd_status_selesai` int(2) DEFAULT '0',
   `pgd_supplier` int(255) DEFAULT NULL,
   PRIMARY KEY (`pgd_id`),
   KEY `fk_pgd_ang` (`pgd_anggaran`) USING BTREE,
@@ -415,18 +426,19 @@ CREATE TABLE `t_pengadaan` (
   CONSTRAINT `sdfs` FOREIGN KEY (`pgd_supplier`) REFERENCES `t_supplier` (`spl_id`),
   CONSTRAINT `t_pengadaan_ibfk_1` FOREIGN KEY (`pgd_anggaran`) REFERENCES `t_anggaran` (`ang_kode`),
   CONSTRAINT `t_pengadaan_ibfk_3` FOREIGN KEY (`pgd_user_update`) REFERENCES `t_user` (`usr_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=25 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_pengadaan
 -- ----------------------------
-INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-12-05 10:03:49', '12345', '1', '45', '30', '2015-11-21', '13812000.00', '15193200.02', '13812000.00', '15193200.00', '0.00', '15003200.00', '2015-12-05 10:03:49', '2015-12-05 10:03:49', '1', '0', null);
-INSERT INTO `t_pengadaan` VALUES ('19', 'Pengadaan barang yyy', '1', 'PEngadaan barang bagus yyy', '2015-12-02 07:26:15', '12345', '1', '30', '4', '2015-11-25', '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', null, null, '0', '0', null);
-INSERT INTO `t_pengadaan` VALUES ('20', 'dfshaasdasdas', '0', 're', '2015-12-02 06:48:18', '12345', '1', '3', '5', '2015-11-25', '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', null, null, '0', '2', null);
-INSERT INTO `t_pengadaan` VALUES ('21', 'Pengadaan keempat dsd', '0', 'asdff xxx', '2015-12-02 05:57:36', '54321', '1', '3', '45', '2015-12-02', '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', null, null, '0', '1', null);
-INSERT INTO `t_pengadaan` VALUES ('22', 'Pengadaan kelima', '0', '444', '2015-12-02 23:59:51', '54321', '1', '5', '5', '2015-12-02', '19000.00', '20900.00', '14727.00', '16199.70', '12900.00', '14190.00', null, null, '0', '2', null);
-INSERT INTO `t_pengadaan` VALUES ('23', 'Pekerjaan pembersihan lantai xxx', '0', 'Membersihkan lantai semuanya', '2015-12-02 07:19:48', '54321', '1', '6', '6', '2015-12-02', '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', null, null, '1', '2', null);
-INSERT INTO `t_pengadaan` VALUES ('24', 'Pekerjaan pembersihan taman ccc', '0', 'Membersihkan taman depan gedung', '2015-12-02 07:21:41', '12345', '1', '4', '4', '2015-12-02', '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', null, null, '1', '1', null);
+INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-12-17 11:54:02', '12345', '6', '45', '30', '2015-11-21', '13812000.00', '15193200.02', '0.00', '0.00', '0.00', '0.00', '2015-12-05 10:03:49', '2015-12-05 10:03:49', '1', '0', '0', '1');
+INSERT INTO `t_pengadaan` VALUES ('19', 'Pengadaan barang yyy', '1', 'PEngadaan barang bagus yyy', '2015-12-02 07:26:15', '12345', '1', '30', '4', '2015-11-25', '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', null, null, '0', '0', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('20', 'dfshaasdasdas', '1', 're', '2015-12-17 11:50:24', '12345', '1', '3', '5', '2015-11-25', '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', null, null, '0', '2', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('21', 'Pengadaan keempat dsd', '1', 'asdff xxx', '2015-12-17 11:50:25', '54321', '1', '3', '45', '2015-12-02', '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', null, null, '0', '1', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('22', 'Pengadaan kelima', '1', '444', '2015-12-17 11:50:26', '54321', '1', '5', '5', '2015-12-02', '19000.00', '20900.00', '14727.00', '16199.70', '12900.00', '14190.00', null, null, '0', '2', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('23', 'Pekerjaan pembersihan lantai xxx', '1', 'Membersihkan lantai semuanya', '2015-12-17 11:50:27', '54321', '1', '6', '6', '2015-12-02', '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', null, null, '1', '2', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('24', 'Pekerjaan pembersihan taman ccc', '1', 'Membersihkan taman depan gedung', '2015-12-17 11:50:28', '12345', '1', '4', '4', '2015-12-02', '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', null, null, '1', '1', '0', null);
+INSERT INTO `t_pengadaan` VALUES ('25', 'pengadaan susu murni', '1', 'pengadaan susu murni sepesial maknyosss', '2015-12-17 11:50:29', '54321', '3', '45', '45', '2015-12-13', '1500000.00', '1650000.00', '0.00', '0.00', '0.00', '0.00', '2015-12-13 07:20:00', '2015-12-19 19:39:00', '0', '0', '0', '1');
 
 -- ----------------------------
 -- Table structure for t_supplier
@@ -510,14 +522,16 @@ CREATE TABLE `t_user` (
   PRIMARY KEY (`usr_id`),
   KEY `fk_user_pegawai` (`usr_pegawai`) USING BTREE,
   CONSTRAINT `t_user_ibfk_1` FOREIGN KEY (`usr_pegawai`) REFERENCES `t_pegawai` (`pgw_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_user
 -- ----------------------------
-INSERT INTO `t_user` VALUES (null, null, '1', 'admin', '21232f297a57a5a743894a0e4a801fc3', null, '0');
-INSERT INTO `t_user` VALUES ('1', '4', '3', 'falih32', '21232f297a57a5a743894a0e4a801fc3', 'falih32@gmail.com', '0');
+INSERT INTO `t_user` VALUES ('1', '6', '1', 'admin', '21232f297a57a5a743894a0e4a801fc3', null, '0');
+INSERT INTO `t_user` VALUES ('1', '4', '3', 'falih32', '21232f297a57a5a743894a0e4a801fc3', 'falih32@gmail.com', '1');
 INSERT INTO `t_user` VALUES ('1', '5', '4', 'Susis', 'e807f1fcf82d132f9bb018ca6738a19f', 'falih32@gmail.com', '1');
+INSERT INTO `t_user` VALUES ('1', '5', '5', 'Admin32', '21232f297a57a5a743894a0e4a801fc3', 'falih32@gmail.com', '0');
+INSERT INTO `t_user` VALUES ('1', '4', '6', 'falih32', '21232f297a57a5a743894a0e4a801fc3', 'falih32@gmail.com', '0');
 
 -- ----------------------------
 -- Procedure structure for sum_total_pengadaan

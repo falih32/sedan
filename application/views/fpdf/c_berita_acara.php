@@ -11,7 +11,7 @@ $tanggalP=$tglpembukaan->dknt_isi;
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -95,7 +95,7 @@ $pdf->AddPage();
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -135,7 +135,7 @@ $pdf->AddPage();
 		$pdf->Cell(105); 
 		$pdf->Cell(100,6,'Pejabat Pengadaan Barang/Jasa',0,2,'L');
 		$pdf->Cell(100,6,'Satker Biro Umum',0,2,'L');
-		$pdf->Cell(100,6,'Sekretariat Jendral KKP',0,2,'L');
+		$pdf->Cell(100,6,'Sekretariat Jenderal KKP',0,2,'L');
 		$pdf->Ln(20);
 		$pdf->Cell(105); 
 		$pdf->Cell(100,10,$pejpeng->pgw_nama,0,3,'L');                
@@ -149,7 +149,7 @@ $pdf->AddPage();
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -174,7 +174,7 @@ $pdf->AddPage();
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Administrasi')); 
+			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Administrasi')); 
 			}
 
 		//isi
@@ -211,7 +211,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,2,'L'); 
 		$pdf->Cell(90,6,'Satker Biro Umum',0,2,'L');
-		$pdf->Cell(90,6,'Sekretariat Jendral KKP',0,2,'L');
+		$pdf->Cell(90,6,'Sekretariat Jenderal KKP',0,2,'L');
 		$pdf->Ln(15);
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');   
@@ -225,7 +225,7 @@ $pdf->AddPage();
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -288,7 +288,7 @@ $pdf->AddPage();
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -313,7 +313,7 @@ $pdf->AddPage();
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Teknis')); 
+			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Teknis')); 
 			}
 
 		//isi
@@ -352,7 +352,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,2,'L'); 
 		$pdf->Cell(90,6,'Satker Biro Umum',0,2,'L');
-		$pdf->Cell(90,6,'Sekretariat Jendral KKP',0,2,'L');
+		$pdf->Cell(90,6,'Sekretariat Jenderal KKP',0,2,'L');
 		$pdf->Ln(15);
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');            
@@ -366,7 +366,7 @@ $pdf->AddPage();
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -391,7 +391,7 @@ $pdf->AddPage();
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Harga')); 
+			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Harga')); 
 			}
 
 		//isi
@@ -429,7 +429,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,2,'L'); 
 		$pdf->Cell(90,6,'Satker Biro Umum',0,2,'L');
-		$pdf->Cell(90,6,'Sekretariat Jendral KKP',0,2,'L');
+		$pdf->Cell(90,6,'Sekretariat Jenderal KKP',0,2,'L');
 		$pdf->Ln(15);
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');                
@@ -443,7 +443,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -468,7 +468,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Kualifikasi')); 
+			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Kualifikasi')); 
 			}
 
 		//isi
@@ -504,7 +504,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,2,'L'); 
 		$pdf->Cell(90,6,'Satker Biro Umum',0,2,'L');
-		$pdf->Cell(90,6,'Sekretariat Jendral KKP',0,2,'L');
+		$pdf->Cell(90,6,'Sekretariat Jenderal KKP',0,2,'L');
 		$pdf->Ln(10);
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');             
@@ -518,7 +518,7 @@ $pdf->AddPage();
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');

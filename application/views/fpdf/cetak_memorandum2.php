@@ -2,7 +2,6 @@
 $pdf=new PDF_MC_Table('p','mm','A4');
 $pdf->SetMargins(15,10,10);
 $pdf->AddPage();
-//Header
 		//Arial bold 15
 		$pdf->SetFont('Arial','B',16);
 				$pdf->Cell(80);
@@ -16,12 +15,13 @@ $pdf->AddPage();
 		$pdf->Cell(80);
 		$pdf->Cell(30,6,'MEMORANDUM',0,3,'C');
 		$pdf->SetFont('Arial','',12);
+		$pdf->Cell(30,10,$no_mem2,0,3,'C');
 		$pdf->Ln(10);
 		
 		$pdf->SetFont('Arial','',12);
 		$pdf->Cell(30,6,'Yth',0,0,'L');
 		$pdf->Cell(10,6,' : ',0,0,'L');
-		$pdf->MultiCell(130,6, $kepada.' Biro Umum Setjen KKP',0,'J');
+		$pdf->MultiCell(130,6,'Pejabat Pembuat Komitmen Satker Biro Umum Setjen KKP',0,'J');
 		$pdf->Cell(30,6,'Dari',0,0,'L');
 		$pdf->Cell(10,6,' : ',0,0,'L');
 		$pdf->MultiCell(130,6, $dari.'Biro Umum Setjen KKP',0,'J');
@@ -35,13 +35,11 @@ $pdf->AddPage();
 		
 		$pdf->Line(15,$pdf->gety(),200,$pdf->gety());
 		$pdf->Ln(10);
-                $pdf->MultiCell(0,6,'Untuk menunjang kelancaran kegiatan Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Jl. Medan Merdeka Timur No.16 Jakarta, maka perlu dilakukan '.$pgd_perihal.' dengan menggunakan '.$ang_nama.' ('.$ang_kode.') '.$pgd_perihal.'.',0,'J');
-		$pdf->Ln(5);
-		$pdf->MultiCell(0,6,'Sehubungan dengan hal tersebut, mohon kiranya dapat diproses kegiatan tersebut.',0,'J');
+                $pdf->MultiCell(0,6,'Sehubungan dengan Memorandum '.$rp.' tanggal '.$pdf->tanggal("j M Y",$tglmem1->dknt_isi).' (terlampir) perihal tersebut diatas, kiranya dapat dilakukan proses pengadaan langsung sesuai dengan ketentuan yang berlaku.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,6,'Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
 		$pdf->Ln(35);
-		$pdf->Cell(170,10,$ttd,0,3,'R');
- 
+		$pdf->Cell(170,10,$ttd2,0,3,'R');
+                
 $pdf->Output();
 ?>

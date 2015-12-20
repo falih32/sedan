@@ -11,7 +11,7 @@ $tanggalK=$tglklarifikasi->dknt_isi;
 				$pdf->Cell(80);
 		//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
@@ -61,7 +61,7 @@ $pdf->SetLineWidth(0.5);
 		$pdf->SetFont('Arial','',11);
 		$pdf->Cell(30,6,'Lampiran Berita Acara Klarifikasi dan Negoisasi Harga',0,3,'C');
 		$pdf->Cell(30,6,$d->pgd_perihal,0,3,'C');
-		$pdf->Cell(30,6,'Setker Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan',0,3,'C');
+		$pdf->Cell(30,6,'Setker Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan',0,3,'C');
 		$pdf->Cell(30,6,'Nomor. '.$nomor,0,3,'C');
 		$pdf->Ln(10);
 		

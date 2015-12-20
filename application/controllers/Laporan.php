@@ -44,30 +44,44 @@ class Laporan extends CI_Controller {
         $data['kepada']               = $this->input->post('kepada');
         $data['dari']                = $this->input->post('dari');
         $data['tanggal']            = $this->input->post('tanggal');	
-        $data['no_mem2']            = $this->input->post('no_mem2');	
-        $data['no_mem3']            = $this->input->post('no_mem3');	
+ //       $data['no_mem2']            = $this->input->post('no_mem2');	
+  //      $data['no_mem3']            = $this->input->post('no_mem3');	
         return $data;
     }
     
    public function cetaklaporan($id){
-           // $data['pengadaanlist'] = $this->m_pengadaan->selectById($id)->row();
             $data['idpengadaan'] = $id;
             $data['content'] = 'f_laporan';
             $data['title'] = 'cetak laporan';
             $data['jbtlist']= $this->m_laporan->jabatanpegawai();
-             $this->load->view('layout', $data);
-            //$data['jbt']= $this->m_pegawai->selectById($id)->row()->pgw_jabatan;
-           /* if($data['userlist']->pgw_deleted == '0'){
-               
-            }else{
-                redirect(site_url('Sidoel404'));
-            }*/ 
+            $data['mode1'] = '';
+            $suratmemo1= $this->m_laporan->selectdetsurat('1',$id)->row();
+            if($suratmemo1){
+            $data['mode1'] = 'edit';
+            $data['kontensuratdari']= $this->m_laporan->selectkonten($id,'1','1'); 
+            $data['kontensuratkepada']= $this->m_laporan->selectkonten($id,'2','1');
+            $data['kontensurattanggal']= $this->m_laporan->selectkonten($id,'3','1');
+            }
+            $suratmemo2= $this->m_laporan->selectdetsurat('16',$id)->row();
+            $data['mode2'] = '';
+            if($suratmemo2){
+            $data['mode2'] = 'edit';
+            $data['kontensuratnomem2']= $this->m_laporan->selectkonten($id,'9','16'); 
+            $data['kontensurattglmem2']= $this->m_laporan->selectkonten($id,'3','16');
+            }
+            $suratmemo3= $this->m_laporan->selectdetsurat('17',$id)->row();
+            $data['mode3'] = '';
+            if($suratmemo3){
+            $data['mode3'] = 'edit';
+            $data['kontensuratnomem3']= $this->m_laporan->selectkonten($id,'9','16'); 
+            $data['kontensurattglmem3']= $this->m_laporan->selectkonten($id,'3','16');
+            }
+               $this->load->view('layout', $data);
     } 
     public function cetakmemorandum1(){
          $data = $this->postVariabel();
          $datapegawaidari=$this->m_laporan->jabatanpegawaibyid($data['dari']);
          $datapegawaikepada=$this->m_laporan->jabatanpegawaibyid($data['kepada']);
-         $namappk=$this->m_laporan->selectPPK();
          $dep="";
          if ($datapegawaidari->dep1!='NULL'||$datapegawaidari->dep1!='Biro Umum') {$dep=$datapegawaidari->dep2;}
          $datacetak['dari']=$datapegawaidari->jbt_nama." ".$dep ;        
@@ -81,32 +95,13 @@ class Laporan extends CI_Controller {
           
         //dari
          $dknt0['dknt_idkonten']=1;
-         $dknt0['dknt_isi']=$datacetak['dari']; 
+         $dknt0['dknt_isi']=$data['dari'];
         //kepada
          $dknt1['dknt_idkonten']=2;
-         $dknt1['dknt_isi']=$datacetak['kepada'];
+         $dknt1['dknt_isi']=$data['kepada'];
          //tanggal
          $dknt2['dknt_idkonten']=3;
          $dknt2['dknt_isi']=$data['tanggal'];
-         //namapejabat
-         $dknt3['dknt_idkonten']=4;
-         $dknt3['dknt_isi']=$datapegawaidari->pgw_nama;
-         //nomor memo2
-         $dknt4['dknt_idkonten']=5;
-         $dknt4['dknt_isi']=$data['no_mem2'];
-         $datacetak['no_mem2']=$data['no_mem2'];
-         //namapejabatmem2
-         $dknt5['dknt_idkonten']=6;
-         $dknt5['dknt_isi']=$datapegawaikepada->pgw_nama;
-         
-         //nomor memo3
-         $dknt6['dknt_idkonten']=7;
-         $dknt6['dknt_isi']=$data['no_mem3'];
-         $datacetak['no_mem2']=$data['no_mem3'];
-        
-         //namapejabatmem3
-         $dknt7['dknt_idkonten']=8;
-         $dknt7['dknt_isi']=$namappk->pgw_nama;
          
          $datacetak['tanggal']=$data['tanggal'];
          $datacetak['ttd']=$datapegawaidari->pgw_nama;
@@ -114,16 +109,12 @@ class Laporan extends CI_Controller {
          $datacetak['pgd_perihal']=$d->pgd_perihal;
          $datacetak['ang_kode']=$d->ang_kode;
          $datacetak['ang_nama']=$d->ang_nama;
-         $datacetak['no_mem2']=$data['no_mem2'];
-         $datacetak['no_mem3']=$data['no_mem3'];
-         $datacetak['ttd2']=$datapegawaikepada->pgw_nama;
-         $datacetak['namappk']=$namappk->pgw_nama;
          $tempnum=$this->m_laporan->selectdetsurat('1',$this->input->post('idpengadaan'))->row();
          $count=count($tempnum);
          if($count>0){
          $this->m_laporan->updatedsrt('1',$this->input->post('idpengadaan'), $dsrt);
          $i=0;   
-            while ($i<8){
+            while ($i<3){
                 $this->m_laporan->updatedknt($i+1,$tempnum->dsrt_id, ${"dknt" . $i});
                 $i++;
             }
@@ -131,7 +122,7 @@ class Laporan extends CI_Controller {
          }else {
          $dknt= $this->m_laporan->insertdsrt($dsrt);
          $i=0;   
-            while ($i<8){
+            while ($i<3){
                 ${"dknt" . $i}['dknt_detailsurat']=$dknt;
                 $this->m_laporan->insertdknt(${"dknt" . $i});
                 $i++;
@@ -141,6 +132,124 @@ class Laporan extends CI_Controller {
          $this->load->view('fpdf/cetak_memorandum',$datacetak);
          $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
         //redirect(site_url('Pegawai'));
+    }
+    
+        public function cetakmemorandum2(){
+         $datapegawai=$this->m_laporan->selectpegawaikepada($this->input->post('idpengadaan'));
+         $refpegawai=$this->m_laporan->selectpegawaidari($this->input->post('idpengadaan'));
+         if($datapegawai){
+         $datapegawaidari=$this->m_laporan->jabatanpegawaibyid($datapegawai->pgw_id);
+         $rp=$this->m_laporan->jabatanpegawaibyid($refpegawai->pgw_id);
+         $dep="";
+         if ($datapegawaidari->dep1!='NULL'||$datapegawaidari->dep1!='Biro Umum') {$dep=$datapegawaidari->dep2;}
+         $datacetak['dari']=$datapegawaidari->jbt_nama." ".$dep ;        
+         if ($rp->dep1!='NULL'||$rp->dep1!='Biro Umum') {$dep=$rp->dep2;}
+         $datacetak['rp']=$rp->jbt_nama." ".$dep ;
+         
+         $dsrt ['dsrt_jenis_surat']=16;
+         $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+         $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+
+        //tanggalmem2
+         $dknt0['dknt_idkonten']=3;
+         $dknt0['dknt_isi']=$this->input->post('tglmem2'); 
+        //nomor mem2
+         $dknt1['dknt_idkonten']=9;
+         $dknt1['dknt_isi']=$this->input->post('no_mem2'); 
+         
+         $datacetak['tanggal']=$this->input->post('tglmem2');
+         $datacetak['ttd2']=$datapegawai->pgw_nama;
+         $d=$this->m_laporan->angpgd($dsrt ['dsrt_idpengadaan']);
+         $datacetak['pgd_perihal']=$d->pgd_perihal;
+         $datacetak['no_mem2']=$this->input->post('no_mem2');
+         $datacetak['tglmem1']= $this->m_laporan->selectkonten($this->input->post('idpengadaan'),'3','1');
+         $tempnum=$this->m_laporan->selectdetsurat('16',$this->input->post('idpengadaan'))->row();
+         $count=count($tempnum);
+         if($count>0){
+         $this->m_laporan->updatedsrt('16',$this->input->post('idpengadaan'), $dsrt);
+         $i=0;   
+            while ($i<2){
+                $this->m_laporan->updatedknt(${"dknt" . $i}['dknt_idkonten'],$tempnum->dsrt_id, ${"dknt" . $i});
+                $i++;
+            }
+         
+         }else {
+         $dknt= $this->m_laporan->insertdsrt($dsrt);
+         $i=0;   
+            while ($i<2){
+                ${"dknt" . $i}['dknt_detailsurat']=$dknt;
+                $this->m_laporan->insertdknt(${"dknt" . $i});
+                $i++;
+            }
+         }
+  
+        $this->load->view('fpdf/cetak_memorandum2',$datacetak);
+        $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+    
+         }else {
+                // kalau ga ada diredirect lagi ke halaman login
+                $this->session->set_flashdata('message', array('msg' => '<strong> Masukkan data yang dibutuhkan di Memorandum I.','class' => 'danger'));
+                redirect(site_url('Laporan/cetaklaporan/'.$this->input->post('idpengadaan').''));
+            }    
+    }
+    
+         public function cetakmemorandum3(){
+         $datapegawai=$this->m_laporan->selectpegawaikepada($this->input->post('idpengadaan'));    
+         //ppk=33    
+         $namappk=$this->m_laporan->selectPPK();
+         if($namappk||$datapegawai){
+         $datapegawaidari=$this->m_laporan->jabatanpegawaibyid($datapegawai->pgw_id);
+         $dep="";
+         if ($datapegawaidari->dep1!='NULL'||$datapegawaidari->dep1!='Biro Umum') {$dep=$datapegawaidari->dep2;}
+         $datacetak['kepada']=$datapegawaidari->jbt_nama." ".$dep ;        
+         
+         $dsrt ['dsrt_jenis_surat']=17;
+         $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
+         $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+
+        //tanggalmem3
+         $dknt0['dknt_idkonten']=3;
+         $dknt0['dknt_isi']=$this->input->post('tglmem3'); 
+        //nomor mem3
+         $dknt1['dknt_idkonten']=9;
+         $dknt1['dknt_isi']=$this->input->post('no_mem3'); 
+         
+         $datacetak['tanggal']=$this->input->post('tglmem3');
+         $datacetak['namappk']=$namappk->pgw_nama;
+         $d=$this->m_laporan->angpgd($dsrt ['dsrt_idpengadaan']);
+         $datacetak['pgd_perihal']=$d->pgd_perihal;
+         $datacetak['no_mem3']=$this->input->post('no_mem3');
+         $datacetak['no_mem2']= $this->m_laporan->selectkonten($this->input->post('idpengadaan'),'9','16'); 
+         $datacetak['tglmem2']= $this->m_laporan->selectkonten($this->input->post('idpengadaan'),'3','16');
+         
+         $tempnum=$this->m_laporan->selectdetsurat('17',$this->input->post('idpengadaan'))->row();
+         $count=count($tempnum);
+         if($count>0){
+         $this->m_laporan->updatedsrt('17',$this->input->post('idpengadaan'), $dsrt);
+         $i=0;   
+            while ($i<2){
+                $this->m_laporan->updatedknt(${"dknt" . $i}['dknt_idkonten'],$tempnum->dsrt_id, ${"dknt" . $i});
+                $i++;
+            }
+         
+         }else {
+         $dknt= $this->m_laporan->insertdsrt($dsrt);
+         $i=0;   
+            while ($i<2){
+                ${"dknt" . $i}['dknt_detailsurat']=$dknt;
+                $this->m_laporan->insertdknt(${"dknt" . $i});
+                $i++;
+            }
+         }
+  
+        $this->load->view('fpdf/cetak_memorandum3',$datacetak);
+        $this->session->set_flashdata('message', array('msg' => 'Data berhasil disimpan','class' => 'success'));
+    
+         }else {
+                // kalau ga ada diredirect lagi ke halaman login
+                $this->session->set_flashdata('message', array('msg' => '<strong> Silahkan Lengkapi data Memorandum I dan II dan Masukkan Nama Pejabat Pembuat Komitmen terlebih dahulu.','class' => 'danger'));
+                redirect(site_url('Laporan/cetaklaporan/'.$this->input->post('idpengadaan').''));
+            }    
     }
     
      public function cetakhps(){

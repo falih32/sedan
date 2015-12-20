@@ -29,7 +29,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','',11);
 		$pdf->Cell(30,6,'Lampiran Berita Acara Klarifikasi dan Negoisasi Harga',0,3,'C');
 		$pdf->Cell(30,6,'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX',0,3,'C');
-		$pdf->Cell(30,6,'Setker Biro Umum Sekretariat Jendral Kementerian Kelautan dan Perikanan',0,3,'C');
+		$pdf->Cell(30,6,'Setker Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan',0,3,'C');
 		$pdf->Cell(30,6,'Nomor. xx.xxx.x/xxx.x/xx/xxxx',0,3,'C');
 		$pdf->Ln(10);
 		

@@ -9,7 +9,7 @@ class M_laporan extends CI_Model{
     function jabatanpegawai() {
        $data = $this->db->query("SELECT pgw_id, pgw_nama, jbt_id, jbt_nama, A.dpt_nama as dep1, B.dpt_nama as dep2 "
                 . "FROM t_jabatan "
-                . "LEFT JOIN t_pegawai ON jbt_id = pgw_jabatan "
+                . "JOIN t_pegawai ON jbt_id = pgw_jabatan "
                 . "LEFT JOIN t_departemen A ON jbt_departemen=A.dpt_id "
                 . "LEFT JOIN t_departemen B ON A.dpt_parent=B.dpt_id ")->result();
        return $data;
@@ -142,4 +142,29 @@ class M_laporan extends CI_Model{
                 . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='7' and dknt_idkonten='9' ")->row();
        return $data;
      }
+     function selectpegawaikepada($idpeng) {
+        $data = $this->db->query("SELECT * "
+                . "FROM t_pegawai "
+                . "LEFT JOIN tr_detail_konten ON pgw_id = dknt_isi "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$idpeng' and dknt_idkonten='2' ")->row();
+        return  $data;
+     }
+     function selectpegawaidari($idpeng) {
+        $data = $this->db->query("SELECT * "
+                . "FROM t_pegawai "
+                . "LEFT JOIN tr_detail_konten ON pgw_id = dknt_isi "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$idpeng' and dknt_idkonten='1' ")->row();
+        return  $data;
+     }
+     function selectkonten($idpeng,$idkonten,$idsurat) {
+        $data = $this->db->query("SELECT dknt_isi "
+                . "FROM tr_detail_konten "
+                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+                . "WHERE dsrt_idpengadaan = '$idpeng' and dsrt_jenis_surat='$idsurat' and dknt_idkonten='$idkonten' ")->row();
+       return $data;
+     }
+     
 }
+

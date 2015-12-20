@@ -11,7 +11,7 @@ $pdf->SetMargins(15,10,10);
 				$pdf->Cell(85);
 				//judul
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT JENDRAL',0,2,'C');
+		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
 		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');

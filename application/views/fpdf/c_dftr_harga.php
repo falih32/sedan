@@ -4,12 +4,13 @@ $pdf->SetMargins(15,10,10);
 $pdf->AddPage();
 
 //Header
-		$pdf->Cell(75);
+		$pdf->SetFont('Arial','B',12);
+		$pdf->Cell(30,6,'DAFTAR KUANTITAS DAN HARGA',0,3,'L');
+                $pdf->Cell(0,6,strtoupper($perihal),0,3,'l');
+		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,3,'L');
+		$pdf->Cell(30,6,'TAHUN '.$pdf->tanggal("Y",$tgl),0,3,'L');
+		$pdf->Ln(6);
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(30,6,'Daftar Kuantitas dan Harga',0,3,'C');
-		$pdf->Cell(30,10,$nomor,0,3,'C');
-		$pdf->Ln(10);
-		
                 $header = array('No', 'Uraian Pekerjaan', 'Volume','Harga Satuan (Rp.)','     Jumlah      (Rp.)');
 		$w = array(10,75,35,30,35);
 		$pdf->SetWidths($w);
@@ -37,7 +38,9 @@ $pdf->AddPage();
 		$pdf->Cell(105); 
 		$pdf->Cell(100,6,'Jakarta,'.$pdf->tanggal("j M Y",$tgl),0,3,'L');
 		$pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
-		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0,3,'L');
+		$pdf->Cell(100,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L');
+                $pdf->Cell(100,6,'Satker Biro Umum Sekretariat Jenderal',0,3,'L');
+                $pdf->Cell(100,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
 		$pdf->Ln(20);
 		$pdf->Cell(105); 
 		$pdf->Cell(100,10,$namapejpeng,0,3,'L');

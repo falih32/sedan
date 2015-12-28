@@ -8,11 +8,11 @@ $header = array('No', 'Uraian Pekerjaan', 'Volume','Harga Satuan (Rp.)','     Ju
 $pdf->SetMargins(15,10,10);
 //Header
 		$pdf->Cell(82);
-		$pdf->SetFont('Arial','B',14);
+		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(30,6,'HARGA PERKIRAAN SENDIRI (HPS)',0,3,'C');
 		$pdf->Cell(30,6,strtoupper($perihal),0,3,'C');
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,3,'C');
-		$pdf->Cell(30,6,'TAHUN '.date("Y"),0,3,'C');
+		$pdf->Cell(30,6,'TAHUN '.$pdf->tanggal("Y",$tgl),0,3,'C');
 		$pdf->Ln(10);
 		
 		$pdf->SetFont('Arial','',12);
@@ -47,16 +47,19 @@ $pdf->SetMargins(15,10,10);
 		$no=0;
 		foreach ($timpny as $baris) {
 		$no++;
+                ${"posx" . $no}=$pdf->GetX();
+                ${"posy" . $no}=$pdf->Gety();
                 $jabatan='Anggota';
                 if($baris->lsp_jabatan==0) {$jabatan='Ketua';}
-			$pdf->RowNoLines(array($no,$baris->pgw_nama,''));
+			$pdf->RowNoLines(array($no,$baris->pgw_nama,'',));
                         $pdf->RowNoLines(array('',$jabatan,'.........'));
 			$pdf->Ln(5);
 		}
 		
 		$pdf->Cell(115); 
+                $pdf->setxy($posx1+115,$posy1);
 		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y",$tgl),0,3,'L');
-		$pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
+                $pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
 		$pdf->Cell(100,6,'Pejabat Pembuat Komitmen',0,3,'L');
 		$pdf->Ln(15);
 		$pdf->Cell(115); 

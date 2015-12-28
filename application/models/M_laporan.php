@@ -114,13 +114,13 @@ class M_laporan extends CI_Model{
                 . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='9' ")->row();
        return $data;
      }
-     function selecttglPmbkUndangan($id) {
-        $data = $this->db->query("SELECT dknt_isi "
-                . "FROM tr_detail_konten "
-                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
-                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='10' ")->row();
-       return $data;
-     }
+//     function selecttglPmbkUndangan($id) {
+//        $data = $this->db->query("SELECT dknt_isi "
+//                . "FROM tr_detail_konten "
+//                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
+//                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='10' ")->row();
+//       return $data;
+//     }
       function selecttglklarifikasiUndangan($id) {
         $data = $this->db->query("SELECT dknt_isi "
                 . "FROM tr_detail_konten "
@@ -135,13 +135,7 @@ class M_laporan extends CI_Model{
                 . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='6' and dknt_idkonten='3' ")->row();
        return $data;
      }
-     function selectNoBAPemasukkan($id) {
-        $data = $this->db->query("SELECT dknt_isi "
-                . "FROM tr_detail_konten "
-                . "LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat "
-                . "WHERE dsrt_idpengadaan = '$id' and dsrt_jenis_surat='7' and dknt_idkonten='9' ")->row();
-       return $data;
-     }
+     
      function selectpegawaikepada($idpeng) {
         $data = $this->db->query("SELECT * "
                 . "FROM t_pegawai "

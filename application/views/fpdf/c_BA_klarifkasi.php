@@ -88,8 +88,9 @@ $pdf->SetLineWidth(0.5);
 
  
 		$pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Jakarta,'.$pdf->tanggal(" j M Y", $tanggalK),0,1,'L');
-		$pdf->Cell(120,6,$d->spl_nama,0,0,'L');$pdf->Cell(70,6,'Pejabat Pembuat Komitmen',0,3,'L');
-		$pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Satker Biro Umum Setjen KKP',0,3,'L');
+		$pdf->Cell(120,6,$d->spl_nama,0,0,'L');$pdf->Cell(70,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L');
+		$pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Satker Biro Umum Sekretariat Jenderal KKP',0,3,'L');
+                $pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
 		$pdf->Ln(20); 
 		$pdf->SetFont('Arial','U',11); $pdf->Cell(120,5,$d->spl_perwakilan,0,0,'L'); $pdf->SetFont('Arial','',11); $pdf->Cell(70,5,$pejpeng->pgw_nama,0,1,'L');
 		$pdf->Cell(130,5,$d->spl_jabatan,0,3,'L');                

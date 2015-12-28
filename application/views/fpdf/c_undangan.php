@@ -28,14 +28,14 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->Ln(7);
 		$pdf->SetFont('Arial','',11);
 		$pdf->Cell(20,5,'Nomor',0,0,'L'); $pdf->Cell(100,5,': '.$nomor ,0,0,'L'); $pdf->Cell(40,5,'Jakarta, '.$pdf->tanggal("j M Y",$tgl),0,1,'L');
-		$pdf->Cell(20,5,'Lampiran',0,0,'L'); $pdf->Cell(70,5,': 1(satu) berkas',0,2,'L');
+		$pdf->Cell(20,5,'Lampiran',0,0,'L'); $pdf->Cell(70,5,': '.$lampiran.' ('.$pdf->Terbilang($lampiran).' ) berkas',0,2,'L');
 		$pdf->Ln(3);
 		
 		$pdf->Cell(30,5,'Kepada Yth.',0,2,'L');
 		$pdf->Cell(100,5,$d->spl_nama,0,2,'L');
 		$pdf->Cell(100,5,$d->spl_alamat,0,2,'L');
 		$pdf->Ln(3);
-		$pdf->Cell(20,5,'Perihal :',0,0,'L'); $pdf->MultiCell(0,5,'Pengadaan Langsung Untuk Paket '.$d->pgd_perihal.' pada Satker Biro Umum Setjen KKP Tahun Anggaran '.date("Y") ,0,'L');
+		$pdf->Cell(20,5,'Perihal :',0,0,'L'); $pdf->MultiCell(0,5,'Pengadaan Langsung Untuk Paket '.$d->pgd_perihal.' pada Satker Biro Umum Setjen KKP Tahun Anggaran '.$pdf->tanggal(" Y",$d->pgd_wkt_awal_penawaran) ,0,'L');
 											 
 		$pdf->Ln(3);
 		$pdf->MultiCell(0,5,'Dengan ini Saudara kami undang untuk mengikuti proses Pengadaan Langsung paket '.$d->pgd_perihal.' sebagai berikut :',0,'J');
@@ -48,7 +48,7 @@ $pdf->SetAutoPageBreak(5);
 									  $pdf->Cell(45,5,'Nama paket pekerjaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->MultiCell(0,5,$d->pgd_perihal,0,'L');
 									  $pdf->Cell(5); $pdf->Cell(45,5,'Lingkup Pekerjaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->Cell(0,5,'Kementerian Kelautan dan Perikanan',0,1,'L');
 									  $pdf->Cell(5); $pdf->Cell(45,5,'Nilai total HPS',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->MultiCell(0,5,'Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_hps).',- ('.$b.'rupiah)',0,'L');
-									  $pdf->Cell(5); $pdf->Cell(45,5,'Sumber pendanaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->Cell(0,5,'APBN tahun anggaran '.date("Y"),0,1,'L');
+									  $pdf->Cell(5); $pdf->Cell(45,5,'Sumber pendanaan',0,0,'L'); $pdf->Cell(3,5,':',0,0,'L'); $pdf->Cell(0,5,'APBN tahun anggaran '.$pdf->tanggal(" Y",$d->pgd_wkt_awal_penawaran),0,1,'L');
 		$pdf->Ln(3);
 		$pdf->SetFont('Arial','B',11);
 		$pdf->Cell(5,5,'2.',0,0,'L'); $pdf->Cell(100,5,'Pelaksanaan Pengadaan',0,2,'L'); $pdf->SetFont('Arial','',11);

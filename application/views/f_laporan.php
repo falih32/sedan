@@ -7,6 +7,16 @@
                 $tglmem2="";
                 $no_mem3="";
                 $tglmem3="";
+                $tgl=""; //tgl hps
+                $tgldkh="";
+                $tglspektek="";
+                $no_undangan="";
+                $p_dok_penawaran="";
+                $klarifikasi="";
+                $penandatanganan="";
+                $tgludg="";
+                $lampiran="";
+                
      if($mode1 == 'edit'){	
 		$kepada = $kontensuratdari->dknt_isi;
 		$dari = $kontensuratkepada->dknt_isi;
@@ -20,9 +30,24 @@
                 $no_mem3=$kontensuratnomem3->dknt_isi;
                 $tglmem3=$kontensurattglmem3->dknt_isi;
                 }
+      if($mode4 == 'edit'){	
+                $tgl=$kontensurattglhps->dknt_isi;
+                }     
+      if($mode5 == 'edit'){	
+                $tgldkh=$kontensurattgldkh->dknt_isi;
+                }      
+      if($mode6 == 'edit'){	
+                $tglspektek=$kontensurattglspektek->dknt_isi;
+                }    
+      if($mode7 == 'edit'){	
+                $no_undangan=$kontensuratnoudg->dknt_isi;
+                $p_dok_penawaran=$kontensuratPudg->dknt_isi;
+                $klarifikasi=$kontensuratKudg->dknt_isi;
+                $penandatanganan=$kontensuratPenudg->dknt_isi;
+                $tgludg=$kontensurattgludg->dknt_isi;
+                $lampiran=$kontensuratLudg->dknt_isi;
+                }                                      
 		
-
-
 ?>
 
 <div class="container-fluid">
@@ -179,7 +204,7 @@
                    <div class="form-group">
                       <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
                        <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="tgl" name="tgl" placeholder="Tanggal Surat Harga Perkiraan Sementara" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                            <input type="text" class="form-control tgl1" id="tgl" name="tgl" placeholder="Tanggal Surat Harga Perkiraan Sementara" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $tgl;?>"  required>                                   
                        </div>
                     </div> 
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
@@ -205,21 +230,11 @@
                       <div class="form-group">
                       <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
                        <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="tgldkh" name="tgldkh" placeholder="Tanggal Surat Daftar Kuantitas dan Harga" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                            <input type="text" class="form-control tgl1" id="tgldkh" name="tgldkh" placeholder="Tanggal Surat Daftar Kuantitas dan Harga" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $tgldkh;?>" required>                                   
                        </div>
                     </div> 
                    
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
-                    <div class="form-group">
-                        <label for="" class="col-sm-5 control-label text-left">Nomor</label>
-                        <div class="col-sm-7">
-   
-	                        <input type="text" class="form-control" id="no_dftrh" name="no_dftrh" placeholder="Nomor Surat Daftar Kuantitas dan Harga" required>
-                            
-                            <div class="help-block with-errors"></div>
-                            
-                        </div>
-                    </div>
                   
                   </div>
                   <div class="col-md-4">
@@ -243,7 +258,7 @@
                       <div class="form-group">
                       <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
                        <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="tglspektek" name="tglspektek" placeholder="Tanggal Surat Spesifikasi Teknis" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                            <input type="text" class="form-control tgl1" id="tglspektek" name="tglspektek" placeholder="Tanggal Surat Spesifikasi Teknis" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $tglspektek;?>" required>                                   
                        </div>
                     </div> 
                    
@@ -291,22 +306,30 @@
                     <div class="form-group">
                       <label for="" class="col-sm-5 control-label text-left">Tanggal</label>
                        <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="tgludg" name="tgludg" placeholder="Tanggal Surat Undangan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                            <input type="text" class="form-control tgl1" id="tgludg" name="tgludg" placeholder="Tanggal Surat Undangan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $tgludg;?>" required>                                   
                        </div>
                     </div> 
                    
                      <div class="form-group">
                         <label for="" class="col-sm-5 control-label text-left">Nomor</label>
                         <div class="col-sm-7">
-	                        <input type="text" class="form-control" id="no_undangan" name="no_undangan" placeholder="Nomor Surat Undangan" required>                          
+	                        <input type="text" class="form-control" id="no_undangan" name="no_undangan" placeholder="Nomor Surat Undangan" value="<?php echo $no_undangan;?>" required>                          
                            
                         </div>
                     </div> 
+                       <div class="form-group">
+                                    <label for="" class="col-sm-5 control-label text-left">Lampiran</label>
+                                    <div class="col-sm-7">
+                                        <input required type="text" pattern='[0-9]*' class="form-control" id="lampiran" name="lampiran" placeholder="Berkas" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong" value="<?php echo $lampiran;?>">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+                     
                   <div class="form-group">
                         <label for="" class="col-sm-5 control-label text-left">Pembukaan Dokumen Penawaran</label>
                
                            <div class="col-sm-7">
-                            <input type="text" class="form-control tgl" id="p_dok_penawaran" name="p_dok_penawaran" placeholder="Jadwal Pembukaan Dokumen Penawaran" required>                                   
+                            <input type="text" class="form-control tgl" id="p_dok_penawaran" name="p_dok_penawaran" placeholder="Jadwal Pembukaan Dokumen Penawaran" value="<?php echo $p_dok_penawaran;?>" required>                                   
                            </div>
                 
                     </div>       
@@ -314,14 +337,14 @@
                         <label for="" class="col-sm-5 control-label text-left">Klarifikasi Teknis dan Negoisasi Harga</label>
                        
                            <div class="col-sm-7">
-                            <input type="text" class="form-control tgl" id="klarifikasi" name="klarifikasi" placeholder="Jadwal Klarifikasi Teknis dan Negoisasi Harga" required>                                   
+                            <input type="text" class="form-control tgl" id="klarifikasi" name="klarifikasi" placeholder="Jadwal Klarifikasi Teknis dan Negoisasi Harga" value="<?php echo $klarifikasi;?>" required>                                   
                            </div>
                        
                     </div> 
                     <div class="form-group">
                       <label for="" class="col-sm-5 control-label text-left">Penandatanganan SPK</label>
                        <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="penandatanganan" name="penandatanganan" placeholder="Jadwal Penandatanganan SPK" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                            <input type="text" class="form-control tgl1" id="penandatanganan" name="penandatanganan" placeholder="Jadwal Penandatanganan SPK" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $penandatanganan;?>" required>                                   
                        </div>
                     </div> 
                 

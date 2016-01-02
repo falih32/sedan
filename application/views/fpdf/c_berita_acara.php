@@ -4,26 +4,8 @@ $pdf->SetMargins(15,10,10);
 $pdf->AddPage();
 $tanggalP=$tglpembukaan;
 //Header
-		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
-		//Arial bold 15
-		$pdf->SetFont('Arial','B',16);
-				$pdf->Cell(80);
-		//judul
-		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
-		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
-		$pdf->SetFont('Arial','',14);
-		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
-		$pdf->Cell(30,5,'JAKARTA 10110,KOTAK POS 4130 JKP 10041',0,2,'C');
-		$pdf->Cell(30,5,'TELEPON (021) 3519070, FAKSIMILE (021) 3520351',0,2,'C');
-		$pdf->Ln(1);$pdf->Cell(70);$pdf->Cell(20,5,'LAMAN',0,0,'L');
-		$pdf->SetFont('Arial','UI',14);
-		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
-		//buat garis horisontal
-		$pdf->Line(15,50,200,50);
-		$pdf->SetLineWidth(1.5);
-		$pdf->Line(15,52,200,52);
-		$pdf->Ln(7);
+
+		$pdf->Ln(45);
 		
 		$pdf->SetFont('Arial','B',12);
 	
@@ -36,7 +18,7 @@ $tanggalP=$tglpembukaan;
                 $pdf->SetFont('Arial','',12);
                 $t=$pdf->tanggal(" j ",$tanggalP);
 		$pdf->Ln(2);
-		$pdf->MultiCell(0,5,'Pada hari ini, '.$pdf->tanggal("D",$tanggalP).' tanggal '.$pdf->Terbilang($pdf->tanggal("j",$tanggalP)).' bulan '.$pdf->tanggal(" M ",$tanggalP).' tahun '.$pdf->Terbilang($pdf->tanggal("Y",$tanggalP)).', bertempat di Kementerian Kelautan dan Perikanan Gedung Mina Bahari I Lantai 2 Jalan Medan Merdeka Timur No.16 Jakarta Pusat berdasarkan surat undangan Pejabat Pengadaan Nomor '.$noundangan->dknt_isi.' tanggal '.$pdf->tanggal("j M Y",$tglundangan->dknt_isi).', telah diadakan pemasukan dan pembukaan dokumen penawaran pengadaan langsung '.$d->pgd_perihal.' pada Tahun Anggaran '.date(" Y "),0,'J');
+		$pdf->MultiCell(0,5,'Pada hari ini, '.$pdf->tanggal("D",$tanggalP).' tanggal '.$pdf->Terbilang($pdf->tanggal("j",$tanggalP)).' bulan '.$pdf->tanggal(" M ",$tanggalP).' tahun '.$pdf->Terbilang($pdf->tanggal("Y",$tanggalP)).', bertempat di Kementerian Kelautan dan Perikanan Gedung Mina Bahari I Lantai 2 Jalan Medan Merdeka Timur No.16 Jakarta Pusat berdasarkan surat undangan Pejabat Pengadaan Nomor '.$noundangan->dknt_isi.' tanggal '.$pdf->tanggal("j M Y",$tglundangan->dknt_isi).', telah diadakan pemasukan dan pembukaan dokumen penawaran pengadaan langsung '.$d->pgd_perihal.' pada Tahun Anggaran '.$pdf->tanggal("Y",$tanggalP),0,'J');
 		$pdf->Ln(2);
 		$pdf->MultiCell(0,5,'Pihak Penyedia Barang / Jasa : '.$d->spl_nama,0,'J');
 		$pdf->Ln(2);
@@ -75,11 +57,12 @@ $tanggalP=$tglpembukaan;
 			}
 		$pdf->Ln(4);
 		//$pdf->Cell(90,6,$pdf->getY(),0,1,'L');
-		if($pdf->getY()>228.00124) {
-		$pdf->AddPage();	
-		}
+	
 		$pdf->MultiCell(0,5,'Demikian Berita Acara Pemasukan dan Pembukaan Dokumen Penawaran pengadaan langsung '.$d->pgd_perihal.' dibuat untuk dapat dipergunakan sebagaimana mestinya.',0,'J');
 		$pdf->Ln(2);
+                if($pdf->getY()>250) {
+		$pdf->AddPage();	
+		}
 		$pdf->Cell(90,6,'Penyedia Barang / Jasa',0,0,'L');	$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,1,'L'); 
 		$pdf->Cell(90,6,$d->spl_nama,0,0,'L');	$pdf->Cell(90,6,'Satker Biro Umum Setjen KKP',0,1,'L');
 		$pdf->Cell(90,6,'Nama : '.$d->spl_perwakilan,0,1,'L');
@@ -88,26 +71,7 @@ $tanggalP=$tglpembukaan;
                 
 $pdf->AddPage();
 //Header
-		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
-		//Arial bold 15
-		$pdf->SetFont('Arial','B',16);
-				$pdf->Cell(80);
-		//judul
-		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
-		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
-		$pdf->SetFont('Arial','',14);
-		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
-		$pdf->Cell(30,5,'JAKARTA 10110,KOTAK POS 4130 JKP 10041',0,2,'C');
-		$pdf->Cell(30,5,'TELEPON (021) 3519070, FAKSIMILE (021) 3520351',0,2,'C');
-		$pdf->Ln(1);$pdf->Cell(70);$pdf->Cell(20,5,'LAMAN',0,0,'L');
-		$pdf->SetFont('Arial','UI',14);
-		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
-		//buat garis horisontal
-		$pdf->Line(15,50,200,50);
-		$pdf->SetLineWidth(1.5);
-		$pdf->Line(15,52,200,52);
-		$pdf->Ln(8);
+		$pdf->Ln(45);
 		$pdf->SetFont('Arial','',12);
 		
 		$pdf->MultiCell(0,5,'Daftar Hadir Peserta pengadaan langsung '.$d->pgd_perihal,0,'J');

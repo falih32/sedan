@@ -907,6 +907,33 @@ for($i=13;$i<=15;$i++){
 }
             
             $this->load->view('fpdf/c_BA_hasil_pengadaan', $datacetak); 
-     }        
+     }     
+     
+ public function Laporanakhir($id){
+        $data['idpengadaan'] = $id;
+        $data['content'] = 'f_laporanakhir';
+        $data['title']= 'Laporan Akhir';
+            $data['mode1'] = '';
+            $SPK= $this->m_laporan->selectdetsurat('18',$id)->row();
+            if($SPK){
+            $data['mode1'] = 'edit';
+            $data['kontensuratnoSPK']= $this->m_laporan->selectkonten($id,'9','18'); 
+            $data['kontensurattglSPK']= $this->m_laporan->selectkonten($id,'3','18');
+            }
+            $SPMK= $this->m_laporan->selectdetsurat('19',$id)->row();
+            $data['mode2'] = '';
+            if($SPMK){
+            $data['mode2'] = 'edit';
+            $data['kontensuratnoSPMK']= $this->m_laporan->selectkonten($id,'9','19'); 
+            $data['kontensurattglSPMK']= $this->m_laporan->selectkonten($id,'3','19');
+            }
+        $this->load->view('layout',$data);         
+     } 
+     function cetakSPK(){
+         $this->load->view('fpdf/c_spk');
+     }
+     function cetakSPMK(){
+         $this->load->view('fpdf/c_spmk');
+     }
 }
  

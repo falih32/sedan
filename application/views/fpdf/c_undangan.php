@@ -5,27 +5,7 @@ $pdf->AddPage();
 $pdf->SetMargins(15,10,10);
 $pdf->SetAutoPageBreak(5);
 //Header
-		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
-		//Arial bold 15
-		$pdf->SetFont('Arial','B',14);
-				$pdf->Cell(85);
-		//judul
-		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
-		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
-		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
-		$pdf->Cell(30,5,'JAKARTA 10110,KOTAK POS 4130 JKP 10041',0,2,'C');
-		$pdf->Cell(30,5,'TELEPON (021) 3519070, FAKSIMILE (021) 3520351',0,2,'C');
-		$pdf->Ln(1);$pdf->Cell(70);$pdf->Cell(20,5,'LAMAN',0,0,'L');
-		$pdf->SetFont('Arial','UI',12);
-		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
-		//buat garis horisontal
-		$pdf->Line(15,50,200,50);
-		$pdf->SetLineWidth(1.5);
-		$pdf->Line(15,52,200,52);
-		
-		$pdf->Ln(7);
+		$pdf->Ln(45);
 		$pdf->SetFont('Arial','',11);
 		$pdf->Cell(20,5,'Nomor',0,0,'L'); $pdf->Cell(100,5,': '.$nomor ,0,0,'L'); $pdf->Cell(40,5,'Jakarta, '.$pdf->tanggal("j M Y",$tgl),0,1,'L');
 		$pdf->Cell(20,5,'Lampiran',0,0,'L'); $pdf->Cell(70,5,': '.$lampiran.' ('.$pdf->Terbilang($lampiran).' ) berkas',0,2,'L');
@@ -79,6 +59,7 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->Ln(3);
 		$pdf->MultiCell(0,5,'Demikian disampaikan untuk diketahui.',0,'J');
 		$pdf->Ln(3);
+                if($pdf->gety()>263) {$pdf->AddPage();}
 		$pdf->Cell(100,6,'Pejabat Pengadaan pada Satuan Kerja Biro Umum',0,2,'L');
 		$pdf->Cell(100,6,'Setjen Kementerian Kelautan dan Perikanan',0,2,'L');
 		$pdf->Ln(11); 

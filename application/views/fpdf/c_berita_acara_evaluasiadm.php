@@ -6,26 +6,8 @@ $tanggalP=$tglpembukaan;
 $cAngka = $pdf->Terbilang($d->pgd_jml_ssdh_ppn_pnr);
 $b = ucfirst(strtolower($cAngka));
 
-$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
-		//Arial bold 15
-		$pdf->SetFont('Arial','B',16);
-				$pdf->Cell(80);
-		//judul
-		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
-		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
-		$pdf->SetFont('Arial','',14);
-		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
-		$pdf->Cell(30,5,'JAKARTA 10110,KOTAK POS 4130 JKP 10041',0,2,'C');
-		$pdf->Cell(30,5,'TELEPON (021) 3519070, FAKSIMILE (021) 3520351',0,2,'C');
-		$pdf->Ln(1);$pdf->Cell(70);$pdf->Cell(20,5,'LAMAN',0,0,'L');
-		$pdf->SetFont('Arial','UI',14);
-		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
-		//buat garis horisontal
-		$pdf->Line(15,50,200,50);
-		$pdf->SetLineWidth(1.5);
-		$pdf->Line(15,52,200,52);
-		$pdf->Ln(7);
+
+		$pdf->Ln(45);
 		
 
 		$pdf->SetFont('Arial','',12);
@@ -37,7 +19,7 @@ $pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
 		//header
 		$pdf->SetFont('Arial','B',12);
 			for($i=0;$i<1;$i++){
-			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.date("Y"),'Berita Acara Evaluasi Administrasi')); 
+			$pdf->Row(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.$pdf->tanggal("Y",$tanggalP),'Berita Acara Evaluasi Administrasi')); 
 			}
 
 		//isi
@@ -82,26 +64,8 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalP)));
 $pdf->AddPage();
 
 //Header
-		$pdf->Image(base_url().'assets/logokelautan.png',15,8,-400);
-		//Arial bold 15
-		$pdf->SetFont('Arial','B',16);
-				$pdf->Cell(80);
-		//judul
-		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,2,'C');
-		$pdf->Cell(30,6,'SEKRETARIAT Jenderal',0,2,'C');
-		$pdf->Cell(30,6,'SATUAN KERJA BIRO UMUM',0,2,'C');
-		$pdf->SetFont('Arial','',14);
-		$pdf->Cell(30,5,'JALAN MEDAN MERDEKA TIMUR NOMOR 16',0,2,'C');
-		$pdf->Cell(30,5,'JAKARTA 10110,KOTAK POS 4130 JKP 10041',0,2,'C');
-		$pdf->Cell(30,5,'TELEPON (021) 3519070, FAKSIMILE (021) 3520351',0,2,'C');
-		$pdf->Ln(1);$pdf->Cell(70);$pdf->Cell(20,5,'LAMAN',0,0,'L');
-		$pdf->SetFont('Arial','UI',14);
-		$pdf->Cell(30,5,'www.kkp.go.id',0,2,'L');
-		//buat garis horisontal
-		$pdf->Line(15,50,200,50);
-		$pdf->SetLineWidth(1.5);
-		$pdf->Line(15,52,200,52);
-		$pdf->Ln(7);
+		
+		$pdf->Ln(45);
 		
 		$pdf->SetFont('Arial','B',12);
 	

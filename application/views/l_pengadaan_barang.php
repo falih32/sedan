@@ -45,7 +45,7 @@
             	<thead>
                 <tr>
                 	<th>Kode Anggaran</th>
-                        <th>Nama Pengadaan / Tanggal Pembuatan</th>
+                        <th>Nama Pengadaan / Tanggal Input</th>
                         <th>Supplier</th>
                 	<th>Ketua</th>
                         <th>Total(+ppn)</th>
@@ -90,16 +90,15 @@ $(document).ready(function() {
                 { "data": "pgd_perihal" },              //7
                 { "data": "pgd_tanggal_input" },        //8
                 { "data": "pgd_id" },                   //9
-                { "data": "namaketua" },                //10
-                { "data": "jbt_nama" },                 //11
-                { "data": "pgd_jml_ssdh_ppn_hps" },     //12
-                { "data": "pgd_jml_ssdh_ppn_pnr" },     //13
-                { "data": "pgd_jml_ssdh_ppn_fix" }      //14
+                
+                { "data": "pgd_jml_ssdh_ppn_hps" },     //10
+                { "data": "pgd_jml_ssdh_ppn_pnr" },     //11
+                { "data": "pgd_jml_ssdh_ppn_fix" }      //12
               ],
 		"columnDefs": [
 				{ "searchable": false,  "orderable":false, "targets": [1,3,4,5,6] },
-                                { "searchable": false, "visible":false, "targets": [9]},
-                                {  "visible":false, "targets": [8,7, 10, 11, 12,13,14]}
+                                { "searchable": false, "visible":false, "targets": [3,9]},
+                                {  "visible":false, "targets": [8,7, 10, 11, 12]}
                         ],
 		"order": [[ 9, "asc" ]],
                 "dom": '<"row filter-row"<"col-md-2"l><"col-md-10"f><"col-md-12"p>><t><"row footer-row"<"col-md-6"i><"col-md-6"p>>',

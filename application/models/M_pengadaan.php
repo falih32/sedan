@@ -51,6 +51,11 @@ class M_pengadaan extends CI_Model{
         $this->db->where('dtp_id', $id);
         $this->db->update('t_detail_pengadaan', $data);
     }
+    
+    function deleteDetailPengadaan($id){
+        $this->db->where('dtp_id', $id);
+        $this->db->delete('t_detail_pengadaan');
+    }
 
     function getFirstYearInput(){
         return $this->db->query("select ifnull((SELECT YEAR(pgd_tanggal_input) as tahun "
@@ -89,16 +94,12 @@ class M_pengadaan extends CI_Model{
 	$this->datatables
                 ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran, "
                         . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
-                        . "spl_nama as supplier_name, pgw1.pgw_nama as namaketua, jbt_nama,"
+                        . "spl_nama as supplier_name,"
                         . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_hps, "
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_pnr,'2')) as pgd_jml_ssdh_ppn_pnr,"
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_fix ")
                 ->from('t_pengadaan')
-                ->join('t_kelompok_penyusun', 'klp_pengadaan = pgd_id AND klp_terpilih = 1','left')
-                ->join('t_list_penyusun', 'lsp_kelompok = klp_id AND lsp_jabatan = 0','left')
-                ->join('t_pegawai pgw1', 'pgw1.pgw_id = lsp_pegawai','left')
-                ->join('t_jabatan', 'pgw1.pgw_jabatan = jbt_id','left')
                 ->join('t_supplier', 'spl_id = pgd_supplier','left')
                 ->where('pgd_deleted', '0')
                 ->where('YEAR(pgd_tanggal_input)', $this->session->tahun)
@@ -106,7 +107,7 @@ class M_pengadaan extends CI_Model{
 		->where('pgd_tanggal_input <= ', $max)
                 ->where('pgd_tipe_pengadaan = 0')      //Barang
                 ->add_column('nmpengadaan_tglbuat', '$1<br>$2', 'pgd_perihal, pgd_tanggal_input')
-                ->add_column('ketua', '$1 ($2)', 'jbt_nama, namaketua');
+                ->add_column('ketua', 'aw');
                
         switch ($status) {
             case "0":
@@ -196,16 +197,13 @@ class M_pengadaan extends CI_Model{
 	$this->datatables
                 ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran, "
                         . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
-                        . "spl_nama as supplier_name, pgw1.pgw_nama as namaketua, jbt_nama,"
+                        . "spl_nama as supplier_name, "
                         . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_hps, "
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_pnr,'2')) as pgd_jml_ssdh_ppn_pnr,"
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_fix ")
                 ->from('t_pengadaan')
-                ->join('t_kelompok_penyusun', 'klp_pengadaan = pgd_id AND klp_terpilih = 1','left')
-                ->join('t_list_penyusun', 'lsp_kelompok = klp_id AND lsp_jabatan = 0','left')
-                ->join('t_pegawai pgw1', 'pgw1.pgw_id = lsp_pegawai','left')
-                ->join('t_jabatan', 'pgw1.pgw_jabatan = jbt_id','left')
+               
                 ->join('t_supplier', 'spl_id = pgd_supplier','left')
                 ->where('pgd_deleted', '0')
                 ->where('YEAR(pgd_tanggal_input)', $this->session->tahun)
@@ -213,7 +211,7 @@ class M_pengadaan extends CI_Model{
 		->where('pgd_tanggal_input <= ', $max)
                 ->where('pgd_tipe_pengadaan = 1')      //Jasa
                 ->add_column('nmpengadaan_tglbuat', '$1<br>$2', 'pgd_perihal, pgd_tanggal_input')
-                ->add_column('ketua', '$1 ($2)', 'jbt_nama, namaketua');
+                ->add_column('ketua', 'aw');
                
         switch ($status) {
             case "0":

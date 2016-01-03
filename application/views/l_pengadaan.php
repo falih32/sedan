@@ -69,7 +69,7 @@ $(document).ready(function() {
               ],
 		"columnDefs": [
 				{ "searchable": false, "orderable":false, "targets": 5 },
-                                { "searchable": false, "visible":false, "targets": [8]},
+                                { "searchable": false, "visible":false, "targets": [3,8]},
                                 {  "visible":false, "targets": [7,6] }
                         ],
 		"order": [[ 8, "asc" ]],

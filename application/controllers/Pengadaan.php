@@ -21,9 +21,11 @@ class Pengadaan extends CI_Controller{
             $this->load->model('M_supplier');
             $this->load->model('M_suratizin');
             $this->load->model('M_pegawai');
+            $this->load->model('M_penyusun');
        
         }
     }
+  
 	
     function writeLog($tabel, $aksi){
         $data['log_user'] = $this->session->userdata('id_user');
@@ -203,56 +205,82 @@ class Pengadaan extends CI_Controller{
         $data['supplierList']= $this->M_supplier->selectAll()->result();
         $data['pegawaiList']= $this->M_pegawai->selectAllWithJabatan()->result();
         $data['suratList']= $this->M_suratizin->selectAll()->result();
+       
         $this->load->view('layout',$data);
     }
     
-    public function proses_add_pengadaan(){
+    public function proses_add_pengadaan1(){
         //1. insert pgd
-        $pgd['pgd_perihal']            = $this->input->get('pgd_perihal');
-        $pgd['pgd_uraian_pekerjaan']            = $this->input->get('pgd_uraian_pekerjaan');
-        $pgd['pgd_anggaran']   = $this->input->get('ang_kode');
-        $pgd['pgd_tgl_mulai_pengadaan']   = $this->input->get('pgd_tgl_mulai_pengadaan');
+        $pgd['pgd_perihal']            = $this->input->post('pgd_perihal');
+        $pgd['pgd_uraian_pekerjaan']            = $this->input->post('pgd_uraian_pekerjaan');
+        $pgd['pgd_anggaran']   = $this->input->post('ang_kode');
         $pgd['pgd_user_update'] = $this->session->userdata('id_user');
-        $pgd['pgd_lama_pekerjaan']   = $this->input->get('pgd_lama_pekerjaan');
-        $pgd['pgd_lama_penawaran']        = $this->input->get('pgd_lama_penawaran');
-        $pgd['pgd_supplier'] = $this->input->get('pgd_supplier');
-        $pgd['pgd_jml_sblm_ppn_hps'] = $this->input->get('pgd_jml_sblm_ppn_hps');
-        $pgd['pgd_jml_ssdh_ppn_hps'] = $this->input->get('pgd_jml_ssdh_ppn_hps');
-        $pgd['pgd_wkt_awal_penawaran'] = $this->input->get('pgd_wkt_awal_penawaran');
-        $pgd['pgd_wkt_akhir_penawaran'] = $this->input->get('pgd_wkt_akhir_penawaran');
-        $pgd['pgd_tipe_pengadaan'] = $this->input->get('pgd_tipe_pengadaan');
-       
+        $pgd['pgd_lama_pekerjaan']   = $this->input->post('pgd_lama_pekerjaan');
+        $pgd['pgd_lama_penawaran']        = $this->input->post('pgd_lama_penawaran');
+        $pgd['pgd_supplier'] = $this->input->post('pgd_supplier');
+        $pgd['pgd_wkt_awal_penawaran'] = $this->input->post('pgd_wkt_awal_penawaran');
+        $pgd['pgd_wkt_akhir_penawaran'] = $this->input->post('pgd_wkt_akhir_penawaran');
+        $pgd['pgd_tipe_pengadaan'] = $this->input->post('pgd_tipe_pengadaan');
+        $pgd['pgd_dgn_pajak'] = $this->input->post('chkBoxPajak');
+        //4. insert Penyusun
+        $pgd['pgd_penyusun'] = $this->M_penyusun->selectLastPenyusun()->row()->msp_id;
     
         $idPengadaan = $this->m_pengadaan->insertPengadaan($pgd);
-        //3. insert Pekerjaan
-        $data['listPekerjaan']        = $this->input->get('list_pekerjaan');
-        // echo $data['listPekerjaan'];
-        $tableDataPkj = json_decode($data['listPekerjaan'],TRUE); 
-        $countPkj = count($tableDataPkj);
-        for ($i = 0; $i < $countPkj; $i++) {
-            $dtp['dtp_pengadaan'] = $idPengadaan;
-            $dtp['dtp_pekerjaan'] = $tableDataPkj[$i]['dtp_pekerjaan'];
-            $dtp['dtp_spesifikasi'] = $tableDataPkj[$i]['dtp_spesifikasi'];
-            $dtp['dtp_volume'] = $tableDataPkj[$i]['dtp_volume'];
-            $dtp['dtp_satuan'] = $tableDataPkj[$i]['dtp_satuan'];
-            $dtp['dtp_hargasatuan_hps'] = $tableDataPkj[$i]['dtp_hargasatuan_hps'];
-            //$dtp['dtp_jumlahharga_hps'] = $dtp['dtp_volume'] * $dtp['dtp_hargasatuan_hps'];
-            $this->m_pengadaan->insertPekerjaan($dtp);
-        }
+        $barang = $data['Judul']= $this->input->post('Judul');
         
-//         //4. insert Penyusun
-        $klp['klp_pengadaan'] = $idPengadaan;
-        $klp['klp_terpilih'] = 1;
-        $idKelompok = $this->m_pengadaan->insertKelompokPenyusun($klp);
-        $data['listPenyusun']            = $this->input->get('list_penyusun');
-        $tableDataPys = json_decode($data['listPenyusun'],TRUE); 
-        $countPys = count($tableDataPys);
-        for ($i = 0; $i < $countPys; $i++) {
-            $dpy['lsp_kelompok'] = $idKelompok;
-            $dpy['lsp_pegawai'] = $tableDataPys[$i]['lsp_pegawai'];
-            $dpy['lsp_jabatan'] = $tableDataPys[$i]['lsp_jabatan'];
-            $this->m_pengadaan->insertPenyusun($dpy);
+        $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+        redirect(site_url('Pengadaan/add_pengadaan1/'.$barang.'/'.$idPengadaan));
+    }
+    
+    public function add_pengadaan1($tipe,$id){
+        $row = $this->m_pengadaan->selectById($id);
+        $data['content'] = 'f_pengadaan_1';
+        $data['title']= "Tambah Pengadaan ".$tipe;
+        $data['Judul']= $tipe;
+        $data['suratList']= $this->M_suratizin->selectAll()->result();
+        $data['pgd_tipe_pengadaan'] = $row->pgd_tipe_pengadaan;
+        $data['dtp_pengadaan']= $id;
+        $data['pgd_perihal']= $row->pgd_perihal;
+        $data['pgd_dgn_pajak']= $row->pgd_dgn_pajak;
+        $this->load->view('layout',$data); 
+    }
+    public function proses_add_detail_pgd(){
+        $dtp['dtp_pengadaan'] = $this->input->post('dtp_pengadaan');
+        $dtp['dtp_pekerjaan'] = $this->input->post('dtp_pekerjaan');
+        $dtp['dtp_spesifikasi'] = $this->input->post('dtp_spesifikasi');
+        $dtp['dtp_volume'] = $this->input->post('dtp_volume');
+        $dtp['dtp_satuan'] = $this->input->post('dtp_satuan');
+        $dtp['dtp_hargasatuan_hps'] = $this->input->post('dtp_hargasatuan_hps');
+        $dtp['dtp_jumlahharga_hps'] = $dtp['dtp_volume'] * $dtp['dtp_hargasatuan_hps'];
+        $status="";
+        $msg="";
+        $this->upload_config();
+        if($this->upload->do_upload('dtp_file')){
+                $updata = $this->upload->data();
+                $dtp['dtp_file'] = $updata['file_name'];
+                $upload = true;
+        }else{
+            $status = 'error';
+            $msg = $this->upload->display_errors('', '');
         }
+        $id = $this->m_pengadaan->insertPekerjaan($dtp);
+        if($upload){
+               $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+        } else{
+             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan tanpa ada file yang berhasil diunggah. <br> Jika ingin mengunggah file silahkan gunakan menu Ubah','class' => 'warning'));
+        }
+        echo json_encode(array('status' => $status, 'id' => $id));
+    }
+    
+    public function proses_del_detail_pgd($id){
+        
+        //$dtp['dtp_jumlahharga_hps'] = $dtp['dtp_volume'] * $dtp['dtp_hargasatuan_hps'];
+        $id = $this->m_pengadaan->deleteDetailPengadaan($id);
+          
+    }
+    
+    public function proses_add_pengadaan2(){
+         $idPengadaan = $this->input->get('dtp_pengadaan2');
 //        
 //        //5. insert Syarat penyedia
         $data['listSurat']   = $this->input->get('list_suratizin');
@@ -264,10 +292,16 @@ class Pengadaan extends CI_Controller{
             $this->m_pengadaan->insertSuratIzin($psr);
         }
         
-        //totalkan harga semua
-        $pajak = 0.1;
-        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+        //cek dengan pajak atau ngga
+        if($statusPajak == 1){
+            $pajak = 0.1;
+        }else{
+            $pajak = 0;
+        }
         
+        
+        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+        $pgd['pgd_tipe_pengadaan'] = $this->input->post('pgd_tipe_pengadaan');
         if ($pgd['pgd_tipe_pengadaan'] == 0){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
             redirect(site_url('Pengadaan/PengadaanBarangHPS'));
@@ -683,12 +717,12 @@ class Pengadaan extends CI_Controller{
     }
     
     public function upload_config(){
-        $config['upload_path'] = './uploads/surat_masuk';
+        $config['upload_path'] = './uploads/file_pengadaan';
         $config['allowed_types'] = 'gif|jpg|jpeg|png|pdf';
         $config['max_size']	= '10000';
 
         $this->load->library('upload', $config);
-	}
+    }
      
     public function tambah_surat_masuk(){
         $this->limitRole(array(1,2,3));

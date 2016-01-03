@@ -98,7 +98,10 @@
                                 </li>      
                                  <li>
                                     <a href="<?php echo site_url("Supplier"); ?>">Supplier</a>
-                                </li>  
+                                </li> 
+                                <li>
+                                    <a href="<?php echo site_url("Penyusun"); ?>">Penyusun</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

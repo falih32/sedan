@@ -26,9 +26,11 @@
                         <div class="form-group">
                             <label class="control-label">Tahun</label>
                             <select class="form-control" id="year" name="thn_pilih" required>
+                            <?php $nowYear = date("Y")?>
                             <?php while ($thn <= date("Y")) {?>
-                            	<option value="<?php echo $thn?>"><?php echo $thn?></option>
+                            	<option value="<?php echo $nowYear?>"><?php echo $nowYear?></option>
                                 <?php $thn = $thn + 1?>
+                                <?php $nowYear = $nowYear - 1?>
                              <?php } ?>
                             </select>
                         </div>

@@ -57,6 +57,8 @@
     <script src="<?php echo base_url();?>assets/js/Framework/bootstrap.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/bootstrap-checkbox.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/sb-admin-2.js"></script>
+    <script src="<?php echo base_url();?>assets/js/ajaxfileupload.js"></script>
+    
 
     
 </head>

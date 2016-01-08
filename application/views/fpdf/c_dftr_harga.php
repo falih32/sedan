@@ -27,17 +27,21 @@ $pdf->AddPage();
 			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan, ' ' , ' ')); 
 		}
 		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,1,'C',0);
-		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'PPN 10%',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,1,'C',0);
+		if($pgd_dgn_pajak==0){
+                $pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'PPN 10%',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,1,'C',0);
 		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,1,'C',0);		
-		$pdf->Ln(6);
+                }
+                $pdf->Ln(6);
 		
 		$pdf->MultiCell(100,6,'Sebesar : ',0,'L');
-		$pdf->Cell(100,6,'Harga diatas sudah termasuk Pajak',0,3,'L');
-		$pdf->Ln(10);
+		if($pgd_dgn_pajak==0){
+                $pdf->Cell(100,6,'Harga diatas sudah termasuk Pajak',0,3,'L');
+                }
+                $pdf->Ln(10);
 		
 		$pdf->Cell(105); 
-		$pdf->Cell(100,6,'Jakarta,'.$pdf->tanggal("j M Y",$tgl),0,3,'L');
-		$pdf->Cell(100,6,'Mengetahui / Menyetujui',0,3,'L');
+		$pdf->Cell(100,8,'Jakarta,'.$pdf->tanggal("j M Y",$tgl),0,3,'L');
+		
 		$pdf->Cell(100,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L');
                 $pdf->Cell(100,6,'Satker Biro Umum Sekretariat Jenderal',0,3,'L');
                 $pdf->Cell(100,6,'Kementerian Kelautan dan Perikanan',0,3,'L');

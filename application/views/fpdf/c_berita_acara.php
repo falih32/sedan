@@ -65,7 +65,7 @@ $tanggalP=$tglpembukaan;
 		}
 		$pdf->Cell(90,6,'Penyedia Barang / Jasa',0,0,'L');	$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,1,'L'); 
 		$pdf->Cell(90,6,$d->spl_nama,0,0,'L');	$pdf->Cell(90,6,'Satker Biro Umum Setjen KKP',0,1,'L');
-		$pdf->Cell(90,6,'Nama : '.$d->spl_perwakilan,0,1,'L');
+		$pdf->Cell(90,6,'Nama : '.$d->pgd_perwakilan_spl,0,1,'L');
 		$pdf->Ln(2);
 		$pdf->Cell(90,6,'TTD  :.....................',0,0,'L');	$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');
                 
@@ -86,7 +86,7 @@ $pdf->AddPage();
 		$pdf->SetWidths($w);
 		$header = array('No', 'Nama Perusahaan', 'Nama Yang Hadir','Tanda Tangan');
                 $np = array($d->spl_nama, '', '');
-                $p = array($d->spl_perwakilan, '', '');
+                $p = array($d->pgd_perwakilan_spl, '', '');
 		$pdf->SetHeaders($header,$w);
 		$n=0;
 		for($i=0;$i<3;$i++){

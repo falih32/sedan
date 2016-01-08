@@ -47,8 +47,8 @@ $pdf->SetAutoPageBreak(5);
 		$header = array('No', 'Kegiatan', 'Hari/Tanggal','Waktu');
                 $kegiatan= array('Pemasukan Dokumen Penawaran','Pembukaan Dokumen Penawaran', 'Klarifikasi Teknis dan Negoisasi Harga', 'Penandatanganan SPK');
 		$pdf->SetHeaders($header,$w);
-		$tanggal= array($pdf->tanggal("j M Y",$d->pgd_wkt_awal_penawaran).' s.d '.$pdf->tanggal("j M Y",$d->pgd_wkt_akhir_penawaran),$pdf->tanggal("j M Y",$PDP), $pdf->tanggal("j M Y",$klarifikasi), $pdf->tanggal("j M Y",$penandatanganan));
-                $waktu= array($pdf->tanggal("H:i",$d->pgd_wkt_awal_penawaran).' WIB s.d '.$pdf->tanggal("H:i",$d->pgd_wkt_akhir_penawaran).' WIB',$pdf->tanggal("H:i",$PDP).' WIB', $pdf->tanggal("H:i",$klarifikasi).' WIB', '');
+		$tanggal= array($pdf->tanggal("j M Y",$d->pgd_wkt_awal_penawaran).' s.d '.$pdf->tanggal("j M Y",$d->pgd_wkt_akhir_penawaran),$pdf->tanggal("j M Y",$d->pgd_pembukaan_dok_pnr), $pdf->tanggal("j M Y",$d->pgd_klr_teknis_nego_hrg), $pdf->tanggal("j M Y",$d->pgd_penandatangan_spk));
+                $waktu= array($pdf->tanggal("H:i",$d->pgd_wkt_awal_penawaran).' WIB s.d '.$pdf->tanggal("H:i",$d->pgd_wkt_akhir_penawaran).' WIB',$pdf->tanggal("H:i",$d->pgd_pembukaan_dok_pnr).' WIB', $pdf->tanggal("H:i",$d->pgd_klr_teknis_nego_hrg).' WIB', '');
                 $n=0;
 		for($i=0;$i<4;$i++){
 			$n++;

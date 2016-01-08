@@ -21,7 +21,7 @@
                     <th>Nama</th>
                      <th>Alamat</th>
                      <th>NPWP</th>
-                     <th>Perwakilan</th>
+                     <th>No. Rekening</th>
                     <th>Aksi</th>
 
                 </tr>
@@ -81,7 +81,7 @@ $(document).ready(function() {
                 { "data": "spl_nama" },
                  { "data": "spl_alamat" },
                   { "data": "spl_npwp" },
-                   { "data": "spl_perwakilan" },
+                   { "data": "spl_rekening" },
                 { "data": "aksi" }
             ],
             "columnDefs": [

@@ -4,7 +4,7 @@ $pdf->SetMargins(15,10,10);
 $pdf->AddPage();
 
 //Header
-$tanggalK=$tglklarifikasi->dknt_isi;
+$tanggalK=$tglklarifikasi;
 
 		$pdf->Ln(45);
 		
@@ -21,20 +21,20 @@ $tanggalK=$tglklarifikasi->dknt_isi;
 		$pdf->Cell(0,6,'TANGGAL '.$pdf->tanggal("j M Y", $tanggalK),0,2,'C');
 		$pdf->Ln(5);
 		
-		$pdf->MultiCell(0,5,'Pada hari ini, '.$pdf->tanggal("D",$tanggalK).' tanggal'.$pdf->Terbilang($pdf->tanggal("j",$tanggalK)).' bulan'.$pdf->tanggal(" M ",$tanggalK).'tahun'.$pdf->Terbilang($pdf->tanggal("Y",$tanggalK)).', bertempat di Kementerian Kelautan dan Perikanan Jalan Medan Merdeka Timur No.16 Jakarta Pusat Pejabat Pengadaan Barang/Jasa dan Petugas Pembantu Administrasi dilingkungan Biro Umum yang dibentuk berdasarkan Keputusan Pejabat Pembuat Komitmen Satuan Kerja Biro Umum Sekretariat Jenderal KKP Nomor : '.$nokepkuas.' tanggal '.$pdf->tanggal("j M Y",$tglkepkuas).' telah mengadakan Klarifikasi dan Negosiasi penawaran harga atas Pekerjaan '.$d->pgd_perihal.', yang diajukan oleh perusahaan yaitu '.$d->spl_nama.' yang beralamat di '.$d->spl_alamat.',dengan surat penawaran Nomor : '.$nosp.' tertanggal '.$pdf->tanggal("j M Y",$tglsp).', dengan harga penawaran sebesar Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$pdf->Terbilang($d->pgd_jml_ssdh_ppn_pnr).'rupiah ) sudah termasuk pajak.',0,'J');
+		$pdf->MultiCell(0,5,'Pada hari ini, '.$pdf->tanggal("D",$tanggalK).' tanggal'.$pdf->Terbilang($pdf->tanggal("j",$tanggalK)).' bulan'.$pdf->tanggal(" M ",$tanggalK).'tahun'.$pdf->Terbilang($pdf->tanggal("Y",$tanggalK)).', bertempat di Kementerian Kelautan dan Perikanan Jalan Medan Merdeka Timur No.16 Jakarta Pusat Pejabat Pengadaan Barang/Jasa dan Petugas Pembantu Administrasi dilingkungan Biro Umum yang dibentuk berdasarkan Keputusan Pejabat Pembuat Komitmen Satuan Kerja Biro Umum Sekretariat Jenderal KKP Nomor : '.$nokepkuas.' tanggal '.$pdf->tanggal("j M Y",$tglkepkuas).' telah mengadakan Klarifikasi dan Negosiasi penawaran harga atas Pekerjaan '.$d->pgd_perihal.', yang diajukan oleh perusahaan yaitu '.$d->spl_nama.' yang beralamat di '.$d->spl_alamat.',dengan surat penawaran Nomor : '.$d->pgd_no_srt_penawaran.' tertanggal '.$pdf->tanggal("j M Y",$d->pgd_tgl_pemasukkan_pnr).', dengan harga penawaran sebesar Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$pdf->Terbilang($d->pgd_jml_ssdh_ppn_pnr).'rupiah ) sudah termasuk pajak.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,5,'Setelah diadakan penelitian serta penilaian bersama dengan seksama dan hasil negosiasi atas surat penawaran yang diajukan dapat diturunkan menjadi Rp. '.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_fix).',- ('.$pdf->Terbilang($d->pgd_jml_ssdh_ppn_fix).'rupiah ), sehingga dapat diusulkan pengadaan langsung untuk melaksanakan pekerjaan tersebut.',0,'J');
 		$pdf->Ln(5);
 		$pdf->MultiCell(0,5,'Demikian Berita Acara  Klarifikasi dan Negosiasi Harga ini  dibuat untuk dapat dipergunakan seperlunya.',0,'J');
 		$pdf->Ln(10);
 		$pdf->Cell(90,6,'Setuju dan sanggup melaksanakan ',0,0,'L');	$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,1,'L'); 
-		$pdf->Cell(90,6,'pekejaan sesuai dengan negosiasi',0,0,'L');	$pdf->Cell(90,6,'Satker Biro Umum',0,1,'L');
-		$pdf->Cell(90,6,$d->spl_nama,0,0,'L');	$pdf->Cell(90,6,'Sekretariat Jenderal',0,1,'L');
-		$pdf->Cell(90,6,'',0,0,'L');	$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,1,'L');
+		$pdf->Cell(90,6,'pekejaan sesuai dengan negosiasi',0,0,'L');	$pdf->Cell(90,6,'Satker Biro Umum Sekretariat Jenderal',0,1,'L');
+		$pdf->Cell(90,6,$d->spl_nama,0,0,'L');                         $pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,1,'L');
+		$pdf->Cell(90,6,'',0,0,'L');	
 		$pdf->Ln(15);
-	//	$pdf->SetFont('Arial','U',12);
-		$pdf->Cell(90,6,$d->spl_perwakilan,0,0,'L');	$pdf->SetFont('Arial','',12); $pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');
-	//	$pdf->Cell(90,6,'XXXXXX',0,0,'L');
+		$pdf->SetFont('Arial','U',12);
+		$pdf->Cell(90,6,$d->pgd_perwakilan_spl,0,0,'L');	$pdf->SetFont('Arial','',12); $pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');
+		$pdf->Cell(90,6,$d->pgd_jbt_perwakilan_spl,0,0,'L');
 
 $pdf->AddPage();
 //Header
@@ -60,21 +60,23 @@ $pdf->SetLineWidth(0.5);
 		$no++;	
 			$pdf->Row(array($no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan,$pdf->formatrupiah($row->dtp_hargasatuan_pnr) ,$pdf->formatrupiah($row->dtp_jumlahharga_pnr),$pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 
 		}
-		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_pnr),1,0,'C',0);$pdf->Cell($w[5],7,'',1,0,'C',0); $pdf->Cell($w[6],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_fix),1,1,'C',0);
-		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'PPN 10%',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$pdf->formatrupiah(0.1*$d->pgd_jml_sblm_ppn_pnr),1,0,'C',0);$pdf->Cell($w[5],7,'',1,0,'C',0); $pdf->Cell($w[6],7,$pdf->formatrupiah(0.1*$d->pgd_jml_sblm_ppn_fix),1,1,'C',0);
-		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr),1,0,'C',0);$pdf->Cell($w[5],7,'',1,0,'C',0); $pdf->Cell($w[6],7,$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_fix),1,1,'C',0);
-		$pdf->Ln(6);
-		
+		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'R',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_pnr),1,0,'R',0);$pdf->Cell($w[5],7,'',1,0,'R',0); $pdf->Cell($w[6],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_fix),1,1,'R',0);
+		if($d->pgd_dgn_pajak==0){
+                $pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'PPN 10%',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'R',0); $pdf->Cell($w[4],7,$pdf->formatrupiah(0.1*$d->pgd_jml_sblm_ppn_pnr),1,0,'R',0);$pdf->Cell($w[5],7,'',1,0,'R',0); $pdf->Cell($w[6],7,$pdf->formatrupiah(0.1*$d->pgd_jml_sblm_ppn_fix),1,1,'R',0);
+		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'R',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr),1,0,'R',0);$pdf->Cell($w[5],7,'',1,0,'R',0); $pdf->Cell($w[6],7,$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_fix),1,1,'R',0);
+                }
+                $pdf->Ln(6);
+		if($d->pgd_dgn_pajak==0){
 		$pdf->Cell(100,6,'Harga diatas sudah termasuk Pajak',0,3,'L');
 		$pdf->Ln(5);
-
+                }
  
 		$pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Jakarta,'.$pdf->tanggal(" j M Y", $tanggalK),0,1,'L');
 		$pdf->Cell(120,6,$d->spl_nama,0,0,'L');$pdf->Cell(70,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L');
 		$pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Satker Biro Umum Sekretariat Jenderal KKP',0,3,'L');
                 $pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
 		$pdf->Ln(20); 
-		$pdf->SetFont('Arial','U',11); $pdf->Cell(120,5,$d->spl_perwakilan,0,0,'L'); $pdf->SetFont('Arial','',11); $pdf->Cell(70,5,$pejpeng->pgw_nama,0,1,'L');
-		$pdf->Cell(130,5,$d->spl_jabatan,0,3,'L');                
+		$pdf->SetFont('Arial','U',11); $pdf->Cell(120,5,$d->pgd_perwakilan_spl,0,0,'L'); $pdf->SetFont('Arial','',11); $pdf->Cell(70,5,$pejpeng->pgw_nama,0,1,'L');
+		$pdf->Cell(130,5,$d->pgd_jbt_perwakilan_spl,0,3,'L');                
 	$pdf->Output();	
 ?>		

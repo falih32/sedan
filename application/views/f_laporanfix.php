@@ -5,6 +5,11 @@
                 $tglSP="";
                 $no_peng="";
                 $tglSPeng="";
+                $no_BA_klarifikasi="";
+                $no_kepkuas="";
+                $tglkepkuas="";
+                $tglBAK="";
+                
                 
      if($mode1 == 'edit'){	
 		$no_BA_hasil = $kontensuratnoBAH->dknt_isi;
@@ -18,6 +23,12 @@
                $no_peng=$kontensuratnoSPeng->dknt_isi;
                 $tglSPeng=$kontensurattglSPeng->dknt_isi;
                 }
+      if($mode4 == 'edit'){	
+          $no_BA_klarifikasi=$kontensuratnoBAK->dknt_isi;
+          $no_kepkuas=$kontensuratnoSKP->dknt_isi;
+          $tglkepkuas=$kontensurattglSKP->dknt_isi;
+          $tglBAK=$kontensurattglBAK->dknt_isi;
+      }
 ?>                
 <div class="container-fluid">
     <div class="row-fluid">
@@ -36,37 +47,27 @@
                   
                    <div class="form-group">
                         <label for="" class="col-sm-3 control-label text-left">Nomor</label>
-                        <div class="col-sm-9">
+                        <div class="col-sm-5">
    
-	                        <input type="text" class="form-control" id="no_BA_klarifikasi" name="no_BA_klarifikasi" placeholder="Nomor Surat Berita Acara Klarifikasi dan Negoisasi Harga" required>
+	                        <input type="text" class="form-control" value="<?php echo $no_BA_klarifikasi; ?>" id="no_BA_klarifikasi" name="no_BA_klarifikasi" placeholder="Nomor Surat Berita Acara Klarifikasi dan Negoisasi Harga" required>
                             
                             <div class="help-block with-errors"></div>
                             
                         </div>
+                         <div class="col-sm-4">
+                            <input type="text" class="form-control tgl1" value="<?php echo $tglBAK; ?>" id="tglBAK" name="tglBAK" placeholder="Tanggal Surat erita Acara Klarifikasi dan Negoisasi Harga" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                       </div>
                     </div>     
                  <div class="form-group">
                         <label for="" class="col-sm-3 control-label text-left">Nomor Keputusan Kuasa Pengguna Anggaran</label>
                         <div class="col-sm-5">
-	                        <input type="text" class="form-control" id="no_kepkuas" name="no_kepkuas" placeholder="Nomor Surat Keputusan Kuasa Pengguna Anggaran" required>                            
+	                        <input type="text" class="form-control" value="<?php echo $no_kepkuas; ?>" id="no_kepkuas" name="no_kepkuas" placeholder="Nomor Surat Keputusan Kuasa Pengguna Anggaran" required>                            
                             <div class="help-block with-errors"></div>
                         </div>
                        <div class="col-sm-4">
-                            <input type="text" class="form-control tgl1" id="tglkepkuas" name="tglkepkuas" placeholder="Tanggal Surat Keputusan Kuasa Pengguna Anggaran" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
+                            <input type="text" class="form-control tgl1" value="<?php echo $tglkepkuas; ?>" id="tglkepkuas" name="tglkepkuas" placeholder="Tanggal Surat Keputusan Kuasa Pengguna Anggaran" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
                        </div>
                     </div> 
-                 <div class="form-group">
-                        <label for="" class="col-sm-3 control-label text-left">Nomor Surat Penawaran</label>
-                        <div class="col-sm-5">
-	                        <input type="text" class="form-control" id="no_sp" name="no_sp" placeholder="Nomor Surat Penawaran" required>                            
-                            <div class="help-block with-errors"></div>
-                        </div>
-                       <div class="col-sm-4">
-                            <input type="text" class="form-control tgl1" id="tglsp" name="tglsp" placeholder="Tanggal Surat Penawaran" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>                                   
-                       </div>
-                    </div>   
-                      
-    
-
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                   
                   

@@ -4,8 +4,7 @@
 		$spl_nama = $dataUnit->spl_nama;
                 $spl_alamat = $dataUnit->spl_alamat;
                 $spl_telp = $dataUnit->spl_telp;
-                $spl_perwakilan = $dataUnit->spl_perwakilan;
-                $spl_jabatan = $dataUnit->spl_jabatan;
+                $spl_rekening = $dataUnit->spl_rekening;
                 $spl_npwp = $dataUnit->spl_NPWP;
 			}
 	else{
@@ -13,8 +12,7 @@
 		$spl_nama = "";
                 $spl_alamat =" ";
                 $spl_telp = "";
-                $spl_perwakilan = "";
-                $spl_jabatan="";
+                $spl_rekening="";
                 $spl_npwp = "";
 			}
 ?>
@@ -57,20 +55,13 @@
                         </div>
                     </div>
                      <div class="form-group">
-                        <label for="spl_perwakilan" class="col-sm-2 control-label text-left">Perwakilan</label>
+                        <label for="spl_perwakilan" class="col-sm-2 control-label text-left">Rekening</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="spl_perwakilan" name="spl_perwakilan" placeholder="Nama Perwakilan" value="<?php echo $spl_perwakilan; ?>" required>
+	                        <input type="text" class="form-control" id="spl_rekening" name="spl_rekening" placeholder="Nomor Rekening" value="<?php echo $spl_rekening; ?>" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                     <div class="form-group">
-                        <label for="spl_jabatan" class="col-sm-2 control-label text-left">Jabatan</label>
-                        <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="spl_jabatan" name="spl_jabatan" placeholder="Jabatan Perwakilan" value="<?php echo $spl_jabatan; ?>" required>
-                            <div class="help-block with-errors"></div>
-                        </div>
-                    </div>
-                    
+                     
                     </div>
             
                 

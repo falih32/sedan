@@ -11,9 +11,6 @@
                 $tgldkh="";
                 $tglspektek="";
                 $no_undangan="";
-                $p_dok_penawaran="";
-                $klarifikasi="";
-                $penandatanganan="";
                 $tgludg="";
                 $lampiran="";
                 
@@ -41,9 +38,6 @@
                 }    
       if($mode7 == 'edit'){	
                 $no_undangan=$kontensuratnoudg->dknt_isi;
-                $p_dok_penawaran=$kontensuratPudg->dknt_isi;
-                $klarifikasi=$kontensuratKudg->dknt_isi;
-                $penandatanganan=$kontensuratPenudg->dknt_isi;
                 $tgludg=$kontensurattgludg->dknt_isi;
                 $lampiran=$kontensuratLudg->dknt_isi;
                 }                                      
@@ -325,28 +319,7 @@
                                     </div>
                                 </div>
                      
-                  <div class="form-group">
-                        <label for="" class="col-sm-5 control-label text-left">Pembukaan Dokumen Penawaran</label>
-               
-                           <div class="col-sm-7">
-                            <input type="text" class="form-control tgl" id="p_dok_penawaran" name="p_dok_penawaran" placeholder="Jadwal Pembukaan Dokumen Penawaran" value="<?php echo $p_dok_penawaran;?>" required>                                   
-                           </div>
-                
-                    </div>       
-                    <div class="form-group">
-                        <label for="" class="col-sm-5 control-label text-left">Klarifikasi Teknis dan Negoisasi Harga</label>
-                       
-                           <div class="col-sm-7">
-                            <input type="text" class="form-control tgl" id="klarifikasi" name="klarifikasi" placeholder="Jadwal Klarifikasi Teknis dan Negoisasi Harga" value="<?php echo $klarifikasi;?>" required>                                   
-                           </div>
-                       
-                    </div> 
-                    <div class="form-group">
-                      <label for="" class="col-sm-5 control-label text-left">Penandatanganan SPK</label>
-                       <div class="col-sm-7"> 
-                            <input type="text" class="form-control tgl1" id="penandatanganan" name="penandatanganan" placeholder="Jadwal Penandatanganan SPK" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $penandatanganan;?>" required>                                   
-                       </div>
-                    </div> 
+                  
                 
                   </div>
                   <div class="col-md-4">

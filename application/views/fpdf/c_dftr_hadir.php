@@ -37,7 +37,7 @@ $pdf->AddPage();
 		$w = array(10,80,55,40);		
 		$pdf->SetWidths($w);
 		$header = array('No', 'Nama Perusahaan', 'Nama Yang Hadir','Tanda Tangan');
-                $np = array($d->spl_nama, '', '');
+                $np = array($d->pgd_perwakilan_spl, '', '');
                 $pwk = array($namap, '', '');
 		$pdf->SetHeaders($header,$w);
 		$n=0;

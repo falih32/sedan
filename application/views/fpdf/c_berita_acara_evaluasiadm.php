@@ -96,7 +96,7 @@ $pdf->AddPage();
 			$n=0;
 		for($i=0;$i<1;$i++){
 		$n++;
-			$pdf->Row1(array($n,$d->spl_nama,$d->spl_perwakilan,'Rp.'.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$b.'rupiah)',$d->pgd_lama_pekerjaan.' Hari Kalender',$pdf->tanggal("j M Y", $tanggalP),'Memenuhi Syarat')); 
+			$pdf->Row1(array($n,$d->spl_nama,$d->pgd_perwakilan_spl,'Rp.'.$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_pnr).',- ('.$b.'rupiah)',$d->pgd_lama_pekerjaan.' Hari Kalender',$pdf->tanggal("j M Y", $tanggalP),'Memenuhi Syarat')); 
 			}
 		$pdf->Ln(5);
 

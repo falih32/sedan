@@ -78,12 +78,44 @@ class M_laporan extends CI_Model{
         return $this->db->get();
      }
      
-     function selecttimpny($id) {
-        $data = $this->db->query("SELECT pgw_nama, lsp_jabatan "
-                . "FROM t_kelompok_penyusun "
-                . "LEFT JOIN t_list_penyusun ON lsp_kelompok = klp_id "
-                . "LEFT JOIN t_pegawai ON pgw_id = lsp_pegawai "
-                . "WHERE klp_pengadaan = '$id' ")->result();
+     function selecttimpnyketua($id) {
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_master_penyusun "
+                . "LEFT JOIN t_pengadaan ON pgd_penyusun = msp_id "
+                . "LEFT JOIN t_pegawai ON pgw_id = msp_ketua "
+                . "WHERE pgd_id = '$id' ")->row();
+       return $data;
+     }
+     function selecttimpnyanggota1($id) {
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_master_penyusun "
+                . "LEFT JOIN t_pengadaan ON pgd_penyusun = msp_id "
+                . "LEFT JOIN t_pegawai ON pgw_id = msp_anggota1 "
+                . "WHERE pgd_id = '$id' ")->row();
+       return $data;
+     }
+     function selecttimpnyanggota2($id) {
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_master_penyusun "
+                . "LEFT JOIN t_pengadaan ON pgd_penyusun = msp_id "
+                . "LEFT JOIN t_pegawai ON pgw_id = msp_anggota2 "
+                . "WHERE pgd_id = '$id' ")->row();
+       return $data;
+     }
+     function selecttimpnyanggota3($id) {
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_master_penyusun "
+                . "LEFT JOIN t_pengadaan ON pgd_penyusun = msp_id "
+                . "LEFT JOIN t_pegawai ON pgw_id = msp_anggota3 "
+                . "WHERE pgd_id = '$id' ")->row();
+       return $data;
+     }
+     function selecttimpnyanggota4($id) {
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_master_penyusun "
+                . "LEFT JOIN t_pengadaan ON pgd_penyusun = msp_id "
+                . "LEFT JOIN t_pegawai ON pgw_id = msp_anggota4 "
+                . "WHERE pgd_id = '$id' ")->row();
        return $data;
      }
     function selectPejPeng(){

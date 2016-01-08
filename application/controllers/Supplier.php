@@ -35,8 +35,7 @@ class Supplier extends CI_Controller {
         $data['spl_alamat']    = $this->input->post('spl_alamat');
         $data['spl_telp']    = $this->input->post('spl_telp');
         $data['spl_npwp']    = $this->input->post('spl_npwp');
-        $data['spl_perwakilan']    = $this->input->post('spl_perwakilan');
-        $data['spl_jabatan']    = $this->input->post('spl_jabatan');
+        $data['spl_rekening']    = $this->input->post('spl_rekening');
         return $data;
     }
     

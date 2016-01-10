@@ -191,6 +191,18 @@ class M_laporan extends CI_Model{
                 . "WHERE dsrt_idpengadaan = '$idpeng' and dsrt_jenis_surat='$idsurat' and dknt_idkonten='$idkonten' ")->row();
        return $data;
      }
+    function selectdipa() {
+        $data = $this->db->query("SELECT * "
+                . "FROM t_dipa "
+                . "order by dipa_id desc ")->result();
+        return  $data;
+     }
+     function pilihdipa($no) {
+        $data = $this->db->query("SELECT * "
+                . "FROM t_dipa "
+                . "where dipa_nomor='$no' and dipa_deleted=0 ")->row();
+        return  $data;
+     }
      
 }
 

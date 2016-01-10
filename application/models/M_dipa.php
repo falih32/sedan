@@ -13,22 +13,22 @@ class M_dipa extends CI_Model{
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_dipa');
-        $this->db->where('spl_deleted', '0');
-        $this->db->order_by('spl_nama', 'desc');
+        $this->db->where('dipa_deleted', '0');
+        $this->db->order_by('dipa_id', 'desc');
         return $this->db->get();
     }
     function selectById($id){
         $this->db->select('*');
         $this->db->from('t_dipa');
-        $this->db->where('spl_id', $id);
+        $this->db->where('dipa_id', $id);
         return $this->db->get();
     }
   
     function ajaxProcess(){
 		$this->datatables
-		->select('spl_id, spl_nama, spl_alamat, spl_npwp, spl_rekening ')
+		->select('dipa_id, dipa_nomor, dipa_nomorsk, dipa_tanggal ')
 		->from('t_dipa')    
-                ->where('spl_deleted', '0')
+                ->where('dipa_deleted', '0')
 		->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
@@ -36,17 +36,17 @@ class M_dipa extends CI_Model{
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='Dipa/edit_dipa/$1'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
 			"</div>".
 			"</form>".
-		"",'spl_id');
+		"",'dipa_id');
 		return $this->datatables->generate();
 	}
     function update($id, $data){
-        $this->db->where('spl_id', $id);
+        $this->db->where('dipa_id', $id);
         $this->db->update('t_dipa', $data);
     }
     
     function delete($id){
- 	$data['spl_deleted'] = '1';
-        $this->db->where('spl_id', $id);
+ 	$data['dipa_deleted'] = '1';
+        $this->db->where('dipa_id', $id);
         $this->db->update('t_dipa', $data);
     }
     

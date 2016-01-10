@@ -102,6 +102,9 @@
                                 <li>
                                     <a href="<?php echo site_url("Penyusun"); ?>">Penyusun</a>
                                 </li>
+                                <li>
+                                    <a href="<?php echo site_url("Dipa"); ?>">DIPA</a>
+                                </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

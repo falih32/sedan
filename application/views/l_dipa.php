@@ -2,28 +2,26 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h1>
-            <i class="fa fa-book"></i> Supplier
+            <i class="fa fa-book"></i> Dipa
             <?php if($role <= 1){?>
-            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Supplier' href="<?php echo base_url()."Supplier/";?>tambah_supplier"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Dipa' href="<?php echo base_url()."Dipa/";?>tambah_dipa"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
             <?php } ?>
         </h1>
         <hr>
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <i class="fa fa-book"></i> Daftar Supplier
+                <i class="fa fa-book"></i> Daftar Dipa
             </div>
             <div class="panel-body">
             </div>
-            <table class="table table-responsive table-hover table-striped" id="tabel-supplier">
+            <table class="table table-responsive table-hover table-striped" id="tabel-dipa">
             	<thead>
                 <tr>
                     <th>id</th>	
-                    <th>Nama</th>
-                     <th>Alamat</th>
-                     <th>NPWP</th>
-                     <th>No. Rekening</th>
-                    <th>Aksi</th>
-
+                    <th>Nomor DIPA</th>
+                     <th>No. SK DIPA</th>
+                     <th>Tanggal</th>
+                        <th>Aksi</th>
                 </tr>
                 </thead>
             </table>
@@ -63,7 +61,7 @@
     }
 
 $(document).ready(function() {
-	var table = $('#tabel-supplier').DataTable( {
+	var table = $('#tabel-dipa').DataTable( {
             "paging": true, 
             "search":true,
             "scrollX":true,
@@ -73,21 +71,20 @@ $(document).ready(function() {
             "serverSide": true,
             "pageLength": 50,
             "ajax":{
-                "url":"<?php echo site_url('Supplier/ajaxProcess');?>",
+                "url":"<?php echo site_url('Dipa/ajaxProcess');?>",
                 "type":"POST"
             },
             "columns": [
-                { "data": "spl_id" },
-                { "data": "spl_nama" },
-                 { "data": "spl_alamat" },
-                  { "data": "spl_npwp" },
-                   { "data": "spl_rekening" },
+                { "data": "dipa_id" },
+                { "data": "dipa_nomor" },
+                 { "data": "dipa_nomorsk" },
+                  { "data": "dipa_tanggal" },
                 { "data": "aksi" }
             ],
             "columnDefs": [
-                { "searchable": false, "orderable":false, "targets": [0,5] }
+                { "searchable": false, "orderable":false, "targets": [0,4] }
             ],
-            "order": [[ 4, "asc" ]],
+            "order": [[ 0, "desc" ]],
             "drawCallback": function( settings ) {
                 makeConfirmation();
                 makeTooltip();

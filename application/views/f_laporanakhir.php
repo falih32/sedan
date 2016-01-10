@@ -2,10 +2,16 @@
                 $nospk = "";
 		$tglspk = "";
 		$nospmk= "";
-                $tglspmk="";                
+                $tglspmk=""; 
+                $tglawal="";
+                $tglakhir="";
+                $dipa_nomor="";
      if($mode1 == 'edit'){	
 		$nospk = $kontensuratnoSPK->dknt_isi;
 		$tglspk = $kontensurattglSPK->dknt_isi;
+                $tglawal = $kontensurattglawal->dknt_isi;
+                $tglakhir = $kontensurattglakhir->dknt_isi;
+                $dipa_nomor=$kontendipa->dknt_isi;
                 }
       if($mode2 == 'edit'){	
                 $nospmk=$kontensuratnoSPMK->dknt_isi;
@@ -38,7 +44,35 @@
                             
                         </div>
                     </div>        
+                    <div class="form-group">
+                        <label for="" class="col-sm-10 control-label text-left">Waktu Pelaksanaan Pekerjaan <?php echo $d->pgd_lama_pekerjaan?> hari</label>
+                    </div>
+                  <div class="form-group">
+                       <label for="tanggal" class="col-sm-3 control-label text-left">Dari</label>
+                           <div class="col-sm-3">
+                               <input type="text" class="form-control tgl1" id="tglawal" name="tglawal" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $tglawal;?>" required>                                   
+                           </div>
+                       
+                       <label for="tanggal" class="col-sm-2 control-label text-left">s.d</label>
+   
+                           <div class="col-sm-3">
+                               <input type="text" class="form-control tgl1" id="tglakhir" name="tglakhir" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $tglakhir;?>" required>                                   
+                           </div>
                       
+                    </div>
+                      
+                   <div class="form-group">
+                        <label for="dipa" class="col-sm-3 control-label text-left">Dipa</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" id="dipa_nomor" name="dipa_nomor">
+                            	<?php foreach ($dipalist as $row) {?>
+                            	<option value="<?php echo $row->dipa_nomor; ?>" <?php if($row->dipa_nomor == $dipa_nomor){echo "selected";}?>><?php echo $row->dipa_nomor; ?></option>
+                                <?php } ?>
+                            </select>
+                            
+                        </div>
+                    </div>   
+                  
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
                   </div>
                 <div class="col-md-4"><hr>
@@ -52,6 +86,7 @@
                            </div>
                        </div>
                     </div>
+
                     <div class="form-group">
                        <div class="col-sm-2">
                         <div class="btn-group" role="group" aria-label="...">

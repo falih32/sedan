@@ -24,8 +24,8 @@ Tanggal '.$pdf->tanggal("j M Y",$tglspk),'LR','L');
                 $pdf->Line($x1, $y1, $x2, $y2);
                 $pdf->Line($x2, $y2, $x2+60, $y2);
                 
-                $pdf->MultiCell(0,5,'Sumber Dana : dibebankan atas DIPA __________ Tahun Anggaran ____ untuk mata anggaran kegiatan __________',1,'J');
-                $pdf->MultiCell(0,5,'Waktu Pelaksanaan Pekerjaan: '.$d->pgd_lama_pekerjaan.' Hari Kalender terhitung sejak tanggal xx xxxx xxxx sd xx xxxx xxxxxxxxxxx',1,'J');
+                $pdf->MultiCell(0,5,'Sumber Dana : dibebankan atas DIPA '.$dipa->dipa_nomor.' Tanggal '.$pdf->tanggal("j M Y",$dipa->dipa_tanggal).' untuk mata anggaran kegiatan '.$d->pgd_anggaran,1,'J');
+                $pdf->MultiCell(0,5,'Waktu Pelaksanaan Pekerjaan: '.$d->pgd_lama_pekerjaan.' Hari Kalender terhitung sejak tanggal '.$pdf->tanggal("j M Y",$tglawal).' s.d '.$pdf->tanggal("j M Y",$tglakhir),1,'J');
                 $pdf->MultiCell(0,5,'NILAI PEKERJAAN',1,'C');
                 $header = array('No', 'Uraian Pekerjaan', 'Kuantitas','Satuan Ukuran','Harga Satuan (Rp.)','Total (Rp.)');
                 $w = array(10,60,25,30,30,30);

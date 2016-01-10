@@ -33,7 +33,7 @@ class Dipa extends CI_Controller {
 	//$data['utj_id']             = $this->input->post('utj_id');
 	$data['dipa_nomor']    = $this->input->post('dipa_nomor');
         $data['dipa_nomorsk']    = $this->input->post('dipa_nomorsk');
-        $data['dipa_tahun']    = $this->input->post('dipa_tahun');
+        $data['dipa_tanggal']    = $this->input->post('dipa_tanggal');
         return $data;
     }
     

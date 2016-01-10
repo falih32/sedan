@@ -3,12 +3,12 @@
 		$id = $dataUnit->dipa_id;
 		$dipa_nomor = $dataUnit->dipa_nomor;
                 $dipa_nomorsk = $dataUnit->dipa_nomorsk;
-                $dipa_tahun = $dataUnit->dipa_tahun;
+                $dipa_tanggal = $dataUnit->dipa_tanggal;
 			}
 	else{		
 		$dipa_nomor = "";
                 $dipa_nomorsk =" ";
-                $dipa_tahun = "";
+                $dipa_tanggal = "";
                 
 			}
 ?>
@@ -19,7 +19,7 @@
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
-            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."Dipa/proses_edit_supplier";}else{echo base_url()."Supplier/proses_tambah_supplier";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+            <form method="post" action="<?php if($mode == 'edit'){echo base_url()."Dipa/proses_edit_dipa";}else{echo base_url()."Dipa/proses_tambah_dipa";}?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
@@ -37,9 +37,10 @@
                         </div>
                     </div>
                      <div class="form-group">
-                        <label for="" class="col-sm-2 control-label text-left">Tahun Anggaran</label>
+                        <label for="" class="col-sm-2 control-label text-left">Tanggal</label>
                         <div class="col-sm-10">
-	                        <input type="text" class="form-control" id="dipa_tahun" name="dipa_tahun" placeholder="Tahun Anggaran DIPA" value="<?php echo $dipa_tahun; ?>" required>
+                             <input type="text" class="form-control tgl1" id="dipa_tanggal" name="dipa_tanggal" placeholder="tanggal" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" value="<?php echo $dipa_tanggal;?>" required> 
+	                        
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-01-09 12:25:19
+Date: 2016-01-13 20:05:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,7 +29,7 @@ CREATE TABLE `tr_detail_konten` (
   KEY `tr_detailsurat` (`dknt_detailsurat`) USING BTREE,
   CONSTRAINT `tr_detail_konten_ibfk_1` FOREIGN KEY (`dknt_idkonten`) REFERENCES `t_konten` (`knt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `tr_detail_konten_ibfk_2` FOREIGN KEY (`dknt_detailsurat`) REFERENCES `tr_detail_surat` (`dsrt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=142 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_detail_konten
@@ -67,6 +67,13 @@ INSERT INTO `tr_detail_konten` VALUES ('BAK.12112121221', '127', '9', '63');
 INSERT INTO `tr_detail_konten` VALUES ('2016-01-02', '128', '3', '63');
 INSERT INTO `tr_detail_konten` VALUES ('SKP.asasaasas', '129', '14', '63');
 INSERT INTO `tr_detail_konten` VALUES ('2016-01-03', '130', '15', '63');
+INSERT INTO `tr_detail_konten` VALUES ('2016-01-17', '135', '3', '65');
+INSERT INTO `tr_detail_konten` VALUES ('SPMK.12344543', '136', '9', '65');
+INSERT INTO `tr_detail_konten` VALUES ('2016-01-01', '137', '3', '66');
+INSERT INTO `tr_detail_konten` VALUES ('SPK.2222222111', '138', '9', '66');
+INSERT INTO `tr_detail_konten` VALUES ('2016-01-05', '139', '10', '66');
+INSERT INTO `tr_detail_konten` VALUES ('2016-01-24', '140', '11', '66');
+INSERT INTO `tr_detail_konten` VALUES ('DIP.345766768688', '141', '12', '66');
 
 -- ----------------------------
 -- Table structure for tr_detail_surat
@@ -84,7 +91,7 @@ CREATE TABLE `tr_detail_surat` (
   KEY `fk_pgd_dsrt` (`dsrt_idpengadaan`) USING BTREE,
   CONSTRAINT `tr_detail_surat_ibfk_1` FOREIGN KEY (`dsrt_idpengadaan`) REFERENCES `t_pengadaan` (`pgd_id`),
   CONSTRAINT `tr_detail_surat_ibfk_2` FOREIGN KEY (`dsrt_jenis_surat`) REFERENCES `t_surat` (`srt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=64 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=67 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of tr_detail_surat
@@ -106,6 +113,8 @@ INSERT INTO `tr_detail_surat` VALUES ('59', '13', '2016-01-05 23:15:44', '1', '1
 INSERT INTO `tr_detail_surat` VALUES ('60', '14', '2016-01-05 23:17:13', '1', '15');
 INSERT INTO `tr_detail_surat` VALUES ('61', '15', '2016-01-05 23:17:31', '1', '15');
 INSERT INTO `tr_detail_surat` VALUES ('63', '12', '2016-01-05 23:51:04', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('65', '19', '2016-01-09 20:55:32', '1', '15');
+INSERT INTO `tr_detail_surat` VALUES ('66', '18', '2016-01-10 11:47:28', '1', '15');
 
 -- ----------------------------
 -- Table structure for tr_pgd_suratizin
@@ -235,16 +244,19 @@ INSERT INTO `t_detail_pengadaan` VALUES ('55', '15', 'Silent kaca yang bocor', '
 -- ----------------------------
 DROP TABLE IF EXISTS `t_dipa`;
 CREATE TABLE `t_dipa` (
-  `dipa_id` bigint(255) DEFAULT NULL,
+  `dipa_id` bigint(255) NOT NULL AUTO_INCREMENT,
   `dipa_nomor` varchar(255) DEFAULT NULL,
   `dipa_nomorsk` varchar(255) DEFAULT NULL,
-  `dipa_deleted` int(20) DEFAULT NULL,
-  `dipa_tahun` varchar(4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `dipa_deleted` int(20) DEFAULT '0',
+  `dipa_tanggal` date DEFAULT NULL,
+  PRIMARY KEY (`dipa_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_dipa
 -- ----------------------------
+INSERT INTO `t_dipa` VALUES ('3', 'DIP.245766768688', 'SK.1212121211111', '0', '2016-01-09');
+INSERT INTO `t_dipa` VALUES ('4', 'DIP.345766768688', 'SK.111111111111', '0', '2016-01-10');
 
 -- ----------------------------
 -- Table structure for t_jabatan
@@ -316,9 +328,9 @@ INSERT INTO `t_konten` VALUES ('Kepada', '2');
 INSERT INTO `t_konten` VALUES ('Tanggal', '3');
 INSERT INTO `t_konten` VALUES ('lampiran', '4');
 INSERT INTO `t_konten` VALUES ('Nomor', '9');
-INSERT INTO `t_konten` VALUES ('tanggal undangan pembukaan', '10');
-INSERT INTO `t_konten` VALUES ('tanggal undangan klarifikasi', '11');
-INSERT INTO `t_konten` VALUES ('tanggal undangan penandatanganan', '12');
+INSERT INTO `t_konten` VALUES ('tanggal mulai pekerjaan', '10');
+INSERT INTO `t_konten` VALUES ('tanggal akhir pekerjaan', '11');
+INSERT INTO `t_konten` VALUES ('dipa', '12');
 INSERT INTO `t_konten` VALUES ('perwakilan', '13');
 INSERT INTO `t_konten` VALUES ('Nomor Keputusan Kuasa Pengguna Anggaran', '14');
 INSERT INTO `t_konten` VALUES ('Tanggal  Keputusan Kuasa Pengguna Anggaran', '15');
@@ -504,12 +516,13 @@ CREATE TABLE `t_supplier` (
   `spl_deleted` int(255) DEFAULT '0',
   `spl_rekening` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`spl_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 -- ----------------------------
 -- Records of t_supplier
 -- ----------------------------
 INSERT INTO `t_supplier` VALUES ('02-248.853.0-039.000', '11111', 'Jalan Parahyangan', 'PT. Merdeka', '1', '0', '0198882772177178');
+INSERT INTO `t_supplier` VALUES (null, null, null, null, '2', '1', null);
 
 -- ----------------------------
 -- Table structure for t_surat

@@ -43,6 +43,8 @@
                 </table>
                 <?php while ($i < $totalArray) {?>
                 <table class="table table-striped table-bordered table-hover" width="50%">
+                    <col width="50%">
+                    <col width="50%">
                     <tbody>
                         <?php $j=$i;
                                 $status = 'true';
@@ -62,18 +64,49 @@
                             <?php }?>
                         <?php }?>
                         <?php if($status == 'false'){ $j=$j+1; }?>
-                        <tr>
-                        	<th>Cetak Ulang</th>
-                        	<td><form id = "anggaran_form" method="post" action="<?php echo site_url('Latihan/cetakUlang/'.$histori_surat[$i]->dsrt_id);?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
-                              
-                                        <button type="submit" class="btn btn-primary" >Cetak Ulang</button>
-                                    </form>
-                                </td>
-                        </tr>
+                        
                         <?php $i=$j?>
                     </tbody>
                 </table>
                 <?php }?>
+                <div class="col-md-12 text-center"><hr>
+                    <?php
+                    switch ($pgd_status_pengadaan) {
+                    case "0":
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        break;
+                    case "1":
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        break;
+                    case "2":
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
+                        break;
+                    case "3":
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
+                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNG</a>';
+                        break;
+                    case "4":
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
+                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNG</a>';
+                        break;
+                    case "5":
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
+                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNG</a>';
+                        break;
+                    default:
+                        
+
+                } ?>
+                </div>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">

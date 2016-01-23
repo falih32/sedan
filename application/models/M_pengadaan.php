@@ -231,16 +231,15 @@ class M_pengadaan extends CI_Model{
 			"<form>".
 			"<div class='form-group'>".
 			
-			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+			"------".
                         
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
                 // jika ada role status selesai pengen dibalikan pake if disini
-                $this->datatables->add_column('konfirm_selesai', '<?php '
-                        . 'if($2 == 1){'
-                        . 'echo "fak";}?>'
-                        . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                $this->datatables->add_column('konfirm_selesai', ''
+                        . '<a class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        . '<?php }?>'
                         , 'pgd_id, pgd_status_pengadaan');
                 
                 break;
@@ -251,13 +250,13 @@ class M_pengadaan extends CI_Model{
     function ajaxProcessJasa($min, $max, $status){
         $this->db->query("SET lc_time_names = 'id_ID'");
 	$this->datatables
-                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran,IF(pgd_status_selesai = '-1', 'penawaran tidak berhasil','') as pnr_gagal, "
+                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran,IF(pgd_status_selesai = '-1', 'penawaran tidak berhasil','') as pnr_gagal, pgd_status_pengadaan, "
                         . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
                         . "spl_nama as supplier_name, "
                         . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_hps, "
                         . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_pnr,'2')) as pgd_jml_ssdh_ppn_pnr,"
-                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_fix ")
+                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_fix,'2')) as pgd_jml_ssdh_ppn_fix ")
                 ->from('t_pengadaan')
                
                 ->join('t_supplier', 'spl_id = pgd_supplier','left')
@@ -317,15 +316,14 @@ class M_pengadaan extends CI_Model{
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Negosiasi' href='".base_url()."Laporan/LaporanFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Negosiasi' href='".base_url()."Laporan/LaporanFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Nego)</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
-                // jika ada role status selesai pengen dibalikan pake if disini
-                $this->datatables->add_column('konfirm_selesai', '<?php '
-                        . 'if($2 == 1){'
+                 $this->datatables->add_column('konfirm_selesai', '<?php '
+                        . 'if($2 == 3){'
                         . 'echo "fak";}?>'
-                        . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        . '<a class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
                         , 'pgd_id, pgd_status_pengadaan');
                 break;
             case "3":
@@ -391,16 +389,15 @@ class M_pengadaan extends CI_Model{
 			"<form>".
 			"<div class='form-group'>".
 			
-			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+			"------".
                         
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
                 // jika ada role status selesai pengen dibalikan pake if disini
-                $this->datatables->add_column('konfirm_selesai', '<?php '
-                        . 'if($2 == 1){'
-                        . 'echo "fak";}?>'
-                        . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                $this->datatables->add_column('konfirm_selesai', ''
+                        . '<a class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        . '<?php }?>'
                         , 'pgd_id, pgd_status_pengadaan');
                 
                 break;

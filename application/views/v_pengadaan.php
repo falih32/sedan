@@ -182,7 +182,7 @@
                     <tbody>
                     	<?php foreach ($pekerjaanList as $row) {?>
                             <tr><td><?php echo $row->dtp_pekerjaan; ?><br><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row->dtp_id; ?>">Spec</button></td>
-                            <td><?php echo $row->dtp_volume.' '.$row->dtp_satuan; ?></td>
+                            <td><?php echo ($row->dtp_volume+0).' '.$row->dtp_satuan; ?></td>
                             <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
                             <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_pnr,0,",","."); ?></td>
                             <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_fix,0,",","."); ?></td>

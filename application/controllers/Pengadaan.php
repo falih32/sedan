@@ -173,6 +173,26 @@ class Pengadaan extends CI_Controller{
         $data['statusPengadaan']= '3';
         $this->load->view('layout',$data);
     }
+    
+    public function PengadaanJasaSpk(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa (Setelah Pengumuman)';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '4';
+        $this->load->view('layout',$data);
+    }
+    
+     public function PengadaanJasaFns(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa Yang Telah Selesai';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '5';
+        $this->load->view('layout',$data);
+    }
 		
     public function ajaxProcess(){
         $min=$this->input->post('min');
@@ -280,6 +300,7 @@ class Pengadaan extends CI_Controller{
     
     public function add_pengadaan1($tipe,$id){
         $row = $this->m_pengadaan->selectById($id);
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
         $data['content'] = 'f_pengadaan_1';
         $data['title']= "Tambah Pengadaan ".$tipe;
         $data['Judul']= $tipe;
@@ -434,6 +455,7 @@ class Pengadaan extends CI_Controller{
     
     public function edit_pengadaan1($tipe,$id){
         $row = $this->m_pengadaan->selectById($id);
+        $data['dataPengadaan'] = $row;
         $data['content'] = 'f_pengadaan_1';
         $data['title']= "Edit Pengadaan ".$tipe;
         $data['Judul']= $tipe;
@@ -760,17 +782,18 @@ class Pengadaan extends CI_Controller{
     }
     
     function delete_pengadaan($id){
+        $dt = $this->m_pengadaan->selectById($id);
         $this->m_pengadaan->delete($id);
-        $tipe = $this->input->get('pgd_tipe_pengadaan');
+        $tipe = $dt->pgd_tipe_pengadaan;
         if($tipe == 0){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-            redirect(site_url('Pengadaan/PengadaanBarangPenawaran'));
+            redirect(site_url('Pengadaan/PengadaanBarangHPS'));
         }else if($tipe == 1){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-            redirect(site_url('Pengadaan/PengadaanJasaPenawaran'));
+            redirect(site_url('Pengadaan/PengadaanJasaHPS'));
         }else if($tipe == 2){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-            redirect(site_url('Pengadaan/PengadaanKonsultanPenawaran'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanHPS'));
         }
     }
     
@@ -782,6 +805,7 @@ class Pengadaan extends CI_Controller{
     
     function batal_konfirmasi($id){
         $data['pgd_status_selesai']   = 0;
+        $data['pgd_status_pengadaan']   = 4;
         $this->m_pengadaan->update( $id,$data);  
     }
     

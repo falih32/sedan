@@ -22,6 +22,7 @@
                      <th>Alamat</th>
                      <th>NPWP</th>
                      <th>No. Rekening</th>
+                     <th>Bank</th>
                     <th>Aksi</th>
 
                 </tr>
@@ -82,10 +83,12 @@ $(document).ready(function() {
                  { "data": "spl_alamat" },
                   { "data": "spl_npwp" },
                    { "data": "spl_rekening" },
+                   { "data": "spl_bank" },
                 { "data": "aksi" }
             ],
             "columnDefs": [
-                { "searchable": false, "orderable":false, "targets": [0,5] }
+                { "searchable": false, "orderable":false, "targets": [0,6] },
+                {  "visible":false, "targets": [0]}
             ],
             "order": [[ 4, "asc" ]],
             "drawCallback": function( settings ) {

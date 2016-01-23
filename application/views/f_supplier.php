@@ -6,6 +6,7 @@
                 $spl_telp = $dataUnit->spl_telp;
                 $spl_rekening = $dataUnit->spl_rekening;
                 $spl_npwp = $dataUnit->spl_NPWP;
+                $spl_bank = $dataUnit->spl_bank;
 			}
 	else{
 		
@@ -14,6 +15,7 @@
                 $spl_telp = "";
                 $spl_rekening="";
                 $spl_npwp = "";
+                $spl_bank = "";
 			}
 ?>
 <div class="container-fluid">
@@ -55,13 +57,19 @@
                         </div>
                     </div>
                      <div class="form-group">
-                        <label for="spl_perwakilan" class="col-sm-2 control-label text-left">Rekening</label>
+                        <label for="spl_rekening" class="col-sm-2 control-label text-left">Rekening</label>
                         <div class="col-sm-10">
 	                        <input type="text" class="form-control" id="spl_rekening" name="spl_rekening" placeholder="Nomor Rekening" value="<?php echo $spl_rekening; ?>" required>
                             <div class="help-block with-errors"></div>
                         </div>
                     </div>
-                     
+                    <div class="form-group">
+                        <label for="spl_bank" class="col-sm-2 control-label text-left">Nama Bank</label>
+                        <div class="col-sm-10">
+	                        <input type="text" class="form-control" id="spl_bank" name="spl_bank" placeholder="Nama Bank" value="<?php echo $spl_bank; ?>" required>
+                            <div class="help-block with-errors"></div>
+                        </div>
+                    </div> 
                     </div>
             
                 

@@ -236,8 +236,13 @@
                             <td style='display:none;'><?php echo $row->dtp_jumlahharga_hps; ?></td>
                             <script type="text/javascript">
                                     $(document).ready(function() {
-                                           
-                                            $('#dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').bind('input', function() {
+                                            Number.prototype.format = function(n, x, s, c) {
+                                                var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+                                                    num = this.toFixed(Math.max(0, ~~n));
+
+                                                return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+                                            };
+                                            function cekHrg<?php echo $row->dtp_id; ?>() {
                                                 //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
                                                 var pnrHarga = parseFloat(document.getElementById('dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').value);
                                                 var hpsHarga = parseFloat(document.getElementById('dtp_hargasatuan_hps<?php echo $row->dtp_id; ?>').value);
@@ -256,18 +261,15 @@
                                                     document.getElementById("Xjml_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.'+tot.format(0,3,'.');
                                                     document.getElementById("lbl_dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.'+pnrHarga.format(0,3,'.');
                                                 }else{
-                                                    document.getElementById("jml_pnr<?php echo $row->dtp_id; ?>").innerHTML = "Input tidak Valid";
-                                                    document.getElementById("Xjml_pnr<?php echo $row->dtp_id; ?>").innerHTML = "Input tidak Valid";
+                                                    document.getElementById("jml_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("Xjml_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
                                                     document.getElementById("lbl_dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
                                                 }
-                                                
-                                            });
-                                             Number.prototype.format = function(n, x, s, c) {
-                                                var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
-                                                    num = this.toFixed(Math.max(0, ~~n));
-
-                                                return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
-                                            };
+  
+                                            }
+                                            cekHrg<?php echo $row->dtp_id; ?>();
+                                            $('#dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').bind('input', cekHrg<?php echo $row->dtp_id; ?>);
+                                             
                                     });
                             </script>
                         <?php $totRowPekerjaan = $totRowPekerjaan+1;} ?>
@@ -481,6 +483,12 @@ function submitFormPenawaran() {
     //$(this).preventDefault();
 }
 
+Number.prototype.format = function(n, x, s, c) {
+    var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+        num = this.toFixed(Math.max(0, ~~n));
+
+    return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+};
 var myVar = setInterval(myTimer, 3000);
 
 function myTimer() {
@@ -520,8 +528,7 @@ $(document).ready(function() {
 	$(':checkbox').checkboxpicker();
 	$('[data-toggle="tooltip"]').tooltip({});
         
-        
-        $("#pgd_tgl_pemasukkan_pnr").on("change.dp", function (e) {
+        function bindInputTglPnr() {
             var awal = document.getElementById('pgd_wkt_awal_penawaran').value;
             var akhir = document.getElementById('pgd_wkt_akhir_penawaran').value;
             var input = document.getElementById('pgd_tgl_pemasukkan_pnr').value+':00';
@@ -540,7 +547,9 @@ $(document).ready(function() {
             }else{
                 $('#icon_status_pgd_tgl_pemasukkan_pnr').removeClass('glyphicon-ok text-success').addClass('glyphicon-remove text-danger');
             }
-       });
+       }
+       bindInputTglPnr();
+        $("#pgd_tgl_pemasukkan_pnr").on("change.dp", bindInputTglPnr);
         
 //	$('.hargasatuan_pnr').bind('input', function() {
 //            //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);

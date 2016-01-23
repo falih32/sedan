@@ -26,7 +26,7 @@ class M_supplier extends CI_Model{
   
     function ajaxProcess(){
 		$this->datatables
-		->select('spl_id, spl_nama, spl_alamat, spl_npwp, spl_rekening ')
+		->select('spl_id, spl_nama, spl_alamat, spl_npwp, spl_rekening, spl_bank ')
 		->from('t_supplier')    
                 ->where('spl_deleted', '0')
 		->edit_column('aksi',"".

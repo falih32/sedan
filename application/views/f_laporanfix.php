@@ -217,7 +217,7 @@
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                             <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
-                            <button type="submit" class="btn btn-lg btn-success" id="btnPengadaan"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Next</button>
+                            <button type="submit" title="Lanjutkan ke Tahap selanjutnya" class="btn btn-lg btn-success" id="btnPengadaan"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Next</button>
                         </div>
                     </div>
                 </div>

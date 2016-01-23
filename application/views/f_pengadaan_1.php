@@ -3,8 +3,10 @@ if($statuspage !="edit"){
         
         $pgd_jml_sblm_ppn_hps = "0";
         $pgd_jml_ssdh_ppn_hps = "0";
-       
+        $pgd_status_pengadaan = 0;
         
+    }else{
+        $pgd_status_pengadaan = $dataPengadaan->pgd_status_pengadaan;
     } 
 ?>
 <div class="container-fluid">
@@ -14,6 +16,7 @@ if($statuspage !="edit"){
                 <h3><?php echo $title; ?></h3>
             </div>
             <div class="panel-body">
+                <?php if($pgd_status_pengadaan==0){ ?>
                 <form method="post" id = "dtl_pengadaan_form"  action = "" class="form-horizontal" data-toggle="validator">
                     <div class="col-md-12">
 <!-----Detail barang/jasa---------------------------------------------------------------------------------------------------->                        
@@ -158,6 +161,7 @@ if($statuspage !="edit"){
                                    <input type="hidden" class="form-control" id="dtp_pengadaan" name="dtp_pengadaan" value= "<?php echo $dtp_pengadaan;?>" placeholder="Detail Pekerjaan">
                      </div>
                 </form>
+                
  <!------Syarat penyedia--------------------------------------------------------------------------------------------------->                         
                     <form id = "pengadaan_form"  action = '<?php if($statuspage =="edit"){ echo base_url()."Pengadaan/proses_edit_pengadaan2";}else{echo base_url()."Pengadaan/proses_add_pengadaan2";} ?>' onsubmit="submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">    
@@ -254,7 +258,7 @@ if($statuspage !="edit"){
                     </div>
                 </div>
                 </form>
-                
+            <?php }else{echo '<h3>Pengadaan Ini telah Berhasil melakukan Input penawaran, Halaman akan segera dikembalikan.</h3>' ;}?>    
             </div>
         </div>
     </div>
@@ -281,7 +285,25 @@ function submitFormPengadaan() {
 
      
 $(document).ready(function() {
-    
+     <?php if($pgd_status_pengadaan!=0){ ?>
+        function goBack() {
+            window.history.go(-2);
+        }
+        goBack();
+     <?php } ?>
+    $('#dtp_file').bind('change', function() {
+        if ( window.FileReader && window.File && window.FileList && window.Blob )
+        {
+            if(this.files[0].type == "image/jpeg" || this.files[0].type == "image/png" || this.files[0].type == "application/pdf" || this.files[0].type == "image/gif"){
+                if(this.files[0].size > 10485760){
+                    alert("Ukuran file yang anda pilih terlalu besar.\n File dengan ukuran terlalu besar tidak akan disimpan pada sistem.");
+                }
+            }
+            else{
+                alert(this.files[0].type+"Tipe file yang anda masukkan tidak sesuai.\n File dengan tipe yang tidak sesuai spesifikasi tidak akan disimpan pada sistem.");
+            }
+        }
+    });
     $('#dtp_hargasatuan_hps').bind('input', function() {
         //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
         var Harga = parseFloat(document.getElementById('dtp_hargasatuan_hps').value);

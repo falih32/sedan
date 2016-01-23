@@ -65,7 +65,7 @@
                                     <a href="<?php echo site_url("Pengadaan/PengadaanJasaPng"); ?>">Setelah Pengumuman</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaPng"); ?>">Setelah SPK</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaSpk"); ?>">Setelah SPK</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanJasaFns"); ?>">Pengadaan yang Telah Selesai</a>
@@ -81,22 +81,22 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Pengadaan Konsultan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">HPS</a>
+                                    <a href="#">Setelah HPS(Belum Tersedia)</a>
                                 </li>
                                 <li>
-                                    <a href="#">Penawaran</a>
+                                    <a href="#">Setelah Penawaran(Belum Tersedia)</a>
                                 </li>
                                 <li>
-                                    <a href="#">Fix</a>
+                                    <a href="#">Setelah Negoisasi(Belum Tersedia)</a>
                               
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
-                        <li>
+<!--                        <li>
                             <a href="#"><i class="fa fa-files-o fa-fw"></i> Upload Laporan</a>
                  
-                        </li>
+                        </li>-->
                         <?php if($role == "1"){ ?>
                         <li>
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Referensi<span class="fa arrow"></span></a>

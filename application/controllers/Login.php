@@ -59,7 +59,7 @@ class Login extends CI_Controller{
                 $data['title'] = 'Dashboard';    
                 $this->session->set_flashdata('message', array('msg' => 'Anda berhasil login sebagai <strong>'.$this->session->userdata('username').'</strong>','class' => 'success'));   
                 if($this->session->flashdata('history') != ""){redirect($this->session->flashdata('history'));}
-                else{redirect(site_url('Pengadaan/PengadaanBarangHPS'));}
+                else{redirect(site_url('Dashboard'));}
             }
             else {
                 // kalau ga ada diredirect lagi ke halaman login

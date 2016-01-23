@@ -22,6 +22,21 @@
                 $pgd_smbr_dana = $dataPengadaan->pgd_smbr_dana;
                 $pgd_status_pengadaan = $dataPengadaan->pgd_status_pengadaan;
                 $pgd_dgn_pajak = $dataPengadaan->pgd_dgn_pajak;
+                
+                $pgd_tgl_pemasukkan_pnr = $dataPengadaan->pgd_tgl_pemasukkan_pnr;
+                $pgd_no_srt_penawaran = $dataPengadaan->pgd_no_srt_penawaran; 
+                $pgd_perwakilan_spl = $dataPengadaan->pgd_perwakilan_spl; 
+                $pgd_jbt_perwakilan_spl = $dataPengadaan->pgd_jbt_perwakilan_spl; 
+                $pnc_kesesuaian_ttd = $dataPengadaan->pnc_kesesuaian_ttd;
+                $pnc_kesesuaian_alamat_spl = $dataPengadaan->pnc_kesesuaian_alamat_spl;
+                $pnc_srt_penawaran = $dataPengadaan->pnc_srt_penawaran;
+                $pnc_daftar_knts_hrg = $dataPengadaan->pnc_daftar_knts_hrg;
+                $pnc_dok_pnr_teknis = $dataPengadaan->pnc_dok_pnr_teknis;
+                $pnc_isian_kualifikasi = $dataPengadaan->pnc_isian_kualifikasi;
+                $pnc_kesesuaian_spec_teknis = $dataPengadaan->pnc_kesesuaian_spec_teknis;
+                $pnc_kesesuaian_jdwl_kerja = $dataPengadaan->pnc_kesesuaian_jdwl_kerja;
+                $pnc_kesesuaian_identitas = $dataPengadaan->pnc_kesesuaian_identitas;
+                
 		$nm_ketua = $penyusunlist-> nm_ketua;
 		$nip_ketua = $penyusunlist-> nip_ketua;
                 $jbt_ketua = $penyusunlist->jbt_ketua;
@@ -57,16 +72,22 @@
     } 
         switch ($pgd_status_pengadaan) {
         case "0":
-            $status_pengadaan = "HPS";
+            $status_pengadaan = "Tahapan Setelah HPS";
             break;
         case "1":
-           $status_pengadaan  = "Penawaran";
+           $status_pengadaan  = "Tahapan Setelah Penawaran";
             break;
         case "2":
-            $status_pengadaan = "Deal/Fix";
+            $status_pengadaan = "Tahapan Setelah Negoisasi";
             break;
         case "3":
-            $status_pengadaan = "Selesai";
+            $status_pengadaan = "Tahapan Setelah Pengumuman";
+            break;
+        case "4":
+            $status_pengadaan = "Tahapan Setelah SPMK";
+            break;
+        case "5":
+            $status_pengadaan = "Pengadaan Telah Selesai";
             break;
         default:
             $status_pengadaan = "";
@@ -124,7 +145,7 @@
                         </tr>
                         <tr>
                         	<th>Status Pengadaan</th>
-                                <td><?php echo $status_pengadaan; ?></td>
+                                <td><b><?php echo $status_pengadaan; ?></b></td>
                         </tr>
                         <tr>
                         	<th>Penyusun</th>
@@ -194,7 +215,10 @@
                             </div>
                         <?php } ?>
                     </tbody>
+                    
                 </table>
+                <?php if($pgd_dgn_pajak == 1){ echo'<i class ="pull-right"><font color="red">*Total Harga Sudah Dengan Pajak</font></i>';}?>
+                <br><br>
                 <table class="table table-striped table-bordered table-hover" width="50%">
                     <tbody>
                     	<tr>
@@ -202,24 +226,30 @@
                         	<td><?php echo 'Rp. '.number_format($pgd_jml_sblm_ppn_hps,0,",","."); ?></td>
                         </tr>
                     	<tr>
+                            <?php if($pgd_dgn_pajak != 1){?>
                         	<th>Total Keseluruhan(HPS) + PPN 10%</th>
                         	<td><?php echo 'Rp. '.number_format($pgd_jml_ssdh_ppn_hps,0,",","."); ?></td>
+                            <?php }?>
                         </tr>
                         <tr>
                         	<th>Total Keseluruhan(Penawaran)</th>
                         	<td><?php echo 'Rp. '.number_format($pgd_jml_sblm_ppn_pnr,0,",","."); ?></td>
                         </tr>
                         <tr>
+                            <?php if($pgd_dgn_pajak != 1){?>
                         	<th>Total Keseluruhan(Penawaran) + PPN 10%</th>
                         	<td><?php echo 'Rp. '.number_format($pgd_jml_ssdh_ppn_pnr,0,",","."); ?></td>
+                            <?php }?>
                         </tr>
                         <tr>
                         	<th>Total Keseluruhan(Fix)</th>
                         	<td><?php echo 'Rp. '.number_format($pgd_jml_sblm_ppn_fix,0,",","."); ?></td>
                         </tr>
                         <tr>
+                            <?php if($pgd_dgn_pajak != 1){?>
                         	<th>Total Keseluruhan(Fix) + PPN 10%</th>
                         	<td><?php echo 'Rp. '.number_format($pgd_jml_ssdh_ppn_fix,0,",","."); ?></td>
+                            <?php }?>
                         </tr>
                     </tbody>
                 </table>

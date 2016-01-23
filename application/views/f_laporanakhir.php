@@ -6,6 +6,7 @@
                 $tglawal="";
                 $tglakhir="";
                 $dipa_nomor="";
+                $pgd_tipe_pengadaan = $dataPengadaan->pgd_tipe_pengadaan; 
      if($mode1 == 'edit'){	
 		$nospk = $kontensuratnoSPK->dknt_isi;
 		$tglspk = $kontensurattglSPK->dknt_isi;
@@ -139,11 +140,14 @@
                 </form> 
             </div>   
 
-
+                <form id = "penawaran_form"  action = "<?php echo base_url()."Pengadaan/proses_add_spk";?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                      <div class="col-md-12 text-center"><hr>
+                    <input type="hidden" class="form-control" id="pgd_id" name ="pgd_id" value="<?php echo $idpengadaan; ?>">     
+                    <input type="hidden" class="form-control" id="pgd_tipe_pengadaan" name ="pgd_tipe_pengadaan" value="<?php echo $pgd_tipe_pengadaan; ?>">
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                             <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                            <button type="submit" class="btn btn-lg btn-success" id="btnPengadaan"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Next</button>
                         </div>
                     </div>
                 </div>

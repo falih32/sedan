@@ -23,7 +23,7 @@ class Login extends CI_Controller{
                     $this->load->view('layout2',$data);
 		}
 		else{
-			redirect('Pengadaan/PengadaanBarangHPS');
+			redirect('Dashboard');
 		}		
     }
         

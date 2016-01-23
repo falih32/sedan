@@ -10,7 +10,7 @@ class M_dashboard extends CI_Model{
     function TotalPengadaanbyJenis($tahun){
         $data = $this->db->query(" SELECT pgd_tipe_pengadaan as 'jenis', COUNT(*) as 'total' "
                 . "FROM `t_pengadaan`"
-                . "WHERE YEAR(pgd_tanggal_input)=".$tahun." group by jenis  ")->result();
+                . "WHERE pgd_deleted=0 and YEAR(pgd_tanggal_input)=".$tahun." group by jenis  ")->result();
        return $data;
     }
     function TotalPengadaanPerBulan($tahun){

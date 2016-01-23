@@ -2,15 +2,15 @@
 <div class="container-fluid">
     <div class="row-fluid">
         <h1>
-            <i class="fa fa-book"></i> Surat Izin
+            <i class="fa fa-book"></i> Syarat Penyedia
             <?php if($role <= 1){?>
-            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Surat Izin' href="<?php echo base_url()."SuratIzin/";?>tambah_suratizin"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
+            <a class="btn btn-success" data-toggle='tooltip' data-placement='top' title='Tambah Syarat Penyedia' href="<?php echo base_url()."SuratIzin/";?>tambah_suratizin"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></a>
             <?php } ?>
         </h1>
         <hr>
     	<div class="panel panel-primary">
             <div class="panel-heading">
-                <i class="fa fa-book"></i> Daftar Surat Izin
+                <i class="fa fa-book"></i> Daftar Dokumen Kualifikasi
             </div>
             <div class="panel-body">
             </div>
@@ -18,7 +18,7 @@
             	<thead>
                 <tr>
                     <th>id</th>	
-                    <th>Nama Surat Izin</th>
+                    <th>Nama Dokumen</th>
                     <th>Aksi</th>
 
                 </tr>
@@ -79,7 +79,8 @@ $(document).ready(function() {
                 { "data": "aksi" }
             ],
             "columnDefs": [
-                { "searchable": false, "orderable":false, "targets": [0,2] }
+                { "searchable": false, "orderable":false, "targets": [0,2] },
+                { "visible": false, "targets": [0] },
             ],
             "order": [[ 1, "asc" ]],
             "drawCallback": function( settings ) {

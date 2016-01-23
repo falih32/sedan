@@ -19,7 +19,7 @@
             <?php if($mode == 'edit'){ ?> <input type="hidden" name="id" value="<?php echo $id; ?>"><?php }?>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="siz_nama" class="col-sm-2 control-label text-left">Surat Izin</label>
+                        <label for="siz_nama" class="col-sm-2 control-label text-left">Syarat Penyedia</label>
                         <div class="col-sm-10">
 	                        <input type="text" class="form-control" id="siz_nama" name="siz_nama" placeholder="Surat Izin" value="<?php echo $siz_nama; ?>" required>
                             <div class="help-block with-errors"></div>

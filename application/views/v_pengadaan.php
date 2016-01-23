@@ -19,7 +19,24 @@
                 $pgd_wkt_awal_penawaran = $dataPengadaan->pgd_wkt_awal_penawaran;
                 $pgd_wkt_akhir_penawaran = $dataPengadaan->pgd_wkt_akhir_penawaran;
                 $pgd_tipe_pengadaan = $dataPengadaan->pgd_tipe_pengadaan;
+                $pgd_smbr_dana = $dataPengadaan->pgd_smbr_dana;
                 $pgd_status_pengadaan = $dataPengadaan->pgd_status_pengadaan;
+                $pgd_dgn_pajak = $dataPengadaan->pgd_dgn_pajak;
+		$nm_ketua = $penyusunlist-> nm_ketua;
+		$nip_ketua = $penyusunlist-> nip_ketua;
+                $jbt_ketua = $penyusunlist->jbt_ketua;
+                $nm_anggota1 = $penyusunlist->nm_anggota1;
+                $nip_anggota1 = $penyusunlist->nip_anggota1;
+                $jbt_anggota1 = $penyusunlist->jbt_anggota1;
+                $nm_anggota2 = $penyusunlist->nm_anggota2;
+                $nip_anggota2 = $penyusunlist->nip_anggota2;
+                $jbt_anggota2 = $penyusunlist->jbt_anggota2;
+                $nm_anggota3 = $penyusunlist->nm_anggota3;
+                $nip_anggota3 = $penyusunlist->nip_anggota3;
+                $jbt_anggota3 = $penyusunlist->jbt_anggota3;
+                $nm_anggota4 = $penyusunlist->nm_anggota4;
+                $nip_anggota4 = $penyusunlist->nip_anggota4;
+                $jbt_anggota4 = $penyusunlist->jbt_anggota4;
         switch ($pgd_tipe_pengadaan) {
         case "0":
             $tipe_pengadaan = "Barang";
@@ -91,11 +108,15 @@
                         </tr>
                         <tr>
                         	<th>Jangka waktu Lama Pekerjaan</th>
-                        	<td><?php echo $pgd_lama_pekerjaan; ?></td>
+                        	<td><?php echo $pgd_lama_pekerjaan.' hari'; ?></td>
                         </tr>
                         <tr>
                         	<th>Jangka waktu Lama Penawaran</th>
-                                <td><?php echo $pgd_lama_penawaran; ?></td>
+                                <td><?php echo $pgd_lama_penawaran.' hari'; ?></td>
+                        </tr>
+                        <tr>
+                        	<th>Sumber Pendanaan (Tahun)</th>
+                                <td><?php echo $pgd_smbr_dana; ?></td>
                         </tr>
                         <tr>
                         	<th>Supplier</th>
@@ -106,9 +127,21 @@
                                 <td><?php echo $status_pengadaan; ?></td>
                         </tr>
                         <tr>
+                        	<th>Penyusun</th>
+                                <td><b>Ketua &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: </b><?php echo $jbt_ketua.' ('.$nip_ketua.' - '.$nm_ketua.')'; ?> <br>
+                                <b>Anggota 1 &nbsp;: </b><?php echo $jbt_anggota1.' ('.$nip_anggota1.' - '.$nm_anggota1.')'; ?> <br>
+                                <b>Anggota 2 &nbsp;: </b><?php echo $jbt_anggota2.' ('.$nip_anggota2.' - '.$nm_anggota2.')'; ?> <br>
+                                <b>Anggota 3 &nbsp;: </b><?php echo $jbt_anggota3.' ('.$nip_anggota3.' - '.$nm_anggota3.')'; ?> <br>
+                                <b>Anggota 4 &nbsp;: </b><?php echo $jbt_anggota4.' ('.$nip_anggota4.' - '.$nm_anggota4.')'; ?></td>
+                        </tr>
+                        <tr>
                         	<th>Syarat Penyedia</th>
                                 <td><?php foreach ($suratList as $row) {?>
-                                <?php echo $row->siz_nama; }?></td>
+                                <?php echo $row->siz_nama;?><br><?php } ?></td>
+                        </tr>
+                        <tr>
+                        	<th>Harga Tiap <?php echo $tipe_pengadaan; ?> Sudah dengan Pajak 10%</th>
+                                <td><?php if($pgd_dgn_pajak == 1){echo 'Ya';}else{echo 'Tidak';} ?></td>
                         </tr>
                     </tbody>
                 </table>
@@ -117,9 +150,9 @@
                         <tr>
                           <th><?php echo $detail_pengadaan; ?></th>
                           <th>Volume</th>
-                          <th>Harga Satuan(HPS)</th>
-                          <th>Harga Satuan(Penawaran)</th>
-                          <th>Harga Satuan(Fix)</th>
+                          <th>Hrg Satuan(HPS)</th>
+                          <th>Hrg Satuan(Pnr)</th>
+                          <th>Hrg Satuan(Fix)</th>
                           <th>Total(HPS)</th>
                           <th>Total(Penawaran)</th>
                           <th>Total(Fix)</th>
@@ -127,14 +160,38 @@
                     </thead>
                     <tbody>
                     	<?php foreach ($pekerjaanList as $row) {?>
-                            <tr><td><?php echo $row->dtp_pekerjaan; ?></td>
+                            <tr><td><?php echo $row->dtp_pekerjaan; ?><br><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row->dtp_id; ?>">Spec</button></td>
                             <td><?php echo $row->dtp_volume.' '.$row->dtp_satuan; ?></td>
-                            <td><?php echo $row->dtp_hargasatuan_hps; ?></td>
-                            <td><?php echo $row->dtp_hargasatuan_pnr; ?></td>
-                            <td><?php echo $row->dtp_hargasatuan_fix; ?></td>
-                            <td><?php echo $row->dtp_jumlahharga_hps; ?></td>
-                            <td><?php echo $row->dtp_jumlahharga_pnr; ?></td>
-                            <td><?php echo $row->dtp_jumlahharga_fix; ?></td></tr>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_pnr,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_fix,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_hps,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_pnr,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_fix,0,",","."); ?></td></tr>
+                            <!-- Modal -->
+                            <div id="myModal<?php echo $row->dtp_id; ?>" class="modal fade bs-example-modal-sm" role="dialog">
+                              <div class="modal-dialog modal-sm">
+
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Spesifikasi</h4>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p><?php echo $row->dtp_spesifikasi; ?>
+                                        <?php $urlfile = site_url('uploads/file_pengadaan').'/'.$row->dtp_file;?><br>
+                                        <img src="<?php echo $urlfile;?>" alt="" style="width:304px;height:228px;">
+                                        <?php $tagFile =  "<a href='".$urlfile."' target='_blank'>Full Size Image</a>"?>
+                                        <?php if($row->dtp_file!="" || $row->dtp_file!=NULL){echo "<br>".$tagFile;} ?></p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                  </div>
+                                </div>
+
+                              </div>
+                            </div>
                         <?php } ?>
                     </tbody>
                 </table>
@@ -142,48 +199,31 @@
                     <tbody>
                     	<tr>
                         	<th>Total Keseluruhan(HPS)</th>
-                        	<td><?php echo $pgd_jml_sblm_ppn_hps; ?></td>
+                        	<td><?php echo 'Rp. '.number_format($pgd_jml_sblm_ppn_hps,0,",","."); ?></td>
                         </tr>
                     	<tr>
                         	<th>Total Keseluruhan(HPS) + PPN 10%</th>
-                        	<td><?php echo $pgd_jml_ssdh_ppn_hps; ?></td>
+                        	<td><?php echo 'Rp. '.number_format($pgd_jml_ssdh_ppn_hps,0,",","."); ?></td>
                         </tr>
                         <tr>
                         	<th>Total Keseluruhan(Penawaran)</th>
-                        	<td><?php echo $pgd_jml_sblm_ppn_pnr; ?></td>
+                        	<td><?php echo 'Rp. '.number_format($pgd_jml_sblm_ppn_pnr,0,",","."); ?></td>
                         </tr>
                         <tr>
                         	<th>Total Keseluruhan(Penawaran) + PPN 10%</th>
-                        	<td><?php echo $pgd_jml_ssdh_ppn_pnr; ?></td>
+                        	<td><?php echo 'Rp. '.number_format($pgd_jml_ssdh_ppn_pnr,0,",","."); ?></td>
                         </tr>
                         <tr>
                         	<th>Total Keseluruhan(Fix)</th>
-                        	<td><?php echo $pgd_jml_sblm_ppn_fix; ?></td>
+                        	<td><?php echo 'Rp. '.number_format($pgd_jml_sblm_ppn_fix,0,",","."); ?></td>
                         </tr>
                         <tr>
                         	<th>Total Keseluruhan(Fix) + PPN 10%</th>
-                        	<td><?php echo $pgd_jml_ssdh_ppn_fix; ?></td>
+                        	<td><?php echo 'Rp. '.number_format($pgd_jml_ssdh_ppn_fix,0,",","."); ?></td>
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover" width="50%">
-                    <thead>
-                        <tr>
-                          <th>Penyusun</th>
-                          <th>Jabatan</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    	<?php foreach ($penyusunList as $row) {?>
-                            <tr><td><?php echo $row->jbt_nama.' ('.$row->pgw_nama.')'; ?></td>
-                            <td><?php if ($row->lsp_jabatan == 0){
-                                echo "Ketua";
-                            }else{
-                                echo "Anggota";
-                            }?></td></tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
+                
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">

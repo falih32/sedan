@@ -25,17 +25,23 @@
                             <a href=""><i class="fa fa-bar-chart-o fa-fw"></i> Pengadaan Barang<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangHPS"); ?>">HPS</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangHPS"); ?>">Setelah HPS</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangPenawaran"); ?>">Penawaran</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangPenawaran"); ?>">Setelah Penawaran</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangFix"); ?>">Fix</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangFix"); ?>">Setelah Negoisasi</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangPng"); ?>">Setelah Pengumuman</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangFns"); ?>">Pengadaan yang Telah Selesai</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarang"); ?>">All</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarang"); ?>">Semua Pengadaan Barang</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
@@ -44,17 +50,23 @@
                             <a href="#"><i class="fa fa-wrench fa-fw"></i> Pengadaan Jasa<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaHPS"); ?>">HPS</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaHPS"); ?>">Setelah HPS</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaPenawaran"); ?>">Penawaran</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaPenawaran"); ?>">Setelah Penawaran</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaFix"); ?>">Fix</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaFix"); ?>">Setelah Negosiasi</a>
+                                </li>
+                                 <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaPng"); ?>">Setelah Pengumuman</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaFns"); ?>">Pengadaan yang Telah Selesai</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasa"); ?>">All</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasa"); ?>">Semua Pengadaan Jasa</a>
                                 </li>      
                             </ul>
                             <!-- /.nav-second-level -->

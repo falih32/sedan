@@ -88,7 +88,7 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_barang';
-        $data['title']= 'Daftar Pengadaan Barang (Fix)';
+        $data['title']= 'Daftar Pengadaan Barang (Negosiasi)';
         $data['jenisPengadaan']= '0';
         $data['statusPengadaan']= '2';
         $this->load->view('layout',$data);
@@ -556,7 +556,14 @@ class Pengadaan extends CI_Controller{
         //4. Call procedure jumlah total
       
         //totalkan harga semua
-        $pajak = 0.1;
+        //cek dengan pajak atau ngga
+        $statusPajak = $this->input->get('pgd_dgn_pajak');
+        if($statusPajak == 0){
+            $pajak = 0.1;
+        }else{
+            $pajak = 0;
+        }
+        
         $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
 
         $tipe = $this->input->get('pgd_tipe_pengadaan');
@@ -592,12 +599,12 @@ class Pengadaan extends CI_Controller{
     
     public function add_hargafix_barang($id){
         $data['content'] = 'f_pengadaan_fix';
-        $data['title']= 'Input Harga Deal Pengadaan Barang'; 
+        $data['title']= 'Input Harga Negosiasi Pengadaan Barang'; 
         $data['judul']= 'Barang';
         $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
         $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
         $terpilih = 1;
-        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        
         $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
         $data['modeView']= "pengadaan";
         $this->load->view('layout',$data);
@@ -605,12 +612,12 @@ class Pengadaan extends CI_Controller{
     
     public function add_hargafix_jasa($id){
         $data['content'] = 'f_pengadaan_fix';
-        $data['title']= 'Input Harga Deal Pengadaan Jasa'; 
+        $data['title']= 'Input Harga Negosiasi Pengadaan Jasa'; 
         $data['judul']= 'Pekerjaan';
         $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
         $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
         $terpilih = 1;
-        $data['penyusunList']= $this->m_pengadaan->selectListPenyusun($id,$terpilih);
+        
         $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
         $data['modeView']= "pengadaan";
         $this->load->view('layout',$data);
@@ -641,7 +648,61 @@ class Pengadaan extends CI_Controller{
         //4. Call procedure jumlah total
       
         //totalkan harga semua
-        $pajak = 0.1;
+         //cek dengan pajak atau ngga
+        $statusPajak = $this->input->get('pgd_dgn_pajak');
+        if($statusPajak == 0){
+            $pajak = 0.1;
+        }else{
+            $pajak = 0;
+        }
+        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+
+        $tipe = $this->input->get('pgd_tipe_pengadaan');
+        if($tipe == 0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangFix'));
+        }else if($tipe == 1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaFix'));
+        }else if($tipe == 2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanFix'));
+        }
+        
+    }
+    
+    public function proses_add_pengumuman(){
+        
+        
+        // post idPengadaan
+        $idPengadaan = $this->input->post('pgd_id');
+        //5. update status pgd
+        $xx['pgd_status_pengadaan'] = '2';
+        $this->m_pengadaan->update($idPengadaan,$xx);
+        //2. post data pekerjaan
+        $data3 = $this->input->get('dtp_id') ;
+        $data4 = $this->input->get('dtp_hargasatuan_fix');
+        $length = count($data3);
+        echo $length;
+         //3. Update data pekerjaan
+        for( $i = 0; $i < $length; $i++ ) {
+            $ax['dtp_id'] = $data3[$i];
+            echo $ax['dtp_id'];
+            $ex['dtp_hargasatuan_fix'] = $data4[$i];
+            echo $ex['dtp_hargasatuan_fix'];
+            $this->m_pengadaan->updateHargaFix( $ax['dtp_id'],$ex);
+        }
+
+        //4. Call procedure jumlah total
+      
+        //totalkan harga semua
+         //cek dengan pajak atau ngga
+        $statusPajak = $this->input->get('pgd_dgn_pajak');
+        if($statusPajak == 0){
+            $pajak = 0.1;
+        }else{
+            $pajak = 0;
+        }
         $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
 
         $tipe = $this->input->get('pgd_tipe_pengadaan');

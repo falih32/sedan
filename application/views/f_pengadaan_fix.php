@@ -19,6 +19,7 @@
                 $pgd_wkt_awal_penawaran = $dataPengadaan->pgd_wkt_awal_penawaran;
                 $pgd_wkt_akhir_penawaran = $dataPengadaan->pgd_wkt_akhir_penawaran;  
                 $pgd_tipe_pengadaan = $dataPengadaan->pgd_tipe_pengadaan; 
+                $pgd_dgn_pajak = $dataPengadaan->pgd_dgn_pajak; 
                 $totRowPekerjaan = 0; 
                 $totRowSyarat = 0;
                 
@@ -76,19 +77,19 @@
                           <th><?php echo $judul;  ?></th>
                           <th>Volume</th>
                           <th>Harga Satuan(HPS)</th>
-                          <th>Harga Satuan(Penawaran)</th>
-                          <th>Harga Satuan(Fix)</th>
+                          <th>Harga Satuan(PNR)</th>
+                          <th>Harga Satuan(Nego)</th>
                           <th>Total(HPS)</th>
                           <th>Total(Penawaran)</th>
-                          <th>Total(Fix)</th>
+                          <th>Total(Nego)</th>
                         </tr>
                     </thead>
                     <tbody>
                     	<?php foreach ($pekerjaanList as $row) {?>
                             <tr><td><?php echo $row->dtp_pekerjaan; ?></td>
-                            <td><?php echo $row->dtp_volume.' '.$row->dtp_satuan; ?></td>
-                            <td><?php echo $row->dtp_hargasatuan_hps; ?></td>
-                            <td><?php echo $row->dtp_hargasatuan_pnr; ?></td>
+                            <td><?php echo ($row->dtp_volume+0).' '.$row->dtp_satuan; ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_pnr,0,",","."); ?></td>
                             <td><div class="form-group">                                    
                                     <div class="col-sm-10">
                                     <input type="hidden" class="form-control" id="dtp_id<?php echo $row->dtp_id; ?>" name="dtp_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtp_id; ?>">
@@ -100,71 +101,100 @@
                                     <div class="col-sm-2">
                                     <span id ="icon_status<?php echo $row->dtp_id; ?>" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </div>
+                                    <div class="col-sm-10">
+                                    <label id="lbl_dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>">Rp.-</label>
+                                    </div>
                                 </div></td>
-                            <td><?php echo $row->dtp_jumlahharga_hps; ?></td>
-                            <td><?php echo $row->dtp_jumlahharga_pnr; ?></td>
-                            <td><span id="jml_fix<?php echo $row->dtp_id; ?>"></span></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_hps,0,",","."); ?></td>
+                            <td style='display:none;'><?php echo $row->dtp_jumlahharga_hps; ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_pnr,0,",","."); ?></td>
+                            <td style='display:none;'><?php echo $row->dtp_jumlahharga_pnr; ?></td>
+                            <td ><span id="Xjml_fix<?php echo $row->dtp_id; ?>"></span></td>
+                            <td style='display:none;'><span id="jml_fix<?php echo $row->dtp_id; ?>"></span></td>
                             <script type="text/javascript">
                                     $(document).ready(function() {                          
                                             $('#dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>').bind('input', function() {
                                                 //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
                                                 var fixHarga = parseFloat(document.getElementById('dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>').value);
                                                 var pnrHarga = parseFloat(document.getElementById('dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').value);
+                                               
                                                  if (fixHarga <= pnrHarga && !isNaN(fixHarga)) {
-                                                    $('#icon_status<?php echo $row->dtp_id; ?>').removeClass('glyphicon-remove').addClass('glyphicon-ok');
+                                                    $('#icon_status<?php echo $row->dtp_id; ?>').removeClass('glyphicon-remove text-danger').addClass('glyphicon-ok text-success');
                                                     $(this).next().stop(true, true).fadeIn(0).html('Harga Fix/Deal lebih kecil dari harga penawaran').fadeOut(2000);
                                                  }else if(fixHarga > pnrHarga && !isNaN(fixHarga)){
-                                                     $('#icon_status<?php echo $row->dtp_id; ?>').removeClass('glyphicon-ok').addClass('glyphicon-remove');
+                                                     $('#icon_status<?php echo $row->dtp_id; ?>').removeClass('glyphicon-ok text-success').addClass('glyphicon-remove text-danger');
                                                      $(this).next().stop(true, true).fadeIn(0).html('Harga Fix/Deal lebih besar dari harga penawaran').fadeOut(2000);
                                                  }
                                                  var vol = parseFloat(document.getElementById('dtp_volume<?php echo $row->dtp_id; ?>').value);
-                                                 var tot = parseFloat(fixHarga*vol).toFixed(2);
+                                                 var tot = parseFloat(fixHarga*vol);
                                       
                                                  if(!isNaN(tot)){
                                                     document.getElementById("jml_fix<?php echo $row->dtp_id; ?>").innerHTML = tot;
+                                                    document.getElementById("Xjml_fix<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.'+tot.format(0,3,'.');
+                                                    document.getElementById("lbl_dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.'+fixHarga.format(0,3,'.');
                                                 }else{
                                                     document.getElementById("jml_fix<?php echo $row->dtp_id; ?>").innerHTML = "Input tidak Valid";
+                                                    document.getElementById("Xjml_fix<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("lbl_dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
                                                 }
                                                 
                                             });
+                                            Number.prototype.format = function(n, x, s, c) {
+                                                var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+                                                    num = this.toFixed(Math.max(0, ~~n));
+
+                                                return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+                                            };
 
                                     });
                             </script>
                         <?php $totRowPekerjaan = $totRowPekerjaan+1;} ?>
                     </tbody>
                 </table>
-               <div class="row"> 
-                            <div class ='col-sm-3 pull-right'> 
-                            <label id = "total_label" class="control-label text-center pull-right">Total HPS: &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_sblm_ppn_hps" name="pgd_jml_sblm_ppn_hps" value='<?php echo $pgd_jml_sblm_ppn_hps; ?>' readonly>
-                            </div> 
-                            <div class ='col-sm-3 pull-right'>
-                            <label id = "total_label" class="control-label text-center pull-right">Total HPS(ppn 10%) : &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_ssdh_ppn_hps" name="pgd_jml_ssdh_ppn_hps" value='<?php echo $pgd_jml_ssdh_ppn_hps; ?>' readonly>
-                            </div> 
-                        </div> 
+               <div class="row">
+                    <p class="control-label text-center pull-left"><i><?php if ($pgd_dgn_pajak != 0){ echo "*Total Harga Sudah Dengan Pajak"; }else{echo "";} ?></i></p>
+                    </div>
                 <div class="row"> 
-                            <div class ='col-sm-3 pull-right'> 
-                            <label id = "total_label" class="control-label text-center pull-right">Total Penawaran: &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_sblm_ppn_pnr" name="pgd_jml_sblm_ppn_pnr" value='<?php echo $pgd_jml_sblm_ppn_pnr; ?>' readonly>
-                            </div> 
-                            <div class ='col-sm-3 pull-right'>
-                            <label id = "total_label" class="control-label text-center pull-right">Total Penawaran(ppn 10%) : &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_ssdh_ppn_pnr" name="pgd_jml_ssdh_ppn_pnr" value='<?php echo $pgd_jml_ssdh_ppn_pnr; ?>' readonly>
-                            </div> 
-                        </div> 
+                    <div class ='col-sm-3 pull-right'> 
+                    <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
+                    <input type="text" class="form-control" id="x_pgd_jml_sblm_ppn_hps"  value='<?php echo 'Rp.'.number_format($pgd_jml_sblm_ppn_hps,0,",","."); ?>' readonly>
+                    <input type="hidden" class="form-control" id="pgd_jml_sblm_ppn_hps" name="pgd_jml_sblm_ppn_hps" value='<?php echo $pgd_jml_sblm_ppn_hps?>' readonly>
+                    </div> 
+
+                    <div class ='col-sm-3 pull-right'>
+                    <label id = "lbl_pgd_jml_ssdh_ppn_hps" class="control-label text-center pull-right"><?php if ($pgd_dgn_pajak == 0){ echo "Total(ppn 10%) : &nbsp;"; }else{echo "";} ?></label>
+                    <input type="<?php if ($pgd_dgn_pajak == 0){ echo "text"; }else{echo "hidden";} ?>" class="form-control" id="x_pgd_jml_ssdh_ppn_hps"  value='<?php echo 'Rp.'.number_format($pgd_jml_ssdh_ppn_hps,0,",","."); ?>' readonly>
+                    <input type="hidden" class="form-control" id="pgd_jml_ssdh_ppn_hps" name="pgd_jml_ssdh_ppn_hps" value='<?php echo $pgd_jml_ssdh_ppn_hps?>' readonly>
+                    </div>
+                                 
+                </div> 
                 <div class="row"> 
-                            <div class ='col-sm-3 pull-right'> 
-                            <label id = "total_label" class="control-label text-center pull-right">Total Fix/Deal: &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_sblm_ppn_fix" name="pgd_jml_sblm_ppn_fix" value='0' readonly>
-                            </div> 
-                            <div class ='col-sm-3 pull-right'>
-                            <label id = "total_label" class="control-label text-center pull-right">Total Fix/Deal(ppn 10%) : &nbsp;</label>
-                            <input type="text" class="form-control" id="pgd_jml_ssdh_ppn_fix" name="pgd_jml_ssdh_ppn_fix" value='0' readonly>
-                            </div> 
+                    <div class ='col-sm-3 pull-right'> 
+                    <label id = "total_label" class="control-label text-center pull-right">Total Penawaran: &nbsp;</label>
+                    <input type="text" class="form-control" id="x_pgd_jml_sblm_ppn_pnr"  value='<?php echo 'Rp.'.number_format($pgd_jml_sblm_ppn_pnr,0,",","."); ?>' readonly>
+                    <input type="hidden" class="form-control" id="pgd_jml_sblm_ppn_pnr" name="pgd_jml_sblm_ppn_pnr" value='<?php echo $pgd_jml_sblm_ppn_pnr?>' readonly>
+                    </div> 
+                    <div class ='col-sm-3 pull-right'>
+                    <label id = "total_label" class="control-label text-center pull-right"><?php if ($pgd_dgn_pajak == 0){ echo "Total Penawaran(ppn 10%) : &nbsp;"; }else{echo "";} ?></label>
+                    <input type="<?php if ($pgd_dgn_pajak == 0){ echo "text"; }else{echo "hidden";} ?>" class="form-control" id="x_pgd_jml_ssdh_ppn_pnr"  value='<?php echo 'Rp.'.number_format($pgd_jml_ssdh_ppn_pnr,0,",","."); ?>' readonly>
+                    <input type="hidden" class="form-control" id="pgd_jml_ssdh_ppn_pnr" name="pgd_jml_ssdh_ppn_pnr" value='<?php echo $pgd_jml_ssdh_ppn_pnr?>' readonly>
+                    </div> 
+                </div> 
+                <div class="row"> 
+                    <div class ='col-sm-3 pull-right'> 
+                    <label id = "total_label" class="control-label text-center pull-right">Total Hrg Nego: &nbsp;</label>
+                    <input type="text" class="form-control" id="x_pgd_jml_sblm_ppn_fix"  value='0' readonly>
+                    <input type="hidden" class="form-control" id="pgd_jml_sblm_ppn_fix" name="pgd_jml_sblm_ppn_fix" value='0' readonly>
+                    </div> 
+                    <div class ='col-sm-3 pull-right'>
+                    <label id = "total_label" class="control-label text-center pull-right"><?php if ($pgd_dgn_pajak == 0){ echo "Total Hrg Nego(ppn 10%) : &nbsp;"; }else{echo "";} ?></label>
+                    <input type="<?php if ($pgd_dgn_pajak == 0){ echo "text"; }else{echo "hidden";} ?>" class="form-control" id="x_pgd_jml_ssdh_ppn_fix"  value='0' readonly>
+                    <input type="hidden" class="form-control" id="pgd_jml_ssdh_ppn_fix" name="pgd_jml_ssdh_ppn_fix" value='0' readonly>
+                    </div> 
                 </div> 
                <input type="hidden" class="form-control" id="pgd_id" name ="pgd_id" value="<?php echo $pgd_id ?>"> 
                <input type="hidden" class="form-control" id="pgd_tipe_pengadaan" name ="pgd_tipe_pengadaan" value="<?php echo $pgd_tipe_pengadaan ?>"> 
+               <input type="hidden" class="form-control" id="pgd_dgn_pajak" name ="pgd_dgn_pajak" value="<?php echo $pgd_dgn_pajak; ?>">
                <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
@@ -187,7 +217,7 @@ function submitFormFix() {
 
     $('#table-pekerjaan tr').each(function(row, tr){
         TableData[row]={
-            "jumlah" : $(tr).find('td:eq(7)').text()
+            "jumlah" : $(tr).find('td:eq(10)').text()
         }    
     }); 
     TableData.shift();  // first row will be empty - so remove
@@ -209,7 +239,7 @@ function submitFormFix() {
     }
     //alert("statusSyarat="+statusSyarat+" statusPekerjaan="+statusPekerjaan);
     if(statusPekerjaan===1){
-        alert("Total Harga Terakhir lebih besar dari Total Harga Penawaran");
+        alert("Total Harga Negoisasi lebih besar dari Total Harga Penawaran");
         return false;
     }else{
         return true;
@@ -224,7 +254,7 @@ function myTimer() {
 
     $('#table-pekerjaan tr').each(function(row, tr){
         TableData[row]={
-            "jumlah" : $(tr).find('td:eq(7)').text()
+            "jumlah" : $(tr).find('td:eq(10)').text()
         }    
     }); 
     TableData.shift();  // first row will be empty - so remove
@@ -242,8 +272,14 @@ function myTimer() {
     if(!isNaN(totSemuaFix)){
         document.getElementById("pgd_jml_sblm_ppn_fix").value = parseFloat(totSemuaFix).toFixed(2);
         document.getElementById("pgd_jml_ssdh_ppn_fix").value = parseFloat(totSemuaFix+(totSemuaFix*0.1)).toFixed(2);
+        document.getElementById("x_pgd_jml_sblm_ppn_fix").value = 'Rp. '+(parseFloat(totSemuaFix)).format(0,3,'.');
+        document.getElementById("x_pgd_jml_ssdh_ppn_fix").value = 'Rp. '+(parseFloat(totSemuaFix+(totSemuaFix*0.1))).format(0,3,'.');
+        //alert(document.getElementById("x_pgd_jml_sblm_ppn_fix").value);
     }else{
         document.getElementById("pgd_jml_sblm_ppn_fix").value = "Input tidak Valid";
+        document.getElementById("pgd_jml_ssdh_ppn_fix").value = "Input tidak Valid";
+        document.getElementById("x_pgd_jml_sblm_ppn_fix").value = "Input tidak Valid";
+        document.getElementById("x_pgd_jml_ssdh_ppn_fix").value = "Input tidak Valid";
     }
 }
 

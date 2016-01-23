@@ -2,18 +2,18 @@
 
     switch ($statusPengadaan) {
         case "0":
-            $Judul = "Pengadaan Barang(HPS)";
-            $SubJudul = "Pengadaan Barang(HPS)";
+            $Judul = "Pengadaan Barang(Setelah HPS)";
+            $SubJudul = "Pengadaan Barang(Setelah HPS)";
             $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/0');
             break;
         case "1":
-            $Judul = "Pengadaan Barang(Penawaran)";
-            $SubJudul = "Pengadaan Barang(HPS)";
+            $Judul = "Pengadaan Barang(Setelah Penawaran)";
+            $SubJudul = "Pengadaan Barang(Setelah Penawaran)";
             $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/1');
             break;
         case "2":
-            $Judul = "Pengadaan Barang(Fix)";
-            $SubJudul = "Pengadaan Barang(Fix)";
+            $Judul = "Pengadaan Barang(Setelah Negoisasi)";
+            $SubJudul = "Pengadaan Barang(Setelah Negoisasi)";
             $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/2');
             break;
         default:
@@ -83,7 +83,7 @@ $(document).ready(function() {
                 { "data": "pgd_anggaran" },             //0
                 { "data": "nmpengadaan_tglbuat" },      //1
                 { "data": "supplier_name" },            //2
-                { "data": "ketua" },                    //3
+                { "data": "ketua" },                    //3 dihapus
                 { "data": "total" },                    //4
                 { "data": "konfirm_selesai" },          //5
                 { "data": "aksi" },                     //6
@@ -118,14 +118,14 @@ $(document).ready(function() {
                     
                     <?php if($role == 1){ ?>
                     if ( data.pgd_status_selesai == "1") {
-                        $('td', row).eq(5).html('<a class="btn btn-success btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Batalkan konfirmasi" data-confirm="Anda yakin akan mengembalikan status pengadaan menjadi belum selesai?" data-href="batal_konfirmasi/'+data.pgd_id+'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
-                        $('td', row).eq(6).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='<?php echo site_url('Laporan/LaporanFix').'/'; ?>"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
+                        $('td', row).eq(4).html('<a class="btn btn-success btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Batalkan konfirmasi" data-confirm="Anda yakin akan mengembalikan status pengadaan menjadi belum selesai?" data-href="batal_konfirmasi/'+data.pgd_id+'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
+                        $('td', row).eq(5).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='<?php echo site_url('Laporan/LaporanFix').'/'; ?>"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
                     }
                     <?php }?>
                     <?php if($role == 2){ ?>
                     if ( data.pgd_status_selesai == "1") {
-                        $('td', row).eq(5).html('<a class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Konfirmasi selesai"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
-                        $('td', row).eq(6).html('<a class="btn btn-success btn-sm btn-aksi" data-toggle="tooltip" data-placement="top" title="Pengadaan telah selesai">Selesai</a>');
+                        $('td', row).eq(4).html('<a class="btn btn-success btn-sm" data-toggle="tooltip" data-placement="top" title="Konfirmasi selesai"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
+                        $('td', row).eq(5).html('<a class="btn btn-success btn-sm btn-aksi" data-toggle="tooltip" data-placement="top" title="Pengadaan telah selesai">Selesai</a>');
                     }
                     <?php }?>
                     

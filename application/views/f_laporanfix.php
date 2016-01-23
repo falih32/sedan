@@ -210,14 +210,17 @@
                 </div>  
                 </form> 
             </div>   
-
-                     <div class="col-md-12 text-center"><hr>
+                <form id = "penawaran_form"  action = "<?php echo base_url()."Pengadaan/proses_add_pengumuman";?>" onsubmit="return submitFormPenawaran();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                    <div class="col-md-12 text-center"><hr>
+                    <input type="hidden" class="form-control" id="pgd_id" name ="pgd_id" value="<?php echo $idpengadaan; ?>">     
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
                             <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                            <button type="submit" class="btn btn-lg btn-success" id="btnPengadaan"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Next</button>
                         </div>
                     </div>
                 </div>
+                </form>
             </div>
         </div>
     </div>

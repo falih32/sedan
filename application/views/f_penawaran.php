@@ -318,11 +318,12 @@
                         </tr>
                     </tbody>
                 </table>
-               <input type="hidden" class="form-control" id="status_tot_pnr" name ="status_tot_pnr" value="<?php echo $pgd_id ?>">
-               <input type="hidden" class="form-control" id="pgd_id" name ="pgd_id" value="<?php echo $pgd_id ?>"> 
-               <input type="hidden" class="form-control" id="pgd_tipe_pengadaan" name ="pgd_tipe_pengadaan" value="<?php echo $pgd_tipe_pengadaan ?>">
+               <input type="hidden" class="form-control" id="status_tot_pnr" name ="status_tot_pnr" value="<?php echo $pgd_id; ?>">
+               <input type="hidden" class="form-control" id="pgd_id" name ="pgd_id" value="<?php echo $pgd_id; ?>"> 
+               <input type="hidden" class="form-control" id="pgd_tipe_pengadaan" name ="pgd_tipe_pengadaan" value="<?php echo $pgd_tipe_pengadaan; ?>">
                <input type="hidden" class="form-control" id="pgd_status_pengadaan" name ="pgd_status_pengadaan" value=""> 
                <input type="hidden" class="form-control" id="pgd_status_selesai" name ="pgd_status_selesai" value="">
+               <input type="hidden" class="form-control" id="pgd_dgn_pajak" name ="pgd_dgn_pajak" value="<?php echo $pgd_dgn_pajak; ?>">
                <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">

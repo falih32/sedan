@@ -222,7 +222,7 @@ function RotatedText($x,$y,$txt,$angle)
 				if ($x < 12)
 				return " " . $abil[$x];
 				elseif ($x < 20)
-				return $this->Terbilang($x - 10) . "belas";
+				return $this->Terbilang($x - 10) . " belas";
 				elseif ($x < 100)
 				return $this->Terbilang($x / 10) . " puluh" . $this->Terbilang($x % 10);
 				elseif ($x < 200)

@@ -598,6 +598,7 @@ class Laporan extends CI_Controller {
       $datacetak['pejpeng']=$this->m_laporan->selectPejPeng();
       $datacetak['tglKudg']=$this->input->post('tglBAEK');  
       $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
+      $datacetak['listsiz']=$this->m_laporan->selectsizbypgd($this->input->post('idpengadaan'));
       
          $dsrt ['dsrt_jenis_surat']=11;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');

@@ -39,13 +39,15 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalK)));
 			$pdf->Row1(array('No','Dokumentasi Kualifikasi','Ada','Tidak Ada')); 
 			}
 		//isi
-		$dkul = array('Surat Izin Usaha sesuai LDP','Pernyataan/pengakuan tertulis bahwa badan usaha yang bersangkutan dan manajemen tidak dalam pengawasan pengadilan, tidak pailit, kegiatan usaha tidak sedang dihentikan dan/atau direksi yang bertindak untuk dan atas nama perusahaan sedang tidak dalam menjalani sanksi pidana','Pernyataan salah satu dan/atau semua pengurus dan badan usaha tidak masuk dalam daftar hitam','Memiliki NPWP','Domisili perusahaan masih berlaku','Akta pendirian','Pajak 3 bulan terakhir','Pakta Integritas','KTP Pengurus');
-		$huruf= array('a','b','c','d','e','f','g','h','i');
+		//$dkul = array('Surat Izin Usaha sesuai LDP','Pernyataan/pengakuan tertulis bahwa badan usaha yang bersangkutan dan manajemen tidak dalam pengawasan pengadilan, tidak pailit, kegiatan usaha tidak sedang dihentikan dan/atau direksi yang bertindak untuk dan atas nama perusahaan sedang tidak dalam menjalani sanksi pidana','Pernyataan salah satu dan/atau semua pengurus dan badan usaha tidak masuk dalam daftar hitam','Memiliki NPWP','Domisili perusahaan masih berlaku','Akta pendirian','Pajak 3 bulan terakhir','Pakta Integritas','KTP Pengurus');
+		//$huruf= array('a','b','c','d','e','f','g','h','i');
 		$pdf->SetFont('Arial','',12);
 		$pdf->SetAligns('L');
-		for($i=0;$i<9;$i++){
-			$pdf->Row1(array($huruf[$i],$dkul[$i],$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+130, $pdf->GetY()+1, 4),'')); 
-			}
+                $no=1;
+		foreach ($listsiz as $row) {
+			$pdf->Row1(array($no,$row->siz_nama,$pdf->Image(base_url().'assets/checkmark.jpeg', $pdf->GetX()+130, $pdf->GetY()+1, 4),'')); 
+			$no++;        
+                }
 		$pdf->Ln(5);
 		
 		$pdf->MultiCell(0,5,'Demikian Berita Acara Evaluasi Kualifikasi beserta lampirannya ini dibuat oleh Pejabat Pengadaan Barang / Jasa Satker Biro Umum Setjen KKP untuk selanjutnya akan dilakukan Klarifikasi dan negosiasi.',0,'J');
@@ -90,13 +92,13 @@ $pdf->AddPage();
 			}
 
 		//isi
-                $dok=array('SIUP','TDP','PKP','Akte Perusahaan','NPWP','KTP Direksi','Pakta Integritas','Keterangan Domisili','Rekening Koran');        
+                //$dok=array('SIUP','TDP','PKP','Akte Perusahaan','NPWP','KTP Direksi','Pakta Integritas','Keterangan Domisili','Rekening Koran');        
 		$pdf->SetFont('Arial','',12);
 		$pdf->SetAligns('L');
 			$n=0;
-		for($i=0;$i<9;$i++){
+		foreach ($listsiz as $row) {
 		$n++;
-			$pdf->Row1(array($n,$dok[$i],'             Ada','memenuhi syarat')); 
+			$pdf->Row1(array($n,$row->siz_nama,'             Ada','memenuhi syarat')); 
 			}
 		$pdf->Ln(5);
 

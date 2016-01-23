@@ -170,13 +170,13 @@ class M_pengadaan extends CI_Model{
                 break;
             case "3":
                 $this->datatables->add_column('total', '$1', 'pgd_jml_ssdh_ppn_fix');
-                $this->datatables->where('pgd_status_pengadaan = 2');      //status
+                $this->datatables->where('pgd_status_pengadaan = 3');      //status
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Negosiasi' href='".base_url()."Laporan/LaporanFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Pengumuman' href='".base_url()."Laporan/LaporanAkhir/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -189,13 +189,31 @@ class M_pengadaan extends CI_Model{
                 break;
             case "4":
                 $this->datatables->add_column('total', '$1', 'pgd_jml_ssdh_ppn_fix');
-                $this->datatables->where('pgd_status_pengadaan = 2');      //status
+                $this->datatables->where('pgd_status_pengadaan = 4');      //status
                 $this->datatables->edit_column('aksi',"".
 			"<form>".
 			"<div class='form-group'>".
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
-                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Negosiasi' href='".base_url()."Laporan/LaporanFix/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a>".
+                        
+			"</div>".
+			"</form>".
+                         "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
+               // jika ada role status selesai pengen dibalikan pake if disini
+                $this->datatables->add_column('konfirm_selesai', '<?php '
+                        . 'if($2 == 1){'
+                        . 'echo "fak";}?>'
+                        . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        , 'pgd_id, pgd_status_pengadaan');
+                
+                break;
+            case "5":
+                $this->datatables->add_column('total', '$1', 'pgd_jml_ssdh_ppn_fix');
+                $this->datatables->where('pgd_status_pengadaan = 5');      //status
+                $this->datatables->edit_column('aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -309,6 +327,63 @@ class M_pengadaan extends CI_Model{
                         . 'echo "fak";}?>'
                         . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
                         , 'pgd_id, pgd_status_pengadaan');
+                break;
+            case "3":
+                $this->datatables->add_column('total', '$1', 'pgd_jml_ssdh_ppn_fix');
+                $this->datatables->where('pgd_status_pengadaan = 3');      //status
+                $this->datatables->edit_column('aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			
+			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+                        "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Pengumuman' href='".base_url()."Laporan/LaporanAkhir/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak</a>".
+			"</div>".
+			"</form>".
+                         "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
+               $this->datatables->add_column('konfirm_selesai', '<?php '
+                        . 'if($2 == 3){'
+                        . 'echo "fak";}?>'
+                        . '<a class="btn btn-danger btn-sm"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        , 'pgd_id, pgd_status_pengadaan');
+                
+                break;
+            case "4":
+                $this->datatables->add_column('total', '$1', 'pgd_jml_ssdh_ppn_fix');
+                $this->datatables->where('pgd_status_pengadaan = 4');      //status
+                $this->datatables->edit_column('aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			
+			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+                        
+			"</div>".
+			"</form>".
+                         "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
+               // jika ada role status selesai pengen dibalikan pake if disini
+                $this->datatables->add_column('konfirm_selesai', '<?php '
+                        . 'if($2 == 1){'
+                        . 'echo "fak";}?>'
+                        . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        , 'pgd_id, pgd_status_pengadaan');
+                
+                break;
+            case "5":
+                $this->datatables->add_column('total', '$1', 'pgd_jml_ssdh_ppn_fix');
+                $this->datatables->where('pgd_status_pengadaan = 5');      //status
+                $this->datatables->edit_column('aksi',"".
+			"<form>".
+			"<div class='form-group'>".
+			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
+			"</div>".
+			"</form>".
+                         "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
+                // jika ada role status selesai pengen dibalikan pake if disini
+                $this->datatables->add_column('konfirm_selesai', '<?php '
+                        . 'if($2 == 1){'
+                        . 'echo "fak";}?>'
+                        . '<a class="btn btn-danger btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Konfirmasi Selesai Pengadaan" data-confirm="Anda yakin Pengadaan ini telah selesai?" data-href="KonfirmasiSelesai/$1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>'
+                        , 'pgd_id, pgd_status_pengadaan');
+                
                 break;
             default:
                 $this->datatables->add_column('total', 'HPS: $1 <br> Penawaran: $2 <br> Fix/Deal: $3', 'pgd_jml_ssdh_ppn_hps, pgd_jml_ssdh_ppn_pnr, pgd_jml_ssdh_ppn_fix');

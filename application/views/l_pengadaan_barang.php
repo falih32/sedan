@@ -16,6 +16,21 @@
             $SubJudul = "Pengadaan Barang(Setelah Negoisasi)";
             $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/2');
             break;
+        case "3":
+            $Judul = "Pengadaan Barang(Setelah Pengumuman)";
+            $SubJudul = "Pengadaan Barang(Setelah Pengumuman)";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/3');
+            break;
+        case "4":
+            $Judul = "Pengadaan Barang(Setelah SPMK)";
+            $SubJudul = "Pengadaan Barang(Setelah SPMK)";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/4');
+            break;
+        case "5":
+            $Judul = "Pengadaan Barang(Telah Selesai)";
+            $SubJudul = "Pengadaan Barang(Telah Selesai)";
+            $linkAjax =  site_url('Pengadaan/ajaxProcessBarang/5');
+            break;
         default:
             $Judul = "Pengadaan Barang";
             $SubJudul = "Pengadaan Barang";
@@ -119,7 +134,8 @@ $(document).ready(function() {
                     <?php if($role == 1){ ?>
                     if ( data.pgd_status_selesai == "1") {
                         $('td', row).eq(4).html('<a class="btn btn-success btn-sm confirm" data-toggle="tooltip" data-placement="top" title="Batalkan konfirmasi" data-confirm="Anda yakin akan mengembalikan status pengadaan menjadi belum selesai?" data-href="batal_konfirmasi/'+data.pgd_id+'"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></a>');
-                        $('td', row).eq(5).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='<?php echo site_url('Laporan/LaporanFix').'/'; ?>"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
+                        //$('td', row).eq(5).html("<form><div class='form-group'><a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Harga Deal' href='<?php echo site_url('Laporan/LaporanFix').'/'; ?>"+data.pgd_id+"'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(Fix)</a></div></form>");
+                        $('td', row).eq(5).html('<a class="btn btn-success btn-sm btn-aksi" data-toggle="tooltip" data-placement="top" title="Pengadaan telah selesai">Selesai</a>');
                     }
                     <?php }?>
                     <?php if($role == 2){ ?>

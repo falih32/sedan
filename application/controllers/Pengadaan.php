@@ -58,7 +58,7 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_barang';
-        $data['title']= 'Daftar Pengadaan Barang (HPS)';
+        $data['title']= 'Daftar Pengadaan Barang';
         $data['jenisPengadaan']= '0';
         $data['statusPengadaan']= '-1';
         $this->load->view('layout',$data);
@@ -68,7 +68,7 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_barang';
-        $data['title']= 'Daftar Pengadaan Barang (HPS)';
+        $data['title']= 'Daftar Pengadaan Barang (Setelah HPS)';
         $data['jenisPengadaan']= '0';
         $data['statusPengadaan']= '0';
         $this->load->view('layout',$data);
@@ -78,7 +78,7 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_barang';
-        $data['title']= 'Daftar Pengadaan Barang (Penawaran)';
+        $data['title']= 'Daftar Pengadaan Barang (Setelah Penawaran)';
         $data['jenisPengadaan']= '0';
         $data['statusPengadaan']= '1';
         $this->load->view('layout',$data);
@@ -88,9 +88,39 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_barang';
-        $data['title']= 'Daftar Pengadaan Barang (Negosiasi)';
+        $data['title']= 'Daftar Pengadaan Barang (Setelah Negosiasi)';
         $data['jenisPengadaan']= '0';
         $data['statusPengadaan']= '2';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanBarangPng(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang (Setelah Pengumuman)';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '3';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanBarangSpk(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang (Setelah SPK)';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '4';
+        $this->load->view('layout',$data);
+    }
+    
+     public function PengadaanBarangFns(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_barang';
+        $data['title']= 'Daftar Pengadaan Barang Yang Telah Selesai';
+        $data['jenisPengadaan']= '0';
+        $data['statusPengadaan']= '5';
         $this->load->view('layout',$data);
     }
     
@@ -108,7 +138,7 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_jasa';
-        $data['title']= 'Daftar Pengadaan Jasa (HPS)';
+        $data['title']= 'Daftar Pengadaan Jasa (Setelah HPS)';
         $data['jenisPengadaan']= '1';
         $data['statusPengadaan']= '0';
         $this->load->view('layout',$data);
@@ -118,7 +148,7 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_jasa';
-        $data['title']= 'Daftar Pengadaan Jasa (Penawaran)';
+        $data['title']= 'Daftar Pengadaan Jasa (Setelah Penawaran)';
         $data['jenisPengadaan']= '1';
         $data['statusPengadaan']= '1';
         $this->load->view('layout',$data);
@@ -128,9 +158,19 @@ class Pengadaan extends CI_Controller{
 //        $level = $this->session->userdata('id_level');
 //        if($level != 1){$this->limitRole(array(1, 2, 3));}
         $data['content'] = 'l_pengadaan_jasa';
-        $data['title']= 'Daftar Pengadaan Jasa (Fix)';
+        $data['title']= 'Daftar Pengadaan Jasa (Setelah Fix)';
         $data['jenisPengadaan']= '1';
         $data['statusPengadaan']= '2';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanJasaPng(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_jasa';
+        $data['title']= 'Daftar Pengadaan Jasa (Setelah Pengumuman)';
+        $data['jenisPengadaan']= '1';
+        $data['statusPengadaan']= '3';
         $this->load->view('layout',$data);
     }
 		
@@ -675,46 +715,46 @@ class Pengadaan extends CI_Controller{
         
         
         // post idPengadaan
-        $idPengadaan = $this->input->post('pgd_id');
+        $idPengadaan = $this->input->get('pgd_id');
         //5. update status pgd
-        $xx['pgd_status_pengadaan'] = '2';
+        $xx['pgd_status_pengadaan'] = '3';
         $this->m_pengadaan->update($idPengadaan,$xx);
-        //2. post data pekerjaan
-        $data3 = $this->input->get('dtp_id') ;
-        $data4 = $this->input->get('dtp_hargasatuan_fix');
-        $length = count($data3);
-        echo $length;
-         //3. Update data pekerjaan
-        for( $i = 0; $i < $length; $i++ ) {
-            $ax['dtp_id'] = $data3[$i];
-            echo $ax['dtp_id'];
-            $ex['dtp_hargasatuan_fix'] = $data4[$i];
-            echo $ex['dtp_hargasatuan_fix'];
-            $this->m_pengadaan->updateHargaFix( $ax['dtp_id'],$ex);
-        }
-
-        //4. Call procedure jumlah total
-      
-        //totalkan harga semua
-         //cek dengan pajak atau ngga
-        $statusPajak = $this->input->get('pgd_dgn_pajak');
-        if($statusPajak == 0){
-            $pajak = 0.1;
-        }else{
-            $pajak = 0;
-        }
-        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+       
 
         $tipe = $this->input->get('pgd_tipe_pengadaan');
         if($tipe == 0){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-            redirect(site_url('Pengadaan/PengadaanBarangFix'));
+            redirect(site_url('Pengadaan/PengadaanBarangPng'));
         }else if($tipe == 1){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-            redirect(site_url('Pengadaan/PengadaanJasaFix'));
+            redirect(site_url('Pengadaan/PengadaanJasaPng'));
         }else if($tipe == 2){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-            redirect(site_url('Pengadaan/PengadaanKonsultanFix'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanPng'));
+        }
+        
+    }
+    
+    public function proses_add_spk(){
+        
+        
+        // post idPengadaan
+        $idPengadaan = $this->input->get('pgd_id');
+        //5. update status pgd
+        $xx['pgd_status_pengadaan'] = '4';
+        $this->m_pengadaan->update($idPengadaan,$xx);
+       
+
+        $tipe = $this->input->get('pgd_tipe_pengadaan');
+        if($tipe == 0){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanBarangSpk'));
+        }else if($tipe == 1){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanJasaSpk'));
+        }else if($tipe == 2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/PengadaanKonsultanSpk'));
         }
         
     }
@@ -736,6 +776,7 @@ class Pengadaan extends CI_Controller{
     
     function KonfirmasiSelesai($id){
         $data['pgd_status_selesai']   = 1;
+        $data['pgd_status_pengadaan']   = 5;
         $this->m_pengadaan->update( $id,$data);  
     }
     

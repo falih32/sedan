@@ -18,6 +18,7 @@ class Laporan extends CI_Controller {
             $this->load->helper('date');
             $this->load->model('m_laporan');
             $this->load->model('m_user');
+            $this->load->model('m_pengadaan');
         }
     }
     
@@ -678,6 +679,7 @@ class Laporan extends CI_Controller {
      
      public function LaporanFix($id){
         $data['idpengadaan'] = $id;
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
         $data['content'] = 'f_laporanfix';
         $data['title']= 'Laporan Fix';
             $data['mode1'] = '';
@@ -913,6 +915,7 @@ for($i=13;$i<=15;$i++){
      
  public function Laporanakhir($id){
         $data['idpengadaan'] = $id;
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
         $data['content'] = 'f_laporanakhir';
         $data['title']= 'Laporan Akhir';
         $data['d']=$this->m_laporan->selectPengSUP($id)->row();

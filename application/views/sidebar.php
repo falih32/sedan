@@ -37,6 +37,9 @@
                                     <a href="<?php echo site_url("Pengadaan/PengadaanBarangPng"); ?>">Setelah Pengumuman</a>
                                 </li>
                                 <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanBarangSpk"); ?>">Setelah SPK</a>
+                                </li>
+                                <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanBarangFns"); ?>">Pengadaan yang Telah Selesai</a>
                                 </li>
                                 <li role="separator" class="divider"></li>
@@ -60,6 +63,9 @@
                                 </li>
                                  <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanJasaPng"); ?>">Setelah Pengumuman</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanJasaPng"); ?>">Setelah SPK</a>
                                 </li>
                                 <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanJasaFns"); ?>">Pengadaan yang Telah Selesai</a>

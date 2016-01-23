@@ -94,7 +94,7 @@
                                 </li>
                                 
                                 <li>
-                                    <a href="<?php echo site_url("SuratIzin"); ?>">Surat Izin</a>
+                                    <a href="<?php echo site_url("SuratIzin"); ?>">Syarat Penyedia</a>
                                 </li>      
                                  <li>
                                     <a href="<?php echo site_url("Supplier"); ?>">Supplier</a>

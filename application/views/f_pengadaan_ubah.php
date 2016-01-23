@@ -21,6 +21,22 @@
                 $pgd_wkt_akhir_penawaran = $dataPengadaan->pgd_wkt_akhir_penawaran;
                 $pgd_tipe_pengadaan = $dataPengadaan->pgd_tipe_pengadaan;
                 $pgd_status_pengadaan = $dataPengadaan->pgd_status_pengadaan;
+                $pgd_dgn_pajak = $dataPengadaan->pgd_dgn_pajak;
+		$nm_ketua = $penyusunlist-> nm_ketua;
+		$nip_ketua = $penyusunlist-> nip_ketua;
+                $jbt_ketua = $penyusunlist->jbt_ketua;
+                $nm_anggota1 = $penyusunlist->nm_anggota1;
+                $nip_anggota1 = $penyusunlist->nip_anggota1;
+                $jbt_anggota1 = $penyusunlist->jbt_anggota1;
+                $nm_anggota2 = $penyusunlist->nm_anggota2;
+                $nip_anggota2 = $penyusunlist->nip_anggota2;
+                $jbt_anggota2 = $penyusunlist->jbt_anggota2;
+                $nm_anggota3 = $penyusunlist->nm_anggota3;
+                $nip_anggota3 = $penyusunlist->nip_anggota3;
+                $jbt_anggota3 = $penyusunlist->jbt_anggota3;
+                $nm_anggota4 = $penyusunlist->nm_anggota4;
+                $nip_anggota4 = $penyusunlist->nip_anggota4;
+                $jbt_anggota4 = $penyusunlist->jbt_anggota4;
         switch ($pgd_tipe_pengadaan) {
         case "0":
             $tipe_pengadaan = "Barang";

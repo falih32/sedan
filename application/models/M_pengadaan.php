@@ -92,13 +92,13 @@ class M_pengadaan extends CI_Model{
     function ajaxProcessBarang($min, $max, $status){
         $this->db->query("SET lc_time_names = 'id_ID'");
 	$this->datatables
-                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran, "
+                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran,IF(pgd_status_selesai = '-1', 'penawaran tidak berhasil','') as pnr_gagal, "
                         . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
                         . "spl_nama as supplier_name,"
                         . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
-                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_hps, "
-                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_pnr,'2')) as pgd_jml_ssdh_ppn_pnr,"
-                        . "CONCAT('Rp. ',FORMAT(pgd_jml_ssdh_ppn_hps,'2')) as pgd_jml_ssdh_ppn_fix ")
+                        . 'CONCAT("Rp ",FORMAT(pgd_jml_ssdh_ppn_hps,"0")) as pgd_jml_ssdh_ppn_hps, '
+                        . "CONCAT('Rp ',FORMAT(pgd_jml_ssdh_ppn_pnr,'0')) as pgd_jml_ssdh_ppn_pnr, "
+                        . "CONCAT('Rp ',FORMAT(pgd_jml_ssdh_ppn_fix,'0')) as pgd_jml_ssdh_ppn_fix ")
                 ->from('t_pengadaan')
                 ->join('t_supplier', 'spl_id = pgd_supplier','left')
                 ->where('pgd_deleted', '0')
@@ -195,7 +195,7 @@ class M_pengadaan extends CI_Model{
     function ajaxProcessJasa($min, $max, $status){
         $this->db->query("SET lc_time_names = 'id_ID'");
 	$this->datatables
-                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran, "
+                ->select("t_pengadaan.*,pgd_id, pgd_perihal, pgd_anggaran,IF(pgd_status_selesai = '-1', 'penawaran tidak berhasil','') as pnr_gagal, "
                         . "DATE_FORMAT(pgd_tanggal_input,'%e %M %Y') as pgd_tanggal_input, "
                         . "spl_nama as supplier_name, "
                         . "pgd_tipe_pengadaan,pgd_status_pengadaan, "
@@ -328,17 +328,7 @@ class M_pengadaan extends CI_Model{
         return $this->db->get()->result();
     }
     
-     function selectListPenyusun($id, $active){
-        $this->db
-		->select('t_list_penyusun.*, pgw_nama, jbt_nama, pgw_nip')
-                ->from('t_kelompok_penyusun')
-                ->where('klp_pengadaan', $id)
-                ->where('klp_terpilih', $active)
-                ->join('t_list_penyusun', 'klp_id = lsp_kelompok', 'left')
-                ->join('t_pegawai', 'pgw_id = lsp_pegawai', 'left')
-                ->join('t_jabatan', 'jbt_id = pgw_jabatan', 'left');
-        return $this->db->get()->result();
-    }
+     
     
     function selectListSyaratPenyedia($id){
         $this->db
@@ -352,6 +342,12 @@ class M_pengadaan extends CI_Model{
     function update($id, $data){
         $this->db->where('pgd_id', $id);
         $this->db->update('t_pengadaan', $data);
+    }
+    
+    function checkPNCFound($id){
+        $this->db->select("pgd_id");
+        $this->db->where('pgd_id', $id);
+        return $this->db->get()->result();
     }
     
     function deletePekerjaan($id){

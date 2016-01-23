@@ -65,6 +65,29 @@ class M_penyusun extends CI_Model {
         return $this->datatables->generate();
     }
     
+    function selectListPenyusunByPengadaan($id){
+        $this->db
+		->select('ketua.pgw_nama as nm_ketua, ketua.pgw_nip as nip_ketua, jketua.jbt_nama as jbt_ketua, '
+                        . 'anggota1.pgw_nama as nm_anggota1, anggota1.pgw_nip as nip_anggota1, janggota1.jbt_nama as jbt_anggota1, '
+                        . 'anggota2.pgw_nama as nm_anggota2, anggota2.pgw_nip as nip_anggota2, janggota2.jbt_nama as jbt_anggota2, '
+                        . 'anggota3.pgw_nama as nm_anggota3, anggota3.pgw_nip as nip_anggota3, janggota3.jbt_nama as jbt_anggota3, '
+                        . 'anggota4.pgw_nama as nm_anggota4, anggota4.pgw_nip as nip_anggota4, janggota4.jbt_nama as jbt_anggota4 ')
+                ->from('t_pengadaan')
+                ->join('t_master_penyusun', 'pgd_penyusun = msp_id')
+                ->where('pgd_id', $id)
+                ->join('t_pegawai ketua', 'ketua.pgw_id = msp_ketua', 'left')
+                ->join('t_jabatan jketua', 'jketua.jbt_id = ketua.pgw_jabatan', 'left')
+                ->join('t_pegawai anggota1', 'anggota1.pgw_id = msp_anggota1', 'left')
+                ->join('t_jabatan janggota1', 'janggota1.jbt_id = anggota1.pgw_jabatan', 'left')
+                ->join('t_pegawai anggota2', 'anggota2.pgw_id = msp_anggota2', 'left')
+                ->join('t_jabatan janggota2', 'janggota2.jbt_id = anggota2.pgw_jabatan', 'left')
+                ->join('t_pegawai anggota3', 'anggota3.pgw_id = msp_anggota3', 'left')
+                ->join('t_jabatan janggota3', 'janggota3.jbt_id = anggota3.pgw_jabatan', 'left')
+                ->join('t_pegawai anggota4', 'anggota4.pgw_id = msp_anggota4', 'left')
+                ->join('t_jabatan janggota4', 'janggota4.jbt_id = anggota4.pgw_jabatan', 'left');
+        return $this->db->get();
+    }
+    
     function insert($data){
         $this->db->insert('t_master_penyusun', $data);
     }

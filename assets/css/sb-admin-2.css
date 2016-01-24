@@ -5,7 +5,7 @@
  */
 
 body {
-    background-color: #f8f8f8;
+    background-color: #ffffff;
 }
 
 #wrapper {
@@ -128,12 +128,20 @@ body {
 }
 
 @media(min-width:768px) {
-    .sidebar {
+ @media(min-width:768px) {
+     .sidebar {
         z-index: 1;
         position: absolute;
         width: 250px;
-        margin-top: 51px;
+        
     }
+
+    .navbar-top-links .dropdown-messages,
+    .navbar-top-links .dropdown-tasks,
+    .navbar-top-links .dropdown-alerts {
+        margin-left: auto;
+    }
+}
 
     .navbar-top-links .dropdown-messages,
     .navbar-top-links .dropdown-tasks,
@@ -228,7 +236,7 @@ body {
     position: relative;
     clear: both;
 }
-
+/*
 table.dataTable thead .sorting,
 table.dataTable thead .sorting_asc,
 table.dataTable thead .sorting_desc,
@@ -255,7 +263,7 @@ table.dataTable thead .sorting:after {
     font-family: fontawesome;
     color: rgba(50,50,50,.5);
 }
-
+*/
 .btn-circle {
     width: 30px;
     height: 30px;

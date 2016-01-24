@@ -4,8 +4,6 @@ $level = $this->session->userdata('id_level');
 $barang=0;
 $jasa=0;
 $konsultan=0;
-$chart = json_decode($chart);
-$chartdata = json_encode($chart->data);
 foreach($totalpengadaan as $rowtot) {
     if($rowtot->jenis==0) { $barang=$rowtot->total; } 
     else if($rowtot->jenis==1) { $jasa=$rowtot->total; }    

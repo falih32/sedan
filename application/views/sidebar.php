@@ -127,6 +127,10 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <?php }?>
+                        <li>
+                            <a href="<?php echo site_url("uploads/user-manual.pdf"); ?>"><i class="fa fa-files-o fa-fw"></i> User Manual</a>
+                 
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

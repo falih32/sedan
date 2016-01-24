@@ -45,6 +45,7 @@ class Dashboard extends CI_Controller{
         
         $totpengadaan=$this->M_dashboard->TotalPengadaanPerBulan($this->session->userdata('tahun'));
         $i=0;
+        $output = array();
         foreach($totpengadaan as $t){
             $output['data'][$i]['bulan']=$t->bulan;    
             $output['data'][$i]['barang']=$t->tot_pgd_barang;

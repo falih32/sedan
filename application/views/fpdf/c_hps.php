@@ -27,7 +27,7 @@ $pdf->SetMargins(15,10,10);
 		$no=0;
 		foreach ($listpeng as $row) {
 		$no++;	
-			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_hps) ,$pdf->formatrupiah($row->dtp_jumlahharga_hps))); 
+			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_hps) ,$pdf->formatrupiah($row->dtp_jumlahharga_hps))); 
 		}
 		//$format = number_format($jum, 0, '','.');
 		if($pgd_dgn_pajak==0){

@@ -58,5 +58,42 @@ Tanggal '.$pdf->tanggal("j M Y",$tglspk),'LR','L');
                 $pdf->Cell(95,5,'','B',0,'L');	$pdf->Cell(90,5,$d->pgd_jbt_perwakilan_spl,'B',1,'L');
                 $xb2=$pdf->GetX(); $yb2=$pdf->GetY();
                 $pdf->Line($xb1, $yb1, $xb2, $yb2); $pdf->Line($xb1+95, $yb1, $xb2+95, $yb2); $pdf->Line($xb1+185, $yb1, $xb2+185, $yb2);
+//-------------------------------------lampiran---------------------------------------------------
+ $pdf->AddPage();
+ $pdf->Ln(7);
+                $header = array('No', 'Uraian Pekerjaan', 'Volume','Harga Satuan (Rp.)','     Jumlah      (Rp.)');
+                $pdf->SetFont('Arial','',11);
+                $pdf->Cell(0,6,'Lampiran Surat Perintah Kerja (SPK)',0,2,'C');
+		$pdf->Cell(0,6,'Nomor : '.$nospk,0,2,'C');
+                 $pdf->Ln(3);
+		$w = array(10,75,35,30,35);
+		$pdf->SetWidths($w);
+		
+		$pdf->SetAligns('C');
+		for($i=0;$i<1;$i++){
+			$pdf->Row1($header); 
+		}
+		
+		$pdf->SetAligns('L');
+		$no=0;
+		foreach ($listpeng as $row) {
+		$no++;	
+			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 
+		}
+		//$format = number_format($jum, 0, '','.');
+		if($d->pgd_dgn_pajak==0){
+                $pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_fix),1,1,'R',0);
+		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'PPN 10%',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$pdf->formatrupiah(0.1*$d->pgd_jml_sblm_ppn_fix),1,1,'R',0);
+                }
+                $pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_ssdh_ppn_fix),1,1,'R',0);		
+		$pdf->Ln(6);
+		$cAngka = $pdf->Terbilang($d->pgd_jml_ssdh_ppn_fix);
+		$b = ucfirst(strtolower($cAngka));
+		$pdf->MultiCell(185,6,'Sebesar : '.$b.'rupiah',0,'L');
+                if($d->pgd_dgn_pajak==0){
+		$pdf->Cell(100,6,'Harga diatas sudah termasuk Pajak',0,3,'L');
+                }
+                
+                
                 $pdf->Output();         
 ?>		

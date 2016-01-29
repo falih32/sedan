@@ -58,7 +58,7 @@ $pdf->SetLineWidth(0.5);
 		$no=0;
 		foreach ($listpeng as $row) {
 		$no++;	
-			$pdf->Row(array($no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan,$pdf->formatrupiah($row->dtp_hargasatuan_pnr) ,$pdf->formatrupiah($row->dtp_jumlahharga_pnr),$pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 
+			$pdf->Row(array($no,$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan,$pdf->formatrupiah($row->dtp_hargasatuan_pnr) ,$pdf->formatrupiah($row->dtp_jumlahharga_pnr),$pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 
 		}
 		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'R',0); $pdf->Cell($w[4],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_pnr),1,0,'R',0);$pdf->Cell($w[5],7,'',1,0,'R',0); $pdf->Cell($w[6],7,$pdf->formatrupiah($d->pgd_jml_sblm_ppn_fix),1,1,'R',0);
 		if($d->pgd_dgn_pajak==0){

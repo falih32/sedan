@@ -24,7 +24,7 @@ $pdf->AddPage();
 		$no=0;
 		foreach ($listpeng as $row) {
 		$no++;	
-			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_volume.' '.$row->dtp_satuan, ' ' , ' ')); 
+			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, ' ' , ' ')); 
 		}
 		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'Jumlah',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,1,'C',0);
 		if($pgd_dgn_pajak==0){

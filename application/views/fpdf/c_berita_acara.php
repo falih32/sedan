@@ -67,7 +67,7 @@ $tanggalP=$tglpembukaan;
 		$pdf->Cell(90,6,$d->spl_nama,0,0,'L');	$pdf->Cell(90,6,'Satker Biro Umum Setjen KKP',0,1,'L');
 		$pdf->Cell(90,6,'Nama : '.$d->pgd_perwakilan_spl,0,1,'L');
 		$pdf->Ln(2);
-		$pdf->Cell(90,6,'TTD  :.....................',0,0,'L');	$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');
+		$pdf->Cell(90,6,'TTD  :.....................',0,0,'L');	$pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,1,'L');
                 
 $pdf->AddPage();
 //Header
@@ -101,6 +101,6 @@ $pdf->AddPage();
 		$pdf->Cell(100,6,'Kementerian Kelautan dan Perikanan',0,2,'L');
 		$pdf->Ln(20);
 		$pdf->Cell(105); 
-		$pdf->Cell(100,10,$pejpeng->pgw_nama,0,3,'L');                
+		$pdf->Cell(100,10,$d->pgd_nama_pejpeng,0,3,'L');                
 	$pdf->Output();	
 ?>		

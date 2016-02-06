@@ -54,7 +54,7 @@ Tanggal '.$pdf->tanggal("j M Y",$tglspk),'LR','L');
 		$pdf->Cell(95,6,'Kementerian Kelautan dan Perikanan',0,0,'L');	$pdf->Cell(90,6,'','LR',1,'L');
 		$pdf->Cell(95,6,'Pejabat Pembuat Komitmen',0,0,'L'); $pdf->Cell(90,6,$d->spl_nama,'LR',1,'L');
 		$pdf->Ln(15);
-		$pdf->Cell(95,6,$ppk->pgw_nama,0,0,'L');	$pdf->Cell(90,6,$d->pgd_perwakilan_spl,0,1,'L');
+		$pdf->Cell(95,6,$d->pgd_nama_ppk,0,0,'L');	$pdf->Cell(90,6,$d->pgd_perwakilan_spl,0,1,'L');
                 $pdf->Cell(95,5,'','B',0,'L');	$pdf->Cell(90,5,$d->pgd_jbt_perwakilan_spl,'B',1,'L');
                 $xb2=$pdf->GetX(); $yb2=$pdf->GetY();
                 $pdf->Line($xb1, $yb1, $xb2, $yb2); $pdf->Line($xb1+95, $yb1, $xb2+95, $yb2); $pdf->Line($xb1+185, $yb1, $xb2+185, $yb2);

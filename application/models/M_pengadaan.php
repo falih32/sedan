@@ -7,6 +7,29 @@ class M_pengadaan extends CI_Model{
 		$this->load->library('Datatables');
     }
     
+     function selectPejPeng(){
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_pegawai "
+                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
+                . "WHERE jbt_id = '30' ")->row();
+       return $data;
+    }
+    
+    function selectPPK(){
+        $data = $this->db->query("SELECT pgw_nama "
+                . "FROM t_pegawai "
+                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
+                . "WHERE jbt_id = '33' ")->row();
+       return $data;
+    }
+    
+       function selectdipa() {
+        $data = $this->db->query("SELECT * "
+                . "FROM t_dipa "
+                . "order by dipa_id desc ")->result();
+        return  $data;
+     }
+    
     function insertPengadaan($data){
         $this->db->insert('t_pengadaan', $data);
         $insert_id = $this->db->insert_id();

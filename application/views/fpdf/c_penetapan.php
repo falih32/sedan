@@ -31,7 +31,7 @@ $pdf->AddPage();
 		$pdf->Cell(90,6,'Satker Biro Umum Sekretariat Jenderal',0,2,'L');
 		$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,2,'L');
 		$pdf->Ln(15);
-	   $pdf->Cell(110); $pdf->Cell(90,6,$pejpeng->pgw_nama,0,2,'L');
+	   $pdf->Cell(110); $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,2,'L');
 		
 	$pdf->Output();	
 ?>		

@@ -33,7 +33,7 @@ $tanggalK=$tglklarifikasi;
 		$pdf->Cell(90,6,'',0,0,'L');	
 		$pdf->Ln(15);
 		$pdf->SetFont('Arial','U',12);
-		$pdf->Cell(90,6,$d->pgd_perwakilan_spl,0,0,'L');	$pdf->SetFont('Arial','',12); $pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');
+		$pdf->Cell(90,6,$d->pgd_perwakilan_spl,0,0,'L');	$pdf->SetFont('Arial','',12); $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,1,'L');
 		$pdf->Cell(90,6,$d->pgd_jbt_perwakilan_spl,0,0,'L');
 
 $pdf->AddPage();
@@ -76,7 +76,7 @@ $pdf->SetLineWidth(0.5);
 		$pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Satker Biro Umum Sekretariat Jenderal KKP',0,3,'L');
                 $pdf->Cell(120,6,'',0,0,'L');$pdf->Cell(70,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
 		$pdf->Ln(20); 
-		$pdf->SetFont('Arial','U',11); $pdf->Cell(120,5,$d->pgd_perwakilan_spl,0,0,'L'); $pdf->SetFont('Arial','',11); $pdf->Cell(70,5,$pejpeng->pgw_nama,0,1,'L');
+		$pdf->SetFont('Arial','U',11); $pdf->Cell(120,5,$d->pgd_perwakilan_spl,0,0,'L'); $pdf->SetFont('Arial','',11); $pdf->Cell(70,5,$d->pgd_nama_pejpeng,0,1,'L');
 		$pdf->Cell(130,5,$d->pgd_jbt_perwakilan_spl,0,3,'L');                
 	$pdf->Output();	
 ?>		

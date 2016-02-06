@@ -286,6 +286,11 @@ class Pengadaan extends CI_Controller{
         $pgd['pgd_pembukaan_dok_pnr'] = $this->input->post('pgd_pembukaan_dok_pnr');
         $pgd['pgd_penandatangan_spk'] = $this->input->post('pgd_penandatangan_spk');
         $pgd['pgd_klr_teknis_nego_hrg'] = $this->input->post('pgd_klr_teknis_nego_hrg');
+        $pgd['pgd_klr_teknis_nego_hrg'] = $this->input->post('pgd_klr_teknis_nego_hrg');
+        $namappk=$this->m_pengadaan->selectPPK();
+        $namapejpeng=$this->m_pengadaan->selectPejPeng();
+        $pgd['pgd_nama_ppk']=$namappk->pgw_nama;
+        $pgd['pgd_nama_pejpeng']=$namapejpeng->pgw_nama;
         //4. insert Penyusun
         $pgd['pgd_penyusun'] = $this->M_penyusun->selectLastPenyusun()->row()->msp_id;
         if ($pgd['pgd_dgn_pajak'] <> 1){

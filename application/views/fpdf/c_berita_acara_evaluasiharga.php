@@ -59,7 +59,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalK)));
 		$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,2,'L');
 		$pdf->Ln(15);
 		$pdf->Cell(100);
-		$pdf->Cell(90,6,$pejpeng->pgw_nama,0,1,'L');                
+		$pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,1,'L');                
 		
 	$pdf->Output();	
 ?>		

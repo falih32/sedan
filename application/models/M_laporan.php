@@ -50,13 +50,13 @@ class M_laporan extends CI_Model{
        return $data;
     }   
     
-    function selectPPK(){
-        $data = $this->db->query("SELECT pgw_nama "
-                . "FROM t_pegawai "
-                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
-                . "WHERE jbt_id = '33' ")->row();
-       return $data;
-    }
+//    function selectPPK(){
+//        $data = $this->db->query("SELECT pgw_nama "
+//                . "FROM t_pegawai "
+//                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
+//                . "WHERE jbt_id = '33' ")->row();
+//       return $data;
+//    }
      function detpengbyid($id) {
        $data = $this->db->query("SELECT * "
                 . "FROM t_detail_pengadaan "
@@ -118,13 +118,13 @@ class M_laporan extends CI_Model{
                 . "WHERE pgd_id = '$id' ")->row();
        return $data;
      }
-    function selectPejPeng(){
-        $data = $this->db->query("SELECT pgw_nama "
-                . "FROM t_pegawai "
-                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
-                . "WHERE jbt_id = '30' ")->row();
-       return $data;
-    }
+//    function selectPejPeng(){
+//        $data = $this->db->query("SELECT pgw_nama "
+//                . "FROM t_pegawai "
+//                . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
+//                . "WHERE jbt_id = '30' ")->row();
+//       return $data;
+//    }
      function selectsizbypgd($id) {
         $data = $this->db->query("SELECT siz_nama "
                 . "FROM t_suratizin "

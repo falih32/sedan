@@ -63,7 +63,7 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->Cell(100,6,'Pejabat Pengadaan pada Satuan Kerja Biro Umum',0,2,'L');
 		$pdf->Cell(100,6,'Setjen Kementerian Kelautan dan Perikanan',0,2,'L');
 		$pdf->Ln(11); 
-		$pdf->Cell(100,10,$pejpeng->pgw_nama,0,3,'L');
+		$pdf->Cell(100,10,$d->pgd_nama_pejpeng,0,3,'L');
 		
 	$pdf->Output();	
 ?>		

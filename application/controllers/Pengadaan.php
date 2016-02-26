@@ -193,6 +193,76 @@ class Pengadaan extends CI_Controller{
         $data['statusPengadaan']= '5';
         $this->load->view('layout',$data);
     }
+    
+    public function PengadaanKonsultan(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '-1';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanKonsultanHPS(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan (Setelah HPS)';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '0';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanKonsultanPenawaran(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan (Setelah Penawaran)';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '1';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanKonsultanFix(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan (Setelah Negosiasi)';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '2';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanKonsultanPng(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan (Setelah Pengumuman)';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '3';
+        $this->load->view('layout',$data);
+    }
+    
+    public function PengadaanKonsultanSpk(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan (Setelah SPK)';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '4';
+        $this->load->view('layout',$data);
+    }
+    
+     public function PengadaanKonsultanFns(){
+//        $level = $this->session->userdata('id_level');
+//        if($level != 1){$this->limitRole(array(1, 2, 3));}
+        $data['content'] = 'l_pengadaan_konsultan';
+        $data['title']= 'Daftar Pengadaan Konsultan Yang Telah Selesai';
+        $data['jenisPengadaan']= '2';
+        $data['statusPengadaan']= '5';
+        $this->load->view('layout',$data);
+    }
 		
     public function ajaxProcess(){
         $min=$this->input->post('min');
@@ -239,33 +309,35 @@ class Pengadaan extends CI_Controller{
             $data['Judul']= 'Barang';
             $data['lbl_detail_pengadaan']= 'Barang';
             $data['pgd_tipe_pengadaan'] = 0;
+            $data['content'] = 'f_pengadaan';
             break;
         case "jasa":
             $data['title']= 'Tambah Pengadaan Jasa'; 
             $data['Judul']= 'Jasa';
             $data['lbl_detail_pengadaan']= 'Pekerjaan';
             $data['pgd_tipe_pengadaan'] = 1;
+            $data['content'] = 'f_pengadaan';
             break;
         case "konsultan":
             $data['title']= 'Tambah Pengadaan Konsultan'; 
             $data['Judul']= 'Konsultan';
-            $data['lbl_detail_pengadaan']= 'Pekerjaan';
+            $data['lbl_detail_pengadaan']= 'Tenaga Ahli';
             $data['pgd_tipe_pengadaan'] = 2;
+            $data['content'] = 'f_pengadaan';
             break;
         default:
             $data['title']= 'Tambah Pengadaan'; 
             $data['Judul']= '';
             $data['lbl_detail_pengadaan']= 'Pekerjaan/Barang';
             $data['pgd_tipe_pengadaan'] = -1;
+            $data['content'] = 'f_pengadaan';
         } 
         
-        $data['content'] = 'f_pengadaan';
+        
         $data['statuspage'] = 'add';
         $data['anggaranList']= $this->M_anggaran->selectAll()->result();
         $data['supplierList']= $this->M_supplier->selectAll()->result();
-        
-        
-       
+
         $this->load->view('layout',$data);
     }
     
@@ -286,7 +358,7 @@ class Pengadaan extends CI_Controller{
         $pgd['pgd_pembukaan_dok_pnr'] = $this->input->post('pgd_pembukaan_dok_pnr');
         $pgd['pgd_penandatangan_spk'] = $this->input->post('pgd_penandatangan_spk');
         $pgd['pgd_klr_teknis_nego_hrg'] = $this->input->post('pgd_klr_teknis_nego_hrg');
-        $pgd['pgd_klr_teknis_nego_hrg'] = $this->input->post('pgd_klr_teknis_nego_hrg');
+        
         $namappk=$this->m_pengadaan->selectPPK();
         $namapejpeng=$this->m_pengadaan->selectPejPeng();
         $pgd['pgd_nama_ppk']=$namappk->pgw_nama;

@@ -5,7 +5,7 @@
  */
 
 body {
-    background-color: #ffffff;
+    background-color: #f8f8f8;
 }
 
 #wrapper {
@@ -128,20 +128,12 @@ body {
 }
 
 @media(min-width:768px) {
- @media(min-width:768px) {
-     .sidebar {
+    .sidebar {
         z-index: 1;
         position: absolute;
         width: 250px;
-        
+        margin-top: 51px;
     }
-
-    .navbar-top-links .dropdown-messages,
-    .navbar-top-links .dropdown-tasks,
-    .navbar-top-links .dropdown-alerts {
-        margin-left: auto;
-    }
-}
 
     .navbar-top-links .dropdown-messages,
     .navbar-top-links .dropdown-tasks,

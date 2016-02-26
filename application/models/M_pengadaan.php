@@ -82,7 +82,7 @@ class M_pengadaan extends CI_Model{
 
     function getFirstYearInput(){
         return $this->db->query("select ifnull((SELECT YEAR(pgd_tanggal_input) as tahun "
-                . "FROM t_pengadaan ORDER BY tahun LIMIT 1),"
+                . "FROM t_pengadaan WHERE pgd_tanggal_input IS NOT NULL ORDER BY tahun LIMIT 1),"
                 . "(select year(NOW()) from dual)) as thn from dual")->row()->thn;
     }
     function ajaxProcess($min, $max){

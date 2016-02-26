@@ -81,13 +81,13 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Pengadaan Konsultan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="#">Setelah HPS(Belum Tersedia)</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanHPS"); ?>">Setelah HPS(Belum Tersedia)</a>
                                 </li>
                                 <li>
-                                    <a href="#">Setelah Penawaran(Belum Tersedia)</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanPenawaran"); ?>">Setelah Penawaran(Belum Tersedia)</a>
                                 </li>
                                 <li>
-                                    <a href="#">Setelah Negoisasi(Belum Tersedia)</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanFix"); ?>">Setelah Negoisasi(Belum Tersedia)</a>
                               
                                 </li>
                             </ul>

@@ -92,7 +92,7 @@
                         <br>
                         <div class="panel panel-default">
                             <div class="panel-body">
-                                <h4><b>Lingkup Pekerjaan</b></h4>
+                                <h4><b>Lingkup Pengadaan</b></h4>
                                 <div class="row ">
                                     <div class="col-md-6">
                                         <div class="form-group">

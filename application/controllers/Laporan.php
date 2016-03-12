@@ -385,7 +385,7 @@ class Laporan extends CI_Controller {
              $dsrt ['dsrt_jenis_surat']=5; 
              $this->m_laporan->insertdsrt($dsrt);
             }
-            $this->load->view('fpdf/cetak_ldp', $datacetak); 
+            $this->load->view('fpdf/cetak_ldp_konsultan', $datacetak); 
      }
       public function cetakUndangan(){
             $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
@@ -1027,5 +1027,10 @@ for($i=13;$i<=15;$i++){
          
          $this->load->view('fpdf/c_spmk',$datacetak);
      }
+     
+     function test(){
+        $data['content'] = 'f_pengadaan_konsultan_pp';
+        $this->load->view('layout',$data);
+    }
 }
  

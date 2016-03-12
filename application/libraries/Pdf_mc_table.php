@@ -108,6 +108,36 @@ function RowNoLines($data)
         //Draw the border
         //$this->Rect($x,$y,$w,$h);
         //Print the text
+        //if($i<=1){ $this->SetFont('Arial','B',12); } else {$this->SetFont('Arial','',12);}
+        $this->MultiCell($w,5,$data[$i],0,$a);
+        //Put the position to the right of the cell
+        $this->SetXY($x+$w,$y);
+    }
+    //Go to the next line
+    $this->Ln($h);
+}
+
+function RowNoLines1($data)
+{
+    //Calculate the height of the row
+    $nb=0;
+    for($i=0;$i<count($data);$i++)
+        $nb=max($nb,$this->NbLines($this->widths[$i],$data[$i]));
+    $h=5*$nb;
+    //Issue a page break first if needed
+    $this->CheckPageBreak($h);
+    //Draw the cells of the row
+    for($i=0;$i<count($data);$i++)
+    {
+        $w=$this->widths[$i];
+        $a=isset($this->aligns[$i]) ? $this->aligns[$i] : $this->a;
+        //Save the current position
+        $x=$this->GetX();
+        $y=$this->GetY();
+        //Draw the border
+        //$this->Rect($x,$y,$w,$h);
+        //Print the text
+        if($i<=1){ $this->SetFont('Arial','B',12); } else {$this->SetFont('Arial','',12);}
         $this->MultiCell($w,5,$data[$i],0,$a);
         //Put the position to the right of the cell
         $this->SetXY($x+$w,$y);

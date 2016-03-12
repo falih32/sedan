@@ -17,62 +17,222 @@ if($statuspage !="edit"){
             </div>
             <div class="panel-body">
                 <?php if($pgd_status_pengadaan==0){ ?>
-                <form method="post" id = "dtl_pengadaan_form"  action = "" class="form-horizontal" data-toggle="validator">
+                
                     <div class="col-md-12">
-<!-----Detail barang/jasa---------------------------------------------------------------------------------------------------->                        
+<!-----Sub Judul---------------------------------------------------------------------------------------------------->                         
+                        <form method="post" id = "subjudul_form"  action = "" class="form-horizontal" data-toggle="validator">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                            <div class="row">                    
+                                <div class="col-md-8">
+                                    <h4><b>Tambah Sub Judul Baru</b></h4>
+                                </div>                                           
+                            </div> 
+                            <div class="form-group">      
+                               <label for="sjd_sub_judul" class="col-sm-2 control-label text-left">Sub Judul</label> 
+                               <div class="col-sm-8">
+                               <input type="text" class="form-control" id="sjd_sub_judul" name="sjd_sub_judul" placeholder="sub judul"> 
+                               <div class="help-block with-errors"></div>
+                               </div>
+                               <button  type="submit" class='btn btn-primary' id="addnewsubjudul">
+                                    Add New <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </div>
+                            <!--hidden atribut untuik subjudul-->
+                            <input type="hidden" class="form-control" id="sub_pgd_tipe_pengadaan" name="sub_pgd_tipe_pengadaan" value= "<?php echo $pgd_tipe_pengadaan;?>">
+                            </div>
+                        </div>
+                        </form>
+<!-----Biaya langsung personil---------------------------------------------------------------------------------------------------->                        
+                        
+                        <br>
+                        <form method="post" id = "dtl_konsultan1_form"  action = "" class="form-horizontal" data-toggle="validator">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">                    
+                                    <div class="col-md-8">
+                                        <h4><b>Biaya Personil</b></h4>
+                                    </div>                                           
+                                </div> 
+                                
+                                <br>
+                                <div class="row">
+                                    <div class ="col-md-6">
+                                        
+                                        <div class="form-group">
+                                           <label for="chkBoxJudul" class="col-sm-4 control-label text-left">Tambah Sub Judul</label> 
+                                           <div class="col-sm-8">
+                                                <input data-style="btn-group-sm" id = "chkBoxJudul" class ="chkBoxJudul pull-right" type="checkbox" data-off-label="Tidak" data-on-label="Ya" name ="dtk_stat_sub_judul" value="1">
+                                           </div>
+                                        </div>
+                                        <div id = "frmSubJudul" hidden class="form-group">
+                                            <label id ="lbl_optSubJudul" for="optSubJudul" class="col-sm-4 control-label text-left">Sub Judul</label>
+                                            <div class="col-sm-8">
+                                                <select hidden  id ="optSubJudul" class="optSubJudul-opt form-control" style="width: 100%" name="dtk_sub_judul">                                                       
+                                                </select>                      
+                                            </div>
+                                        </div>
+                                        <div class="form-group">      
+                                           <label for="dtk_jabatan" class="col-sm-4 control-label text-left">Jabatan</label> 
+                                           <div class="col-sm-8">
+                                           <input type="text" class="form-control" id="dtk_jabatan" name="dtk_jabatan" placeholder="Jabatan"> 
+                                           <div class="help-block with-errors"></div>
+                                           </div>
+                                        </div>
+                                        <div class="form-group">      
+                                           <label for="dtk_kualifikasi_pendidikan" class="col-sm-4 control-label text-left">Kualifikasi Pendidikan</label> 
+                                           <div class="col-sm-8">
+                                           <input type="text" class="form-control" id="dtk_kualifikasi_pendidikan" name="dtk_kualifikasi_pendidikan" placeholder="Kualifikasi Pendidikan"> 
+                                           <div class="help-block with-errors"></div>
+                                           </div>
+                                        </div>
+                                        <div class="form-group">
+                                           <label for="dtk_jml_org" class="col-sm-4 control-label text-left">Jumlah Orang</label>
+                                           <div class="col-sm-8">
+                                           <input type="text" class="form-control" id="dtk_jml_org" name="dtk_jml_org" placeholder="Jumlah Orang" data-error="Data yang dimasukkan harus angka" pattern="^[0-9\s]*$">
+                                           <div class="help-block with-errors"></div>
+                                           </div>
+                                        </div>
+                                        <div class="form-group">
+                                           <label for="dtk_jml_bln" class="col-sm-4 control-label text-left">Jumlah Bulan</label>
+                                           <div class="col-sm-8">
+                                           <input type="text" class="form-control" id="dtk_jml_bln" name="dtk_jml_bln" placeholder="Jumlah Bulan" data-error="Data yang dimasukkan harus angka, jika ada koma gunakan tanda titik(.) sebagai koma" pattern="^[0-9.\s]*$">
+                                           <div class="help-block with-errors"></div>
+                                           </div>
+                                        </div>
+                                        </div>
+                                    <div class ="col-md-6">   
+                                        <div class="form-group">
+                                           <label for="dtk_intensitas" class="col-sm-4 control-label text-left">Intensitas</label>
+                                           <div class="col-sm-8">
+                                           <input type="text" class="form-control" id="dtk_intensitas" name="dtk_intensitas" placeholder="Intensitas" data-error="Data yang dimasukkan harus angka, jika ada koma gunakan tanda titik(.) sebagai koma" pattern="^[0-9.\s]*$">
+                                           <div class="help-block with-errors"></div>
+                                           </div>
+                                        </div>
+                                        <div class="form-group">
+                                           <label for="dtk_satuan" class="col-sm-4 control-label text-left">Satuan</label>
+                                           <div class="col-sm-8">
+                                           <input type="text" class="form-control" id="dtk_satuan" name="dtk_satuan" placeholder="Satuan">
+                                           <div class="help-block with-errors"></div>
+                                           </div>
+                                        </div>
+                                        <div class="form-group">                                    
+                                            <label for="dtk_biaya_personil_hps" class="col-sm-4 control-label text-left">Biaya Personil</label>
+                                            <div class="col-sm-8">
+                                            <input class="form-control" id="dtk_biaya_personil_hps" name="dtk_biaya_personil_hps" placeholder="Biaya personil(Rp)" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
+                                            <label id="lbl_hargasatuan" class="pull-left">Rp.-</label>
+                                            <div class="help-block with-errors"></div>
+                                            </div>
+                                        </div>
+                                        <button  type="submit" class='btn btn-primary pull-right' id="addnewpekerjaan">
+                                            Add New <span class="glyphicon glyphicon-plus">                                 
+                                            </span>
+                                        </button>
+                                        <!--hidden atribut untuik biaya personil-->
+                                        <input type="hidden" class="form-control" id="sub_pgd_tipe_pengadaan" name="sub_pgd_tipe_pengadaan" value= "<?php echo $pgd_tipe_pengadaan;?>">
+                                        <input type="hidden" class="form-control" id="dtp_pengadaan" name="dtp_pengadaan" value= "<?php echo $dtp_pengadaan;?>">
+                                    </div>
+                                </div>
+                                <br>   
+                                <br>
+                                <div class="row">
+                                    <div class="table-responsive">
+                                       <table class="table table-striped table-bordered table-hover text-center" id="table_personal">
+                                         <thead >
+                                           <tr>
+                                             <th class="text-center">Jabatan</th>
+                                             <th class="text-center">Kualifikasi Pend</th>
+                                             <th class="text-center">Jml Org</th>
+                                             <th class="text-center">Jml Bln</th>
+                                             <th class="text-center">Intensitas</th>
+                                             <th class="text-center">Kuantitas</th>
+                                             <th class="text-center">Satuan</th>
+                                             <th class="text-center">Biaya Personil</th>
+                                             <th class="text-center">Jml Biaya</th>
+                                           </tr>
+                                         </thead>
+                                         <tbody>
+                                             <tbody>
+                                                
+                                                <?php foreach ($pekerjaanList as $row) {?>
+                                                   <tr><td><?php echo $row->dtp_pekerjaan; ?></td>
+                                                   <td><?php echo $row->dtp_spesifikasi; ?>
+                                                        <?php $urlfile = site_url('uploads/file_pengadaan').'/'.$row->dtp_file;?>
+                                                        <?php $tagFile =  "<a href='".$urlfile."' target='_blank'>Gambar</a>"?>
+                                                        <?php if($row->dtp_file!="" || $row->dtp_file!=NULL){echo "<br>".$tagFile;} ?></td>
+                                                   <td><?php echo $row->dtp_volume; ?></td>
+                                                   <td><?php echo $row->dtp_satuan; ?></td>
+                                                   <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
+                                                   <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_hps,0,",","."); ?></td>
+                                                   <td style='display:none;'><?php echo $row->dtp_jumlahharga_hps; ?></td>
+                                                   <td class='deleterow' value='<?php echo $row->dtp_id; ?>'><div class='glyphicon glyphicon-remove'></div></td>
+                                                   </tr>
+                                               <?php } ?>
+                                               
+                                            </tbody>
+                                         </tbody>
+                                       </table>
+                                   </div>
+                                </div>
+                                <div class="row"> 
+                                    <div class ='col-sm-3 pull-right'> 
+                                    <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
+                                    <input type="text" class="form-control" id="x_pgd_jml_sblm_ppn_hps"  value='<?php echo 'Rp.'.number_format($pgd_jml_sblm_ppn_hps,0,",","."); ?>' readonly>
+                                    <input type="hidden" class="form-control" id="pgd_jml_sblm_ppn_hps" name="pgd_jml_sblm_ppn_hps" value='<?php echo $pgd_jml_sblm_ppn_hps?>' readonly>
+                                    </div> 
+                                    
+                                    <div class ='col-sm-3 pull-right'>
+                                    <label id = "lbl_pgd_jml_ssdh_ppn_hps" class="control-label text-center pull-right"><?php if ($pgd_dgn_pajak == 0){ echo "Total(ppn 10%) : &nbsp;"; }else{echo "";} ?></label>
+                                    <input type="<?php if ($pgd_dgn_pajak == 0){ echo "text"; }else{echo "hidden";} ?>" class="form-control" id="x_pgd_jml_ssdh_ppn_hps"  value='<?php echo 'Rp.'.number_format($pgd_jml_ssdh_ppn_hps,0,",","."); ?>' readonly>
+                                    <input type="hidden" class="form-control" id="pgd_jml_ssdh_ppn_hps" name="pgd_jml_ssdh_ppn_hps" value='<?php echo $pgd_jml_ssdh_ppn_hps?>' readonly>
+                                    </div>
+                                 
+                                </div>
+                            </div>
+                        </div>    
+                        </form>           
+                    </div>
+ <!------Biaya langsung non personil--------------------------------------------------------------------------------------------------->
+ 
+            <form method="post" id = "dtl_pengadaan_form"  action = "" class="form-horizontal" data-toggle="validator">
+                    <div class="col-md-12">                       
                         <br>
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <div class="row">                    
                                     <div class="col-md-8">
-                                        <h4><b>Detail <?php echo $Judul?></b></h4>
+                                        <h4><b>Biaya Non Personil</b></h4>
                                     </div>                                           
                                 </div>  
                                 <br>
                                 <div class="row">
                                     <div class ="col-md-6">
-                                        <!--<div class="form-group">
-                                           <label for="chkBoxJudul" class="col-sm-4 control-label text-left">Tambah Sub Judul</label> 
-                                           <div class="col-sm-8">
-                                           <button  type="button" class='btn btn-primary' id="addnewsubjudul">
-                                            Add New 
-                                           </button>
-                                           </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="optSubJudul" class="col-sm-4 control-label text-left">Sub Judul</label>
-                                            <div class="col-sm-8">
-                                                <select class="optSubJudul-opt form-control" style="width: 100%" name="optSubJudul">                                          
-                                                    <option >                       
-                                                    </option>                         
-                                                </select>                        
-                                            </div>
-                                        </div>-->
+                                        
                                         <div class="form-group">      
-                                           <label for="dtp_pekerjaan" class="col-sm-4 control-label text-left"><?php echo $Judul?></label> 
+                                           <label for="dtk2_pekerjaan" class="col-sm-4 control-label text-left">Uraian</label> 
                                            <div class="col-sm-8">
-                                           <input type="text" class="form-control" id="dtp_pekerjaan" name="dtp_pekerjaan" placeholder="<?php echo $Judul?>"> 
+                                           <input type="text" class="form-control" id="dtp_pekerjaan" name="dtk2_pekerjaan" placeholder="Uraian"> 
                                            <div class="help-block with-errors"></div>
                                            </div>
                                         </div>
                                         <div class="form-group">
-                                           <label for="dtp_volume" class="col-sm-4 control-label text-left">Volume</label>
+                                           <label for="dtk2_volume" class="col-sm-4 control-label text-left">Volume</label>
                                            <div class="col-sm-8">
-                                           <input type="text" class="form-control" id="dtp_volume" name="dtp_volume" placeholder="Volume" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
+                                           <input type="text" class="form-control" id="dtk2_volume" name="dtk2_volume" placeholder="Volume" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
                                            <div class="help-block with-errors"></div>
                                            </div>
                                         </div>
                                         <div class="form-group">
-                                           <label for="dtp_satuan" class="col-sm-4 control-label text-left">Satuan Volume</label>
+                                           <label for="dtk2_satuan" class="col-sm-4 control-label text-left">Satuan Volume</label>
                                            <div class="col-sm-8">
-                                           <input type="text" class="form-control" id="dtp_satuan" name="dtp_satuan" placeholder="Satuan Volume (Contoh : m2, liter, unit, dll">
+                                           <input type="text" class="form-control" id="dtk2_satuan" name="dtk2_satuan" placeholder="Satuan Volume (Contoh : m2, liter, unit, dll">
                                            <div class="help-block with-errors"></div>
                                            </div>
                                         </div>
                                         <div class="form-group">                                    
-                                            <label for="dtp_hargasatuan_hps" class="col-sm-4 control-label text-left">Harga Satuan</label>
+                                            <label for="dtk2_hargasatuan_hps" class="col-sm-4 control-label text-left">Harga Satuan</label>
                                             <div class="col-sm-8">
-                                            <input class="form-control" id="dtp_hargasatuan_hps" name="dtp_hargasatuan_hps" placeholder="Harga satuan(Rp)" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
+                                            <input class="form-control" id="dtk2_hargasatuan_hps" name="dtk2_hargasatuan_hps" placeholder="Harga satuan(Rp)" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$">
                                             <label id="lbl_hargasatuan" class="pull-left">Rp.-</label>
                                             <div class="help-block with-errors"></div>
                                             </div>
@@ -85,13 +245,13 @@ if($statuspage !="edit"){
                                             <label class="col-md-offset-4 control-label text-center">Spesifikasi Teknis</label>
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" id="dtp_spesifikasi" name="dtp_spesifikasi" placeholder="Spesifikasi Teknis"></textarea>
+                                            <textarea class="form-control" id="dtk2_spesifikasi" name="dtk2_spesifikasi" placeholder="Spesifikasi Teknis"></textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                        
                                         <div class="form-group">
                                             <label class="control-label">Upload Spesifikasi Gambar</label>
-                                            <input type="file" class="" id="dtp_file" name="dtp_file" >
+                                            <input type="file" class="" id="dtk2_file" name="dtk2_file" >
                                             <a href="#" id="clear">Clear</a>
                                             <p class="help-block"><i>Format: JPG, JPEG, PNG, GIF, PDF | Max file size: 10 MB.</i></p>
                                         </div>
@@ -108,7 +268,7 @@ if($statuspage !="edit"){
                                        <table class="table table-striped table-bordered table-hover text-center" id="table_pekerjaan">
                                          <thead >
                                            <tr>
-                                             <th class="text-center"><?php echo $Judul?></th>
+                                             <th class="text-center">Uraian</th>
                                              <th class="text-center">Spec</th>
                                              <th class="text-center">Vol</th>
                                              <th class="text-center">Sat</th>
@@ -161,7 +321,7 @@ if($statuspage !="edit"){
                                    <input type="hidden" class="form-control" id="dtp_pengadaan" name="dtp_pengadaan" value= "<?php echo $dtp_pengadaan;?>" placeholder="Detail Pekerjaan">
                      </div>
                 </form>
-                
+ 
  <!------Syarat penyedia--------------------------------------------------------------------------------------------------->                         
                     <form id = "pengadaan_form"  action = '<?php if($statuspage =="edit"){ echo base_url()."Pengadaan/proses_edit_pengadaan2";}else{echo base_url()."Pengadaan/proses_add_pengadaan2";} ?>' onsubmit="submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">    
@@ -282,9 +442,113 @@ function submitFormPengadaan() {
            //document.pengadaan_form.list_pekerjaan.value = TableDataPekerjaan;
            return true;
 }
-
+ $(':checkbox').checkboxpicker();
      
 $(document).ready(function() {
+    //fungsi insert sub judul
+    $("#subjudul_form").submit(function(e) {               
+        e.preventDefault();
+        $.ajax({
+            url: "<?php echo site_url('SubJudul/prosesInputSubJudul');?>",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(msg) {
+                if(msg === "0success"){
+                    document.getElementById('sjd_sub_judul').value = "";
+                    alert("Sub judul berhasil dibuat");
+                }else if(msg === "1duplicate"){
+                    alert("Sub judul sudah ada");
+                }else if(msg === "empty"){
+                   // alert(msg);
+                }else{
+                    alert(msg);
+                }
+            }
+        });   
+     });
+     
+     $(".optSubJudul-opt").select2({
+       ajax: {
+         url: "<?php echo site_url('SubJudul/select2All');?>",
+         dataType: 'json',
+         data: function (params) {
+           return {
+                q: params.term, // search term
+                //page: params.page
+           };
+         },
+         processResults: function (data, params) {
+              //params.page = params.page || 1;
+                    return {
+            results: data,
+        pagination: {
+          more: (params.page * 30) < data.total_count
+        }
+      };
+         }
+       }
+    });
+    
+    
+    
+    $('#chkBoxJudul').change(function () {
+        var ischecked= $(this).is(':checked');
+        if (ischecked){
+            document.getElementById("frmSubJudul").style.display  = "block";
+            //document.getElementById("lbl2_optSubJudul").style.display  = "inline";
+        }else{
+            document.getElementById("frmSubJudul").style.display  = "none";
+            //document.getElementById("lbl2_optSubJudul").style.display  = "none";
+        }
+    });
+    
+    //fungsi insert biaya personil
+    $("#dtl_konsultan1_form").submit(function(e) {               
+        e.preventDefault();
+        $.ajax({
+            url: "<?php echo site_url('Pengadaan/proses_add_detail_kons1');?>",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(status) {
+                var obj = JSON.parse(status);
+                var id = document.getElementById("dtp_pengadaan").value;
+                
+                drawTableBiayaPersonil(id);
+            }
+        });   
+     });
+    
+    drawTableBiayaPersonil(document.getElementById("dtp_pengadaan").value);
+     //fungsi draw table biaya personil
+    function drawTableBiayaPersonil(id) {
+        //alert('aw');
+        $.ajax({
+            url: "<?php echo site_url('Pengadaan/drawTableDetailKonsultan1');?>"+'/'+id,
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(data) {
+                console.log(data);
+                var data1 = JSON.parse(data);
+                for (var i = 0; i < data1.kons.length; i++) {
+                    //alert('aw '+i);
+                    var item = data[i];
+                    console.log(data1.kons[i].dtk_jabatan+'\n');
+                    $('#table_personal tr:last').after("<tr><td><span>"+item.dtk_jabatan+"</span></td>\n\\n\
+                        <td><span>"+item.dtk_kualifikasi_pendidikan+"</span></td>\n\
+                        <td><span>"+item.dtk_jml_org+"</span></td>\n\\n\
+                        <td><span>"+item.satVolume+"</span></td>\n\
+                        <td><span>"+"Rp."+item.dtk_jml_bln+"</span></td>\n\
+                        <td><span>"+"Rp."+item.dtk_intensitas+"</span></td>\n\\n\\n\
+                        <td><span>"+"Rp."+item.dtk_kuantitas+"</span></td>\n\\n\\n\
+                        <td><span>"+"Rp."+item.dtk_satuan+"</span></td>\n\\n\\n\
+                        <td><span>"+"Rp."+item.dtk_intensitas+"</span></td>\n\\n\\n\
+                        <td><span>"+"Rp."+item.dtk_biaya_personil_hps+"</span></td>\n\\n\
+                        <td style='display:none;'><span>"+item.dtk_jml_biaya_hps+"</span></td>\n\
+                        <td class='deleterow1' value='"+item.dtk_id+"'><div class='glyphicon glyphicon-remove'></div></td></tr>");
+                }
+            }
+        });   
+    }
      <?php if($pgd_status_pengadaan!=0){ ?>
         function goBack() {
             window.history.go(-2);

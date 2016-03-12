@@ -16,6 +16,7 @@ class Pengadaan extends CI_Controller{
             $this->load->helper('date');
             $this->load->database();
             $this->load->model('m_pengadaan');
+            $this->load->model('m_konsultan');
             $this->load->model('M_anggaran');
             $this->load->model('m_user');
             $this->load->model('M_supplier');
@@ -309,30 +310,26 @@ class Pengadaan extends CI_Controller{
             $data['Judul']= 'Barang';
             $data['lbl_detail_pengadaan']= 'Barang';
             $data['pgd_tipe_pengadaan'] = 0;
-            $data['content'] = 'f_pengadaan';
             break;
         case "jasa":
             $data['title']= 'Tambah Pengadaan Jasa'; 
             $data['Judul']= 'Jasa';
             $data['lbl_detail_pengadaan']= 'Pekerjaan';
             $data['pgd_tipe_pengadaan'] = 1;
-            $data['content'] = 'f_pengadaan';
             break;
         case "konsultan":
             $data['title']= 'Tambah Pengadaan Konsultan'; 
             $data['Judul']= 'Konsultan';
             $data['lbl_detail_pengadaan']= 'Tenaga Ahli';
             $data['pgd_tipe_pengadaan'] = 2;
-            $data['content'] = 'f_pengadaan';
             break;
         default:
             $data['title']= 'Tambah Pengadaan'; 
             $data['Judul']= '';
             $data['lbl_detail_pengadaan']= 'Pekerjaan/Barang';
             $data['pgd_tipe_pengadaan'] = -1;
-            $data['content'] = 'f_pengadaan';
         } 
-        
+        $data['content'] = 'f_pengadaan';
         
         $data['statuspage'] = 'add';
         $data['anggaranList']= $this->M_anggaran->selectAll()->result();
@@ -371,8 +368,14 @@ class Pengadaan extends CI_Controller{
         $idPengadaan = $this->m_pengadaan->insertPengadaan($pgd);
         $barang = $data['Judul']= $this->input->post('Judul');
         
-        $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-        redirect(site_url('Pengadaan/add_pengadaan1/'.$barang.'/'.$idPengadaan));
+        
+        if($pgd['pgd_tipe_pengadaan']== 2){
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/add_pengadaanKons/'.$barang.'/'.$idPengadaan));
+        }else{
+            $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
+            redirect(site_url('Pengadaan/add_pengadaan1/'.$barang.'/'.$idPengadaan));
+        }
     }
     
     public function add_pengadaan1($tipe,$id){
@@ -390,6 +393,23 @@ class Pengadaan extends CI_Controller{
         $data['pgd_dgn_pajak']= $row->pgd_dgn_pajak;
         $this->load->view('layout',$data); 
     }
+    
+    public function add_pengadaanKons($tipe,$id){
+        $row = $this->m_pengadaan->selectById($id);
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['content'] = 'f_pengadaan_1_kons';
+        $data['title']= "Tambah Pengadaan ".$tipe;
+        $data['Judul']= $tipe;
+        $data['suratList']= $this->M_suratizin->selectAll()->result();
+        $data['pgd_tipe_pengadaan'] = $row->pgd_tipe_pengadaan;
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $data['dtp_pengadaan']= $id;
+        $data['statuspage'] = 'add';
+        $data['pgd_perihal']= $row->pgd_perihal;
+        $data['pgd_dgn_pajak']= $row->pgd_dgn_pajak;
+        $this->load->view('layout',$data); 
+    }
+    
     public function proses_add_detail_pgd(){
         $dtp['dtp_pengadaan'] = $this->input->post('dtp_pengadaan');
         $dtp['dtp_pekerjaan'] = $this->input->post('dtp_pekerjaan');
@@ -413,6 +433,36 @@ class Pengadaan extends CI_Controller{
         $id = $this->m_pengadaan->insertPekerjaan($dtp);
         
         echo json_encode(array('namaFile' => $dtp['dtp_file'], 'id' => $id));
+    }
+    
+    public function proses_add_detail_kons1(){
+        $stat = $this->input->post('dtk_stat_sub_judul');
+        
+        $dtp['dtk_pgd'] = $this->input->post('dtp_pengadaan');
+        $dtp['dtk_jabatan'] = $this->input->post('dtk_jabatan');
+        $dtp['dtk_kualifikasi_pendidikan'] = $this->input->post('dtk_kualifikasi_pendidikan');
+        $dtp['dtk_jml_org'] = $this->input->post('dtk_jml_org');
+        $dtp['dtk_jml_bln'] = $this->input->post('dtk_jml_bln');
+        $dtp['dtk_intensitas'] = $this->input->post('dtk_intensitas');
+        $dtp['dtk_kuantitas'] = $dtp['dtk_jml_org'] * $dtp['dtk_jml_bln']* $dtp['dtk_intensitas'];
+        $dtp['dtk_satuan'] = $this->input->post('dtk_satuan');
+        $dtp['dtk_biaya_personil_hps'] = $this->input->post('dtk_biaya_personil_hps');
+        $dtp['dtk_jml_biaya_hps'] = $dtp['dtk_biaya_personil_hps'] * $dtp['dtk_kuantitas'];
+        
+        
+        if($stat == 1){
+            $dtp['dtk_sub_judul'] = $this->input->post('dtk_sub_judul');
+        }
+
+        $id = $this->m_konsultan->insertKons1($dtp);
+        
+        echo json_encode(array('msg' => 'success', 'id' => $id));
+    }
+    
+    public function drawTableDetailKonsultan1($idpengadaan){
+       $data = $this->m_konsultan->selectDrawTableKons1($idpengadaan); 
+       
+       echo json_encode(array('kons' => $data)); 
     }
     
     public function proses_del_detail_pgd($id){

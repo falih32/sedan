@@ -292,7 +292,27 @@ class Pengadaan extends CI_Controller{
         echo $result;
     }
     
+    public function ajaxProcessKonsultan($status){
+        $min=$this->input->post('min');
+        $max=$this->input->post('max');
+        if($min == '') $min = '0000-01-01';
+        if($max == '') $max = '9999-12-31';
+        $result = $this->m_konsultan->ajaxProcessKonsultan($min,$max,$status);
+        echo $result;
+    }
+    
     public function detail_pengadaan($id){
+        $data['content'] = 'v_pengadaan';
+        $data['title']= 'Detail Pengadaan'; 
+        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['pekerjaanList']= $this->m_pengadaan->selectDetailPengadaan($id);
+        $data['penyusunlist'] = $this->M_penyusun->selectListPenyusunByPengadaan($id)->row();
+        $data['suratList']= $this->m_pengadaan->selectListSyaratPenyedia($id);
+        $data['modeView']= "pengadaan";
+        $this->load->view('layout',$data);
+    }
+    
+    public function detail_pengadaan_konsultan($id){
         $data['content'] = 'v_pengadaan';
         $data['title']= 'Detail Pengadaan'; 
         $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
@@ -456,11 +476,82 @@ class Pengadaan extends CI_Controller{
 
         $id = $this->m_konsultan->insertKons1($dtp);
         
-        echo json_encode(array('msg' => 'success', 'id' => $id));
+        $idPengadaan = $dtp['dtk_pgd'];
+        $statusPajak = $this->input->post('pgd_dgn_pajak1'); 
+        
+        $this->hitungTotalPengadaan($statusPajak, $idPengadaan, '2');
     }
     
+    public function proses_add_detail_kons2(){
+        $stat = $this->input->post('dtk2_stat_sub_judul');
+        
+        $dtp['dtk2_pengadaan'] = $this->input->post('dtk2_pengadaan');
+        $dtp['dtk2_pekerjaan'] = $this->input->post('dtk2_pekerjaan');
+        $dtp['dtk2_spesifikasi'] = $this->input->post('dtk2_spesifikasi');
+        $dtp['dtk2_volume'] = $this->input->post('dtk2_volume');
+        $dtp['dtk2_satuan'] = $this->input->post('dtk2_satuan');
+        $dtp['dtk2_hargasatuan_hps'] = $this->input->post('dtk2_hargasatuan_hps');
+        $dtp['dtk2_jumlahharga_hps'] = $dtp['dtk2_volume'] * $dtp['dtk2_hargasatuan_hps'];
+        $dtp['dtk2_file'] ="";
+        
+        
+        if($stat == 1){
+            $dtp['dtk2_sub_judul'] = $this->input->post('dtk2_sub_judul');
+        }
+        
+        $this->upload_config();
+        if($this->upload->do_upload('dtk2_file')){
+                $updata = $this->upload->data();
+                $dtp['dtk2_file'] = $updata['file_name'];
+                $upload = true;
+        }else{
+            $status = 'error';
+            $msg = $this->upload->display_errors('', '');
+        }
+
+        $this->m_konsultan->insertKons2($dtp);
+        
+        $idPengadaan = $dtp['dtk2_pengadaan'];
+        $statusPajak = $this->input->post('pgd_dgn_pajak2'); 
+        
+        $this->hitungTotalPengadaan($statusPajak, $idPengadaan, '2');
+    }
+    
+    public function hitungTotalPengadaan($statusPajak, $idPengadaan, $jnsPgd){
+        //cek dengan pajak atau ngga
+        if($statusPajak == 0){
+            $pajak = 0.1;
+        }else{
+            $pajak = 0;
+        }
+
+        if($jnsPgd == 2){
+            $this->m_konsultan->HitungTotalHargaKonsultan($idPengadaan,$pajak);
+        }else{
+            $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
+        }
+        
+    }
+    
+    public function getTotalHargaKonsultan($idPengadaan){
+        $jmlKons1 = $this->m_konsultan->getTotalHargaKonsultan1($idPengadaan)->jml_biaya_hps;
+        $jmlKons2 = $this->m_konsultan->getTotalHargaKonsultan2($idPengadaan)->jml_biaya_hps;
+        $dataPgd = $this->m_pengadaan->SelectById($idPengadaan);
+        $jmlSblmPPNHps = $dataPgd->pgd_jml_sblm_ppn_hps;
+        $jmlSsdhPPNHps = $dataPgd->pgd_jml_ssdh_ppn_hps;
+        echo json_encode(array('jmlSblmPPNHps' => $jmlSblmPPNHps,
+            'jmlSsdhPPNHps' => $jmlSsdhPPNHps,
+            'jmlKons1' => $jmlKons1,
+            'jmlKons2' => $jmlKons2));
+    }
     public function drawTableDetailKonsultan1($idpengadaan){
        $data = $this->m_konsultan->selectDrawTableKons1($idpengadaan); 
+       
+       echo json_encode(array('kons' => $data)); 
+    }
+    
+    public function drawTableDetailKonsultan2($idpengadaan){
+       $data = $this->m_konsultan->selectDrawTableKons2($idpengadaan); 
        
        echo json_encode(array('kons' => $data)); 
     }
@@ -472,9 +563,27 @@ class Pengadaan extends CI_Controller{
           
     }
     
+    public function proses_del_detail_konsultan1($id, $statusPajak){
+        
+        $idPengadaan = $this->m_konsultan->selectByIdKons1($id)->dtk_pgd;
+        $this->m_konsultan->deleteDetailKons1($id);
+        
+        $this->hitungTotalPengadaan($statusPajak, $idPengadaan, '2');
+          
+    }
+    
+    public function proses_del_detail_konsultan2($id, $statusPajak){
+        
+        $idPengadaan = $this->m_konsultan->selectByIdKons2($id)->dtk2_pengadaan;
+        $this->m_konsultan->deleteDetailKons2($id);
+        
+        $this->hitungTotalPengadaan($statusPajak, $idPengadaan, '2');
+          
+    }
+    
     public function proses_add_pengadaan2(){
-         $idPengadaan = $this->input->get('dtp_pengadaan2');
-         $statusPajak = $this->input->get('pgd_dgn_pajak');
+        $idPengadaan = $this->input->get('dtp_pengadaan2');
+        //$statusPajak = $this->input->get('pgd_dgn_pajak');
 //        //5. insert Syarat penyedia
         $data['listSurat']   = $this->input->get('list_suratizin');
         $tableDataSrt = json_decode($data['listSurat'],TRUE); 
@@ -485,15 +594,7 @@ class Pengadaan extends CI_Controller{
             $this->m_pengadaan->insertSuratIzin($psr);
         }
         
-        //cek dengan pajak atau ngga
-        if($statusPajak == 0){
-            $pajak = 0.1;
-        }else{
-            $pajak = 0;
-        }
         
-        
-        $this->m_pengadaan->HitungTotalHargaPengadaan($idPengadaan,$pajak);
         $pgd['pgd_tipe_pengadaan'] = $this->input->get('pgd_tipe_pengadaan');
         if ($pgd['pgd_tipe_pengadaan'] == 0){
             $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));

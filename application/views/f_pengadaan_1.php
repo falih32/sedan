@@ -19,6 +19,30 @@ if($statuspage !="edit"){
                 <?php if($pgd_status_pengadaan==0){ ?>
                 <form method="post" id = "dtl_pengadaan_form"  action = "" class="form-horizontal" data-toggle="validator">
                     <div class="col-md-12">
+                        <!-----Sub Judul---------------------------------------------------------------------------------------------------->                         
+                        <form method="post" id = "subjudul_form"  action = "" class="form-horizontal" data-toggle="validator">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                            <div class="row">                    
+                                <div class="col-md-8">
+                                    <h4><b>Tambah Sub Judul Baru</b></h4>
+                                </div>                                           
+                            </div> 
+                            <div class="form-group">      
+                               <label for="sjd_sub_judul" class="col-sm-2 control-label text-left">Sub Judul</label> 
+                               <div class="col-sm-8">
+                               <input type="text" class="form-control" id="sjd_sub_judul" name="sjd_sub_judul" placeholder="sub judul"> 
+                               <div class="help-block with-errors"></div>
+                               </div>
+                               <button  type="submit" class='btn btn-primary' id="addnewsubjudul">
+                                    Add New <span class="glyphicon glyphicon-plus"></span>
+                                </button>
+                            </div>
+                            <!--hidden atribut untuik subjudul-->
+                            <input type="hidden" class="form-control" id="sub_pgd_tipe_pengadaan" name="sub_pgd_tipe_pengadaan" value= "<?php echo $pgd_tipe_pengadaan;?>">
+                            </div>
+                        </div>
+                        </form>
 <!-----Detail barang/jasa---------------------------------------------------------------------------------------------------->                        
                         <br>
                         <div class="panel panel-default">
@@ -31,23 +55,19 @@ if($statuspage !="edit"){
                                 <br>
                                 <div class="row">
                                     <div class ="col-md-6">
-                                        <!--<div class="form-group">
-                                           <label for="chkBoxJudul" class="col-sm-4 control-label text-left">Tambah Sub Judul</label> 
+                                        <div class="form-group">
+                                           <label for="chkBoxJudul2" class="col-sm-4 control-label text-left">Tambah Sub Judul</label> 
                                            <div class="col-sm-8">
-                                           <button  type="button" class='btn btn-primary' id="addnewsubjudul">
-                                            Add New 
-                                           </button>
+                                                <input data-style="btn-group-sm" id = "chkBoxJudul2" class ="chkBoxJudul pull-right" type="checkbox" data-off-label="Tidak" data-on-label="Ya" name ="dtk2_stat_sub_judul" value="1">
                                            </div>
                                         </div>
-                                        <div class="form-group">
-                                            <label for="optSubJudul" class="col-sm-4 control-label text-left">Sub Judul</label>
+                                        <div id = "frmSubJudul2" hidden class="form-group">
+                                            <label id ="lbl_optSubJudul2" for="optSubJudul2" class="col-sm-4 control-label text-left">Sub Judul</label>
                                             <div class="col-sm-8">
-                                                <select class="optSubJudul-opt form-control" style="width: 100%" name="optSubJudul">                                          
-                                                    <option >                       
-                                                    </option>                         
-                                                </select>                        
+                                                <select hidden  id ="optSubJudul2" class="optSubJudul-opt2 form-control" style="width: 100%" name="dtk2_sub_judul">                                                       
+                                                </select>                      
                                             </div>
-                                        </div>-->
+                                        </div>
                                         <div class="form-group">      
                                            <label for="dtp_pekerjaan" class="col-sm-4 control-label text-left"><?php echo $Judul?></label> 
                                            <div class="col-sm-8">
@@ -283,8 +303,53 @@ function submitFormPengadaan() {
            return true;
 }
 
-     
+  $(':checkbox').checkboxpicker();    
 $(document).ready(function() {
+    //fungsi insert sub judul
+    $("#subjudul_form").submit(function(e) {               
+        e.preventDefault();
+        $.ajax({
+            url: "<?php echo site_url('SubJudul/prosesInputSubJudul');?>",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(msg) {
+                if(msg === "0success"){
+                    document.getElementById('sjd_sub_judul').value = "";
+                    alert("Sub judul berhasil dibuat");
+                }else if(msg === "1duplicate"){
+                    alert("Sub judul sudah ada");
+                }else if(msg === "empty"){
+                   // alert(msg);
+                }else{
+                    alert(msg);
+                }
+            }
+        });   
+     });
+     
+     //fungsi sub judul konsultan 2
+    $(".optSubJudul-opt2").select2({
+       ajax: {
+         url: "<?php echo site_url('SubJudul/select2All');?>",
+         dataType: 'json',
+         data: function (params) {
+           return {
+                q: params.term, // search term
+                //page: params.page
+           };
+         },
+         processResults: function (data, params) {
+              //params.page = params.page || 1;
+                    return {
+            results: data,
+        pagination: {
+          more: (params.page * 30) < data.total_count
+        }
+      };
+         }
+       }
+    });
+    
      <?php if($pgd_status_pengadaan!=0){ ?>
         function goBack() {
             window.history.go(-2);

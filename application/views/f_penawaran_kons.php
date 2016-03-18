@@ -37,9 +37,22 @@
                 $pnc_kesesuaian_spec_teknis = $dataPengadaan->pnc_kesesuaian_spec_teknis;
                 $pnc_kesesuaian_jdwl_kerja = $dataPengadaan->pnc_kesesuaian_jdwl_kerja;
                 $pnc_kesesuaian_identitas = $dataPengadaan->pnc_kesesuaian_identitas;
-
+                $pnc_evaluasi_teknis_konsultan = $dataPengadaan->pnc_evaluasi_teknis_konsultan;
                 $totRowPekerjaan = 0; 
                 $totRowSyarat = 0;
+                
+                if($pgd_tipe_pengadaan == 2){
+                    $unp_id = $dataPengadaan->unp_id;
+                    $unp_bobot_png_prs = $dataPengadaan->unp_bobot_png_prs;
+                    $unp_nilai_png_prs = $dataPengadaan->unp_nilai_png_prs;
+                    $unp_jml_png_prs = $dataPengadaan->unp_jml_png_prs;
+                    $unp_bobot_pnd_mtd = $dataPengadaan->unp_bobot_pnd_mtd;
+                    $unp_nilai_pnd_mtd = $dataPengadaan->unp_nilai_pnd_mtd;
+                    $unp_jml_pnd_mtd = $dataPengadaan->unp_jml_pnd_mtd;
+                    $unp_bobot_kua_tna = $dataPengadaan->unp_bobot_kua_tna;
+                    $unp_nilai_kua_tna = $dataPengadaan->unp_nilai_kua_tna;
+                    $unp_jml_kua_tna = $dataPengadaan->unp_jml_kua_tna;
+                }
                 
 ?>
 <div class="container-fluid">
@@ -174,6 +187,7 @@
                 </table>
                 <h3>Evaluasi Teknis
                 </h3>
+                <?php if($pgd_tipe_pengadaan!=2){ ?>
                 <table class="table table-striped table-bordered table-hover" width="50%">
                     <col width="50%">
                     <col width="50%">
@@ -193,13 +207,208 @@
                   
                     </tbody>
                 </table>
-                    <h3>Evaluasi Harga
+                <?php }else{ ?>
+                <table class="table table-striped table-bordered table-hover" >
+      
+                    <thead>
+                        <tr>
+                          <th bgcolor='#BDBDBD'>Unsur Penilaian</th>
+                          <th bgcolor='#BDBDBD'>Bobot Unsur</th>
+                          <th bgcolor='#BDBDBD'>Nilai</th>
+                          <th bgcolor='#BDBDBD'>Jumlah Nilai</th>
+                          <th bgcolor='#BDBDBD'>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                                <th>Pengalaman Perusahaan</th>
+                                <td><input value="<?php echo $unp_bobot_png_prs;?>" required type="text" class="form-control" id="unp_bobot_png_prs" name="unp_bobot_png_prs"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><label id="unp_nilai_png_prs" class="text-left"><?php echo $unp_nilai_png_prs;?></label></td>
+                                <td><label id="unp_jml_png_prs" class="text-left"><?php echo $unp_jml_png_prs;?></label></td>
+                                <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/PengalamanPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrypp">
+                                    Entry <span class="glyphicon glyphicon-plus"></span>
+                                </button></td>
+                        </tr>
+                        <tr>
+                        	<th>Pendekatan dan Metodologi</th>
+                                <td><input value="<?php echo $unp_bobot_pnd_mtd;?>" required type="text" class="form-control" id="unp_bobot_pnd_mtd" name="unp_bobot_pnd_mtd"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><label id="unp_nilai_pnd_mtd" class="text-left"><?php echo $unp_nilai_pnd_mtd;?></label></td>
+                                <td><label id="unp_jml_pnd_mtd" class="text-left"><?php echo $unp_jml_pnd_mtd;?></label></td>
+                                <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/MetodologiPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrypm">
+                                    Entry <span class="glyphicon glyphicon-plus"></span>
+                                </button></td>
+                        </tr>
+                        <tr>
+                        	<th>Kualifikasi Tenaga Ahli</th>
+                                <td><input value="<?php echo $unp_bobot_kua_tna;?>" required type="text" class="form-control" id="unp_bobot_kua_tna" name="unp_bobot_kua_tna"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><label id="unp_nilai_kua_tna" class="text-left"><?php echo $unp_nilai_kua_tna;?></label></td>
+                                <td><label id="unp_jml_kua_tna" class="text-left"><?php echo $unp_jml_kua_tna;?></label></td>
+                                <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/PersonilPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrykt">
+                                    Entry <span class="glyphicon glyphicon-plus"></span>
+                                </button></td>
+                        </tr>
+                  
+                    </tbody>
+                </table>
+                    <button type='button' class='btn btn-primary pull-right' id="refreshtableteknis">
+                        Refresh <span class="glyphicon glyphicon-plus"></span>
+                    </button> <br><br>
+                <table class="table table-striped table-bordered table-hover" width="50%">
+                    <col width="50%">
+                    <col width="50%">
+                    <tbody>
+                        <tr>
+                                <th>Apakah Evaluasi Teknis diatas sesuai ?</th>
+                                <td><div class="col-sm-10" ><input <?php if($pnc_evaluasi_teknis_konsultan == 1){echo 'checked';}?> type="checkbox" data-off-label="Tidak Sesuai" data-on-label="Sesuai" id ="pnc_evaluasi_teknis_konsultan" name ="pnc_evaluasi_teknis_konsultan" value="1" data-style="btn-group-sm"></div></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                    <script type="text/javascript">
+                    $(document).ready(function() {
+                        //fungsi untuk refresh 
+                        $('#refreshtableteknis').click(function(){
+                            $.ajax({
+                            url: "<?php echo site_url('KonsultanTeknis/getUnsurPenilaian').'/'.$unp_id;?>",
+                            type: "POST",
+                            data: $(this).serialize(),
+                            success: function(dt) {
+                                var obj = JSON.parse(dt);
+                                document.getElementById('unp_bobot_png_prs').value = obj.unp_bobot_png_prs;
+                                document.getElementById('unp_bobot_pnd_mtd').value = obj.unp_bobot_pnd_mtd;
+                                document.getElementById('unp_bobot_kua_tna').value = obj.unp_bobot_kua_tna;
+                                
+                                document.getElementById('unp_nilai_png_prs').innerHTML = obj.unp_nilai_png_prs;
+                                document.getElementById('unp_nilai_pnd_mtd').innerHTML = obj.unp_nilai_pnd_mtd;
+                                document.getElementById('unp_nilai_kua_tna').innerHTML = obj.unp_nilai_kua_tna;
+                                
+                                document.getElementById('unp_jml_png_prs').innerHTML = obj.unp_jml_png_prs;
+                                document.getElementById('unp_jml_pnd_mtd').innerHTML = obj.unp_jml_pnd_mtd;
+                                document.getElementById('unp_jml_kua_tna').innerHTML = obj.unp_jml_kua_tna;
+                            }
+                        });
+                        });
+                    });
+                    </script>
+                <?php } ?>
+                    <br><br>
+                <h3>Evaluasi Harga (Biaya Personil)
+                </h3>
+                <div class="table-responsive">
+                <table id = "table-pekerjaan" class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                          <th bgcolor='#BDBDBD'>Jabatan</th>
+                          <th bgcolor='#BDBDBD'>Kuantitas</th>
+                          <th bgcolor='#BDBDBD'>Biaya Personil(HPS)</th>
+                          <th bgcolor='#BDBDBD'>Biaya Personil(Pnr)</th>
+                          <th bgcolor='#BDBDBD'>Total(HPS)</th>
+                          <th bgcolor='#BDBDBD'>Total(Penawaran)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $judul = 0; ?>
+                        <?php $number = 1; ?>
+                        <?php $lastjudul = -11; ?>
+                    	<?php foreach ($konsultanList1 as $row) {?>
+                            <?php if($row->dtk_sub_judul != $lastjudul && $judul == 1) {?>
+                                <?php $judul = 0; ?>
+                                <tr bgcolor='#BDBDBD'><td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td></tr>
+                            <?php } ?>
+                            <?php if($row->dtk_sub_judul != '-99' && $judul == 0) {?>
+                                <?php $judul = 1; ?>
+                                <?php $lastjudul = $row->dtk_sub_judul; ?>
+                                <tr><td><b><?php echo $number.'. '.$row->sjd_sub_judul; ?></b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                
+                                <td></td></tr>
+                                <?php $number = $number+1; ?>
+                            <?php } ?>
+                            <tr><td><?php echo $row->dtk_jabatan; ?></td>
+                            <td><?php echo ($row->dtk_kuantitas+0) ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_biaya_personil_hps,0,",","."); ?></td>
+                            <td><div class="row form-group">                                    
+                                    <div class="col-sm-10">
+                                    <input type="hidden" class="form-control" id="dtk_id<?php echo $row->dtk_id; ?>" name="dtk_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtk_id; ?>">
+                                    <input type="hidden" class="form-control" id="dtk_kuantitas<?php echo $row->dtk_id; ?>" value="<?php echo $row->dtk_kuantitas; ?>"> 
+                                    <input type="hidden" class="hargasatuan_hps form-control" id="dtk_biaya_personil_hps<?php echo $row->dtk_id; ?>" value="<?php echo $row->dtk_biaya_personil_hps; ?>">    
+                                    <input value ="<?php if($row->dtk_biaya_personil_pnr>0){echo ($row->dtk_biaya_personil_pnr+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>" name="dtk_biaya_personil_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
+                                    <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="col-sm-2">         
+                                    <span id ="icon_status<?php echo $row->dtk_id; ?>" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    </div>
+                                    <div class="col-sm-10">
+                                    <label id="lbl_dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>">Rp.-</label>
+                                    </div>
+                                </div>
+                                 <div class="row">
+                                    
+                                 </div>
+                            </td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_jml_biaya_hps,0,",","."); ?></td>
+                            <td style='display:none;'><span id="jml_pnr<?php echo $row->dtk_id; ?>"></span></td>
+                            <td><span id="Xjml_pnr<?php echo $row->dtk_id; ?>"></span></td>
+                            <td style='display:none;'><?php echo $row->dtk_jml_biaya_hps; ?></td>
+                            <script type="text/javascript">
+                                    $(document).ready(function() {
+                                            Number.prototype.format = function(n, x, s, c) {
+                                                var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
+                                                    num = this.toFixed(Math.max(0, ~~n));
+
+                                                return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
+                                            };
+                                            function cekHrg<?php echo $row->dtk_id; ?>() {
+                                                //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
+                                                var pnrHarga = parseFloat(document.getElementById('dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>').value);
+                                                var hpsHarga = parseFloat(document.getElementById('dtk_biaya_personil_hps<?php echo $row->dtk_id; ?>').value);
+                                                 if (pnrHarga <= hpsHarga && !isNaN(pnrHarga)) {
+                                                    $('#icon_status<?php echo $row->dtk_id; ?>').removeClass('glyphicon-remove text-danger').addClass('glyphicon-ok text-success');
+                                                    $(this).next().stop(true, true).fadeIn(0).html('Harga Penawaran lebih kecil dari harga HPS').fadeOut(2000);
+                                                 }else if(pnrHarga > hpsHarga && !isNaN(pnrHarga)){
+                                                     $('#icon_status<?php echo $row->dtk_id; ?>').removeClass('glyphicon-ok text-success').addClass('glyphicon-remove text-danger');
+                                                     $(this).next().stop(true, true).fadeIn(0).html('Harga Penawaran lebih besar dari harga HPS').fadeOut(2000);
+                                                 }
+                                                 var vol = parseFloat(document.getElementById('dtk_kuantitas<?php echo $row->dtk_id; ?>').value);
+                                                 var tot = parseFloat((pnrHarga*vol).toFixed(2));
+                                      
+                                                 if(!isNaN(tot)){
+                                                    document.getElementById("jml_pnr<?php echo $row->dtk_id; ?>").innerHTML = tot;
+                                                    document.getElementById("Xjml_pnr<?php echo $row->dtk_id; ?>").innerHTML = 'Rp.'+tot.format(0,3,'.');
+                                                    document.getElementById("lbl_dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>").innerHTML = 'Rp.'+pnrHarga.format(0,3,'.');
+                                                }else{
+                                                    document.getElementById("jml_pnr<?php echo $row->dtk_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("Xjml_pnr<?php echo $row->dtk_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("lbl_dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>").innerHTML = 'Rp.-';
+                                                }
+  
+                                            }
+                                            cekHrg<?php echo $row->dtk_id; ?>();
+                                            $('#dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>').bind('input', cekHrg<?php echo $row->dtk_id; ?>);
+                                             
+                                    });
+                            </script>
+                        <?php $totRowPekerjaan = $totRowPekerjaan+1;} ?>
+                    </tbody>
+                </table>
+                 </div>     
+                <?php if($konsultanList2 != NULL) {?>
+                <?php   $totRowPekerjaan = 0; ?>
+                <h3>Evaluasi Harga (Biaya Non Personil)
                 </h3>
                  <div class="table-responsive">
                 <table id = "table-pekerjaan" class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                          <th bgcolor='#BDBDBD'><?php echo $judul;  ?></th>
+                          <th bgcolor='#BDBDBD'>Uraian</th>
                           <th bgcolor='#BDBDBD'>Volume</th>
                           <th bgcolor='#BDBDBD'>Harga Satuan(HPS)</th>
                           <th bgcolor='#BDBDBD'>Harga Satuan(Penawaran)</th>
@@ -211,8 +420,8 @@
                         <?php $judul = 0; ?>
                         <?php $number = 1; ?>
                         <?php $lastjudul = -11; ?>
-                    	<?php foreach ($pekerjaanList as $row) {?>
-                            <?php if($row->dtp_sub_judul != $lastjudul && $judul == 1) {?>
+                    	<?php foreach ($konsultanList2 as $row) {?>
+                            <?php if($row->dtk2_sub_judul != $lastjudul && $judul == 1) {?>
                                 <?php $judul = 0; ?>
                                 <tr bgcolor='#BDBDBD'><td bgcolor='#BDBDBD'></td
                                 <td bgcolor='#BDBDBD'></td>
@@ -222,9 +431,9 @@
                                 <td bgcolor='#BDBDBD'></td>
                                 <td bgcolor='#BDBDBD'></td></tr>
                             <?php } ?>
-                            <?php if($row->dtp_sub_judul != '-99' && $judul == 0) {?>
+                            <?php if($row->dtk2_sub_judul != '-99' && $judul == 0) {?>
                                 <?php $judul = 1; ?>
-                                <?php $lastjudul = $row->dtp_sub_judul; ?>
+                                <?php $lastjudul = $row->dtk2_sub_judul; ?>
                                 <tr><td><b><?php echo $number.'. '.$row->sjd_sub_judul; ?></b></td>
                                 <td></td>
                                 <td></td>
@@ -233,32 +442,32 @@
                                 <td></td></tr>
                                 <?php $number = $number+1; ?>
                             <?php } ?>
-                            <tr><td><?php echo $row->dtp_pekerjaan; ?></td>
-                            <td><?php echo ($row->dtp_volume+0).' '.$row->dtp_satuan; ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
+                            <tr><td><?php echo $row->dtk2_pekerjaan; ?></td>
+                            <td><?php echo ($row->dtk2_volume+0).' '.$row->dtk2_satuan; ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk2_hargasatuan_hps,0,",","."); ?></td>
                             <td><div class="row form-group">                                    
                                     <div class="col-sm-10">
-                                    <input type="hidden" class="form-control" id="dtp_id<?php echo $row->dtp_id; ?>" name="dtp_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtp_id; ?>">
-                                    <input type="hidden" class="form-control" id="dtp_volume<?php echo $row->dtp_id; ?>" value="<?php echo $row->dtp_volume; ?>"> 
-                                    <input type="hidden" class="hargasatuan_hps form-control" id="dtp_hargasatuan_hps<?php echo $row->dtp_id; ?>" value="<?php echo $row->dtp_hargasatuan_hps; ?>">    
-                                    <input value ="<?php if($row->dtp_hargasatuan_pnr>0){echo ($row->dtp_hargasatuan_pnr+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>" name="dtp_hargasatuan_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
+                                    <input type="hidden" class="form-control" id="dtk2_id<?php echo $row->dtk2_id; ?>" name="dtk2_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtk2_id; ?>">
+                                    <input type="hidden" class="form-control" id="dtk2_volume<?php echo $row->dtk2_id; ?>" value="<?php echo $row->dtk2_volume; ?>"> 
+                                    <input type="hidden" class="hargasatuan_hps form-control" id="dtk2_hargasatuan_hps<?php echo $row->dtk2_id; ?>" value="<?php echo $row->dtk2_hargasatuan_hps; ?>">    
+                                    <input value ="<?php if($row->dtk2_hargasatuan_pnr>0){echo ($row->dtk2_hargasatuan_pnr+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>" name="dtk2_hargasatuan_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
                                     <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-2">         
-                                    <span id ="icon_status<?php echo $row->dtp_id; ?>" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                                    <span id ="icon_status<?php echo $row->dtk2_id; ?>" class="glyphicon glyphicon-remove" aria-hidden="true"></span>
                                     </div>
                                     <div class="col-sm-10">
-                                    <label id="lbl_dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>">Rp.-</label>
+                                    <label id="lbl_dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>">Rp.-</label>
                                     </div>
                                 </div>
                                  <div class="row">
                                     
                                  </div>
                             </td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_hps,0,",","."); ?></td>
-                            <td style='display:none;'><span id="jml_pnr<?php echo $row->dtp_id; ?>"></span></td>
-                            <td><span id="Xjml_pnr<?php echo $row->dtp_id; ?>"></span></td>
-                            <td style='display:none;'><?php echo $row->dtp_jumlahharga_hps; ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk2_jumlahharga_hps,0,",","."); ?></td>
+                            <td style='display:none;'><span id="jml_pnr<?php echo $row->dtk2_id; ?>"></span></td>
+                            <td><span id="Xjml_pnr<?php echo $row->dtk2_id; ?>"></span></td>
+                            <td style='display:none;'><?php echo $row->dtk2_jumlahharga_hps; ?></td>
                             <script type="text/javascript">
                                     $(document).ready(function() {
                                             Number.prototype.format = function(n, x, s, c) {
@@ -267,33 +476,33 @@
 
                                                 return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
                                             };
-                                            function cekHrg<?php echo $row->dtp_id; ?>() {
+                                            function cekHrg<?php echo $row->dtk2_id; ?>() {
                                                 //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
-                                                var pnrHarga = parseFloat(document.getElementById('dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').value);
-                                                var hpsHarga = parseFloat(document.getElementById('dtp_hargasatuan_hps<?php echo $row->dtp_id; ?>').value);
+                                                var pnrHarga = parseFloat(document.getElementById('dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>').value);
+                                                var hpsHarga = parseFloat(document.getElementById('dtk2_hargasatuan_hps<?php echo $row->dtk2_id; ?>').value);
                                                  if (pnrHarga <= hpsHarga && !isNaN(pnrHarga)) {
-                                                    $('#icon_status<?php echo $row->dtp_id; ?>').removeClass('glyphicon-remove text-danger').addClass('glyphicon-ok text-success');
+                                                    $('#icon_status<?php echo $row->dtk2_id; ?>').removeClass('glyphicon-remove text-danger').addClass('glyphicon-ok text-success');
                                                     $(this).next().stop(true, true).fadeIn(0).html('Harga Penawaran lebih kecil dari harga HPS').fadeOut(2000);
                                                  }else if(pnrHarga > hpsHarga && !isNaN(pnrHarga)){
-                                                     $('#icon_status<?php echo $row->dtp_id; ?>').removeClass('glyphicon-ok text-success').addClass('glyphicon-remove text-danger');
+                                                     $('#icon_status<?php echo $row->dtk2_id; ?>').removeClass('glyphicon-ok text-success').addClass('glyphicon-remove text-danger');
                                                      $(this).next().stop(true, true).fadeIn(0).html('Harga Penawaran lebih besar dari harga HPS').fadeOut(2000);
                                                  }
-                                                 var vol = parseFloat(document.getElementById('dtp_volume<?php echo $row->dtp_id; ?>').value);
+                                                 var vol = parseFloat(document.getElementById('dtk2_volume<?php echo $row->dtk2_id; ?>').value);
                                                  var tot = parseFloat((pnrHarga*vol).toFixed(2));
                                       
                                                  if(!isNaN(tot)){
-                                                    document.getElementById("jml_pnr<?php echo $row->dtp_id; ?>").innerHTML = tot;
-                                                    document.getElementById("Xjml_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.'+tot.format(0,3,'.');
-                                                    document.getElementById("lbl_dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.'+pnrHarga.format(0,3,'.');
+                                                    document.getElementById("jml_pnr<?php echo $row->dtk2_id; ?>").innerHTML = tot;
+                                                    document.getElementById("Xjml_pnr<?php echo $row->dtk2_id; ?>").innerHTML = 'Rp.'+tot.format(0,3,'.');
+                                                    document.getElementById("lbl_dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>").innerHTML = 'Rp.'+pnrHarga.format(0,3,'.');
                                                 }else{
-                                                    document.getElementById("jml_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
-                                                    document.getElementById("Xjml_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
-                                                    document.getElementById("lbl_dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("jml_pnr<?php echo $row->dtk2_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("Xjml_pnr<?php echo $row->dtk2_id; ?>").innerHTML = 'Rp.-';
+                                                    document.getElementById("lbl_dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>").innerHTML = 'Rp.-';
                                                 }
   
                                             }
-                                            cekHrg<?php echo $row->dtp_id; ?>();
-                                            $('#dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').bind('input', cekHrg<?php echo $row->dtp_id; ?>);
+                                            cekHrg<?php echo $row->dtk2_id; ?>();
+                                            $('#dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>').bind('input', cekHrg<?php echo $row->dtk2_id; ?>);
                                              
                                     });
                             </script>
@@ -301,6 +510,7 @@
                     </tbody>
                 </table>
                  </div>
+                <?php } ?>    
                     <div class="row">
                     <p class="control-label text-center pull-left"><i><?php if ($pgd_dgn_pajak != 0){ echo "*Total Harga Sudah Dengan Pajak"; }else{echo "";} ?></i></p>
                     </div>
@@ -423,24 +633,35 @@ function submitFormPenawaran() {
     if(xyz !== true){
         statusPnr = 0;
     }
-//    alert('8 -> '+xyz+ 'statusPNR -> '+statusPnr);
-    // 7. periksa kesesuaian spec teknisisian kualifikasi
-    xyz = document.getElementById('pnc_kesesuaian_spec_teknis').checked;
-    if(xyz !== true){
-        statusPnr = 0;
+    
+    var tipe = document.getElementById('pgd_tipe_pengadaan').value;
+    if(tipe === '2'){
+        // 7. periksa evaluasi teknis konsultan
+        xyz = document.getElementById('pnc_evaluasi_teknis_konsultan').checked;
+        if(xyz !== true){
+            statusPnr = 0;
+        }
+    }else{
+    //    alert('8 -> '+xyz+ 'statusPNR -> '+statusPnr);
+        // 7. periksa kesesuaian spec teknisisian kualifikasi
+        xyz = document.getElementById('pnc_kesesuaian_spec_teknis').checked;
+        if(xyz !== true){
+            statusPnr = 0;
+        }
+    //    alert('9 -> '+xyz+ 'statusPNR -> '+statusPnr);
+        // 8. periksa jadwal pelaksanaan
+        xyz = document.getElementById('pnc_kesesuaian_jdwl_kerja').checked;
+        if(xyz !== true){
+            statusPnr = 0;
+        }
+    //    alert('10 -> '+xyz+ 'statusPNR -> '+statusPnr);
+        // 9. periksa kesesuaian identitas
+        xyz = document.getElementById('pnc_kesesuaian_identitas').checked;
+        if(xyz !== true){
+            statusPnr = 0;
+        }        
     }
-//    alert('9 -> '+xyz+ 'statusPNR -> '+statusPnr);
-    // 8. periksa jadwal pelaksanaan
-    xyz = document.getElementById('pnc_kesesuaian_jdwl_kerja').checked;
-    if(xyz !== true){
-        statusPnr = 0;
-    }
-//    alert('10 -> '+xyz+ 'statusPNR -> '+statusPnr);
-    // 9. periksa kesesuaian identitas
-    xyz = document.getElementById('pnc_kesesuaian_identitas').checked;
-    if(xyz !== true){
-        statusPnr = 0;
-    }
+
 //    alert('11 -> '+xyz+ 'statusPNR -> '+statusPnr);
  
     //10. periksa kesesuaian harga dan syarat penyedia

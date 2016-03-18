@@ -52,23 +52,15 @@ class SubJudul extends CI_Controller {
         echo $this->M_subjudul->ajaxProcess();
     }
     
-    public function select2All(){
+    public function select2All($tipePgd){
         $search = strip_tags(trim($this->input->get('q')));
         //$search = "";
-        $result = $this->M_subjudul->select2All($search);
-        
-//        if(count($result) != 0) {
-//            foreach ($result as $row){
-//                $answer[] = array("id"=>$row->ang_kode,"text"=>$row->ang_kode." - ".$row->ang_nama);  
-//            }
-//          } 
-//        else { 
-//            // 0 results send a message back to say so.     
-//            $answer[] = array("id"=>"0","text"=>"Data tidak ditemukan.."); 
-//        } 
-        // finally encode the answer to json and send back the result. 
+        $result = $this->M_subjudul->select2All($search, $tipePgd);
+
         echo json_encode($result); 
     }
+    
+    
     function postVariabel(){
 	//$data['utj_id']             = $this->input->post('utj_id');
 	$data['sjd_sub_judul']    = $this->input->post('sjd_sub_judul');

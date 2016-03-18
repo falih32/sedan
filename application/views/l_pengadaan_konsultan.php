@@ -116,7 +116,7 @@ $(document).ready(function() {
                                 { "searchable": false, "visible":false, "targets": [3,9]},
                                 {  "visible":false, "targets": [8,7, 10, 11, 12, 13]}
                         ],
-		"order": [[ 9, "asc" ]],
+		"order": [[ 9, "desc" ]],
                 "dom": '<"row filter-row"<"col-md-2"l><"col-md-10"f><"col-md-12"p>><t><"row footer-row"<"col-md-6"i><"col-md-6"p>>',
 		"drawCallback": function( settings ) {
 			makeConfirmation();

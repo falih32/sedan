@@ -166,45 +166,95 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover" width="50%">
+                <br>
+                    <h4><b>Biaya Personil</b></h4>
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                          <th><?php echo $detail_pengadaan; ?></th>
-                          <th>Volume</th>
-                          <th>Hrg Satuan(HPS)</th>
-                          <th>Hrg Satuan(Pnr)</th>
-                          <th>Hrg Satuan(Fix)</th>
-                          <th>Total(HPS)</th>
-                          <th>Total(Penawaran)</th>
-                          <th>Total(Fix)</th>
+                          <th bgcolor='#BDBDBD'>Jabatan</th>
+                          <th bgcolor='#BDBDBD'>Kuantitas</th>
+                          <th bgcolor='#BDBDBD'>Biaya Personil(HPS)</th>
+                          <th bgcolor='#BDBDBD'>Biaya Personil(Pnr)</th>
+                          <th bgcolor='#BDBDBD'>Biaya Personil(Fix)</th>
+                          <th bgcolor='#BDBDBD'>Total(HPS)</th>
+                          <th bgcolor='#BDBDBD'>Total(Penawaran)</th>
+                          <th bgcolor='#BDBDBD'>Total(Fix)</th>
                         </tr>
                     </thead>
-                    <tbody>
-                    	<?php foreach ($pekerjaanList as $row) {?>
-                            <tr><td><?php echo $row->dtp_pekerjaan; ?><br><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row->dtp_id; ?>">Spec</button></td>
-                            <td><?php echo ($row->dtp_volume+0).' '.$row->dtp_satuan; ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_pnr,0,",","."); ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_fix,0,",","."); ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_hps,0,",","."); ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_pnr,0,",","."); ?></td>
-                            <td><?php echo 'Rp.'.number_format($row->dtp_jumlahharga_fix,0,",","."); ?></td></tr>
+                    <tbody> 
+                        <?php $judul = 0; ?>
+                        <?php $number = 1; ?>
+                        <?php $lastjudul = -11; ?>
+                    	<?php foreach ($konsultanList1 as $row) {?>
+                            <?php if($row->dtk_sub_judul != $lastjudul && $judul == 1) {?>
+                                <?php $judul = 0; ?>
+                                <tr bgcolor='#BDBDBD'><td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td></tr>
+                            <?php } ?>
+                            <?php if($row->dtk_sub_judul != '-99' && $judul == 0) {?>
+                                <?php $judul = 1; ?>
+                                <?php $lastjudul = $row->dtk_sub_judul; ?>
+                                <tr><td><b><?php echo $number.'. '.$row->sjd_sub_judul; ?></b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td></tr>
+                                <?php $number = $number+1; ?>
+                            <?php } ?>
+                            <tr><td><?php echo $row->dtk_jabatan; ?><br><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModalx<?php echo $row->dtk_id; ?>">Detail</button></td>  
+                            <td><?php echo ($row->dtk_kuantitas+0); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_biaya_personil_hps,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_biaya_personil_pnr,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_biaya_personil_fix,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_jml_biaya_hps,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_jml_biaya_pnr,0,",","."); ?></td>
+                            <td><?php echo 'Rp.'.number_format($row->dtk_jml_biaya_fix,0,",","."); ?></td></tr>
                             <!-- Modal -->
-                            <div id="myModal<?php echo $row->dtp_id; ?>" class="modal fade bs-example-modal-sm" role="dialog">
+                            <div id="myModalx<?php echo $row->dtk_id; ?>" class="modal fade bs-example-modal-sm" role="dialog">
                               <div class="modal-dialog modal-sm">
 
                                 <!-- Modal content-->
                                 <div class="modal-content">
                                   <div class="modal-header">
                                     <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                    <h4 class="modal-title">Spesifikasi</h4>
+                                    <h4 class="modal-title">Detail</h4>
                                   </div>
                                   <div class="modal-body">
-                                    <p><?php echo $row->dtp_spesifikasi; ?>
-                                        <?php $urlfile = site_url('uploads/file_pengadaan').'/'.$row->dtp_file;?><br>
-                                        <img src="<?php echo $urlfile;?>" alt="" style="width:304px;height:228px;">
-                                        <?php $tagFile =  "<a href='".$urlfile."' target='_blank'>Full Size Image</a>"?>
-                                        <?php if($row->dtp_file!="" || $row->dtp_file!=NULL){echo "<br>".$tagFile;} ?></p>
+                                  <div class="col-md-12">    
+                                  <div class="row">
+                                      <label class="control-label">Kualifikasi Pendidikan : <?php echo $row->dtk_kualifikasi_pendidikan; ?></label>
+                                      
+                                  </div>
+                                  <div class="row">
+                                      
+                                      <label class="control-label">Jml Org : <?php echo ($row->dtk_jml_org+0); ?></label>
+                                      
+                                  </div>  
+                                  <div class="row">
+                                      
+                                      <label class="control-label">Jml Bln : <?php echo ($row->dtk_jml_bln+0); ?></label>
+                                      
+                                  </div>  
+                                  <div class="row">
+                                      
+                                      <label class="control-label">Intensitas : <?php echo ($row->dtk_intensitas+0); ?></label>
+                                      
+                                  </div>  
+                                  <div class="row">
+                                      
+                                      <label class="control-label">Satuan : <?php echo ($row->dtk_satuan); ?></label>
+                                  </div>  
+                                  </div>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -213,11 +263,113 @@
 
                               </div>
                             </div>
+                            
+                        
                         <?php } ?>
                     </tbody>
                     
                 </table>
-                <?php if($pgd_dgn_pajak == 1){ echo'<i class ="pull-right"><font color="red">*Total Harga Sudah Dengan Pajak</font></i>';}?>
+                </div>
+                <div class="row"> 
+                    <div class ='col-sm-3 pull-right'> 
+                    <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
+                    <input type="text" class="form-control" id="x_jml_sblm_ppn_kons1"  value='<?php echo 'Rp.'.number_format($jmlKons1,0,",","."); ?>' readonly>
+                    </div> 
+
+                </div>
+                <?php if($konsultanList2 != NULL) {?>
+                <br>
+                    <h4><b>Biaya Non Personil</b></h4>
+                    <div class="table-responsive">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                              <th bgcolor='#BDBDBD'>Uraian</th>
+                              <th bgcolor='#BDBDBD'>Volume</th>
+                              <th bgcolor='#BDBDBD'>Hrg Satuan(HPS)</th>
+                              <th bgcolor='#BDBDBD'>Hrg Satuan(Pnr)</th>
+                              <th bgcolor='#BDBDBD'>Hrg Satuan(Fix)</th>
+                              <th bgcolor='#BDBDBD'>Total(HPS)</th>
+                              <th bgcolor='#BDBDBD'>Total(Penawaran)</th>
+                              <th bgcolor='#BDBDBD'>Total(Fix)</th>
+                            </tr>
+                        </thead>
+                        <tbody> 
+                            <?php $judul = 0; ?>
+                            <?php $number = 1; ?>
+                            <?php $lastjudul = -11; ?>
+                            <?php foreach ($konsultanList2 as $row) {?>
+                                <?php if($row->dtk2_sub_judul != $lastjudul && $judul == 1) {?>
+                                    <?php $judul = 0; ?>
+                                    <tr bgcolor='#BDBDBD'><td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td>
+                                    <td bgcolor='#BDBDBD'></td></tr>
+                                <?php } ?>
+                                <?php if($row->dtk2_sub_judul != '-99' && $judul == 0) {?>
+                                    <?php $judul = 1; ?>
+                                    <?php $lastjudul = $row->dtk2_sub_judul; ?>
+                                    <tr><td><b><?php echo $number.'. '.$row->sjd_sub_judul; ?></b></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td></tr>
+                                    <?php $number = $number+1; ?>
+                                <?php } ?>
+                                <tr><td><?php echo $row->dtk2_pekerjaan; ?><br><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row->dtk2_id; ?>">Spec</button></td>
+                                <td><?php echo ($row->dtk2_volume+0).' '.$row->dtk2_satuan; ?></td>
+                                <td><?php echo 'Rp.'.number_format($row->dtk2_hargasatuan_hps,0,",","."); ?></td>
+                                <td><?php echo 'Rp.'.number_format($row->dtk2_hargasatuan_pnr,0,",","."); ?></td>
+                                <td><?php echo 'Rp.'.number_format($row->dtk2_hargasatuan_fix,0,",","."); ?></td>
+                                <td><?php echo 'Rp.'.number_format($row->dtk2_jumlahharga_hps,0,",","."); ?></td>
+                                <td><?php echo 'Rp.'.number_format($row->dtk2_jumlahharga_pnr,0,",","."); ?></td>
+                                <td><?php echo 'Rp.'.number_format($row->dtk2_jumlahharga_fix,0,",","."); ?></td></tr>
+                                <!-- Modal -->
+                                <div id="myModal<?php echo $row->dtk2_id; ?>" class="modal fade bs-example-modal-sm" role="dialog">
+                                  <div class="modal-dialog modal-sm">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                      <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Spesifikasi</h4>
+                                      </div>
+                                      <div class="modal-body">
+                                        <p><?php echo $row->dtk2_spesifikasi; ?>
+                                            <?php $urlfile = site_url('uploads/file_pengadaan').'/'.$row->dtk2_file;?><br>
+                                            <img src="<?php echo $urlfile;?>" alt="" style="width:270px;height:228px;">
+                                            <?php $tagFile =  "<a href='".$urlfile."' target='_blank'>Full Size Image</a>"?>
+                                            <?php if($row->dtk2_file!="" || $row->dtk2_file!=NULL){echo "<br>".$tagFile;} ?></p>
+                                      </div>
+                                      <div class="modal-footer">
+                                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                      </div>
+                                    </div>
+
+                                  </div>
+                                </div>
+
+
+                            <?php } ?>
+                        </tbody>
+
+                    </table>
+                    </div>
+                    <div class="row"> 
+                        <div class ='col-sm-3 pull-right'> 
+                        <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
+                        <input type="text" class="form-control" id="x_jml_sblm_ppn_kons2"  value='<?php echo 'Rp.'.number_format($jmlKons2,0,",","."); ?>' readonly>
+                        </div> 
+                                          
+                    </div>
+                <?php } ?>
+
                 <br><br>
                 <table class="table table-striped table-bordered table-hover" width="50%">
                     <tbody>
@@ -253,7 +405,7 @@
                         </tr>
                     </tbody>
                 </table>
-                
+                <?php if($pgd_dgn_pajak == 1){ echo'<i class ="pull-right"><font color="red">*Total Harga Sudah Dengan Pajak</font></i>';}?>
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">

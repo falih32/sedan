@@ -242,7 +242,7 @@ if($statuspage !="edit"){
                                             <label class="col-md-offset-4 control-label text-center">Spesifikasi Teknis</label>
                                         </div>
                                         <div class="form-group">
-                                            <textarea required class="form-control" id="dtk2_spesifikasi" name="dtk2_spesifikasi" placeholder="Spesifikasi Teknis"></textarea>
+                                            <textarea  class="form-control" id="dtk2_spesifikasi" name="dtk2_spesifikasi" placeholder="Spesifikasi Teknis"></textarea>
                                             <div class="help-block with-errors"></div>
                                         </div>
                                        
@@ -474,10 +474,11 @@ $(document).ready(function() {
         });   
      });
      
+     <?php if($pgd_status_pengadaan==0){ ?>
      //fungsi select2 sub judul konsultan 1
      $(".optSubJudul-opt").select2({
        ajax: {
-         url: "<?php echo site_url('SubJudul/select2All');?>",
+         url: "<?php echo site_url('SubJudul/select2All');?>"+"/"+document.getElementById("pgd_tipe_pengadaan").value,
          dataType: 'json',
          data: function (params) {
            return {
@@ -499,8 +500,9 @@ $(document).ready(function() {
     
     //fungsi sub judul konsultan 2
     $(".optSubJudul-opt2").select2({
+        
        ajax: {
-         url: "<?php echo site_url('SubJudul/select2All');?>",
+         url: "<?php echo site_url('SubJudul/select2All');?>"+"/"+document.getElementById("pgd_tipe_pengadaan").value,
          dataType: 'json',
          data: function (params) {
            return {
@@ -519,7 +521,7 @@ $(document).ready(function() {
          }
        }
     });
-    
+     <?php } ?>
     //fungsi hidden/tidak subjudul kons1
     $('#chkBoxJudul').change(function () {
         var ischecked= $(this).is(':checked');
@@ -536,9 +538,11 @@ $(document).ready(function() {
     $('#chkBoxJudul2').change(function () {
         var ischecked= $(this).is(':checked');
         if (ischecked){
+            document.getElementById("chkBoxJudul2").value = 1;
             document.getElementById("frmSubJudul2").style.display  = "block";
             //document.getElementById("lbl2_optSubJudul").style.display  = "inline";
         }else{
+            document.getElementById("chkBoxJudul2").value = 0;
             document.getElementById("frmSubJudul2").style.display  = "none";
             //document.getElementById("lbl2_optSubJudul").style.display  = "none";
         }
@@ -602,11 +606,7 @@ $(document).ready(function() {
         });   
      });
     
-    //inisialisasi awal pada saat buka page
-    var dtp_pengadaan = document.getElementById("dtp_pengadaan").value;
-    getTotalKonsultan(dtp_pengadaan);
-    drawTableBiayaPersonil(dtp_pengadaan);
-    drawTableBiayaNonPersonil(dtp_pengadaan);
+    
     
     //fungsi ambil total biaya konsultan
     function getTotalKonsultan(idPengadaan) {
@@ -616,12 +616,14 @@ $(document).ready(function() {
             data: $(this).serialize(),
             success: function(total) {
                 var obj = JSON.parse(total);
+                //alert(document.getElementById("pgd_dgn_pajak").value);
                 document.getElementById("x_jml_sblm_ppn_kons1").value = "Rp. "+(parseFloat(obj.jmlKons1)).format(0,3,'.');
                 document.getElementById("x_jml_sblm_ppn_kons2").value = "Rp. "+(parseFloat(obj.jmlKons2)).format(0,3,'.');
                 document.getElementById("total_personil").innerHTML = "Rp. "+(parseFloat(obj.jmlKons1)).format(0,3,'.');
                 document.getElementById("total_non_personil").innerHTML = "Rp. "+(parseFloat(obj.jmlKons2)).format(0,3,'.');
                 document.getElementById("total_keseluruhan").innerHTML = "Rp. "+(parseFloat(obj.jmlSblmPPNHps)).format(0,3,'.');
-                document.getElementById("total_keseluruhan_pajak").innerHTML = "Rp. "+(parseFloat(obj.jmlSsdhPPNHps)).format(0,3,'.');
+                if(parseFloat(document.getElementById("pgd_dgn_pajak").value) === 0)
+                    document.getElementById("total_keseluruhan_pajak").innerHTML = "Rp. "+(parseFloat(obj.jmlSsdhPPNHps)).format(0,3,'.');
 //                document.getElementById("dtp_pengadaan").value = obj.jmlSsdhPPNHps;
 //                document.getElementById("dtp_pengadaan").value = obj.jmlSblmPPNHps;
 //                document.getElementById("dtp_pengadaan").value = obj.jmlSsdhPPNHps;
@@ -670,12 +672,12 @@ $(document).ready(function() {
                              $('#table_personal tr:last').after("<tr><td><span>"+item.dtk_jabatan+"</span></td>\n\\n\
                                 <td><span>"+item.dtk_kualifikasi_pendidikan+"</span></td>\n\
                                 <td><span>"+item.dtk_jml_org+"</span></td>\n\\n\
-                                <td><span>"+item.dtk_jml_bln+"</span></td>\n\
-                                <td><span>"+item.dtk_intensitas+"</span></td>\n\\n\\n\
-                                <td><span>"+item.dtk_kuantitas+"</span></td>\n\\n\\n\
+                                <td><span>"+parseFloat(item.dtk_jml_bln)+"</span></td>\n\
+                                <td><span>"+parseFloat(item.dtk_intensitas)+"</span></td>\n\\n\\n\
+                                <td><span>"+parseFloat(item.dtk_kuantitas)+"</span></td>\n\\n\\n\
                                 <td><span>"+item.dtk_satuan+"</span></td>\n\\n\\n\
-                                <td><span>"+"Rp."+item.dtk_biaya_personil_hps+"</span></td>\n\\n\
-                                <td><span>"+"Rp."+item.dtk_jml_biaya_hps+"</span></td>\n\
+                                <td><span>"+"Rp."+parseFloat(item.dtk_biaya_personil_hps).format(0,3,'.')+"</span></td>\n\\n\
+                                <td><span>"+"Rp."+parseFloat(item.dtk_jml_biaya_hps).format(0,3,'.')+"</span></td>\n\
                                 <td class='deleterowpersonal"+item.dtk_id+"' value='"+item.dtk_id+"'><div class='glyphicon glyphicon-remove'></div></td></tr>");
                             deleteRow('deleterowpersonal'+item.dtk_id, "<?php echo site_url('Pengadaan/proses_del_detail_konsultan1');?>"+"/"+item.dtk_id+"/"+dgnPajak);
                             i++;
@@ -696,12 +698,12 @@ $(document).ready(function() {
                         $('#table_personal tr:last').after("<tr><td><span>"+item.dtk_jabatan+"</span></td>\n\\n\
                             <td><span>"+item.dtk_kualifikasi_pendidikan+"</span></td>\n\
                             <td><span>"+item.dtk_jml_org+"</span></td>\n\\n\
-                            <td><span>"+item.dtk_jml_bln+"</span></td>\n\
-                            <td><span>"+item.dtk_intensitas+"</span></td>\n\\n\\n\
-                            <td><span>"+item.dtk_kuantitas+"</span></td>\n\\n\\n\
+                            <td><span>"+parseFloat(item.dtk_jml_bln)+"</span></td>\n\
+                            <td><span>"+parseFloat(item.dtk_intensitas)+"</span></td>\n\\n\\n\
+                            <td><span>"+parseFloat(item.dtk_kuantitas)+"</span></td>\n\\n\\n\
                             <td><span>"+item.dtk_satuan+"</span></td>\n\\n\\n\
-                            <td><span>"+"Rp."+item.dtk_biaya_personil_hps+"</span></td>\n\\n\
-                            <td><span>"+"Rp."+item.dtk_jml_biaya_hps+"</span></td>\n\
+                            <td><span>"+"Rp."+parseFloat(item.dtk_biaya_personil_hps).format(0,3,'.')+"</span></td>\n\\n\
+                            <td><span>"+"Rp."+parseFloat(item.dtk_jml_biaya_hps).format(0,3,'.')+"</span></td>\n\
                             <td class='deleterowpersonal"+item.dtk_id+"' value='"+item.dtk_id+"'><div class='glyphicon glyphicon-remove'></div></td></tr>");
                         deleteRow('deleterowpersonal'+item.dtk_id, "<?php echo site_url('Pengadaan/proses_del_detail_konsultan1');?>"+"/"+item.dtk_id+"/"+dgnPajak);
                         i++;
@@ -759,7 +761,7 @@ $(document).ready(function() {
                             
                              $('#table_non_personal tr:last').after("<tr><td><span>"+item.dtk2_pekerjaan+"</span></td>\n\\n\
                                 <td><span>"+item.dtk2_spesifikasi+"<br>"+tagFile+"</span></td>\n\
-                                <td><span>"+item.dtk2_volume+"</span></td>\n\\n\
+                                <td><span>"+parseFloat(item.dtk2_volume)+"</span></td>\n\\n\
                                 <td><span>"+item.dtk2_satuan+"</span></td>\n\
                                 <td><span>"+"Rp."+parseFloat(item.dtk2_hargasatuan_hps).format(0,3,'.')+"</span></td>\n\
                                 <td><span>"+"Rp."+parseFloat((item.dtk2_volume)*(item.dtk2_hargasatuan_hps)).format(0,3,'.')+"</span></td>\n\\n\
@@ -786,7 +788,7 @@ $(document).ready(function() {
                          //console.log(data1.kons[i].dtk_jabatan+'\n');
                         $('#table_non_personal tr:last').after("<tr><td><span>"+item.dtk2_pekerjaan+"</span></td>\n\\n\
                                 <td><span>"+item.dtk2_spesifikasi+"<br>"+tagFile+"</span></td>\n\
-                                <td><span>"+item.dtk2_volume+"</span></td>\n\\n\
+                                <td><span>"+parseFloat(item.dtk2_volume)+"</span></td>\n\\n\
                                 <td><span>"+item.dtk2_satuan+"</span></td>\n\
                                 <td><span>"+"Rp."+parseFloat(item.dtk2_hargasatuan_hps).format(0,3,'.')+"</span></td>\n\
                                 <td><span>"+"Rp."+parseFloat((item.dtk2_volume)*(item.dtk2_hargasatuan_hps)).format(0,3,'.')+"</span></td>\n\\n\
@@ -841,7 +843,7 @@ $(document).ready(function() {
         }
     });
     
-    //fungsi bind untuk rupiah kons1
+    //fungsi bind untuk rupiah kons2
     $('#dtk2_hargasatuan_hps').bind('input', function() {
         //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
         var Harga = parseFloat(document.getElementById('dtk2_hargasatuan_hps').value);
@@ -860,7 +862,7 @@ $(document).ready(function() {
         drawTableBiayaPersonil(dtp_pengadaan);
     });
     
-    //fungsi untuk refresh table personil
+    //fungsi untuk refresh table non personil
     $('#refreshtablenonpersonil').click(function(){
         deleteAllTable('table_non_personal');
         var dtp_pengadaan = document.getElementById("dtk2_pengadaan").value;
@@ -888,7 +890,14 @@ $(document).ready(function() {
             window.history.go(-2);
         }
         goBack();
-     <?php } ?>
+     <?php } else{ ?>
+        //inisialisasi awal pada saat buka page
+        var dtp_pengadaan = document.getElementById("dtp_pengadaan").value;
+        getTotalKonsultan(dtp_pengadaan);
+        drawTableBiayaPersonil(dtp_pengadaan);
+        drawTableBiayaNonPersonil(dtp_pengadaan); 
+     <?php }?>
+             
     
     Number.prototype.format = function(n, x, s, c) {
         var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',

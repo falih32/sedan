@@ -105,9 +105,9 @@
                                         <div class="form-group">
                                             <label for="chkBoxPajak" class="col-sm-4 control-label text-left">Pajak</label>
                                             <div class="col-sm-8">
-                                                <input <?php if($pgd_dgn_pajak == 1){echo "checked";} ?> data-style="btn-group-sm" id = "chkBoxPajak" class ="chkBoxPajak pull-right" type="checkbox" data-off-label="Tanpa Pajak" data-on-label="Dengan Pajak" name ="includePajak" value="1">
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> <?php if($pgd_dgn_pajak == 1){echo "checked";} ?> data-style="btn-group-sm" id = "chkBoxPajak" class ="chkBoxPajak pull-right" type="checkbox" data-off-label="Tanpa Pajak" data-on-label="Dengan Pajak" name ="includePajak" value="1">
                                             </div>
-                                        </div>  
+                                        </div>
                                         <div class="form-group">
                                             <label for="pgd_lama_pekerjaan" class="col-sm-4 control-label text-left">Jangka waktu penyelesaian pekerjaan</label>
                                             <div class="col-sm-8">
@@ -115,17 +115,18 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
+                                        
                                         <div class="form-group">
                                             <label for="pgd_lama_penawaran" class="col-sm-4 control-label text-left">Masa berlaku penawaran</label>
                                             <div class="col-sm-8">
-                                                <input value ="<?php echo $pgd_lama_penawaran ?>" required type="text" pattern='[0-9]*' class="form-control" id="pgd_lama_penawaran" name="pgd_lama_penawaran" placeholder="Masa Berlaku Penawaran (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_lama_penawaran ?>" required type="text" pattern='[0-9]*' class="form-control" id="pgd_lama_penawaran" name="pgd_lama_penawaran" placeholder="Masa Berlaku Penawaran (/hari)" data-error="Input yang dimasukkan harus angka dan tidak boleh kosong">
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="pgd_supplier" class="col-sm-4 control-label text-left">Supplier</label>
                                             <div class="col-sm-8">
-                                                <select class="supplier-cbbox form-control" style="width: 100%" name="pgd_supplier" data-error="Input tidak boleh kosong" required>
+                                                <select <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> class="supplier-cbbox form-control" style="width: 100%" name="pgd_supplier" data-error="Input tidak boleh kosong" required>
                                                 <?php foreach ($supplierList as $row) {?>
                                                 <option value="<?php echo $row->spl_id; ?>" <?php if ($row->spl_id == $pgd_supplier){echo 'selected';} ?>>
                                                         <?php echo $row->spl_nama; ?>
@@ -153,7 +154,7 @@
                                         <div class="form-group">
                                             <label for="pgd_pembukaan_dok_pnr" class="col-sm-4 control-label text-center">Tanggal Pembukaan Dokumen Penawaran</label>
                                             <div class="col-sm-8">
-                                                <input value ="<?php echo $pgd_pembukaan_dok_pnr; ?>" readonly type="text" class="form-control tgl" id="pgd_pembukaan_dok_pnr" name="pgd_pembukaan_dok_pnr" placeholder="Tgl Dok Penawaran" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_pembukaan_dok_pnr; ?>" readonly type="text" class="form-control tgl" id="pgd_pembukaan_dok_pnr" name="pgd_pembukaan_dok_pnr" placeholder="Tgl Dok Penawaran" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -182,7 +183,7 @@
                                         <div class="form-group">
                                             <label for="pgd_wkt_awal_penawaran" class="col-sm-4 control-label text-center">Dari</label>
                                             <div class="col-sm-8">
-                                                <input value ="<?php echo $pgd_wkt_awal_penawaran; ?>" readonly type="text" class="form-control tgl" id="pgd_wkt_awal_penawaran" name="pgd_wkt_awal_penawaran" placeholder="Dari" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_wkt_awal_penawaran; ?>" readonly type="text" class="form-control tgl" id="pgd_wkt_awal_penawaran" name="pgd_wkt_awal_penawaran" placeholder="Dari" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -191,7 +192,7 @@
                                         <div class="form-group">
                                             <label for="pgd_wkt_akhir_penawaran" class="col-sm-4 control-label text-left">Sampai</label>
                                             <div class="col-sm-8">
-                                                <input value ="<?php echo $pgd_wkt_akhir_penawaran; ?>" readonly type="text" class="form-control tgl" id="pgd_wkt_akhir_penawaran" name="pgd_wkt_akhir_penawaran" placeholder="Sampai" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_wkt_akhir_penawaran; ?>" readonly type="text" class="form-control tgl" id="pgd_wkt_akhir_penawaran" name="pgd_wkt_akhir_penawaran" placeholder="Sampai" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -199,14 +200,14 @@
                                         <div class="form-group">
                                             <label for="pgd_penandatangan_spk" class="col-sm-4 control-label text-center">Tanggal Penandatanganan SPK</label>
                                             <div class="col-sm-8">
-                                                <input value ="<?php echo $pgd_penandatangan_spk; ?>" readonly type="text" class="form-control tgl1" id="pgd_penandatangan_spk" name="pgd_penandatangan_spk" placeholder="Tgl Penandatangan SPK" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_penandatangan_spk; ?>" readonly type="text" class="form-control tgl1" id="pgd_penandatangan_spk" name="pgd_penandatangan_spk" placeholder="Tgl Penandatangan SPK" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label for="pgd_klr_teknis_nego_hrg" class="col-sm-4 control-label text-center">Tanggal Klarifikasi Teknis dan Negoisasi Harga</label>
                                             <div class="col-sm-8">
-                                                <input value ="<?php echo $pgd_klr_teknis_nego_hrg; ?>" readonly type="text" class="form-control tgl" id="pgd_klr_teknis_nego_hrg" name="pgd_klr_teknis_nego_hrg" placeholder="Tgl Klarifikasi Harga" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
+                                                <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_klr_teknis_nego_hrg; ?>" readonly type="text" class="form-control tgl" id="pgd_klr_teknis_nego_hrg" name="pgd_klr_teknis_nego_hrg" placeholder="Tgl Klarifikasi Harga" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
@@ -215,7 +216,7 @@
                                 </div>    
                             </div>
                         </div>
-                        
+                        <?php if($pgd_status_pengadaan!=0){ echo '<i> **Beberapa Field Tidak Bisa Dirubah Karena Penawaran Sudah Berhasil Diinput</i>';}?>
 <!--------------------------------------------------------------------------------------------------------->                        
                     <br>
                             
@@ -236,6 +237,9 @@
                                    </div>
                                     <div class="col-sm-4">
                                    <input type="hidden" class="form-control" id="pgd_tipe_pengadaan" name="pgd_tipe_pengadaan" value= "<?php echo $pgd_tipe_pengadaan;?>" placeholder="Detail Pekerjaan">
+                                   </div>
+                                    <div class="col-sm-4">
+                                   <input type="hidden" class="form-control" id="pgd_status_pengadaan" name="pgd_status_pengadaan" value= "<?php echo $pgd_status_pengadaan;?>" placeholder="Detail Pekerjaan">
                                    </div>
                                 <?php if($statuspage == 'edit'){ ?>
                                     <div class="col-sm-4">

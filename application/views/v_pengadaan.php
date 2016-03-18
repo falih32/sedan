@@ -166,21 +166,49 @@
                         </tr>
                     </tbody>
                 </table>
-                <table class="table table-striped table-bordered table-hover" width="50%">
+                
+                <div class="table-responsive">
+                <table class="table table-striped table-bordered table-hover">
                     <thead>
                         <tr>
-                          <th><?php echo $detail_pengadaan; ?></th>
-                          <th>Volume</th>
-                          <th>Hrg Satuan(HPS)</th>
-                          <th>Hrg Satuan(Pnr)</th>
-                          <th>Hrg Satuan(Fix)</th>
-                          <th>Total(HPS)</th>
-                          <th>Total(Penawaran)</th>
-                          <th>Total(Fix)</th>
+                          <th bgcolor='#BDBDBD'><?php echo $detail_pengadaan; ?></th>
+                          <th bgcolor='#BDBDBD'>Volume</th>
+                          <th bgcolor='#BDBDBD'>Hrg Satuan(HPS)</th>
+                          <th bgcolor='#BDBDBD'>Hrg Satuan(Pnr)</th>
+                          <th bgcolor='#BDBDBD'>Hrg Satuan(Fix)</th>
+                          <th bgcolor='#BDBDBD'>Total(HPS)</th>
+                          <th bgcolor='#BDBDBD'>Total(Penawaran)</th>
+                          <th bgcolor='#BDBDBD'>Total(Fix)</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody> 
+                        <?php $judul = 0; ?>
+                        <?php $number = 1; ?>
+                        <?php $lastjudul = -11; ?>
                     	<?php foreach ($pekerjaanList as $row) {?>
+                            <?php if($row->dtp_sub_judul != $lastjudul && $judul == 1) {?>
+                                <?php $judul = 0; ?>
+                                <tr bgcolor='#BDBDBD'><td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td>
+                                <td bgcolor='#BDBDBD'></td></tr>
+                            <?php } ?>
+                            <?php if($row->dtp_sub_judul != '-99' && $judul == 0) {?>
+                                <?php $judul = 1; ?>
+                                <?php $lastjudul = $row->dtp_sub_judul; ?>
+                                <tr><td><b><?php echo $number.'. '.$row->sjd_sub_judul; ?></b></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td>
+                                <td></td></tr>
+                                <?php $number = $number+1; ?>
+                            <?php } ?>
                             <tr><td><?php echo $row->dtp_pekerjaan; ?><br><button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#myModal<?php echo $row->dtp_id; ?>">Spec</button></td>
                             <td><?php echo ($row->dtp_volume+0).' '.$row->dtp_satuan; ?></td>
                             <td><?php echo 'Rp.'.number_format($row->dtp_hargasatuan_hps,0,",","."); ?></td>
@@ -202,7 +230,7 @@
                                   <div class="modal-body">
                                     <p><?php echo $row->dtp_spesifikasi; ?>
                                         <?php $urlfile = site_url('uploads/file_pengadaan').'/'.$row->dtp_file;?><br>
-                                        <img src="<?php echo $urlfile;?>" alt="" style="width:304px;height:228px;">
+                                        <img src="<?php echo $urlfile;?>" alt="" style="width:270px;height:228px;">
                                         <?php $tagFile =  "<a href='".$urlfile."' target='_blank'>Full Size Image</a>"?>
                                         <?php if($row->dtp_file!="" || $row->dtp_file!=NULL){echo "<br>".$tagFile;} ?></p>
                                   </div>
@@ -213,10 +241,14 @@
 
                               </div>
                             </div>
+                            
+                        
                         <?php } ?>
                     </tbody>
                     
                 </table>
+                </div>
+                
                 <?php if($pgd_dgn_pajak == 1){ echo'<i class ="pull-right"><font color="red">*Total Harga Sudah Dengan Pajak</font></i>';}?>
                 <br><br>
                 <table class="table table-striped table-bordered table-hover" width="50%">

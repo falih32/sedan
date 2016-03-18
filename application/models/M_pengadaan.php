@@ -7,6 +7,18 @@ class M_pengadaan extends CI_Model{
 		$this->load->library('Datatables');
     }
     
+    function selectDrawTablePengadaan($id){
+        return $this->db->query(""
+                . "SELECT sjd_sub_judul, t_detail_pengadaan.* "
+                . "FROM t_detail_pengadaan "
+                . "LEFT JOIN t_sub_judul "
+                . "ON dtp_sub_judul = sjd_id "
+                . "WHERE dtp_pengadaan = '$id' "
+                . "ORDER BY sjd_id IS NULL, dtp_id")->result();
+    }
+    
+    
+    
      function selectPejPeng(){
         $data = $this->db->query("SELECT pgw_nama "
                 . "FROM t_pegawai "
@@ -64,6 +76,11 @@ class M_pengadaan extends CI_Model{
     }
     function updateSyaratPenyedia($id, $data){
         $this->db->where('psr_id', $id);
+        $this->db->update('tr_pgd_suratizin', $data);
+    }
+    
+    function updateAllSyaratPenyedia($id, $data){
+        $this->db->where('psr_pengadaan', $id);
         $this->db->update('tr_pgd_suratizin', $data);
     }
     function updateHargaPenawaran($id, $data){
@@ -438,6 +455,13 @@ class M_pengadaan extends CI_Model{
                 ->join('t_supplier', 'pgd_supplier = spl_id', 'left')
                 ->join('t_user', 'pgd_user_update = usr_id', 'left')
 		->join('t_pegawai', 'usr_pegawai = pgw_id', 'left');	
+        return $this->db->get()->row();
+    }
+    
+    function selectByIdDetail($id){
+         $this->db->select('*');
+        $this->db->from('t_detail_pengadaan');
+        $this->db->where('dtp_id', $id);
         return $this->db->get()->row();
     }
     

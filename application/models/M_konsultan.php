@@ -14,6 +14,14 @@ class M_konsultan extends CI_Model{
         $this->db->insert('t_detail_konsultan2', $data);
     }
     
+    function insertPengalamanPerusahaan($data){
+        $this->db->insert('t_pengalaman_prs', $data);
+    }
+    
+    function insertMetodePerusahaan($data){
+        $this->db->insert('t_metode', $data);
+    }
+    
     function deleteDetailKons1($id){
         $this->db->where('dtk_id', $id);
         $this->db->delete('t_detail_konsultan1');
@@ -26,6 +34,29 @@ class M_konsultan extends CI_Model{
     
     function HitungTotalHargaKonsultan($id,$pajak){
         $this->db->query("call sum_total_pengadaan_konsultan($id,$pajak)");
+    }
+    
+    function selectUnsurPenilaianTeknisByPgd($idPengadaan){
+        $this->db->select('*');
+        $this->db->from('t_unsur_penilaian');
+        $this->db->where('unp_pgd', $idPengadaan);
+        return $this->db->get()->row();
+    }
+    
+    function updateHargaPenawaranKonsultan1($id, $data){
+        $this->db->where('dtk_id', $id);
+        $this->db->update('t_detail_konsultan1', $data);
+    }
+    function updateHargaPenawaranKonsultan2($id, $data){
+        $this->db->where('dtk2_id', $id);
+        $this->db->update('t_detail_konsultan2', $data);
+    }
+    function updateUnsurPenilaianTeknis($id, $data){
+        $this->db->where('unp_id', $id);
+        $this->db->update('t_unsur_penilaian', $data);
+    }
+    function insertUnsurPenilaianTeknis($dat){
+        $this->db->insert('t_unsur_penilaian', $dat);
     }
     
     function getTotalHargaKonsultan1($id){
@@ -52,7 +83,8 @@ class M_konsultan extends CI_Model{
                 . "FROM t_detail_konsultan1 "
                 . "LEFT JOIN t_sub_judul "
                 . "ON dtk_sub_judul = sjd_id "
-                . "WHERE dtk_pgd = '$id'")->result();
+                . "WHERE dtk_pgd = '$id' "
+                . "ORDER BY sjd_id IS NULL, dtk_id")->result();
     }
     
     function selectDrawTableKons2($id){
@@ -61,7 +93,8 @@ class M_konsultan extends CI_Model{
                 . "FROM t_detail_konsultan2 "
                 . "LEFT JOIN t_sub_judul "
                 . "ON dtk2_sub_judul = sjd_id "
-                . "WHERE dtk2_pengadaan = '$id'")->result();
+                . "WHERE dtk2_pengadaan = '$id' "
+                . "ORDER BY sjd_id IS NULL, dtk2_id")->result();
     }
     
     
@@ -79,6 +112,45 @@ class M_konsultan extends CI_Model{
        
     }
     
+    function selectPengadaanKonsultanById($id){
+        $this->db
+		->select('*')
+                ->from('t_pengadaan')
+                ->where('pgd_id', $id)
+		->where('pgd_deleted', '0')
+		->join('t_anggaran', 'pgd_anggaran = ang_kode', 'left')
+                ->join('t_supplier', 'pgd_supplier = spl_id', 'left')
+                ->join('t_user', 'pgd_user_update = usr_id', 'left')
+                ->join('t_unsur_penilaian', 'pgd_id = unp_pgd', 'left')
+		->join('t_pegawai', 'usr_pegawai = pgw_id', 'left');	
+        return $this->db->get()->row();
+    }
+    
+    function selectPengalamanPerusahaanByUnp($id){
+        $this->db
+		->select('*')
+                ->from('t_pengalaman_prs')
+                ->where('pnp_unp', $id)
+		;	
+        return $this->db->get()->result();
+    }
+    
+    function selectMetodePerusahaanByUnp($id){
+        $this->db
+		->select('*')
+                ->from('t_metode')
+                ->where('mtd_unp', $id)
+		;	
+        return $this->db->get()->result();
+    }
+    
+    function selectByIdUnsurPenilaian($id){
+        $this->db->select('*');
+        $this->db->from('t_unsur_penilaian');
+        $this->db->where('unp_id', $id);
+        return $this->db->get()->row();
+    }
+    
     function selectByIdKons1($id){
         $this->db->select('*');
         $this->db->from('t_detail_konsultan1');
@@ -91,6 +163,17 @@ class M_konsultan extends CI_Model{
         $this->db->from('t_detail_konsultan2');
         $this->db->where('dtk2_id', $id);
         return $this->db->get()->row();
+    }
+    
+    function select2AllJabatanNamaPersonil($search, $id){
+        
+        $search = '%'.strtolower($search).'%';
+        return $this->db->query("select dtk_id as id, dtk_jabatan as 'text' "
+                . "From t_detail_konsultan1 "
+                . "where LOWER(dtk_jabatan) like '$search'  "
+                . "and dtk_pgd = '$id' "
+                . "order by dtk_jabatan LIMIT 0,40")->result();
+       
     }
   
     function ajaxProcessKonsultan($min, $max, $status){
@@ -125,7 +208,7 @@ class M_konsultan extends CI_Model{
 			"<a type ='button' class='btn btn-danger btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Hapus' data-confirm='Anda yakin akan menghapus ini?' href='delete_pengadaan/$1'><span class='glyphicon glyphicon-trash' aria-hidden='true'></span> Hapus</a>".
 			"<a type ='button' class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a type ='button' class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah HPS' href='".base_url()."Laporan/cetaklaporan/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(HPS)</a>".
-                        "<a type ='button' class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
+                        "<a type ='button' class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Penawaran' href='add_penawaran_konsultan/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Penawaran</a>".
 			"</div>".
 			"</form>".
                          "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');
@@ -144,7 +227,7 @@ class M_konsultan extends CI_Model{
 			
 			"<a class='btn btn-info btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Edit' href='edit_pengadaan/$1/$2/$3'><span class='glyphicon glyphicon-pencil' aria-hidden='true'></span> Ubah</a>".
                         "<a class='btn btn-warning btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Cetak Laporan Setelah Penawaran' href='".base_url()."Laporan/LaporanPenawaran/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak(PNR)</a>".
-                        "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Harga Terakhir Barang' href='add_hargafix_jasa/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Negosiasi</a>".
+                        "<a class='btn btn-success btn-sm btn-aksi' data-toggle='tooltip' data-placement='top' title='Input Harga Terakhir Barang' href='add_hargafix_konsultan/$1'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Negosiasi</a>".
 			"</div>".
 			"</form>".
                         "",'pgd_id, pgd_tipe_pengadaan,pgd_status_pengadaan');

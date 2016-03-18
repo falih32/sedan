@@ -81,15 +81,28 @@
                             <a href="#"><i class="fa fa-sitemap fa-fw"></i> Pengadaan Konsultan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanHPS"); ?>">Setelah HPS(Belum Tersedia)</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanHPS"); ?>">Setelah HPS</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanPenawaran"); ?>">Setelah Penawaran(Belum Tersedia)</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanPenawaran"); ?>">Setelah Penawaran</a>
                                 </li>
                                 <li>
-                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanFix"); ?>">Setelah Negoisasi(Belum Tersedia)</a>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanFix"); ?>">Setelah Negoisasi</a>
                               
                                 </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanPng"); ?>">Setelah Pengumuman</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanSpk"); ?>">Setelah SPK</a>
+                                </li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanFns"); ?>">Pengadaan yang Telah Selesai</a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+                                <li>
+                                    <a href="<?php echo site_url("Pengadaan/PengadaanKonsultan"); ?>">Semua Pengadaan Jasa</a>
+                                </li> 
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>

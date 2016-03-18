@@ -18,12 +18,13 @@ class M_subjudul extends CI_Model{
         return $this->db->get();
     }
     
-    function select2All($search){
+    function select2All($search, $tipe){
         
         $search = '%'.strtolower($search).'%';
         return $this->db->query("select sjd_id as id, sjd_sub_judul as 'text' "
                 . "From t_sub_judul "
                 . "where LOWER(sjd_sub_judul) like '$search'  "
+                . "and sjd_jenis = '$tipe' "
                 . "order by sjd_sub_judul LIMIT 0,40")->result();
        
     }

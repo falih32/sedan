@@ -1029,7 +1029,7 @@ for($i=13;$i<=15;$i++){
      }
      
      function test(){
-        $data['content'] = 'f_pengadaan_konsultan_pp';
+        $data['content'] = 'f_pengadaan_konsultan_personel';
         $this->load->view('layout',$data);
     }
 }

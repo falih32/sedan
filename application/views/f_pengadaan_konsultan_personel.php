@@ -131,6 +131,7 @@ $(document).ready(function() {
                 var id = document.getElementById("unp_id").value;
                 deleteAllTable('table-kualifikasi');
                 drawTableKualifikasi(id);
+                getTotalPersonal(id);
                
             }
         });   
@@ -143,6 +144,7 @@ $(document).ready(function() {
     var id = document.getElementById("unp_id").value;
     deleteAllTable('table-kualifikasi');
     drawTableKualifikasi(id);
+    getTotalPersonal(id);
     //fungsi draw table biaya personil
     function drawTableKualifikasi(id) {
         //alert('aw');
@@ -166,7 +168,11 @@ $(document).ready(function() {
                         <td><span>"+item.psi_bobot+"</span></td>\n\\n\
                         <td><span>"+item.psi_kesesuaian_ijasah+"</span></td>\n\
                         <td><span>"+parseFloat(item.psi_nilai_ks_ijasah)+"</span></td>\n\\n\\n\
-                        <td><span>"+parseFloat(item.psi_jml_nilai_ks_ijasah)+"</span></td>\n\\n\\n\
+                        <td><span>"+parseFloat(item.psi_jml_nilai_ks_ijasah)+"</span></td>\n\\n\\n\\n\
+                        <td><span><button type='button' onclick=\"window.open('<?php echo site_url('KonsultanTeknis/PengalamanKerja').'/'.$unp_id;?>"+"/"+item.psi_id+"/"+"<?php echo $pgd_id;?>')\" class='btn btn-primary' id=\"entrypm\"><span class=\"glyphicon glyphicon-plus\"></span></button></span></td>\n\
+                        <td><span>"+parseFloat(item.psi_masa_kerja)+"</span></td>\n\
+                        <td><span>"+parseFloat(item.psi_nilai_kerja)+"</span></td>\n\\n\\n\
+                        <td><span>"+parseFloat(item.psi_jml_nilai_kerja)+"</span></td>\n\\n\\n\
                         <td><span>"+item.psi_memiliki_sertifikat+"</span></td>\n\
                         <td><span>"+parseFloat(item.psi_nilai_sertifikat)+"</span></td>\n\\n\\n\
                         <td><span>"+parseFloat(item.psi_jml_nilai_sertifikat)+"</span></td>\n\\n\\n\\n\
@@ -193,26 +199,51 @@ $(document).ready(function() {
                     var $killrow = $(dd).parent('tr');
                     $killrow.addClass("danger");
                     $killrow.fadeOut(1000, function(){
-                        $killrow.remove();                                 
+                        $killrow.remove(); 
+                        getTotalPersonal(document.getElementById("unp_id").value);
                     });
                     //alert("hao");
                 }
             });
         });
     }
+    
+    //fungsi ambil total biaya konsultan
+    function getTotalPersonal(unp_id) {
+        $.ajax({
+            url: "<?php echo site_url('KonsultanTeknis/getTotalPersonal');?>"+'/'+unp_id,
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(total) {
+                var obj = JSON.parse(total);
+                //alert(document.getElementById("pgd_dgn_pajak").value);
+                document.getElementById("x_total").value = obj.jmlPersonalTeknis;
+                
+            }
+        });   
+     }
+     
+     //fungsi untuk refresh table non personil
+    $('#refreshtable').click(function(){
+        deleteAllTable('table-kualifikasi');
+        var id = document.getElementById("unp_id").value;
+        getTotalPersonal(id);
+        drawTableKualifikasi(id);
+    });
 });
 </script>     
             </form>
             <div class="col-md-12">
+                <div class="table-responsive">
                     <table id = 'table-kualifikasi' class="table table-striped table-bordered table-hover" width="50%">
                     <thead>
                         <tr bgcolor='#BDBDBD'>
-                                <th class="text-center">Nama</th>
+                                 <th class="text-center">Nama</th>
                                 <th class="text-center">Jabatan</th>
                                 <th class="text-center">BOBOT</th>
-                                <th class="text-center" colspan="3">TINGKAT PENDIDIKAN (Bobot 40%)</th>
-                               
-                                <th class="text-center" colspan="3">SERTIFIKASI KEAHLIAN/PELATIHAN (20 %)</th>
+                                <th class="text-center" bgcolor='#ffcc99' colspan="3">TINGKAT PENDIDIKAN (Bobot 40%)</th>
+                                <th class="text-center" bgcolor='#ff9999' colspan="4">PENGALAMAN KERJA PROFESIONAL (Bobot 40%)</th>
+                                <th class="text-center" bgcolor='#99ff33' colspan="3">SERTIFIKASI KEAHLIAN/PELATIHAN (20 %)</th>
                                 <th class="text-center">Nilai</th>
                                 <th class="text-center">Jumlah</th>
                                 <th class="text-center">Act</th>
@@ -222,16 +253,20 @@ $(document).ready(function() {
                                 <th></th>
                                 <th></th>
                                 <th></th>
-                                <th class="text-center">Ijasah Sesuai (S)/Ijasah sesuai tetapi tingkat pendidikan tidak (SB)/Tidak Sesuai (TS)/Kurang dari yang disyaratkan (K)</th>
-                                <th class="text-center">Nilai</th>
-                                <th class="text-center">Jumlah nilai subunsur</th>
-                                
-                                <th class="text-center">Memiliki (M) /Tidak Memiliki (TM) Sertifikat</th>
-                                <th class="text-center">Nilai</th>
-                                <th class="text-center">Jumlah Nilai</th>
+                
+                                <th class="text-center" bgcolor='#ffcc99'>Ijasah Sesuai (S)/Ijasah sesuai tetapi tingkat pendidikan tidak (SB)/Tidak Sesuai (TS)/Kurang dari yang disyaratkan (K)</th>
+                                <th class="text-center" bgcolor='#ffcc99'>Nilai</th>
+                                <th class="text-center" bgcolor='#ffcc99'>Jumlah nilai subunsur</th>
+                                <th class="text-center" bgcolor='#ff9999'>Entry</th>
+                                <th class="text-center" bgcolor='#ff9999'>Masa Kerja</th>
+                                <th class="text-center" bgcolor='#ff9999'>Nilai</th>
+                                <th class="text-center" bgcolor='#ff9999'>Jumlah Nilai</th>
+                                <th class="text-center" bgcolor='#99ff33'>Memiliki (M) /Tidak Memiliki (TM) Sertifikat</th>
+                                <th class="text-center" bgcolor='#99ff33'>Nilai</th>
+                                <th class="text-center" bgcolor='#99ff33'>Jumlah Nilai</th>
                                 <th></th>
-                                <th></th>
-                                <th></th>
+                                <th></th>    
+                                <th></th> 
                         </tr>
                         
                     </thead>
@@ -239,20 +274,20 @@ $(document).ready(function() {
                         
                     </tbody>
                     </table>
-                    
                    
-                 
-                <div class="col-md-12 text-center"><hr>
-                    <div class="form-group">
-                        <div class="btn-group" role="group" aria-label="...">
-                            <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
-                            <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
-                        </div>
-                    </div>
                 </div>
+                 <div class="row"> 
+                    <div class ='col-sm-3 pull-right'> 
+                    <label id = "total_label" class="control-label text-center pull-right">Total : &nbsp;</label>
+                    <input type="text" class="form-control" id="x_total"  value='' readonly>
+                    </div> 
+                    <br>
+                    <button class='btn btn-primary pull-left' id="refreshtable">Refresh Tabel</button> 
+                </div> 
+                
             </div>
                
-
+                
         </div>
     </div>
 </div>

@@ -180,23 +180,31 @@ BEGIN
 
 END;
 
+DROP PROCEDURE sum_unsur_penilaian_by_personal_inti;
+DELIMITER //
+CREATE PROCEDURE sum_unsur_penilaian_by_personal_inti(IN v_psi_uns FLOAT)
+BEGIN
+	DECLARE v_total_all DECIMAL(65,2);
+	DECLARE v_total_uns DECIMAL(65,2);
+	DECLARE v_total DECIMAL(65,2);
+	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = v_psi_uns ;
+	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = v_psi_uns ;
+	SET v_total = (v_total_uns)*(v_total_all);
+	UPDATE t_unsur_penilaian
+	SET unp_nilai_kua_tna = v_total_all,
+	unp_jml_kua_tna = v_total
+	WHERE unp_id = v_psi_uns;
+END;
+
+call sum_unsur_penilaian_by_personal_inti (15,'0.1');
+
 DROP TRIGGER insert_AkualifikasiPersonal;
 -- trigger insert total harga satuan detail pengadaan
 DELIMITER //
 CREATE TRIGGER insert_AkualifikasiPersonal AFTER INSERT ON t_personal_inti
 FOR EACH ROW
 BEGIN
-
-	DECLARE v_total_all DECIMAL(65,2);
-	DECLARE v_total_uns DECIMAL(65,2);
-	DECLARE v_total DECIMAL(65,2);
-	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = NEW.psi_uns ;
-	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = NEW.psi_uns ;
-	SET v_total = (v_total_uns)*(v_total_all);
-	UPDATE t_unsur_penilaian
-	SET unp_nilai_kua_tna = v_total_all,
-	unp_jml_kua_tna = v_total
-	WHERE unp_id = NEW.psi_uns ;
+	CALL sum_unsur_penilaian_by_personal_inti(NEW.psi_uns);
 END;
 
 insert into t_personal_inti (psi_uns,psi_jumlah) values (2,150);
@@ -204,19 +212,62 @@ insert into t_personal_inti (psi_uns,psi_jumlah) values (2,150);
 DROP TRIGGER delete_kualifikasiPersonal;
 -- trigger insert total harga satuan detail pengadaan
 DELIMITER //
-CREATE TRIGGER delete_kualifikasiPersonal BEFORE DELETE ON t_personal_inti
+CREATE TRIGGER delete_kualifikasiPersonal AFTER DELETE ON t_personal_inti
 FOR EACH ROW
 BEGIN
-
-	DECLARE v_total_all DECIMAL(65,2);
-	DECLARE v_total_uns DECIMAL(65,2);
-	DECLARE v_total DECIMAL(65,2);
-	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = OLD.psi_uns ;
-	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = OLD.psi_uns ;
-	SET v_total = (v_total_uns)*(v_total_all);
-	UPDATE t_unsur_penilaian
-	SET unp_nilai_kua_tna = v_total_all,
-	unp_jml_kua_tna = v_total
-	WHERE unp_id = OLD.psi_uns ;
+	CALL sum_unsur_penilaian_by_personal_inti(OLD.psi_uns);
 END;
 
+DROP TRIGGER update_kualifikasiPersonal;
+-- trigger insert total harga satuan detail pengadaan
+DELIMITER //
+CREATE TRIGGER update_kualifikasiPersonal AFTER UPDATE ON t_personal_inti
+FOR EACH ROW
+BEGIN
+	CALL sum_unsur_penilaian_by_personal_inti(NEW.psi_uns);
+END;
+
+DROP PROCEDURE sum_unsur_penilaian_by_pengalaman_personal;
+DELIMITER //
+CREATE PROCEDURE sum_unsur_penilaian_by_pengalaman_personal(IN v_pnk_psi FLOAT)
+BEGIN
+	DECLARE v_total_perhitungan_bln_kerja DECIMAL(65,2);
+	DECLARE v_pengalaman_nilai DECIMAL(65,2);
+	DECLARE v_pengalaman_nilai_jumlah DECIMAL(65,2);
+	
+	SELECT IFNULL((SUM(pnk_perhitungan_bln_kerja)/12),0) INTO v_total_perhitungan_bln_kerja FROM t_pengalaman_kerja WHERE pnk_psi = v_pnk_psi ;
+	IF v_total_perhitungan_bln_kerja >= 4 THEN 
+		SET v_pengalaman_nilai = 100;
+    ELSE 
+		SET v_pengalaman_nilai = 50;
+    END IF;
+	
+	
+	SET v_pengalaman_nilai_jumlah = v_pengalaman_nilai*0.4;
+	UPDATE t_personal_inti
+	SET psi_masa_kerja = v_total_perhitungan_bln_kerja,
+	psi_nilai_kerja = v_pengalaman_nilai,
+	psi_jml_nilai_kerja = v_pengalaman_nilai_jumlah,
+	psi_nilai = psi_jml_nilai_ks_ijasah+v_pengalaman_nilai_jumlah+psi_jml_nilai_sertifikat,
+	psi_jumlah = (psi_jml_nilai_ks_ijasah+v_pengalaman_nilai_jumlah+psi_jml_nilai_sertifikat)*psi_bobot
+	WHERE psi_id = v_pnk_psi;
+END;
+
+
+DROP TRIGGER insert_ApengalamanPersonal;
+-- trigger insert total harga satuan detail pengadaan
+DELIMITER //
+CREATE TRIGGER insert_ApengalamanPersonal AFTER INSERT ON t_pengalaman_kerja
+FOR EACH ROW
+BEGIN
+	CALL sum_unsur_penilaian_by_pengalaman_personal(NEW.pnk_psi);
+END;
+
+DROP TRIGGER delete_pengalamanPersonal;
+-- trigger insert total harga satuan detail pengadaan
+DELIMITER //
+CREATE TRIGGER delete_pengalamanPersonal AFTER DELETE ON t_pengalaman_kerja
+FOR EACH ROW
+BEGIN
+	CALL sum_unsur_penilaian_by_pengalaman_personal(OLD.pnk_psi);
+END;

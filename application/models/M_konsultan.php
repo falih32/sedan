@@ -26,6 +26,10 @@ class M_konsultan extends CI_Model{
         $this->db->insert('t_personal_inti', $data);
     }
     
+    function insertPengalamanTenagaAhli($data){
+        $this->db->insert('t_pengalaman_kerja', $data);
+    }
+    
     function deleteDetailKons1($id){
         $this->db->where('dtk_id', $id);
         $this->db->delete('t_detail_konsultan1');
@@ -34,6 +38,11 @@ class M_konsultan extends CI_Model{
     function deleteKualifikasiPersonilByUnp($id){
         $this->db->where('psi_id', $id);
         $this->db->delete('t_personal_inti');
+    }
+    
+    function deletePengalamanPersonilByUnp($id){
+        $this->db->where('pnk_id', $id);
+        $this->db->delete('t_pengalaman_kerja');
     }
     
      function deleteDetailKons2($id){
@@ -86,6 +95,13 @@ class M_konsultan extends CI_Model{
                 . "WHERE dtk2_pengadaan = '$id'")->row();
     }
     
+    function getTotalPengalamanByIdPersonal($id){
+        return $this->db->query(""
+                . "SELECT IFNULL((SUM(pnk_perhitungan_bln_kerja)/12),'0') as jml_pengalaman "
+                . "FROM t_pengalaman_kerja "
+                . "WHERE pnk_psi = '$id'")->row();
+    }
+    
     function selectDrawTableKons1($id){
         return $this->db->query(""
                 . "SELECT sjd_sub_judul, t_detail_konsultan1.* "
@@ -116,7 +132,13 @@ class M_konsultan extends CI_Model{
                 . "ORDER BY dtk_id ")->result();
     }
     
-    
+    function selectPengalamanPersonilByUnp($id){
+        return $this->db->query(""
+                . "SELECT t_pengalaman_kerja.* "
+                . "FROM t_pengalaman_kerja "
+                . "WHERE pnk_psi = '$id' "
+                . "ORDER BY pnk_id ")->result();
+    }
     
     function select2All($search){
         
@@ -143,6 +165,8 @@ class M_konsultan extends CI_Model{
         return $this->db->get()->row();
     }
     
+    
+    
     function selectPengalamanPerusahaanByUnp($id){
         $this->db
 		->select('*')
@@ -150,6 +174,16 @@ class M_konsultan extends CI_Model{
                 ->where('pnp_unp', $id)
 		;	
         return $this->db->get()->result();
+    }
+    
+    function selectKualifikasiPersonalById($id){
+        $this->db
+		->select('*')
+                ->from('t_personal_inti')
+                ->join('t_detail_konsultan1', 'dtk_id = psi_dtk', 'left')
+                ->where('psi_id', $id)
+		;	
+        return $this->db->get()->row();
     }
     
     function selectMetodePerusahaanByUnp($id){

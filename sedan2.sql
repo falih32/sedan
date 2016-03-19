@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-03-19 15:50:01
+Date: 2016-03-20 01:47:57
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -293,7 +293,7 @@ INDEX `fk_mtd_uns` (`mtd_unp`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=43
+AUTO_INCREMENT=57
 
 ;
 
@@ -301,7 +301,7 @@ AUTO_INCREMENT=43
 -- Records of t_metode
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_metode` VALUES ('15', '2', 'PEM', 'pemahaman atas jasa layanan yang tercantum dalam KAK', 'B', '80', '0.30', '24.00'), ('16', '2', 'KET', 'ketepatan analisa yang disampaikan dan langkah pemecahan yang diusulkan', 'C', '60', '0.07', '4.20'), ('17', '2', 'KON', 'konsistensi antara metodologi dengan  rencana kerja', 'A', '100', '0.04', '3.50'), ('18', '2', 'APR', 'apresiasi terhadap inovasi', 'C', '60', '0.04', '2.10'), ('19', '2', 'DUK', 'dukungan data yang tersedia terhadap KAK', 'B', '80', '0.04', '2.80'), ('20', '2', 'URA', 'uraian tugas', 'C', '60', '0.04', '2.10'), ('21', '2', 'JAN', 'jangka waktu pelaksanaan', 'B', '80', '0.04', '2.80'), ('22', '2', 'PRO', 'program kerja, jadwal pekerjaan, dan jadwal penugasan', 'A', '100', '0.04', '3.50'), ('23', '2', 'ORG', 'organisasi', 'A', '100', '0.04', '3.50'), ('24', '2', 'KEB', 'kebutuhan fasilitas penunjang', 'B', '80', '0.04', '2.80'), ('25', '2', 'PENA', 'penyajian analisis dan gambar-gambar kerja', 'A', '100', '0.04', '3.50'), ('26', '2', 'PENST', 'penyajian spesifikasi teknis dan perhitungan teknis', 'A', '100', '0.04', '3.50'), ('27', '2', 'PENL', 'penyajian laporan-laporan', 'A', '100', '0.03', '3.00'), ('28', '2', 'GAG', 'gagasan baru yang diajukan oleh peserta untuk meningkatkan kualitas keluaran yang diinginkan dalam KAK', 'A', '100', '0.25', '25.00'), ('29', '2', 'PEM', 'pemahaman atas jasa layanan yang tercantum dalam KAK', 'B', '80', '0.30', '24.00'), ('30', '2', 'KET', 'ketepatan analisa yang disampaikan dan langkah pemecahan yang diusulkan', 'C', '60', '0.07', '4.20'), ('31', '2', 'KON', 'konsistensi antara metodologi dengan  rencana kerja', 'A', '100', '0.04', '3.50'), ('32', '2', 'APR', 'apresiasi terhadap inovasi', 'C', '60', '0.04', '2.10'), ('33', '2', 'DUK', 'dukungan data yang tersedia terhadap KAK', 'B', '80', '0.04', '2.80'), ('34', '2', 'URA', 'uraian tugas', 'C', '60', '0.04', '2.10'), ('35', '2', 'JAN', 'jangka waktu pelaksanaan', 'B', '80', '0.04', '2.80'), ('36', '2', 'PRO', 'program kerja, jadwal pekerjaan, dan jadwal penugasan', 'A', '100', '0.04', '3.50'), ('37', '2', 'ORG', 'organisasi', 'A', '100', '0.04', '3.50'), ('38', '2', 'KEB', 'kebutuhan fasilitas penunjang', 'B', '80', '0.04', '2.80'), ('39', '2', 'PENA', 'penyajian analisis dan gambar-gambar kerja', 'A', '100', '0.04', '3.50'), ('40', '2', 'PENST', 'penyajian spesifikasi teknis dan perhitungan teknis', 'A', '100', '0.04', '3.50'), ('41', '2', 'PENL', 'penyajian laporan-laporan', 'A', '100', '0.03', '3.00'), ('42', '2', 'GAG', 'gagasan baru yang diajukan oleh peserta untuk meningkatkan kualitas keluaran yang diinginkan dalam KAK', 'F', '0', '0.25', '0.00');
+INSERT INTO `t_metode` VALUES ('15', '2', 'PEM', 'pemahaman atas jasa layanan yang tercantum dalam KAK', 'B', '80', '0.30', '24.00'), ('16', '2', 'KET', 'ketepatan analisa yang disampaikan dan langkah pemecahan yang diusulkan', 'C', '60', '0.07', '4.20'), ('17', '2', 'KON', 'konsistensi antara metodologi dengan  rencana kerja', 'A', '100', '0.04', '3.50'), ('18', '2', 'APR', 'apresiasi terhadap inovasi', 'C', '60', '0.04', '2.10'), ('19', '2', 'DUK', 'dukungan data yang tersedia terhadap KAK', 'B', '80', '0.04', '2.80'), ('20', '2', 'URA', 'uraian tugas', 'C', '60', '0.04', '2.10'), ('21', '2', 'JAN', 'jangka waktu pelaksanaan', 'B', '80', '0.04', '2.80'), ('22', '2', 'PRO', 'program kerja, jadwal pekerjaan, dan jadwal penugasan', 'A', '100', '0.04', '3.50'), ('23', '2', 'ORG', 'organisasi', 'A', '100', '0.04', '3.50'), ('24', '2', 'KEB', 'kebutuhan fasilitas penunjang', 'B', '80', '0.04', '2.80'), ('25', '2', 'PENA', 'penyajian analisis dan gambar-gambar kerja', 'A', '100', '0.04', '3.50'), ('26', '2', 'PENST', 'penyajian spesifikasi teknis dan perhitungan teknis', 'A', '100', '0.04', '3.50'), ('27', '2', 'PENL', 'penyajian laporan-laporan', 'A', '100', '0.03', '3.00'), ('28', '2', 'GAG', 'gagasan baru yang diajukan oleh peserta untuk meningkatkan kualitas keluaran yang diinginkan dalam KAK', 'A', '100', '0.25', '25.00'), ('29', '2', 'PEM', 'pemahaman atas jasa layanan yang tercantum dalam KAK', 'B', '80', '0.30', '24.00'), ('30', '2', 'KET', 'ketepatan analisa yang disampaikan dan langkah pemecahan yang diusulkan', 'C', '60', '0.07', '4.20'), ('31', '2', 'KON', 'konsistensi antara metodologi dengan  rencana kerja', 'A', '100', '0.04', '3.50'), ('32', '2', 'APR', 'apresiasi terhadap inovasi', 'C', '60', '0.04', '2.10'), ('33', '2', 'DUK', 'dukungan data yang tersedia terhadap KAK', 'B', '80', '0.04', '2.80'), ('34', '2', 'URA', 'uraian tugas', 'C', '60', '0.04', '2.10'), ('35', '2', 'JAN', 'jangka waktu pelaksanaan', 'B', '80', '0.04', '2.80'), ('36', '2', 'PRO', 'program kerja, jadwal pekerjaan, dan jadwal penugasan', 'A', '100', '0.04', '3.50'), ('37', '2', 'ORG', 'organisasi', 'A', '100', '0.04', '3.50'), ('38', '2', 'KEB', 'kebutuhan fasilitas penunjang', 'B', '80', '0.04', '2.80'), ('39', '2', 'PENA', 'penyajian analisis dan gambar-gambar kerja', 'A', '100', '0.04', '3.50'), ('40', '2', 'PENST', 'penyajian spesifikasi teknis dan perhitungan teknis', 'A', '100', '0.04', '3.50'), ('41', '2', 'PENL', 'penyajian laporan-laporan', 'A', '100', '0.03', '3.00'), ('42', '2', 'GAG', 'gagasan baru yang diajukan oleh peserta untuk meningkatkan kualitas keluaran yang diinginkan dalam KAK', 'F', '0', '0.25', '0.00'), ('43', '2', 'PEM', 'pemahaman atas jasa layanan yang tercantum dalam KAK', 'B', '80', '0.30', '24.00'), ('44', '2', 'KET', 'ketepatan analisa yang disampaikan dan langkah pemecahan yang diusulkan', 'C', '60', '0.07', '4.20'), ('45', '2', 'KON', 'konsistensi antara metodologi dengan  rencana kerja', 'A', '100', '0.04', '3.50'), ('46', '2', 'APR', 'apresiasi terhadap inovasi', 'C', '60', '0.04', '2.10'), ('47', '2', 'DUK', 'dukungan data yang tersedia terhadap KAK', 'B', '80', '0.04', '2.80'), ('48', '2', 'URA', 'uraian tugas', 'C', '60', '0.04', '2.10'), ('49', '2', 'JAN', 'jangka waktu pelaksanaan', 'B', '80', '0.04', '2.80'), ('50', '2', 'PRO', 'program kerja, jadwal pekerjaan, dan jadwal penugasan', 'A', '100', '0.04', '3.50'), ('51', '2', 'ORG', 'organisasi', 'A', '100', '0.04', '3.50'), ('52', '2', 'KEB', 'kebutuhan fasilitas penunjang', 'B', '80', '0.04', '2.80'), ('53', '2', 'PENA', 'penyajian analisis dan gambar-gambar kerja', 'A', '100', '0.04', '3.50'), ('54', '2', 'PENST', 'penyajian spesifikasi teknis dan perhitungan teknis', 'A', '100', '0.04', '3.50'), ('55', '2', 'PENL', 'penyajian laporan-laporan', 'F', '0', '0.03', '0.00'), ('56', '2', 'GAG', 'gagasan baru yang diajukan oleh peserta untuk meningkatkan kualitas keluaran yang diinginkan dalam KAK', 'F', '0', '0.25', '0.00');
 COMMIT;
 
 -- ----------------------------
@@ -413,19 +413,19 @@ CREATE TABLE `t_pengalaman_kerja` (
 `pnk_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `pnk_psi`  bigint(255) NULL DEFAULT NULL ,
 `pnk_uraian_pengalaman`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
-`pnk_jangka_wkt_bln`  int(255) NULL DEFAULT NULL ,
+`pnk_jangka_wkt_bln`  decimal(65,2) NULL DEFAULT NULL ,
 `pnk_kesesuaian_pekerjaan`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
-`pnk_nilai_pekerjaan`  decimal(65,0) NULL DEFAULT NULL ,
+`pnk_nilai_pekerjaan`  decimal(65,2) NULL DEFAULT 0.00 ,
 `pnk_kesesuaian_posisi`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
-`pnk_nilai_posisi`  decimal(65,0) NULL DEFAULT NULL ,
-`pnk_perhitungan_bln_kerja`  decimal(65,0) NULL DEFAULT NULL ,
+`pnk_nilai_posisi`  decimal(65,2) NULL DEFAULT 0.00 ,
+`pnk_perhitungan_bln_kerja`  decimal(65,2) NULL DEFAULT 0.00 ,
 PRIMARY KEY (`pnk_id`),
 FOREIGN KEY (`pnk_psi`) REFERENCES `t_personal_inti` (`psi_id`) ON DELETE CASCADE ON UPDATE CASCADE,
 INDEX `fk_pnk_psi` (`pnk_psi`) USING BTREE 
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=1
+AUTO_INCREMENT=21
 
 ;
 
@@ -433,6 +433,7 @@ AUTO_INCREMENT=1
 -- Records of t_pengalaman_kerja
 -- ----------------------------
 BEGIN;
+INSERT INTO `t_pengalaman_kerja` VALUES ('17', '19', 'gaga', '5.00', 'M', '0.50', 'TA', '0.00', '0.00'), ('18', '19', 'fasdf', '4.00', 'M', '0.50', 'TS', '0.50', '1.00'), ('19', '23', 'gaga', '3.00', 'M', '0.50', 'S', '1.00', '1.50'), ('20', '23', 'gag', '4.00', 'S', '1.00', 'S', '1.00', '4.00');
 COMMIT;
 
 -- ----------------------------
@@ -494,7 +495,7 @@ INDEX `fk_psi_dtk` (`psi_dtk`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=23
+AUTO_INCREMENT=24
 
 ;
 
@@ -502,7 +503,7 @@ AUTO_INCREMENT=23
 -- Records of t_personal_inti
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_personal_inti` VALUES ('4', '2', '9', 'efas', '4.00', 'SB', '75', '30.00', '0.00', '0', '0.00', 'TM', '0', '0.00', '30', '120', null), ('19', '2', '8', 'wd', '2.00', 'S', '100', '40.00', '0.00', '0', '0.00', 'M', '100', '20.00', '60', '120', null), ('22', '2', '10', 'dw', '2.00', 'S', '100', '40.00', '0.00', '0', '0.00', 'TM', '0', '0.00', '40', '80', null);
+INSERT INTO `t_personal_inti` VALUES ('19', '2', '8', 'wd', '2.00', 'S', '100', '40.00', '0.08', '50', '20.00', 'M', '100', '20.00', '80', '160', null), ('23', '2', '9', 'tata', '10.00', 'SB', '75', '30.00', '0.46', '50', '20.00', 'TM', '0', '0.00', '50', '500', null);
 COMMIT;
 
 -- ----------------------------
@@ -631,7 +632,7 @@ AUTO_INCREMENT=3
 -- Records of t_unsur_penilaian
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_unsur_penilaian` VALUES ('2', '46', '0.20', '100.00', '20.00', '0.20', '61.30', '12.26', '0.60', '320.00', '192.00');
+INSERT INTO `t_unsur_penilaian` VALUES ('2', '46', '0.20', '100.00', '20.00', '0.20', '58.30', '11.66', '0.60', '660.00', '396.00');
 COMMIT;
 
 -- ----------------------------
@@ -826,6 +827,58 @@ END
 DELIMITER ;
 
 -- ----------------------------
+-- Procedure structure for sum_unsur_penilaian_by_pengalaman_personal
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sum_unsur_penilaian_by_pengalaman_personal`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sum_unsur_penilaian_by_pengalaman_personal`(IN v_pnk_psi FLOAT)
+BEGIN
+	DECLARE v_total_perhitungan_bln_kerja DECIMAL(65,2);
+	DECLARE v_pengalaman_nilai DECIMAL(65,2);
+	DECLARE v_pengalaman_nilai_jumlah DECIMAL(65,2);
+	
+	SELECT IFNULL((SUM(pnk_perhitungan_bln_kerja)/12),0) INTO v_total_perhitungan_bln_kerja FROM t_pengalaman_kerja WHERE pnk_psi = v_pnk_psi ;
+	IF v_total_perhitungan_bln_kerja >= 4 THEN 
+		SET v_pengalaman_nilai = 100;
+    ELSE 
+		SET v_pengalaman_nilai = 50;
+    END IF;
+	
+	
+	SET v_pengalaman_nilai_jumlah = v_pengalaman_nilai*0.4;
+	UPDATE t_personal_inti
+	SET psi_masa_kerja = v_total_perhitungan_bln_kerja,
+	psi_nilai_kerja = v_pengalaman_nilai,
+	psi_jml_nilai_kerja = v_pengalaman_nilai_jumlah,
+	psi_nilai = psi_jml_nilai_ks_ijasah+v_pengalaman_nilai_jumlah+psi_jml_nilai_sertifikat,
+	psi_jumlah = (psi_jml_nilai_ks_ijasah+v_pengalaman_nilai_jumlah+psi_jml_nilai_sertifikat)*psi_bobot
+	WHERE psi_id = v_pnk_psi;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
+-- Procedure structure for sum_unsur_penilaian_by_personal_inti
+-- ----------------------------
+DROP PROCEDURE IF EXISTS `sum_unsur_penilaian_by_personal_inti`;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sum_unsur_penilaian_by_personal_inti`(IN v_psi_uns FLOAT)
+BEGIN
+	DECLARE v_total_all DECIMAL(65,2);
+	DECLARE v_total_uns DECIMAL(65,2);
+	DECLARE v_total DECIMAL(65,2);
+	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = v_psi_uns ;
+	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = v_psi_uns ;
+	SET v_total = (v_total_uns)*(v_total_all);
+	UPDATE t_unsur_penilaian
+	SET unp_nilai_kua_tna = v_total_all,
+	unp_jml_kua_tna = v_total
+	WHERE unp_id = v_psi_uns;
+END
+;;
+DELIMITER ;
+
+-- ----------------------------
 -- Auto increment value for t_departemen
 -- ----------------------------
 ALTER TABLE `t_departemen` AUTO_INCREMENT=18;
@@ -938,7 +991,7 @@ ALTER TABLE `t_master_penyusun` AUTO_INCREMENT=2;
 -- ----------------------------
 -- Auto increment value for t_metode
 -- ----------------------------
-ALTER TABLE `t_metode` AUTO_INCREMENT=43;
+ALTER TABLE `t_metode` AUTO_INCREMENT=57;
 
 -- ----------------------------
 -- Auto increment value for t_pegawai
@@ -949,11 +1002,25 @@ ALTER TABLE `t_pegawai` AUTO_INCREMENT=25;
 -- Auto increment value for t_pengadaan
 -- ----------------------------
 ALTER TABLE `t_pengadaan` AUTO_INCREMENT=47;
+DROP TRIGGER IF EXISTS `insert_ApengalamanPersonal`;
+DELIMITER ;;
+CREATE TRIGGER `insert_ApengalamanPersonal` AFTER INSERT ON `t_pengalaman_kerja` FOR EACH ROW BEGIN
+	CALL sum_unsur_penilaian_by_pengalaman_personal(NEW.pnk_psi);
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `delete_pengalamanPersonal`;
+DELIMITER ;;
+CREATE TRIGGER `delete_pengalamanPersonal` AFTER DELETE ON `t_pengalaman_kerja` FOR EACH ROW BEGIN
+	CALL sum_unsur_penilaian_by_pengalaman_personal(OLD.pnk_psi);
+END
+;;
+DELIMITER ;
 
 -- ----------------------------
 -- Auto increment value for t_pengalaman_kerja
 -- ----------------------------
-ALTER TABLE `t_pengalaman_kerja` AUTO_INCREMENT=1;
+ALTER TABLE `t_pengalaman_kerja` AUTO_INCREMENT=21;
 
 -- ----------------------------
 -- Auto increment value for t_pengalaman_prs
@@ -976,34 +1043,21 @@ DELIMITER ;
 DROP TRIGGER IF EXISTS `insert_AkualifikasiPersonal`;
 DELIMITER ;;
 CREATE TRIGGER `insert_AkualifikasiPersonal` AFTER INSERT ON `t_personal_inti` FOR EACH ROW BEGIN
-
-	DECLARE v_total_all DECIMAL(65,2);
-	DECLARE v_total_uns DECIMAL(65,2);
-	DECLARE v_total DECIMAL(65,2);
-	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = NEW.psi_uns ;
-	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = NEW.psi_uns ;
-	SET v_total = (v_total_uns)*(v_total_all);
-	UPDATE t_unsur_penilaian
-	SET unp_nilai_kua_tna = v_total_all,
-	unp_jml_kua_tna = v_total
-	WHERE unp_id = NEW.psi_uns ;
+	CALL sum_unsur_penilaian_by_personal_inti(NEW.psi_uns);
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `update_kualifikasiPersonal`;
+DELIMITER ;;
+CREATE TRIGGER `update_kualifikasiPersonal` AFTER UPDATE ON `t_personal_inti` FOR EACH ROW BEGIN
+	CALL sum_unsur_penilaian_by_personal_inti(NEW.psi_uns);
 END
 ;;
 DELIMITER ;
 DROP TRIGGER IF EXISTS `delete_kualifikasiPersonal`;
 DELIMITER ;;
 CREATE TRIGGER `delete_kualifikasiPersonal` AFTER DELETE ON `t_personal_inti` FOR EACH ROW BEGIN
-
-	DECLARE v_total_all DECIMAL(65,2);
-	DECLARE v_total_uns DECIMAL(65,2);
-	DECLARE v_total DECIMAL(65,2);
-	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = OLD.psi_uns ;
-	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = OLD.psi_uns ;
-	SET v_total = (v_total_uns)*(v_total_all);
-	UPDATE t_unsur_penilaian
-	SET unp_nilai_kua_tna = v_total_all,
-	unp_jml_kua_tna = v_total
-	WHERE unp_id = OLD.psi_uns ;
+	CALL sum_unsur_penilaian_by_personal_inti(OLD.psi_uns);
 END
 ;;
 DELIMITER ;
@@ -1011,7 +1065,7 @@ DELIMITER ;
 -- ----------------------------
 -- Auto increment value for t_personal_inti
 -- ----------------------------
-ALTER TABLE `t_personal_inti` AUTO_INCREMENT=23;
+ALTER TABLE `t_personal_inti` AUTO_INCREMENT=24;
 
 -- ----------------------------
 -- Auto increment value for t_sub_judul

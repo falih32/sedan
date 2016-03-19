@@ -55,6 +55,7 @@ class Laporan extends CI_Controller {
             $data['content'] = 'f_laporan';
             $data['title'] = 'cetak laporan';
             $data['jbtlist']= $this->m_laporan->jabatanpegawai();
+            $data['d']= $this->m_laporan->selectPengSUP($id)->row();
             $data['mode1'] = '';
             $suratmemo1= $this->m_laporan->selectdetsurat('1',$id)->row();
             if($suratmemo1){
@@ -91,7 +92,7 @@ class Laporan extends CI_Controller {
             }
             $suratspektek= $this->m_laporan->selectdetsurat('4',$id)->row();
             $data['mode6'] = '';
-            if($suratdkh){
+            if($suratspektek){
             $data['mode6'] = 'edit';
             $data['kontensurattglspektek']= $this->m_laporan->selectkonten($id,'3','4');
             }
@@ -103,6 +104,13 @@ class Laporan extends CI_Controller {
             $data['kontensuratLudg']= $this->m_laporan->selectkonten($id,'4','6');
             $data['kontensuratnoudg']= $this->m_laporan->selectkonten($id,'9','6');
             }
+            $suratpp= $this->m_laporan->selectdetsurat('5',$id)->row();
+            $data['mode8'] = '';
+            if($suratpp){
+            $data['mode8'] = 'edit';
+            $data['kontensurattglpp']= $this->m_laporan->selectkonten($id,'3','5');
+            }
+            
                $this->load->view('layout', $data);
     } 
     public function cetakmemorandum1(){
@@ -375,17 +383,34 @@ class Laporan extends CI_Controller {
       public function cetakldp(){
             $datacetak['d']=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
             $datacetak['listsiz']=$this->m_laporan->selectsizbypgd($this->input->post('idpengadaan'));
+            $datacetak['tgl']=$this->input->post('tglpp');
             $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
             $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
+            if($datacetak['d']->pgd_tipe_pengadaan==2) {
+            $dknt ['dknt_isi']= $this->input->post('tglpp');
+            $dknt['dknt_idkonten']=3;
+            }
             $tempnum=$this->m_laporan->selectdetsurat('5',$this->input->post('idpengadaan'))->row();
             $count=count($tempnum);
             if($count>0){
              $this->m_laporan->updatedsrt('5',$this->input->post('idpengadaan'), $dsrt);
+                if($datacetak['d']->pgd_tipe_pengadaan==2) {
+                $this->m_laporan->updatedknt('3',$tempnum->dsrt_id, $dknt);
+                }
              }else {
              $dsrt ['dsrt_jenis_surat']=5; 
-             $this->m_laporan->insertdsrt($dsrt);
+             $dknt['dknt_detailsurat']=$this->m_laporan->insertdsrt($dsrt);
+             if($datacetak['d']->pgd_tipe_pengadaan==2) {
+             $this->m_laporan->insertdknt($dknt);
+             } 
             }
-            $this->load->view('fpdf/cetak_ldp_konsultan', $datacetak); 
+            
+            if($datacetak['d']->pgd_tipe_pengadaan==2) {
+                $datacetak['supplier']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
+                $this->load->view('fpdf/cetak_ldp_konsultan', $datacetak);
+            }else {                
+                $this->load->view('fpdf/cetak_ldp', $datacetak);     
+            }
      }
       public function cetakUndangan(){
             $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
@@ -1029,7 +1054,7 @@ for($i=13;$i<=15;$i++){
      }
      
      function test(){
-        $data['content'] = 'f_pengadaan_konsultan_personel';
+        $data['content'] = 'f_pengadaan_konsultan_pengalaman';
         $this->load->view('layout',$data);
     }
 }

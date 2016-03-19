@@ -29,11 +29,11 @@ $pdf->AddPage();
                 $pdf->SetWidths($w);
                 $huruf1 = array('B.','C.','D.','E.','F.','G.');
                 $a1= array('Jangka Waktu Penyelesaian   Pekerjaan','Sumber Dana','Pemberian Penjelasan Dokumen Pemilihan','Mata Uang Penawaran dan Cara Pembayaran ','Masa Berlaku Penawaran dan Jangka Waktu Pelaksanaan','Pemasukan dan Pembukaan Dokumen Penawaran');
-                $b1= array($d->pgd_lama_pekerjaan.' ('.$pdf->Terbilang($d->pgd_lama_pekerjaan).' ) hari kalender','Pekerjaan ini dibiayai dari sumber pendanaan APBN Tahun Anggaran'.$pdf->tanggal("Y",$d->pgd_tanggal_input),'-','1.	Bentuk mata uang penawaran : Rupiah
+                $b1= array($d->pgd_lama_pekerjaan.' ('.$pdf->Terbilang($d->pgd_lama_pekerjaan).' ) hari kalender','Pekerjaan ini dibiayai dari sumber pendanaan APBN Tahun Anggaran '.$d->pgd_smbr_dana,'-','1.	Bentuk mata uang penawaran : Rupiah
 2.	Pembayaran dilakukan dengan cara sekaligus','1.	Masa berlaku penawaran selama '.$d->pgd_lama_penawaran.' ('.$pdf->Terbilang($d->pgd_lama_penawaran).') hari kalender sejak batas akhir waktu pemasukan penawaran.
-2.	Jangka waktu pelaksanaan pekerjaan: '.$d->pgd_lama_pekerjaan.' ('.$pdf->Terbilang($d->pgd_lama_pekerjaan).' ) hari kalender sejak penandatangan kontrak','Hari         :   xxxxxx
-Tanggal   :   xxxxxx
-Pukul       :  xxxxxx WIB s.d selesai
+2.	Jangka waktu pelaksanaan pekerjaan: '.$d->pgd_lama_pekerjaan.' ('.$pdf->Terbilang($d->pgd_lama_pekerjaan).' ) hari kalender sejak penandatangan kontrak','Hari         : '.$pdf->tanggal("D ",$d->pgd_pembukaan_dok_pnr).'
+Tanggal   : '.$pdf->tanggal("j M Y",$d->pgd_pembukaan_dok_pnr).'
+Pukul       : '.$pdf->tanggal("H:i",$d->pgd_pembukaan_dok_pnr).' WIB s.d selesai
 Tempat    : Ruang Rapat Biro Umum Lantai 2 GMB I KKP
 Jl. Medan Merdeka Timur No.16 Jakarta Pusat');
                 for($i=0;$i<6;$i++){
@@ -47,16 +47,16 @@ $huruf2 = array('H.','','','','','I.','');
                 $b2= array('1.','2.','','3.','4.','','1.');
                 $c2= array('Sampul penutup Dokumen Penawaran Administrasi, Teknis, dan Biaya ditandai: "PENAWARAN ADMINISTRASI, TEKNIS, BIAYA DAN KUALIFIKASI"','Sampul penutup ditulis :
 Nama Paket Pekerjaan  : '.$d->pgd_perihal.'
-Nama Perusahaan         : ..................
-Alamat Perusahaan       : ..................','Ditujukan kepada      : Pejabat Pengadaan Barang/ Jasa Satker Biro Umum Setjen KKP
+Nama Perusahaan         : '.$supplier->spl_nama.'
+Alamat Perusahaan       : '.$supplier->spl_alamat,'Ditujukan kepada      : Pejabat Pengadaan Barang/ Jasa Satker Biro Umum Setjen KKP
 Alamat Pejabat Pengadaan Barang/Jasa : Jalan Medan Merdeka Timur No.16 Jakarta Pusat
 
 Diterima pada  : 
-    Hari         : ______________
-    Tanggal   : ______________
-    Bulan       : ______________
-    Tahun      : ______________
-    Jam         : ______________','Pada sampul penutup diberi tanda "ASLI" untuk Dokumen Penawaran asli.','Dalam hal Dokumen Penawaran disampaikan melalui pos/jasa pengiriman, maka sampul luar ditulis :
+    Hari         : '.$pdf->tanggal("D",$tgl).'
+    Tanggal   : '.$pdf->tanggal("j",$tgl).' ('.$pdf->Terbilang($pdf->tanggal("j",$tgl)).' )
+    Bulan       : '.$pdf->tanggal("M",$tgl).'
+    Tahun      : '.$pdf->tanggal("Y",$tgl).' ('.$pdf->Terbilang($pdf->tanggal("Y",$tgl)).' )
+    Jam         : '.$pdf->tanggal("H:i",$tgl).' WIB','Pada sampul penutup diberi tanda "ASLI" untuk Dokumen Penawaran asli.','Dalam hal Dokumen Penawaran disampaikan melalui pos/jasa pengiriman, maka sampul luar ditulis :
 Nama Paket Pekerjaan Jasa Konsultan Perencanaan Desain Partisi dan Interior Gedung KantorKKP
 Ditujukan kepada   : Pejabat Pengadaan Barang/Jasa Satker Biro Umum Setjen KKP 
 Alamat Pejabat Pengadaan Barang/Jasa : Jalan Medan Merdeka Timur No.16 Jakarta Pusat','Bobot unsur-unsur pokok yang dinilai :','Unsur Pengalaman Perusahaan : 20 %');
@@ -180,8 +180,8 @@ iii.	tidak sesuai adalah : tidak terkait dengan posisi',0,'J');
 $pdf->SetX(90); $pdf->MultiCell(105,5,'5)	perhitungan bulan kerja X nilai lingkup pekerjaan X nilai posisi = jumlah bulan kerja profesional
 6)	nilai total seluruh jumlah bulan kerja profesional dibagi angka 12 = jangka waktu pengalaman kerja profesional
 7)	nilai jangka waktu pengalaman kerja profesional : bobot 30',0,'J');
-$pdf->SetX(95); $pdf->MultiCell(100,5,'a)	memiliki ≥ 7 tahun pengalaman kerja profesional untuk Team Leader, diberi nilai : 100
-b)	memiliki ≥ 6 tahun pengalaman kerja profesional untuk TA. Arsitekur dan Ahli Desain Grafis, diberi nilai : 100
+$pdf->SetX(95); $pdf->MultiCell(100,5,'a)	memiliki >= 7 tahun pengalaman kerja profesional untuk Team Leader, diberi nilai : 100
+b)	memiliki >= 6 tahun pengalaman kerja profesional untuk TA. Arsitekur dan Ahli Desain Grafis, diberi nilai : 100
 c)	memiliki < 7 tahun pengalaman kerja profesional untuk Team Leader dan <6tahun untuk TA. Arsitekur dan Ahli Desain Grafis, diberi nilai : 60',0,'J');
 $pdf->SetX(90); $pdf->MultiCell(105,5,'8)	nilai jangka waktu pengalaman kerja profesional yang didapatkan X bobot sub unsur pengalaman kerja profesional seperti yang disyaratkan dalam KAK = NILAI BOBOT sub unsur pengalaman kerja profesional seperti yang disyaratkan dalam KAK.',0,'J');
 

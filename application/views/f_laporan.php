@@ -40,8 +40,13 @@
                 $no_undangan=$kontensuratnoudg->dknt_isi;
                 $tgludg=$kontensurattgludg->dknt_isi;
                 $lampiran=$kontensuratLudg->dknt_isi;
-                }                                      
-		
+                } 
+    if($d->pgd_tipe_pengadaan==2) {   
+        $tglpp="";        
+        if($mode8 == 'edit'){	
+                $tglpp=$kontensurattglpp->dknt_isi;
+                }            
+    }	
 ?>
 
 <div class="container-fluid">
@@ -274,9 +279,17 @@
                  <form id="f5" method="post" action="<?php echo base_url()."laporan/cetakldp"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
-                        <label for="mem2" class="control-label text-left">Lembar Data Pengadaan (LDP)</label>
+                        <label for="mem2" class="control-label text-left"><?php if($d->pgd_tipe_pengadaan==2){echo "Lembar Data Pemilihan (LDP)";}else {echo "Lembar Data Pengadaan (LDP)";} ?></label>
                     </div>
                      <input type="hidden" name="idpengadaan" value="<?php echo $idpengadaan; ?>">
+                     <?php if($d->pgd_tipe_pengadaan==2) {?>
+                    <div class="form-group">
+                      <label for="" class="col-sm-5 control-label text-left">Tanggal penerimaan penawaran</label>
+                       <div class="col-sm-7"> 
+                            <input type="text" class="form-control tgl" id="tglpp" name="tglpp" placeholder="Tanggal penerimaan penawaran"  value="<?php echo $tglpp;?>" required>                                   
+                       </div>
+                    </div> 
+                     <?php } ?>           
                   </div>
                   <div class="col-md-4">
                    <div class="form-group">

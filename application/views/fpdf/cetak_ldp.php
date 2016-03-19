@@ -57,7 +57,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(90,6,'B. SUMBER DANA ',0,0,'L');
 		$pdf->SetFont('Arial','',12);
-		$pdf->MultiCell(0,6,'Pekerjaan ini dibiayai dari sumber pendanaan APBN tahun anggaran '.$pdf->tanggal("Y",$d->pgd_tanggal_input),0,'J');
+		$pdf->MultiCell(0,6,'Pekerjaan ini dibiayai dari sumber pendanaan APBN tahun anggaran '.$d->pgd_smbr_dana,0,'J');
 		$pdf->ln(5);
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(7,6,'C.',0,0,'L');

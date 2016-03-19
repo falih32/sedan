@@ -222,7 +222,7 @@
                     <tbody>
                         <tr>
                                 <th>Pengalaman Perusahaan</th>
-                                <td><input value="<?php echo $unp_bobot_png_prs;?>" required type="text" class="form-control" id="unp_bobot_png_prs" name="unp_bobot_png_prs"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><input readonly value="<?php echo $unp_bobot_png_prs;?>" required type="text" class="form-control" id="unp_bobot_png_prs" name="unp_bobot_png_prs"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
                                 <td><label id="unp_nilai_png_prs" class="text-left"><?php echo $unp_nilai_png_prs;?></label></td>
                                 <td><label id="unp_jml_png_prs" class="text-left"><?php echo $unp_jml_png_prs;?></label></td>
                                 <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/PengalamanPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrypp">
@@ -231,7 +231,7 @@
                         </tr>
                         <tr>
                         	<th>Pendekatan dan Metodologi</th>
-                                <td><input value="<?php echo $unp_bobot_pnd_mtd;?>" required type="text" class="form-control" id="unp_bobot_pnd_mtd" name="unp_bobot_pnd_mtd"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><input readonly value="<?php echo $unp_bobot_pnd_mtd;?>" required type="text" class="form-control" id="unp_bobot_pnd_mtd" name="unp_bobot_pnd_mtd"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
                                 <td><label id="unp_nilai_pnd_mtd" class="text-left"><?php echo $unp_nilai_pnd_mtd;?></label></td>
                                 <td><label id="unp_jml_pnd_mtd" class="text-left"><?php echo $unp_jml_pnd_mtd;?></label></td>
                                 <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/MetodologiPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrypm">
@@ -240,7 +240,7 @@
                         </tr>
                         <tr>
                         	<th>Kualifikasi Tenaga Ahli</th>
-                                <td><input value="<?php echo $unp_bobot_kua_tna;?>" required type="text" class="form-control" id="unp_bobot_kua_tna" name="unp_bobot_kua_tna"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><input readonly value="<?php echo $unp_bobot_kua_tna;?>" required type="text" class="form-control" id="unp_bobot_kua_tna" name="unp_bobot_kua_tna"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
                                 <td><label id="unp_nilai_kua_tna" class="text-left"><?php echo $unp_nilai_kua_tna;?></label></td>
                                 <td><label id="unp_jml_kua_tna" class="text-left"><?php echo $unp_jml_kua_tna;?></label></td>
                                 <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/PersonilPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrykt">

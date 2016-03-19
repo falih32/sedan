@@ -158,3 +158,65 @@ BEGIN
 END;
 
 call sum_total_pengadaan_konsultan (15,'0.1');
+
+
+
+
+
+
+DROP TRIGGER insert_BkualifikasiPersonal;
+-- trigger insert total harga satuan detail pengadaan
+DELIMITER //
+CREATE TRIGGER insert_BkualifikasiPersonal BEFORE INSERT ON t_personal_inti
+FOR EACH ROW
+BEGIN
+	DECLARE v_total_nilai DECIMAL;
+	DECLARE v_total_jumlah DECIMAL;
+	DECLARE v_total_all DECIMAL;
+	SET v_total_nilai = NEW.psi_jml_nilai_ks_ijasah+NEW.psi_jml_nilai_kerja+NEW.psi_jml_nilai_sertifikat;
+	SET NEW.psi_nilai = v_total_nilai;
+	SET v_total_jumlah = v_total_nilai*NEW.psi_bobot;
+	SET NEW.psi_jumlah = v_total_jumlah;
+
+END;
+
+DROP TRIGGER insert_AkualifikasiPersonal;
+-- trigger insert total harga satuan detail pengadaan
+DELIMITER //
+CREATE TRIGGER insert_AkualifikasiPersonal AFTER INSERT ON t_personal_inti
+FOR EACH ROW
+BEGIN
+
+	DECLARE v_total_all DECIMAL(65,2);
+	DECLARE v_total_uns DECIMAL(65,2);
+	DECLARE v_total DECIMAL(65,2);
+	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = NEW.psi_uns ;
+	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = NEW.psi_uns ;
+	SET v_total = (v_total_uns)*(v_total_all);
+	UPDATE t_unsur_penilaian
+	SET unp_nilai_kua_tna = v_total_all,
+	unp_jml_kua_tna = v_total
+	WHERE unp_id = NEW.psi_uns ;
+END;
+
+insert into t_personal_inti (psi_uns,psi_jumlah) values (2,150);
+
+DROP TRIGGER delete_kualifikasiPersonal;
+-- trigger insert total harga satuan detail pengadaan
+DELIMITER //
+CREATE TRIGGER delete_kualifikasiPersonal BEFORE DELETE ON t_personal_inti
+FOR EACH ROW
+BEGIN
+
+	DECLARE v_total_all DECIMAL(65,2);
+	DECLARE v_total_uns DECIMAL(65,2);
+	DECLARE v_total DECIMAL(65,2);
+	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = OLD.psi_uns ;
+	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = OLD.psi_uns ;
+	SET v_total = (v_total_uns)*(v_total_all);
+	UPDATE t_unsur_penilaian
+	SET unp_nilai_kua_tna = v_total_all,
+	unp_jml_kua_tna = v_total
+	WHERE unp_id = OLD.psi_uns ;
+END;
+

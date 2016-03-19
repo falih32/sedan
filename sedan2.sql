@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50621
 File Encoding         : 65001
 
-Date: 2016-03-19 03:20:21
+Date: 2016-03-19 15:50:01
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -402,7 +402,7 @@ AUTO_INCREMENT=47
 -- Records of t_pengadaan
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-04-07 11:54:02', '12345', '1', '45', '30', '2015-11-21', '1', '13812000.00', '15193200.02', '84375.00', '92812.50', '76175.00', '83792.50', '2015-12-05 10:03:49', '2015-12-19 10:03:49', '1', '4', '0', '1', '0', null, '2016-01-05 23:21:25', 'b21.31121212', 'Sugiri', 'Direktur', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2015-12-19 11:44:47', '2015-12-21 11:45:03', '2016-01-21', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('19', 'Pengadaan barang yyy', '0', 'PEngadaan barang bagus yyy', '2015-09-16 07:26:15', '12345', '1', '30', '4', '2015-11-25', null, '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', null, null, '0', '0', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('20', 'dfshaasdasdas', '1', 're', '2015-12-17 11:50:24', '12345', '1', '3', '5', '2015-11-25', null, '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', null, null, '0', '2', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('21', 'Pengadaan keempat dsd', '1', 'asdff xxx', '2015-12-17 11:50:25', '54321', '1', '3', '45', '2015-12-02', null, '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', null, null, '0', '1', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('22', 'Pengadaan kelima', '1', '444', '2015-12-17 11:50:26', '54321', '1', '5', '5', '2015-12-02', null, '19000.00', '20900.00', '14727.00', '16199.70', '12900.00', '14190.00', null, null, '0', '2', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('23', 'Pekerjaan pembersihan lantai xxx', '1', 'Membersihkan lantai semuanya', '2015-12-17 11:50:27', '54321', '1', '6', '6', '2015-12-02', null, '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', null, null, '1', '2', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('24', 'Pekerjaan pembersihan taman ccc', '1', 'Membersihkan taman depan gedung', '2015-12-17 11:50:28', '12345', '1', '4', '4', '2015-12-02', null, '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', null, null, '1', '1', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('25', 'pengadaan susu murni', '1', 'pengadaan susu murni sepesial maknyosss', '2015-12-17 11:50:29', '54321', '3', '45', '45', '2015-12-13', null, '1500000.00', '1650000.00', '0.00', '0.00', '0.00', '0.00', '2015-12-13 07:20:00', '2015-12-19 19:39:00', '0', '0', '0', '1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('26', 'Pengaadaan celana panjang', '1', 'Pengadaan baju oh yea', '2016-01-17 11:11:12', '12345', '1', '40', '50', null, '1', '2590000.00', '2849000.00', '51500.00', '56650.00', '0.00', '0.00', '2016-01-17 00:00:00', '2016-01-24 00:00:00', '0', '0', '0', '1', '1', '2016', null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('27', 'Pengadaan Makanan', '0', 'fasfsd', '2016-01-22 23:04:07', '12345', '1', '5', '4', null, '1', '262000.00', '262000.00', '54.00', '54.00', '29.00', '29.00', '2016-01-14 05:00:00', '2016-01-29 07:00:00', '0', '5', '1', '1', '1', '2016', '2016-01-24 00:00:00', 'we', 'fr', 'frf', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-01-22 00:00:00', '2016-01-23 08:14:00', '2016-01-23', null, null), ('30', 'pengadaan jasa minuman', '1', 'gagaga', '2016-01-23 01:32:09', '12345', '1', '5', '5', null, '1', '29439.00', '32382.90', '88.00', '96.80', '0.00', '0.00', '2016-01-15 00:00:00', '2016-01-30 08:00:00', '1', '0', '-1', '1', '0', '2016', '2016-01-29 00:00:00', 'gdf', 'dfg', 'dfg', '1', '1', '1', '1', '1', '1', '1', '1', null, '0', '2016-01-30 00:00:00', '2016-01-23 05:19:00', '2016-01-24', null, null), ('31', 'gaga', '1', '4', '2016-01-23 01:36:48', '12345', '1', '4', '4', null, '1', '27.00', '29.70', '0.00', '0.00', '0.00', '0.00', '2016-01-23 00:00:00', '2016-01-30 00:00:00', '1', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-23 00:00:00', '2016-01-29 00:00:00', '2016-01-23', null, null), ('32', 'Pengadaan Kursi A', '0', 'Pengadaan Kursi panjang', '2016-01-23 19:59:00', '12345', '1', '5', '10', null, '1', '3900000.00', '4290000.01', '390000.00', '429000.00', '210000.00', '231000.00', '2016-01-21 05:00:00', '2016-01-31 18:00:00', '0', '5', '1', '1', '0', '2016', '2016-01-28 00:00:00', '555gfgs', 'Esa', 'Ganteng', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-01-23 00:00:00', '2016-01-30 13:00:00', '2016-01-23', null, null), ('33', 'Pengadaan Jasa pembersihan', '0', 'pembersihan gedung', '2016-01-23 20:53:13', '12345', '1', '5', '8', null, '1', '38000000.00', '38000000.00', '29000000.00', '29000000.00', '210000.00', '210000.00', '2016-01-21 06:00:00', '2016-01-30 10:00:00', '1', '5', '1', '1', '1', '2016', '2016-01-28 00:00:00', 'gfd', 'Esa', 'haha', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-01-22 00:00:00', '2016-01-31 10:00:00', '2016-01-28', null, null), ('34', 'Pengadaan Cuci baju', '0', 'afadfsdf', '2016-01-23 22:38:45', '12345', '1', '4', '4', null, '1', '25000.00', '27500.00', '0.00', '0.00', '0.00', '0.00', '2016-01-23 00:00:00', '2016-01-31 00:00:00', '1', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-23 00:00:00', '2016-01-23 00:00:00', '2016-01-23', null, null), ('35', 'AAAAA', '0', 'AAAAAA', '2016-01-24 07:45:35', '12345', '1', '12', '12', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-01-16 00:00:00', '2016-01-22 00:00:00', '1', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-09 00:00:00', '2016-01-22 00:00:00', '2016-01-23', null, null), ('36', 'aaa', '0', 'aaaa', '2016-01-24 07:56:59', '12345', '1', '1', '1', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-01-24 00:00:00', '2016-01-24 00:00:00', '0', '0', '0', '3', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-22 00:00:00', '2016-01-23 00:00:00', '2016-01-24', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('37', 'Pengadaan Nopa', '0', 'blb bla bla', '2016-02-06 07:37:00', '12345', '1', '12', '12', null, '1', '120000.00', '132000.00', '0.00', '0.00', '0.00', '0.00', '2016-02-06 00:00:00', '2016-02-13 00:00:00', '0', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-02-06 00:00:00', '2016-02-14 00:00:00', '2016-02-14', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('38', 'Pengadaan Konsultasi Desain Interior', '0', 'Konsultasi desaign ', '2016-02-23 18:39:59', '12345', '1', '5', '5', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-02-23 05:43:00', '2016-02-23 06:38:00', '2', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-02-26 13:31:00', '2016-02-23 07:28:00', '2016-02-26', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('39', 'da', '0', '55', '2016-03-03 19:55:42', '12345', '1', '5', '5', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-03-03 00:00:00', '2016-03-10 00:00:00', '2', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-03-03 00:00:00', '2016-03-17 00:00:00', '2016-03-03', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('41', 'Pengadaan April1as', '0', 'Hahhahaha', '2016-03-16 19:34:14', '12345', '1', '5000', '4', null, '1', '23.00', '23.00', '9.00', '9.00', '9.00', '9.00', '2016-03-16 00:00:00', '2016-03-20 00:00:00', '0', '1', '0', '3', '1', '2016', '2016-03-18 00:00:00', '4343', 'haha', 'hahah', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-03-17 00:00:00', '2016-03-24 00:00:00', '2016-03-17', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('42', 'Jasajasafa', '0', '5fafasfa', '2016-03-16 22:21:31', '54321', '1', '1000', '2', null, '1', '26.00', '28.60', '10.00', '11.00', '10.00', '11.00', '2016-03-17 00:00:00', '2016-03-31 00:00:00', '1', '0', '0', '1', '0', '2016', '2016-03-17 00:00:00', 'afdaf', '323', '2r32', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-03-25 00:00:00', '2016-03-26 00:00:00', '2016-03-24', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('46', 'wawawa', '0', 'adfs', '2016-03-17 18:52:23', '12345', '1', '2', '3', null, '1', '702000.00', '772200.00', '6386.00', '7024.60', '111.00', '122.10', '2016-03-17 00:00:00', '2016-03-31 00:00:00', '2', '5', '1', '1', '0', '2016', '2016-03-17 00:00:00', 'dsf', 'fgs', 'sdg', '1', '1', '1', '1', '1', '1', null, null, null, '1', '2016-03-24 00:00:00', '2016-03-31 00:00:00', '2016-03-31', 'Riyani Indarti', 'Prijaambodo Mardianto');
+INSERT INTO `t_pengadaan` VALUES ('15', 'Pekerjaan Pembersihan dan Silent Kaca Luar Gedung GMB III', '0', 'Melakukan pemeliharaan gedung dengan melakukan pembersihan kaca luar gedung yang sudah kotor dan melakukan silent kaca yang telah bocor', '2015-04-07 11:54:02', '12345', '1', '45', '30', '2015-11-21', '1', '13812000.00', '15193200.02', '84375.00', '92812.50', '76175.00', '83792.50', '2015-12-05 10:03:49', '2015-12-19 10:03:49', '1', '4', '0', '1', '0', null, '2016-01-05 23:21:25', 'b21.31121212', 'Sugiri', 'Direktur', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2015-12-19 11:44:47', '2015-12-21 11:45:03', '2016-01-21', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('19', 'Pengadaan barang yyy', '0', 'PEngadaan barang bagus yyy', '2015-09-16 07:26:15', '12345', '1', '30', '4', '2015-11-25', null, '1200.00', '1320.00', '0.00', '0.00', '0.00', '0.00', null, null, '0', '0', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('20', 'dfshaasdasdas', '1', 're', '2015-12-17 11:50:24', '12345', '1', '3', '5', '2015-11-25', null, '36300.00', '39930.00', '6150.00', '6765.00', '3150.00', '3465.00', null, null, '0', '2', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('21', 'Pengadaan keempat dsd', '1', 'asdff xxx', '2015-12-17 11:50:25', '54321', '1', '3', '45', '2015-12-02', null, '32500.00', '35750.00', '24600.00', '27060.00', '0.00', '0.00', null, null, '0', '1', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('22', 'Pengadaan kelima', '1', '444', '2015-12-17 11:50:26', '54321', '1', '5', '5', '2015-12-02', null, '19000.00', '20900.00', '14727.00', '16199.70', '12900.00', '14190.00', null, null, '0', '2', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('23', 'Pekerjaan pembersihan lantai xxx', '1', 'Membersihkan lantai semuanya', '2015-12-17 11:50:27', '54321', '1', '6', '6', '2015-12-02', null, '170000.00', '187000.00', '157500.00', '173250.00', '150000.00', '165000.00', null, null, '1', '2', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('24', 'Pekerjaan pembersihan taman ccc', '1', 'Membersihkan taman depan gedung', '2015-12-17 11:50:28', '12345', '1', '4', '4', '2015-12-02', null, '250000.00', '275000.00', '250000.00', '275000.00', '0.00', '0.00', null, null, '1', '1', '0', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('25', 'pengadaan susu murni', '1', 'pengadaan susu murni sepesial maknyosss', '2015-12-17 11:50:29', '54321', '3', '45', '45', '2015-12-13', null, '1500000.00', '1650000.00', '0.00', '0.00', '0.00', '0.00', '2015-12-13 07:20:00', '2015-12-19 19:39:00', '0', '0', '0', '1', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('26', 'Pengaadaan celana panjang', '1', 'Pengadaan baju oh yea', '2016-01-17 11:11:12', '12345', '1', '40', '50', null, '1', '2590000.00', '2849000.00', '51500.00', '56650.00', '0.00', '0.00', '2016-01-17 00:00:00', '2016-01-24 00:00:00', '0', '0', '0', '1', '1', '2016', null, null, null, null, null, null, null, null, null, null, null, null, null, '0', null, null, null, null, null), ('27', 'Pengadaan Makanan', '0', 'fasfsd', '2016-01-22 23:04:07', '12345', '1', '5', '4', null, '1', '262000.00', '262000.00', '54.00', '54.00', '29.00', '29.00', '2016-01-14 05:00:00', '2016-01-29 07:00:00', '0', '5', '1', '1', '1', '2016', '2016-01-24 00:00:00', 'we', 'fr', 'frf', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-01-22 00:00:00', '2016-01-23 08:14:00', '2016-01-23', null, null), ('30', 'pengadaan jasa minuman', '1', 'gagaga', '2016-01-23 01:32:09', '12345', '1', '5', '5', null, '1', '29439.00', '32382.90', '88.00', '96.80', '0.00', '0.00', '2016-01-15 00:00:00', '2016-01-30 08:00:00', '1', '0', '-1', '1', '0', '2016', '2016-01-29 00:00:00', 'gdf', 'dfg', 'dfg', '1', '1', '1', '1', '1', '1', '1', '1', null, '0', '2016-01-30 00:00:00', '2016-01-23 05:19:00', '2016-01-24', null, null), ('31', 'gaga', '1', '4', '2016-01-23 01:36:48', '12345', '1', '4', '4', null, '1', '27.00', '29.70', '0.00', '0.00', '0.00', '0.00', '2016-01-23 00:00:00', '2016-01-30 00:00:00', '1', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-23 00:00:00', '2016-01-29 00:00:00', '2016-01-23', null, null), ('32', 'Pengadaan Kursi A', '0', 'Pengadaan Kursi panjang', '2016-01-23 19:59:00', '12345', '1', '5', '10', null, '1', '3900000.00', '4290000.01', '390000.00', '429000.00', '210000.00', '231000.00', '2016-01-21 05:00:00', '2016-01-31 18:00:00', '0', '5', '1', '1', '0', '2016', '2016-01-28 00:00:00', '555gfgs', 'Esa', 'Ganteng', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-01-23 00:00:00', '2016-01-30 13:00:00', '2016-01-23', null, null), ('33', 'Pengadaan Jasa pembersihan', '0', 'pembersihan gedung', '2016-01-23 20:53:13', '12345', '1', '5', '8', null, '1', '38000000.00', '38000000.00', '29000000.00', '29000000.00', '210000.00', '210000.00', '2016-01-21 06:00:00', '2016-01-30 10:00:00', '1', '5', '1', '1', '1', '2016', '2016-01-28 00:00:00', 'gfd', 'Esa', 'haha', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-01-22 00:00:00', '2016-01-31 10:00:00', '2016-01-28', null, null), ('34', 'Pengadaan Cuci baju', '0', 'afadfsdf', '2016-01-23 22:38:45', '12345', '1', '4', '4', null, '1', '25000.00', '27500.00', '0.00', '0.00', '0.00', '0.00', '2016-01-23 00:00:00', '2016-01-31 00:00:00', '1', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-23 00:00:00', '2016-01-23 00:00:00', '2016-01-23', null, null), ('35', 'AAAAA', '0', 'AAAAAA', '2016-01-24 07:45:35', '12345', '1', '12', '12', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-01-16 00:00:00', '2016-01-22 00:00:00', '1', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-09 00:00:00', '2016-01-22 00:00:00', '2016-01-23', null, null), ('36', 'aaa', '0', 'aaaa', '2016-01-24 07:56:59', '12345', '1', '1', '1', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-01-24 00:00:00', '2016-01-24 00:00:00', '0', '0', '0', '3', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-01-22 00:00:00', '2016-01-23 00:00:00', '2016-01-24', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('37', 'Pengadaan Nopa', '0', 'blb bla bla', '2016-02-06 07:37:00', '12345', '1', '12', '12', null, '1', '120000.00', '132000.00', '0.00', '0.00', '0.00', '0.00', '2016-02-06 00:00:00', '2016-02-13 00:00:00', '0', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-02-06 00:00:00', '2016-02-14 00:00:00', '2016-02-14', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('38', 'Pengadaan Konsultasi Desain Interior', '0', 'Konsultasi desaign ', '2016-02-23 18:39:59', '12345', '1', '5', '5', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-02-23 05:43:00', '2016-02-23 06:38:00', '2', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-02-26 13:31:00', '2016-02-23 07:28:00', '2016-02-26', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('39', 'da', '0', '55', '2016-03-03 19:55:42', '12345', '1', '5', '5', null, '1', '0.00', '0.00', '0.00', '0.00', '0.00', '0.00', '2016-03-03 00:00:00', '2016-03-10 00:00:00', '2', '0', '0', '1', '0', '2016', null, '', '', '', '0', '0', '0', '0', '0', '0', '0', '0', '0', '0', '2016-03-03 00:00:00', '2016-03-17 00:00:00', '2016-03-03', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('41', 'Pengadaan April1as', '0', 'Hahhahaha', '2016-03-16 19:34:14', '12345', '1', '5000', '4', null, '1', '23.00', '23.00', '9.00', '9.00', '9.00', '9.00', '2016-03-16 00:00:00', '2016-03-20 00:00:00', '0', '1', '0', '3', '1', '2016', '2016-03-18 00:00:00', '4343', 'haha', 'hahah', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-03-17 00:00:00', '2016-03-24 00:00:00', '2016-03-17', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('42', 'Jasajasafa', '0', '5fafasfa', '2016-03-16 22:21:31', '54321', '1', '1000', '2', null, '1', '26.00', '28.60', '10.00', '11.00', '10.00', '11.00', '2016-03-17 00:00:00', '2016-03-31 00:00:00', '1', '0', '0', '1', '0', '2016', '2016-03-17 00:00:00', 'afdaf', '323', '2r32', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '2016-03-25 00:00:00', '2016-03-26 00:00:00', '2016-03-24', 'Riyani Indarti', 'Prijaambodo Mardianto'), ('46', 'wawawa', '0', 'adfs', '2016-03-17 18:52:23', '12345', '1', '2', '3', null, '1', '702000.00', '772200.00', '6386.00', '7024.60', '111.00', '122.10', '2016-03-17 00:00:00', '2016-03-31 00:00:00', '2', '0', '0', '1', '0', '2016', '2016-03-17 00:00:00', 'dsf', 'fgs', 'sdg', '1', '1', '1', '1', '1', '1', null, null, null, '1', '2016-03-24 00:00:00', '2016-03-31 00:00:00', '2016-03-31', 'Riyani Indarti', 'Prijaambodo Mardianto');
 COMMIT;
 
 -- ----------------------------
@@ -472,16 +472,17 @@ CREATE TABLE `t_personal_inti` (
 `psi_id`  bigint(20) NOT NULL AUTO_INCREMENT ,
 `psi_uns`  bigint(255) NULL DEFAULT NULL ,
 `psi_dtk`  bigint(255) NULL DEFAULT NULL ,
-`psi_bobot`  decimal(65,0) NULL DEFAULT NULL ,
+`psi_nama`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
+`psi_bobot`  decimal(65,2) NULL DEFAULT NULL ,
 `psi_kesesuaian_ijasah`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
-`psi_nilai_ks_ijasah`  int(255) NULL DEFAULT NULL ,
-`psi_jml_nilai_ks_ijasah`  decimal(65,0) NULL DEFAULT NULL ,
-`psi_masa_kerja`  decimal(65,0) NULL DEFAULT NULL ,
-`psi_nilai_kerja`  int(255) NULL DEFAULT NULL ,
-`psi_jml_nilai_kerja`  decimal(65,0) NULL DEFAULT NULL ,
+`psi_nilai_ks_ijasah`  int(255) NULL DEFAULT 0 ,
+`psi_jml_nilai_ks_ijasah`  decimal(65,2) NULL DEFAULT 0.00 ,
+`psi_masa_kerja`  decimal(65,2) NULL DEFAULT 0.00 ,
+`psi_nilai_kerja`  int(255) NULL DEFAULT 0 ,
+`psi_jml_nilai_kerja`  decimal(65,2) NULL DEFAULT 0.00 ,
 `psi_memiliki_sertifikat`  varchar(255) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL ,
-`psi_nilai_sertifikat`  int(255) NULL DEFAULT NULL ,
-`psi_jml_nilai_sertifikat`  decimal(65,0) NULL DEFAULT NULL ,
+`psi_nilai_sertifikat`  int(255) NULL DEFAULT 0 ,
+`psi_jml_nilai_sertifikat`  decimal(65,2) NULL DEFAULT 0.00 ,
 `psi_nilai`  decimal(65,0) NULL DEFAULT NULL ,
 `psi_jumlah`  decimal(65,0) NULL DEFAULT NULL ,
 `psi_jangka_wkt_pro`  decimal(65,0) NULL DEFAULT NULL ,
@@ -493,7 +494,7 @@ INDEX `fk_psi_dtk` (`psi_dtk`) USING BTREE
 )
 ENGINE=InnoDB
 DEFAULT CHARACTER SET=latin1 COLLATE=latin1_swedish_ci
-AUTO_INCREMENT=1
+AUTO_INCREMENT=23
 
 ;
 
@@ -501,6 +502,7 @@ AUTO_INCREMENT=1
 -- Records of t_personal_inti
 -- ----------------------------
 BEGIN;
+INSERT INTO `t_personal_inti` VALUES ('4', '2', '9', 'efas', '4.00', 'SB', '75', '30.00', '0.00', '0', '0.00', 'TM', '0', '0.00', '30', '120', null), ('19', '2', '8', 'wd', '2.00', 'S', '100', '40.00', '0.00', '0', '0.00', 'M', '100', '20.00', '60', '120', null), ('22', '2', '10', 'dw', '2.00', 'S', '100', '40.00', '0.00', '0', '0.00', 'TM', '0', '0.00', '40', '80', null);
 COMMIT;
 
 -- ----------------------------
@@ -629,7 +631,7 @@ AUTO_INCREMENT=3
 -- Records of t_unsur_penilaian
 -- ----------------------------
 BEGIN;
-INSERT INTO `t_unsur_penilaian` VALUES ('2', '46', '0.20', '100.00', '20.00', '0.20', '61.30', '12.26', '0.60', '0.00', '0.00');
+INSERT INTO `t_unsur_penilaian` VALUES ('2', '46', '0.20', '100.00', '20.00', '0.20', '61.30', '12.26', '0.60', '320.00', '192.00');
 COMMIT;
 
 -- ----------------------------
@@ -957,11 +959,59 @@ ALTER TABLE `t_pengalaman_kerja` AUTO_INCREMENT=1;
 -- Auto increment value for t_pengalaman_prs
 -- ----------------------------
 ALTER TABLE `t_pengalaman_prs` AUTO_INCREMENT=37;
+DROP TRIGGER IF EXISTS `insert_BkualifikasiPersonal`;
+DELIMITER ;;
+CREATE TRIGGER `insert_BkualifikasiPersonal` BEFORE INSERT ON `t_personal_inti` FOR EACH ROW BEGIN
+	DECLARE v_total_nilai DECIMAL;
+	DECLARE v_total_jumlah DECIMAL;
+	DECLARE v_total_all DECIMAL;
+	SET v_total_nilai = NEW.psi_jml_nilai_ks_ijasah+NEW.psi_jml_nilai_kerja+NEW.psi_jml_nilai_sertifikat;
+	SET NEW.psi_nilai = v_total_nilai;
+	SET v_total_jumlah = v_total_nilai*NEW.psi_bobot;
+	SET NEW.psi_jumlah = v_total_jumlah;
+
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `insert_AkualifikasiPersonal`;
+DELIMITER ;;
+CREATE TRIGGER `insert_AkualifikasiPersonal` AFTER INSERT ON `t_personal_inti` FOR EACH ROW BEGIN
+
+	DECLARE v_total_all DECIMAL(65,2);
+	DECLARE v_total_uns DECIMAL(65,2);
+	DECLARE v_total DECIMAL(65,2);
+	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = NEW.psi_uns ;
+	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = NEW.psi_uns ;
+	SET v_total = (v_total_uns)*(v_total_all);
+	UPDATE t_unsur_penilaian
+	SET unp_nilai_kua_tna = v_total_all,
+	unp_jml_kua_tna = v_total
+	WHERE unp_id = NEW.psi_uns ;
+END
+;;
+DELIMITER ;
+DROP TRIGGER IF EXISTS `delete_kualifikasiPersonal`;
+DELIMITER ;;
+CREATE TRIGGER `delete_kualifikasiPersonal` AFTER DELETE ON `t_personal_inti` FOR EACH ROW BEGIN
+
+	DECLARE v_total_all DECIMAL(65,2);
+	DECLARE v_total_uns DECIMAL(65,2);
+	DECLARE v_total DECIMAL(65,2);
+	SELECT IFNULL(unp_bobot_kua_tna,0) INTO v_total_uns FROM t_unsur_penilaian WHERE unp_id = OLD.psi_uns ;
+	SELECT IFNULL(SUM(psi_jumlah),0) INTO v_total_all FROM t_personal_inti WHERE psi_uns = OLD.psi_uns ;
+	SET v_total = (v_total_uns)*(v_total_all);
+	UPDATE t_unsur_penilaian
+	SET unp_nilai_kua_tna = v_total_all,
+	unp_jml_kua_tna = v_total
+	WHERE unp_id = OLD.psi_uns ;
+END
+;;
+DELIMITER ;
 
 -- ----------------------------
 -- Auto increment value for t_personal_inti
 -- ----------------------------
-ALTER TABLE `t_personal_inti` AUTO_INCREMENT=1;
+ALTER TABLE `t_personal_inti` AUTO_INCREMENT=23;
 
 -- ----------------------------
 -- Auto increment value for t_sub_judul

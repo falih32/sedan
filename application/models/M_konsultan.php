@@ -22,12 +22,21 @@ class M_konsultan extends CI_Model{
         $this->db->insert('t_metode', $data);
     }
     
+    function insertKualifikasiTenagaAhli($data){
+        $this->db->insert('t_personal_inti', $data);
+    }
+    
     function deleteDetailKons1($id){
         $this->db->where('dtk_id', $id);
         $this->db->delete('t_detail_konsultan1');
     }
     
-    function deleteDetailKons2($id){
+    function deleteKualifikasiPersonilByUnp($id){
+        $this->db->where('psi_id', $id);
+        $this->db->delete('t_personal_inti');
+    }
+    
+     function deleteDetailKons2($id){
         $this->db->where('dtk2_id', $id);
         $this->db->delete('t_detail_konsultan2');
     }
@@ -97,7 +106,15 @@ class M_konsultan extends CI_Model{
                 . "ORDER BY sjd_id IS NULL, dtk2_id")->result();
     }
     
-    
+    function selectKualifikasiPersonilByUnp($id){
+        return $this->db->query(""
+                . "SELECT dtk_jabatan, t_personal_inti.* "
+                . "FROM t_personal_inti "
+                . "LEFT JOIN t_detail_konsultan1 "
+                . "ON dtk_id = psi_dtk "
+                . "WHERE psi_uns = '$id' "
+                . "ORDER BY dtk_id ")->result();
+    }
     
     
     

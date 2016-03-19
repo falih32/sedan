@@ -47,6 +47,64 @@ class KonsultanTeknis extends CI_Controller {
             'unp_jml_kua_tna' => $unp_jml_kua_tna
             ));
     }
+    
+     public function addKualifikasiTenagaAhli($unp_id){
+        $dtp['psi_uns'] = $this->input->post('unp_id');
+        $dtp['psi_dtk'] = $this->input->post('psi_dtk');
+        $dtp['psi_bobot'] = $this->input->post('psi_bobot');
+        $dtp['psi_nama'] = $this->input->post('psi_nama');
+        
+        $dtp['psi_kesesuaian_ijasah'] = $this->input->post('psi_kesesuaian_ijasah');
+        if($dtp['psi_kesesuaian_ijasah'] == 'S'){
+            $dtp['psi_nilai_ks_ijasah'] = 100;
+        }elseif($dtp['psi_kesesuaian_ijasah'] == 'SB'){
+            $dtp['psi_nilai_ks_ijasah'] = 75;
+        }elseif($dtp['psi_kesesuaian_ijasah'] == 'TS'){
+            $dtp['psi_nilai_ks_ijasah'] = 50;
+        }elseif($dtp['psi_kesesuaian_ijasah'] == 'K'){
+            $dtp['psi_nilai_ks_ijasah'] = 0;
+        }else{
+            $dtp['psi_nilai_ks_ijasah'] = 0;
+        }
+        
+        $dtp['psi_jml_nilai_ks_ijasah'] = $dtp['psi_nilai_ks_ijasah']*0.4;
+        
+        $dtp['psi_memiliki_sertifikat'] = $this->input->post('psi_memiliki_sertifikat');
+        if($dtp['psi_memiliki_sertifikat'] == 'M'){
+            $dtp['psi_nilai_sertifikat']  = 100;
+        }elseif($dtp['psi_memiliki_sertifikat'] == 'TM'){
+            $dtp['psi_nilai_sertifikat']  = 0;
+        }else{
+            $dtp['psi_nilai_sertifikat']  = 0;
+        }
+        $dtp['psi_jml_nilai_sertifikat'] = $dtp['psi_nilai_sertifikat']*0.2;
+         
+        // Update total unsur penilaian
+//        $data= $this->m_konsultan->selectByIdUnsurPenilaian($unp_id);
+//        $up['unp_nilai_png_prs'] = $this->input->post('unp_nilai_png_prs');
+//        $up['unp_jml_png_prs'] =$data->unp_bobot_png_prs*$up['unp_nilai_png_prs'];
+//        $this->m_konsultan->updateUnsurPenilaianTeknis($unp_id,$up);
+        
+        $this->m_konsultan->insertKualifikasiTenagaAhli($dtp);
+    }
+    
+    
+    
+    public function drawTableKualifikasi($unp_id){
+        $data = $this->m_konsultan->selectKualifikasiPersonilByUnp($unp_id);
+        echo json_encode(array('kons' => $data)); 
+    }
+    
+    public function proses_del_KualifikasiPersonel($unp_id){
+        $this->m_konsultan->deleteKualifikasiPersonilByUnp($unp_id);
+    }
+    public function select2AllDetailJabatanKonsultan($jabatan){
+        $search = strip_tags(trim($this->input->get('q')));
+        //$search = "";
+        $result = $this->m_konsultan->select2AllJabatanNamaPersonil($search, $jabatan);
+
+        echo json_encode($result); 
+    }
 	
     public function PengalamanPerusahaan($pnp_unp,$idPengadaan){
         $data['dataPengadaan']= $this->m_konsultan->selectPengadaanKonsultanById($idPengadaan);
@@ -59,7 +117,7 @@ class KonsultanTeknis extends CI_Controller {
     
     public function MetodologiPerusahaan($pnp_unp,$idPengadaan){
         $data['dataPengadaan']= $this->m_konsultan->selectPengadaanKonsultanById($idPengadaan);
-        $data['dataPnp'] = $this->m_konsultan->selectMetodePerusahaanByUnp($pnp_unp);
+        $data['dataPnp'] = $this->m_konsultan->selectKualifikasiPersonilByUnp($pnp_unp);
         
         $data['content'] = 'f_pengadaan_konsultan_metode';
         $data['title']= 'Metodologi Perusahaan';
@@ -68,6 +126,7 @@ class KonsultanTeknis extends CI_Controller {
     
     public function PersonilPerusahaan($pnp_unp,$idPengadaan){
         $data['dataPengadaan']= $this->m_konsultan->selectPengadaanKonsultanById($idPengadaan);
+        //$data['dataKonsultan']= $this->m_konsultan->selectDrawTableKons1($idPengadaan);
         $data['dataPnp'] = $this->m_konsultan->selectMetodePerusahaanByUnp($pnp_unp);
         
         $data['content'] = 'f_pengadaan_konsultan_personel';

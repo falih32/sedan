@@ -30,7 +30,7 @@
                                         <div class="form-group">
                                             <label for="" class="col-sm-4 control-label text-left">Jabatan</label>
                                            <div class ="col-sm-8">
-                                            <select class="form-control optJabatan-opt2" id="psi_dtk" name="psi_dtk" required>
+                                            <select class="form-control optJabatan-opt2" id="psi_jabatan" name="psi_jabatan" required>
                                                  <option value="" >-</option>
                                              </select>  
                                            </div>  
@@ -99,7 +99,7 @@ $(document).ready(function() {
                                            </div>  
                                            </div>
                                         
-                                        <button  type="submit" class='btn btn-primary pull-right' id="addnewrowsuratusaha">
+                                        <button  type="button" class='btn btn-primary pull-right' id="addnewrowsuratusaha">
                                             Add New <span class="glyphicon glyphicon-plus">                                 
                                             </span>
                                         </button>
@@ -110,28 +110,27 @@ $(document).ready(function() {
                             </div>
                         </div>
                         <input type="hidden" class="form-control" id="unp_id" name="unp_id" value= "<?php echo $unp_id;?>">
-             
+            </form> 
                 
 <script type="text/javascript">
 $(document).ready(function() {
     //fungsi insertpersuhaan personel
     $("#personel_form").submit(function(e) {               
         e.preventDefault();
-       // alert('haha');
         $.ajax({
             url: "<?php echo site_url('KonsultanTeknis/addKualifikasiTenagaAhli');?>"+'/'+document.getElementById("unp_id").value,
             type: "POST",
             data: $(this).serialize(),
             success: function() {
                 document.getElementById("psi_nama").value ='';
-                document.getElementById("psi_dtk").value='-';
+                document.getElementById("psi_jabatan").value='-';
                 document.getElementById("psi_bobot").value='';
                 document.getElementById("psi_kesesuaian_ijasah").value='';
                 document.getElementById("psi_memiliki_sertifikat").value='';  
-                var id = document.getElementById("unp_id").value;
+                var id = document.getElementById("uns_id").value;
                 deleteAllTable('table-kualifikasi');
                 drawTableKualifikasi(id);
-               
+                getTotalKonsultan(id);
             }
         });   
      });
@@ -140,9 +139,6 @@ $(document).ready(function() {
        $('#'+idTag+' td').remove();
     }
     
-    var id = document.getElementById("unp_id").value;
-    deleteAllTable('table-kualifikasi');
-    drawTableKualifikasi(id);
     //fungsi draw table biaya personil
     function drawTableKualifikasi(id) {
         //alert('aw');
@@ -155,11 +151,11 @@ $(document).ready(function() {
                 var data1 = JSON.parse(data);
                 var i = 0;
                 var item;
-                //alert('aw');
+
                 while(i < data1.kons.length){
                     //alert('aw '+i);
                     item = data1.kons[i];
-                   // alert(item);
+                    
                      //console.log(data1.kons[i].dtk_jabatan+'\n');
                     $('#table-kualifikasi tr:last').after("<tr><td><span>"+item.psi_nama+"</span></td>\n\\n\
                         <td><span>"+item.dtk_jabatan+"</span></td>\n\
@@ -169,9 +165,7 @@ $(document).ready(function() {
                         <td><span>"+parseFloat(item.psi_jml_nilai_ks_ijasah)+"</span></td>\n\\n\\n\
                         <td><span>"+item.psi_memiliki_sertifikat+"</span></td>\n\
                         <td><span>"+parseFloat(item.psi_nilai_sertifikat)+"</span></td>\n\\n\\n\
-                        <td><span>"+parseFloat(item.psi_jml_nilai_sertifikat)+"</span></td>\n\\n\\n\\n\
-                        <td><span>"+parseFloat(item.psi_nilai)+"</span></td>\n\\n\\n\
-                        <td><span>"+parseFloat(item.psi_jumlah)+"</span></td>\n\\n\\n\
+                        <td><span>"+parseFloat(item.psi_jml_nilai_sertifikat)+"</span></td>\n\\n\\n\
                         <td class='deleterowpersonal"+item.psi_id+"' value='"+item.psi_id+"'><div class='glyphicon glyphicon-remove'></div></td></tr>");
                     deleteRow('deleterowpersonal'+item.psi_id, "<?php echo site_url('KonsultanTeknis/proses_del_KualifikasiPersonel');?>"+"/"+item.psi_id);
                     i++;
@@ -201,42 +195,69 @@ $(document).ready(function() {
         });
     }
 });
-</script>     
-            </form>
+</script>                
             <div class="col-md-12">
                     <table id = 'table-kualifikasi' class="table table-striped table-bordered table-hover" width="50%">
                     <thead>
-                        <tr bgcolor='#BDBDBD'>
+                        <tr>
                                 <th class="text-center">Nama</th>
                                 <th class="text-center">Jabatan</th>
                                 <th class="text-center">BOBOT</th>
                                 <th class="text-center" colspan="3">TINGKAT PENDIDIKAN (Bobot 40%)</th>
-                               
+                                <th class="text-center" colspan="3">PENGALAMAN KERJA PROFESIONAL (Bobot 40%)</th>
                                 <th class="text-center" colspan="3">SERTIFIKASI KEAHLIAN/PELATIHAN (20 %)</th>
                                 <th class="text-center">Nilai</th>
                                 <th class="text-center">Jumlah</th>
-                                <th class="text-center">Act</th>
                         </tr>
-                        <tr bgcolor='#BDBDBD'>
-                             
+                        <tr>
+                                <th></th>
                                 <th></th>
                                 <th></th>
                                 <th></th>
                                 <th class="text-center">Ijasah Sesuai (S)/Ijasah sesuai tetapi tingkat pendidikan tidak (SB)/Tidak Sesuai (TS)/Kurang dari yang disyaratkan (K)</th>
                                 <th class="text-center">Nilai</th>
                                 <th class="text-center">Jumlah nilai subunsur</th>
-                                
+                                <th class="text-center">Masa Kerja</th>
+                                <th class="text-center">Nilai</th>
+                                <th class="text-center">Jumlah Nilai</th>
                                 <th class="text-center">Memiliki (M) /Tidak Memiliki (TM) Sertifikat</th>
                                 <th class="text-center">Nilai</th>
                                 <th class="text-center">Jumlah Nilai</th>
-                                <th></th>
                                 <th></th>
                                 <th></th>
                         </tr>
                         
                     </thead>
                     <tbody>
-                        
+                        <td></td>
+                        <td>Team Leader</td>
+                        <input type="hidden"  class="form-control" id="psi_id" name="psi_id" value="<?php //echo $psi_id; ?>" required>
+                        <input type="hidden"  class="form-control" id="psi_uns" name="psi_uns" value="<?php //echo $psi_uns; ?>" required>
+                        <input type="hidden"  class="form-control" id="psi_dtk" name="psi_dtk" value="<?php //echo $psi_dtk; ?>" required>
+                        <td><input type="text" class="form-control" id="psi_bobot" name="psi_bobot" placeholder="Bobot" value="<?php //echo $psi_bobot; ?>" required></td>
+                        <td><select class="form-control" id="psi_kesesuaian_ijasah" name="psi_kesesuaian_ijasah" required>
+                                                 <option value="" >-</option>
+                                                 <option value="S" >S</option>
+                                                 <option value="SB" >SB</option>
+                                                 <option value="TS" >TS</option>
+                                                 <option value="K" >K</option>
+                                             </select></td>
+                        <td><input type="text" class="form-control" id="psi_nilai_ks_ijasah" name="psi_nilai_ks_ijasah" placeholder="Nilai" value="<?php //echo $psi_nilai_ks_ijasah ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_jml_nilai_ks_ijasah" name="psi_jml_nilai_ks_ijasah" placeholder="Jumlah Nilai" value="<?php //echo $psi_jml_nilai_ks_ijasah ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_masa_kerja" name="psi_masa_kerja" placeholder="Masa Kerja" value="<?php //echo $psi_masa_kerja ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_nilai_kerja" name="psi_nilai_kerja" placeholder="Nilai Kerja" value="<?php //echo $psi_nilai_kerja ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_jml_nilai_kerja" name="psi_jml_nilai_kerja" placeholder="Jumlah Nilai Kerja" value="<?php //echo $psi_jml_nilai_kerja ?>" required readonly></td>  
+                        <td><select class="form-control" id="psi_memiliki_sertifikat" name="psi_memiliki_sertifikat" required>
+                                                 <option value="" >-</option>
+                                                 <option value="M" >M</option>
+                                                 <option value="TM" >TM</option>
+                        </select></td>
+                        <td><input type="text" class="form-control" id="psi_nilai_sertifikat" name="psi_nilai_sertifikat" placeholder="Nilai Sertifikat" value="<?php //echo $psi_nilai_sertifikat ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_jml_nilai_sertifikat" name="psi_jml_nilai_sertifikat" placeholder="Jumlah Nilai Sertifikat" value="<?php //echo $psi_jml_nilai_sertifikat ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_nilai" name="psi_nilai" placeholder="Nilai" value="<?php //echo $psi_nilai ?>" required readonly></td>
+                        <td><input type="text" class="form-control" id="psi_jumlah" name="psi_jumlah" placeholder="Jumlah" value="<?php //echo $psi_jumlah ?>" required readonly></td>
+                        <input type="hidden"  class="form-control" id="psi_jangka_wkt_pro" name="psi_jangka_wkt_pro" value="<?php //echo $psi_jangka_wkt_pro; ?>" required>
+     
                     </tbody>
                     </table>
                     

@@ -7,11 +7,17 @@ class PDF_MC_Table extends FPDF
 var $widths;
 var $aligns;
 var $a;
-
+var $o;
 function SetWidths($w)
 {
     //Set the array of column widths
     $this->widths=$w;
+}
+
+function SetRataKanan($o)
+{
+    //Set the array of column widths
+    $this->o=$o;
 }
 function SetHeaders($header,$wi)
 			{
@@ -42,13 +48,14 @@ function Row($data)
     {
         $w=$this->widths[$i];
         $a=isset($this->aligns[$i]) ? $this->aligns[$i] : $this->a;
+        $o=$this->o;
         //Save the current position
         $x=$this->GetX();
         $y=$this->GetY();
         //Draw the border
         $this->Rect($x,$y,$w,$h);
         //Print the text
-        if($i>=2){ $a='R'; }
+        if($i>=$o){ $a='R'; }
         $this->MultiCell($w,6,$data[$i],0,$a);
         //Put the position to the right of the cell
         $this->SetXY($x+$w,$y);

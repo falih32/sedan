@@ -57,13 +57,13 @@ class M_laporan extends CI_Model{
 //                . "WHERE jbt_id = '33' ")->row();
 //       return $data;
 //    }
-     function detpengbyid($id) {
-       $data = $this->db->query("SELECT * "
-                . "FROM t_detail_pengadaan "
-                . "LEFT JOIN t_pengadaan ON dtp_pengadaan = pgd_id "
-                . "WHERE pgd_id = '$id' ")->result();
-       return $data;
-    }   
+//     function detpengbyid($id) {
+//       $data = $this->db->query("SELECT * "
+//                . "FROM t_detail_pengadaan "
+//                . "LEFT JOIN t_pengadaan ON dtp_pengadaan = pgd_id "
+//                . "WHERE pgd_id = '$id' ")->result();
+//       return $data;
+//    }   
      function selectpengbyid($id) {
         $this->db->select('*');
         $this->db->from('t_pengadaan');
@@ -203,6 +203,11 @@ class M_laporan extends CI_Model{
                 . "where dipa_nomor='$no' and dipa_deleted=0 ")->row();
         return  $data;
      }
-     
+     function selectUP($id) { //unsurpenilaian
+        $data = $this->db->query("SELECT * "
+                . "FROM t_unsur_penilaian "
+                . "where unp_pgd='$id'")->row();
+        return  $data;
+     }
 }
 

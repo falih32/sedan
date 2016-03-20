@@ -101,7 +101,7 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalK)));
 			$n=0;
 		for($i=0;$i<1;$i++){
 		$n++;
-			$pdf->Row1(array($n,$d->spl_nama,$d->pgd_perwakilan_spl,'ddd','ddd','ssss','Lulus')); 
+			$pdf->Row1(array($n,$d->spl_nama,$up->unp_jml_png_prs,$up->unp_jml_pnd_mtd,$up->unp_jml_kua_tna,$up->unp_jml_png_prs+$up->unp_jml_pnd_mtd+$up->unp_jml_kua_tna,'Lulus')); 
 			}
                 $pdf->Ln(10);        
                 $w = array(10,100,50);

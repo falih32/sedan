@@ -19,6 +19,7 @@ class Laporan extends CI_Controller {
             $this->load->model('m_laporan');
             $this->load->model('m_user');
             $this->load->model('m_pengadaan');
+            $this->load->model('m_konsultan');
         }
     }
     
@@ -288,10 +289,12 @@ class Laporan extends CI_Controller {
     }
     
      public function cetakhps(){
-     $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
-     
+     $datacetak['listpeng']=$this->m_pengadaan->selectDrawTablePengadaan($this->input->post('idpengadaan'));    
+     $datacetak['listpengK']=$this->m_konsultan->selectDrawTableKons1($this->input->post('idpengadaan'));
+     $datacetak['listpengK2']=$this->m_konsultan->selectDrawTableKons2($this->input->post('idpengadaan'));
      $d=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
      $datacetak['namappk']=$d->pgd_nama_ppk;
+     $datacetak['tipepengadaan']=$d->pgd_tipe_pengadaan;
      $datacetak['pgd_dgn_pajak']=$d->pgd_dgn_pajak;
      $datacetak['jum_sblm_ppn']=$d->pgd_jml_sblm_ppn_hps;
      $datacetak['jum_ssdh_ppn']=$d->pgd_jml_ssdh_ppn_hps;
@@ -578,7 +581,9 @@ class Laporan extends CI_Controller {
       $datacetak['noevateknis']=$this->input->post('no_BA_evateknis');
       $datacetak['tglKudg']=$this->input->post('tglBAET');  
       $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
-      
+      if($datacetak['d']->pgd_tipe_pengadaan==2) {
+          $datacetak['up']=$this->m_laporan->selectUP($this->input->post('idpengadaan'));
+      }
          $dsrt ['dsrt_jenis_surat']=10;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
          $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');

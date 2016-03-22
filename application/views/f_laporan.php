@@ -247,7 +247,7 @@
                   </div>  
                 </form>
             </div>
-                
+          <?php if($d->pgd_tipe_pengadaan!=2) {?>      
               <div class="col-md-12 "><hr>    
                  <form id="f4" method="post" action="<?php echo base_url()."laporan/cetakspektek"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
@@ -274,7 +274,7 @@
                   </div>
                 </form> 
             </div>
-                
+          <?php } ?>   
           <div class="col-md-12 "><hr>        
                  <form id="f5" method="post" action="<?php echo base_url()."laporan/cetakldp"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 

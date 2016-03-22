@@ -325,8 +325,12 @@ class Laporan extends CI_Controller {
          $this->load->view('fpdf/c_hps',$datacetak);       
      }
      public function cetak_dftr_harga(){
-     $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
+     $datacetak['listpeng']=$this->m_pengadaan->selectDrawTablePengadaan($this->input->post('idpengadaan'));
+     $datacetak['listpengK']=$this->m_konsultan->selectDrawTableKons1($this->input->post('idpengadaan'));
+     $datacetak['listpengK2']=$this->m_konsultan->selectDrawTableKons2($this->input->post('idpengadaan'));
+     
      $d=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
+     $datacetak['tipepengadaan']=$d->pgd_tipe_pengadaan;
      $datacetak['namapejpeng']=$d->pgd_nama_pejpeng;
      $datacetak['tgl']=$this->input->post('tgldkh');
      $datacetak['perihal']=$d->pgd_perihal;
@@ -362,7 +366,7 @@ class Laporan extends CI_Controller {
     
      public function cetakspektek(){
          
-            $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));    
+            $datacetak['listpeng']=$this->m_pengadaan->selectDrawTablePengadaan($this->input->post('idpengadaan'));   
             $d=$this->m_laporan->selectpengbyid($this->input->post('idpengadaan'))->row();
             $datacetak['namappk']=$d->pgd_nama_ppk;
             $datacetak['perihal']=$d->pgd_perihal;
@@ -501,7 +505,7 @@ class Laporan extends CI_Controller {
       $datacetak['noevadministrasi']=$this->input->post('no_BA_evadministrasi');  
       $datacetak['tglpembukaan']=$this->input->post('tglBAEA');  
       $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
-      
+        $datacetak['tipepengadaan']=$datacetak['d']->pgd_tipe_pengadaan;
         $dsrt ['dsrt_jenis_surat']=8;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
          $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');
@@ -743,13 +747,16 @@ class Laporan extends CI_Controller {
       public function cetakBAklarifikasi(){
             $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
          // $datacetak['noundangan']=$this->input->post('no_undangan');
+            $datacetak['tipepengadaan']=$datacetak['d']->pgd_tipe_pengadaan;
             $datacetak['nomor']=$this->input->post('no_BA_klarifikasi');
             $datacetak['nokepkuas']=$this->input->post('no_kepkuas');
             $datacetak['tglkepkuas']=$this->input->post('tglkepkuas');
             $datacetak['tglklarifikasi']=$this->input->post('tglBAK');
            // $datacetak['pwk']=$this->input->post('nama_perwakilan');
             
-            $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));
+            $datacetak['listpeng']=$this->m_pengadaan->selectDrawTablePengadaan($this->input->post('idpengadaan'));    
+            $datacetak['listpengK']=$this->m_konsultan->selectDrawTableKons1($this->input->post('idpengadaan'));
+            $datacetak['listpengK2']=$this->m_konsultan->selectDrawTableKons2($this->input->post('idpengadaan'));
          $dsrt ['dsrt_jenis_surat']=12;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');
          $dsrt ['dsrt_idpengadaan']= $this->input->post('idpengadaan');

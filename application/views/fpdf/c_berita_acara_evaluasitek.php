@@ -131,7 +131,56 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalK)));
 		$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,1,'L');
 		$pdf->Ln(15);
 		$pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,1,'L');
+     
                 
+ $pdf->AddPage();
+//Header	
+		$pdf->Ln(45);		
+		$pdf->SetFont('Arial','B',12);	
+		$pdf->Cell(0,6,'LAMPIRAN BERITA ACARA EVALUASI TEKNIS',0,2,'C');
+		$pdf->MultiCell(0,6, strtoupper($d->pgd_perihal),0,'C');
+$pdf->Ln(8);
+		$pdf->SetFont('Arial','',11);                
+                $pdf->Cell(0,6,'Tahun Anggaran '.$pdf->tanggal("Y",$d->pgd_tanggal_input),0,3,'L');
+                $pdf->Cell(0,6,'NOMOR : '.$noevateknis,0,2,'L');
+		$pdf->Cell(0,6,'Tanggal  : '.$pdf->tanggal("j M Y", $tanggalK),0,2,'L');
+		$pdf->Ln(5);
+                $w = array(10,80,30,30,30);
+		$pdf->SetWidths($w);
+		$a='C';
+		$pdf->SetAligns($a);
+		//header
+		$pdf->SetFont('Arial','B',12);
+                $pdf->Cell($w[0],7,'','LTR',0,'L',0); $pdf->Cell($w[1],7,'','LTR',0,'C',0);$pdf->Cell($w[2],7,'','LTR',0,'C',0); $pdf->Cell(60,7,'Nama Perusahaan','LTR',1,'C',0);    
+                $pdf->Cell($w[0],7,'','LTR',0,'L',0); $pdf->Cell($w[1],7,'','LTR',0,'C',0);$pdf->Cell($w[2],7,'','LTR',0,'C',0); $pdf->Cell(60,7,$d->spl_nama,'LTR',1,'C',0); 
+			for($i=0;$i<1;$i++){
+			$pdf->Row1(array('No','Unsur Penilaian','Bobot Unsur','Nilai','Jumlah Nilai')); 
+			} 
+              $pdf->SetFont('Arial','',11);
+              $pdf->SetAligns('L');
+              $pdf->SetRataKanan(2);
+              $n= array('1','2','3');   
+              $upn= array('Pengalaman Perusahaan','Pendekatan dan Metodologi','Kualifikasi Tenaga Ahli');
+              $bu= array($up->unp_bobot_png_prs,$up->unp_bobot_pnd_mtd,$up->unp_bobot_kua_tna);   
+              $nilai= array($up->unp_nilai_png_prs,$up->unp_nilai_pnd_mtd,$up->unp_nilai_kua_tna); 
+              $jn= array($up->unp_jml_png_prs,$up->unp_jml_pnd_mtd,$up->unp_jml_kua_tna); 
+                 for($i=0;$i<3;$i++){
+			$pdf->Row(array($n[$i],$upn[$i],$bu[$i],$nilai[$i],$jn[$i])); 
+			}
+            $pdf->SetFont('Arial','B',11);  
+              
+            $pdf->Cell($w[0],7,'',1,0,'L',0); $pdf->Cell($w[1],7,'JUMLAH',1,0,'L',0);$pdf->Cell($w[2],7,'1.00',1,0,'R',0);$pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,$up->unp_jml_png_prs+$up->unp_jml_pnd_mtd+$up->unp_jml_kua_tna,1,1,'R',0);    
+            $pdf->SetFont('Arial','',11); 
+            $pdf->Ln(10);
+            $pdf->Cell(105); 
+		$pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y", $tanggalK) ,0,3,'L');
+		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L'); 
+		$pdf->Cell(90,6,'Satker Biro Umum Sekretariat Jenderal',0,3,'L');
+		$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
+		$pdf->Ln(15);
+	
+		$pdf->Cell(105); 
+                $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,3,'L');
  }           
                 
                 

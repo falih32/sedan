@@ -39,7 +39,8 @@ $last=-11;
                 if($no!=0 && $rowk->dtk_sub_judul != '-99'){$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
 			$pdf->Row(array($nomor,$rowk->dtk_jabatan,$rowk->dtk_kualifikasi_pendidikan,$rowk->dtk_jml_org,$rowk->dtk_jml_bln+0,$rowk->dtk_intensitas+0,$rowk->dtk_kuantitas+0,$rowk->dtk_satuan,$pdf->formatrupiah($rowk->dtk_biaya_personil_hps),$pdf->formatrupiah($rowk->dtk_jml_biaya_hps))); 
 		$jumBLP+=$rowk->dtk_jml_biaya_hps;        
-                }                
+                }
+                $pdf->SetFont('Arial','B',11);
 		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'',1,0,'C',0); $pdf->Cell($w[2],7,'SUBTOTAL-1',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,0,'C',0); $pdf->Cell($w[5],7,'',1,0,'C',0);$pdf->Cell($w[6],7,'',1,0,'C',0);$pdf->Cell($w[7],7,'',1,0,'C',0);$pdf->Cell($w[8],7,'',1,0,'R',0); $pdf->Cell($w[9],7,$pdf->formatrupiah($jumBLP),1,1,'R',0);
 $pdf->Ln(6);
 $pdf->Cell(100,6,'2. BIAYA LANGSUNG NON PERSONIL',0,3,'L');      
@@ -64,7 +65,8 @@ $pdf->Cell(100,6,'2. BIAYA LANGSUNG NON PERSONIL',0,3,'L');
                 if($no!=0 && $rowk2->dtk2_sub_judul != '-99'){$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
 			$pdf->Row(array($nomor,$rowk2->dtk2_pekerjaan,$rowk2->dtk2_volume+0,$rowk2->dtk2_volume+0,$rowk2->dtk2_volume+0,$rowk2->dtk2_satuan,$pdf->formatrupiah($rowk2->dtk2_hargasatuan_hps+0),$pdf->formatrupiah($rowk2->dtk2_jumlahharga_hps+0))); 
 		$jumBLNP+=$rowk2->dtk2_jumlahharga_hps;        
-                }                
+                }
+                $pdf->SetFont('Arial','B',11);
 		$pdf->Cell($w[0],7,'',1,0,'c',0); $pdf->Cell($w[1],7,'SUBTOTAL-2',1,0,'C',0); $pdf->Cell($w[2],7,'',1,0,'C',0); $pdf->Cell($w[3],7,'',1,0,'C',0); $pdf->Cell($w[4],7,'',1,0,'C',0); $pdf->Cell($w[5],7,'',1,0,'C',0);$pdf->Cell($w[6],7,'',1,0,'R',0);$pdf->Cell($w[7],7,$pdf->formatrupiah($jumBLNP),1,0,'R',0);
  
                 $pdf->AddPage();
@@ -117,10 +119,10 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
                 $subno=0;                
  //isi                   
 		foreach ($listpeng as $row) {
-                if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array('  '.$no,$row->sjd_sub_judul,'', '' ,''));}
+                if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));}
 		$subno++;
-                if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.''.$subno;} else {$nomor=$subno;}
-			$pdf->Row(array($nomor,$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_hps) ,$pdf->formatrupiah($row->dtp_jumlahharga_hps))); 
+                if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
+			$pdf->Row(array($nomor.'.',$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_hps) ,$pdf->formatrupiah($row->dtp_jumlahharga_hps))); 
 		}
 		//$format = number_format($jum, 0, '','.');
 		if($pgd_dgn_pajak==0){

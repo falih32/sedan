@@ -27,11 +27,13 @@ $pdf->SetMargins(15,10,10);
 		
 		$pdf->SetAligns('L');
 		$no=0;
+                $subno=0; 
 		foreach ($listpeng as $row) {
-		$no++;	
-                    if($row->dtp_spesifikasi!=Null) {
-			$pdf->Row1(array('  '.$no,$row->dtp_pekerjaan,$row->dtp_spesifikasi));
-                    }
+		if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array('  '.$no,$row->sjd_sub_judul,''));}
+		$subno++;
+                    if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.''.$subno;} else {$nomor=$subno;}
+			$pdf->Row1(array($nomor.'.',$row->dtp_pekerjaan,$row->dtp_spesifikasi));
+                    
 		}	
 		
 		$pdf->Ln(10);

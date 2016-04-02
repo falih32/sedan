@@ -209,5 +209,25 @@ class M_laporan extends CI_Model{
                 . "where unp_pgd='$id'")->row();
         return  $data;
      }
+    function selectKualifikasiPersonilByUnp($id){
+        return $this->db->query(""
+                . "SELECT dtk_sub_judul,sjd_sub_judul, dtk_jabatan, t_personal_inti.* "
+                . "FROM t_personal_inti "
+                . "LEFT JOIN t_detail_konsultan1 "
+                . "ON dtk_id = psi_dtk "
+                . "LEFT JOIN t_sub_judul "
+                . "ON dtk_sub_judul = sjd_id "
+                . "WHERE psi_uns = '$id' "
+                . "ORDER BY sjd_id IS NULL, dtk_id ")->result();
+    }
+    function selectPengalamanKerjaByUnp($id){
+        return $this->db->query("SELECT dtk_sub_judul, sjd_sub_judul, dtk_jabatan, psi_nama, psi_masa_kerja, psi_bobot, t_pengalaman_kerja.* "
+                . "FROM t_pengalaman_kerja "
+                . "LEFT JOIN t_personal_inti ON psi_id = pnk_psi "
+                . "LEFT JOIN t_detail_konsultan1 ON dtk_id = psi_dtk "
+                . "LEFT JOIN t_sub_judul ON dtk_sub_judul = sjd_id "
+                . "WHERE psi_uns = '$id' ORDER BY sjd_id IS NULL, sjd_sub_judul, pnk_id ")->result();
+    }
+    
 }
 

@@ -37,7 +37,7 @@ $pdf->AddPage();
 		$pdf->Ln(2);
 		$w = array(5,70,5,110);
 		$pdf->SetWidths($w);
-                     if($pdf->getY()>256) {
+                if($pdf->getY()>256) {
 		$pdf->AddPage();	
 		}
 		$a=array('Harga Penawaran Sebelum Negoisasi','Harga Penawaran Setelah Negoisasi');

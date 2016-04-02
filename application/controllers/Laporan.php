@@ -587,6 +587,10 @@ class Laporan extends CI_Controller {
       $datacetak['d']=$this->m_laporan->selectPengSUP($this->input->post('idpengadaan'))->row();
       if($datacetak['d']->pgd_tipe_pengadaan==2) {
           $datacetak['up']=$this->m_laporan->selectUP($this->input->post('idpengadaan'));
+          $datacetak['pp']=$this->m_konsultan->selectPengalamanPerusahaanByUnp($datacetak['up']->unp_id);
+          $datacetak['mtd']=$this->m_konsultan->selectMetodePerusahaanByUnp($datacetak['up']->unp_id);
+          $datacetak['pi']=$this->m_laporan->selectKualifikasiPersonilByUnp($datacetak['up']->unp_id);
+          $datacetak['pk']=$this->m_laporan->selectPengalamanKerjaByUnp($datacetak['up']->unp_id);
       }
          $dsrt ['dsrt_jenis_surat']=10;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');

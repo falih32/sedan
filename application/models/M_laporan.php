@@ -218,7 +218,7 @@ class M_laporan extends CI_Model{
                 . "LEFT JOIN t_sub_judul "
                 . "ON dtk_sub_judul = sjd_id "
                 . "WHERE psi_uns = '$id' "
-                . "ORDER BY sjd_id IS NULL, dtk_id ")->result();
+                . "ORDER BY sjd_id IS NULL, sjd_sub_judul, dtk_id ")->result();
     }
     function selectPengalamanKerjaByUnp($id){
         return $this->db->query("SELECT dtk_sub_judul, sjd_sub_judul, dtk_jabatan, psi_nama, psi_masa_kerja, psi_bobot, t_pengalaman_kerja.* "

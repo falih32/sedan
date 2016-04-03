@@ -460,10 +460,10 @@ $(document).ready(function() {
             type: "POST",
             data: $(this).serialize(),
             success: function(msg) {
-                if(msg === "0success"){
+                if(msg === "success"){
                     document.getElementById('sjd_sub_judul').value = "";
                     alert("Sub judul berhasil dibuat");
-                }else if(msg === "1duplicate"){
+                }else if(msg === "duplicate"){
                     alert("Sub judul sudah ada");
                 }else if(msg === "empty"){
                    // alert(msg);

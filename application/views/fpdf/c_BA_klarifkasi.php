@@ -60,6 +60,7 @@ $tanggalK=$tglklarifikasi;
 		$pdf->Cell($w[0],7,'','LBR',0,'L',0); $pdf->Cell($w[1],7,'','LBR',0,'L',0); $pdf->Cell($w[2],7,'','LBR',0,'L',0); $pdf->Cell($w[3],7,'(Rp.)','LR',0,'C',0); $pdf->Cell($w[4],7,'(Rp.)','LR',0,'C',0);$pdf->Cell($w[5],7,'(Rp.)','LR',0,'C',0); $pdf->Cell($w[6],7,'(Rp.)','LBR',1,'C',0);
 		
 		$pdf->SetAligns('L');
+                $pdf->SetRataKanan(2);
 		$no=0;
                 $subno=0; 
 		foreach ($listpeng as $row) {
@@ -97,7 +98,7 @@ $pdf->AddPage('l');
 //Header
 $pdf->SetLineWidth(0.5);
 		$pdf->Cell(120);
-		$pdf->SetFont('Arial','',11);
+		$pdf->SetFont('Arial','B',11);
 		$pdf->Cell(30,6,'Lampiran Berita Acara Klarifikasi dan Negoisasi Harga',0,3,'C');
 		$pdf->Cell(30,6,$d->pgd_perihal,0,3,'C');
 		$pdf->Cell(30,6,'Setker Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan',0,3,'C');
@@ -106,9 +107,9 @@ $pdf->SetLineWidth(0.5);
                //header 
               $pdf->Cell(100,6,'1. BIAYA LANGSUNG PERSONIL',0,3,'L');      
               $header = array('No', 'Jabatan', 'Kualifikasi Pendidikan','Jumlah Orang','Jumlah Bulan','Intensitas','Kuantitas','Satuan','Biaya Personil (Rp.)','Jumlah Biaya (Rp.)','Biaya Personil (Rp.)','Jumlah Biaya (Rp.)');                 
-              $w = array(10,35,40,15,15,14,14,15,25,25,25,25);
+              $w = array(10,35,40,16,16,14,14,15,25,25,25,25);
 		$pdf->SetWidths($w);
-		$pdf->SetFont('Arial','',11);
+		//$pdf->SetFont('Arial','B',11);
 		$pdf->SetAligns('C');
                 $pdf->Cell($w[0],7,' ','LTR',0,'L',0); $pdf->Cell($w[1],7,'','LTR',0,'C',0); $pdf->Cell($w[2],7,'','LTR',0,'C',0);$pdf->Cell($w[3],7,'','LTR',0,'C',0);$pdf->Cell($w[4],7,'','LTR',0,'C',0);$pdf->Cell($w[5],7,'','LTR',0,'C',0);$pdf->Cell($w[6],7,'','LTR',0,'C',0);$pdf->Cell($w[7],7,'','LTR',0,'C',0); $pdf->Cell(50,7,'Harga Penawaran','LTR',0,'C',0); $pdf->Cell(50,7,'Harga Negoisasi','LRT',1,'C',0);
 		for($i=0;$i<1;$i++){
@@ -122,10 +123,11 @@ $pdf->SetLineWidth(0.5);
                 //isi    
                 $jumBLPpnr=0; $jumBLPfix=0;
                 foreach ($listpengK as $rowk) {
-                if(($rowk->dtk_sub_judul != '-99')&&($rowk->dtk_sub_judul !=$last)){$last=$rowk->dtk_sub_judul; $no++; $pdf->Row(array($no.'.',$rowk->sjd_sub_judul,'', '' ,'','','','','','','','')); $subno=0;}
+                if(($rowk->dtk_sub_judul != '-99')&&($rowk->dtk_sub_judul !=$last)){$pdf->SetFont('Arial','B',11);$last=$rowk->dtk_sub_judul; $no++; $pdf->Row(array($no.'.',$rowk->sjd_sub_judul,'', '' ,'','','','','','','','')); $subno=0;}
 		$subno++;
                 if($no!=0 && $rowk->dtk_sub_judul != '-99'){$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
-			$pdf->Row(array($nomor,$rowk->dtk_jabatan,$rowk->dtk_kualifikasi_pendidikan,$rowk->dtk_jml_org,$rowk->dtk_jml_bln+0,$rowk->dtk_intensitas+0,$rowk->dtk_kuantitas+0,$rowk->dtk_satuan,$pdf->formatrupiah($rowk->dtk_biaya_personil_pnr),$pdf->formatrupiah($rowk->dtk_jml_biaya_pnr),$pdf->formatrupiah($rowk->dtk_biaya_personil_fix),$pdf->formatrupiah($rowk->dtk_jml_biaya_fix))); 
+		$pdf->SetFont('Arial','',11);	
+                $pdf->Row(array($nomor,$rowk->dtk_jabatan,$rowk->dtk_kualifikasi_pendidikan,$rowk->dtk_jml_org,$rowk->dtk_jml_bln+0,$rowk->dtk_intensitas+0,$rowk->dtk_kuantitas+0,$rowk->dtk_satuan,$pdf->formatrupiah($rowk->dtk_biaya_personil_pnr),$pdf->formatrupiah($rowk->dtk_jml_biaya_pnr),$pdf->formatrupiah($rowk->dtk_biaya_personil_fix),$pdf->formatrupiah($rowk->dtk_jml_biaya_fix))); 
 		$jumBLPpnr+=$rowk->dtk_jml_biaya_pnr; $jumBLPfix+=$rowk->dtk_jml_biaya_fix;        
                 }
                 $pdf->SetFont('Arial','B',11);
@@ -135,7 +137,7 @@ $pdf->Cell(100,6,'2. BIAYA LANGSUNG NON PERSONIL',0,3,'L');
               $header = array('No', 'Uraian', 'Unit','Volume','Kuantitas','Satuan','Harga Satuan (Rp.)','Jumlah (Rp.)','Harga Satuan (Rp.)','Jumlah (Rp.)');                 
               $w = array(10,40,15,20,20,20,30,30,30,30);
 		$pdf->SetWidths($w);
-		$pdf->SetFont('Arial','',11);
+		//$pdf->SetFont('Arial','',11);
 		$pdf->SetAligns('C');
                 $pdf->Cell($w[0],7,' ','LTR',0,'L',0); $pdf->Cell($w[1],7,'','LTR',0,'C',0); $pdf->Cell($w[2],7,'','LTR',0,'C',0);$pdf->Cell($w[3],7,'','LTR',0,'C',0);$pdf->Cell($w[4],7,'','LTR',0,'C',0);$pdf->Cell($w[5],7,'','LTR',0,'C',0);$pdf->Cell(60,7,'Harga Penawaran','LTR',0,'C',0); $pdf->Cell(60,7,'Harga Negoisasi','LRT',1,'C',0);
 		for($i=0;$i<1;$i++){
@@ -149,10 +151,11 @@ $pdf->Cell(100,6,'2. BIAYA LANGSUNG NON PERSONIL',0,3,'L');
                 //isi
                 $jumBLNPpnr=0; $jumBLNPfix=0;
                 foreach ($listpengK2 as $rowk2) {
-                if(($rowk2->dtk2_sub_judul != '-99')&&($rowk2->dtk2_sub_judul !=$last)){$last=$rowk2->dtk2_sub_judul; $no++; $pdf->Row(array($no.'.',$rowk2->sjd_sub_judul,'', '' ,'','','','','','')); $subno=0;}
+                if(($rowk2->dtk2_sub_judul != '-99')&&($rowk2->dtk2_sub_judul !=$last)){$pdf->SetFont('Arial','B',11);$last=$rowk2->dtk2_sub_judul; $no++; $pdf->Row(array($no.'.',$rowk2->sjd_sub_judul,'', '' ,'','','','','','')); $subno=0;}
 		$subno++;
                 if($no!=0 && $rowk2->dtk2_sub_judul != '-99'){$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
-			$pdf->Row(array($nomor,$rowk2->dtk2_pekerjaan,$rowk2->dtk2_volume+0,$rowk2->dtk2_volume+0,$rowk2->dtk2_volume+0,$rowk2->dtk2_satuan,$pdf->formatrupiah($rowk2->dtk2_hargasatuan_pnr+0),$pdf->formatrupiah($rowk2->dtk2_jumlahharga_pnr+0),$pdf->formatrupiah($rowk2->dtk2_hargasatuan_fix+0),$pdf->formatrupiah($rowk2->dtk2_jumlahharga_fix+0))); 
+		$pdf->SetFont('Arial','',11);
+                $pdf->Row(array($nomor,$rowk2->dtk2_pekerjaan,$rowk2->dtk2_volume+0,$rowk2->dtk2_volume+0,$rowk2->dtk2_volume+0,$rowk2->dtk2_satuan,$pdf->formatrupiah($rowk2->dtk2_hargasatuan_pnr+0),$pdf->formatrupiah($rowk2->dtk2_jumlahharga_pnr+0),$pdf->formatrupiah($rowk2->dtk2_hargasatuan_fix+0),$pdf->formatrupiah($rowk2->dtk2_jumlahharga_fix+0))); 
 		$jumBLNPpnr+=$rowk2->dtk2_jumlahharga_pnr;$jumBLNPfix+=$rowk2->dtk2_jumlahharga_fix;        
                 }
                 $pdf->SetFont('Arial','B',11);

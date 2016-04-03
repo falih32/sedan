@@ -109,7 +109,7 @@ class M_konsultan extends CI_Model{
                 . "LEFT JOIN t_sub_judul "
                 . "ON dtk_sub_judul = sjd_id "
                 . "WHERE dtk_pgd = '$id' "
-                . "ORDER BY sjd_id IS NULL, dtk_id")->result();
+                . "ORDER BY sjd_id IS NULL, sjd_id,dtk_id")->result();
     }
     
     function selectDrawTableKons2($id){
@@ -119,7 +119,7 @@ class M_konsultan extends CI_Model{
                 . "LEFT JOIN t_sub_judul "
                 . "ON dtk2_sub_judul = sjd_id "
                 . "WHERE dtk2_pengadaan = '$id' "
-                . "ORDER BY sjd_id IS NULL, dtk2_id")->result();
+                . "ORDER BY sjd_id IS NULL, sjd_id, dtk2_id")->result();
     }
     
     function selectKualifikasiPersonilByUnp($id){

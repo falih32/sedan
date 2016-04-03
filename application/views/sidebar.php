@@ -15,7 +15,7 @@
                             <a href="<?php echo site_url("dashboard"); ?>"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                            <a href=""><i class="fa fa-bar-chart-o fa-fw"></i> Pengadaan Barang<span class="fa arrow"></span></a>
+                            <a href=""><i class="fa fa-cubes fa-fw"></i> Pengadaan Barang<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanBarangHPS"); ?>">Setelah HPS</a>
@@ -43,7 +43,7 @@
                             <!-- /.nav-second-level -->
                         </li>                
                         <li>
-                            <a href="#"><i class="fa fa-wrench fa-fw"></i> Pengadaan Jasa<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-truck fa-fw"></i> Pengadaan Jasa<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanJasaHPS"); ?>">Setelah HPS</a>
@@ -71,7 +71,7 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-sitemap fa-fw"></i> Pengadaan Konsultan<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-male fa-fw"></i> Pengadaan Konsultan<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
                                     <a href="<?php echo site_url("Pengadaan/PengadaanKonsultanHPS"); ?>">Setelah HPS</a>

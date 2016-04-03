@@ -984,7 +984,10 @@ for($i=13;$i<=15;$i++){
          $datacetak['dipa']=$this->m_laporan->pilihdipa($this->input->post('dipa_nomor'));
          $datacetak['tglawal']=$this->input->post('tglawal');
          $datacetak['tglakhir']=$this->input->post('tglakhir');
-            $datacetak['listpeng']=$this->m_laporan->detpengbyid($this->input->post('idpengadaan'));  
+         $datacetak['listpeng']=$this->m_pengadaan->selectDrawTablePengadaan($this->input->post('idpengadaan'));    
+         $datacetak['listpengK']=$this->m_konsultan->selectDrawTableKons1($this->input->post('idpengadaan'));
+         $datacetak['listpengK2']=$this->m_konsultan->selectDrawTableKons2($this->input->post('idpengadaan'));
+         $datacetak['tipepengadaan']=$datacetak['d']->pgd_tipe_pengadaan;
          
          $dsrt ['dsrt_jenis_surat']=18;
          $dsrt ['dsrt_pencetak']=$this->session->userdata('id_user');

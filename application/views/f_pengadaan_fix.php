@@ -32,7 +32,7 @@
                 </h3>
             </div>
             <div class="panel-body">
-                <form id = "penawaran_form"  action = "<?php echo base_url()."Pengadaan/proses_add_fix";?>" onsubmit="return submitFormFix();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form id = "penawaran_form" method="post"  action = "<?php echo base_url()."Pengadaan/proses_add_fix";?>" onsubmit="return submitFormFix();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
             	<table class="table table-striped table-bordered table-hover" width="50%">
                     <tbody>
                     	<tr>

@@ -29,6 +29,14 @@ class Supplier extends CI_Controller {
         echo $this->m_supplier->ajaxProcess();
     }
     
+    public function select2All(){
+        $search = strip_tags(trim($this->input->get('q')));
+        //$search = "";
+        $result = $this->m_supplier->select2All($search);
+        
+        echo json_encode($result); 
+    }
+    
     function postVariabel(){
 	//$data['utj_id']             = $this->input->post('utj_id');
 	$data['spl_nama']    = $this->input->post('spl_nama');

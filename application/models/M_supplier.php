@@ -10,6 +10,17 @@ class M_supplier extends CI_Model{
         $this->db->insert('t_supplier', $data);
     }
     
+    function select2All($search){
+        
+        $search = '%'.$search.'%';
+        return $this->db->query("select spl_id as id, spl_nama as 'text' "
+                . "From t_supplier "
+                . "where spl_deleted = 0 "
+                . "and spl_nama like '$search' "
+                . "order by spl_nama LIMIT 0,40")->result();
+       
+    }
+    
     function selectAll(){
         $this->db->select('*');
         $this->db->from('t_supplier');

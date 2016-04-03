@@ -34,16 +34,6 @@ class Anggaran extends CI_Controller {
         //$search = "";
         $result = $this->m_anggaran->select2All($search);
         
-//        if(count($result) != 0) {
-//            foreach ($result as $row){
-//                $answer[] = array("id"=>$row->ang_kode,"text"=>$row->ang_kode." - ".$row->ang_nama);  
-//            }
-//          } 
-//        else { 
-//            // 0 results send a message back to say so.     
-//            $answer[] = array("id"=>"0","text"=>"Data tidak ditemukan.."); 
-//        } 
-        // finally encode the answer to json and send back the result. 
         echo json_encode($result); 
     }
     function postVariabel(){

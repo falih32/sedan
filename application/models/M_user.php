@@ -25,6 +25,7 @@ class M_user extends CI_Model{
     // cek keberadaan user di sistem
     function check_user_account($username, $password){
         return $this->db->query("SELECT * FROM t_user "
+				. "LEFT JOIN t_pegawai ON pgw_id = usr_pegawai"." "
                 . "WHERE usr_username LIKE BINARY ".$this->db->escape($username)." "
                 . "AND usr_password LIKE BINARY ".$this->db->escape(md5($password))." "
                 . "AND usr_deleted = '0';");

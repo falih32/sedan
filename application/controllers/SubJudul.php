@@ -33,7 +33,7 @@ class SubJudul extends CI_Controller {
         try {
             if($nama != ''){
                 $count = count($this->M_subjudul->selectByNama($nama)->row());
-                echo $count;
+                
                 if($count > 0){
                     echo "duplicate";
                 }else{

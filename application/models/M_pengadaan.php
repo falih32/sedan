@@ -14,7 +14,7 @@ class M_pengadaan extends CI_Model{
                 . "LEFT JOIN t_sub_judul "
                 . "ON dtp_sub_judul = sjd_id "
                 . "WHERE dtp_pengadaan = '$id' "
-                . "ORDER BY sjd_id IS NULL, dtp_id")->result();
+                . "ORDER BY sjd_id IS NULL, sjd_id, dtp_id ")->result();
     }
     
     

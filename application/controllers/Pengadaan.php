@@ -315,7 +315,7 @@ class Pengadaan extends CI_Controller{
     public function detail_pengadaan_konsultan($id){
         $data['content'] = 'v_pengadaan_konsultan';
         $data['title']= 'Detail Pengadaan'; 
-        $data['dataPengadaan']= $this->m_pengadaan->selectById($id);
+        $data['dataPengadaan']= $this->m_konsultan->selectPengadaanKonsultanById($id);
         $data['jmlKons1'] = $this->m_konsultan->getTotalHargaKonsultan1($id)->jml_biaya_hps;
         $data['jmlKons2'] = $this->m_konsultan->getTotalHargaKonsultan2($id)->jml_biaya_hps;
         $data['konsultanList1']= $this->m_konsultan->selectDrawTableKons1($id);
@@ -704,15 +704,13 @@ class Pengadaan extends CI_Controller{
             $pgd['pgd_pembukaan_dok_pnr'] = $this->input->post('pgd_pembukaan_dok_pnr');
             $pgd['pgd_penandatangan_spk'] = $this->input->post('pgd_penandatangan_spk');
             $pgd['pgd_klr_teknis_nego_hrg'] = $this->input->post('pgd_klr_teknis_nego_hrg');
+            if ($pgd['pgd_dgn_pajak'] <> 1){
+                    $pgd['pgd_dgn_pajak'] = 0;
+            }
         }
         $pgd['pgd_user_update'] = $this->session->userdata('id_user');
         $pgd['pgd_lama_pekerjaan']   = $this->input->post('pgd_lama_pekerjaan');
         
-        
-        
-        if ($pgd['pgd_dgn_pajak'] <> 1){
-            $pgd['pgd_dgn_pajak'] = 0;
-        }
         $this->m_pengadaan->update($pgd['pgd_id'],$pgd);
         $idPengadaan = $pgd['pgd_id'];
         $barang = $data['Judul']= $this->input->post('Judul');
@@ -793,7 +791,7 @@ class Pengadaan extends CI_Controller{
         try {
             if($kode != '' && $nama != ''){
                 $count = count($this->M_anggaran->selectById($data['ang_kode'])->row());
-                echo $count;
+                //echo $count;
                 if($count > 0){
                     echo "duplicate";
                 }else{
@@ -901,13 +899,13 @@ class Pengadaan extends CI_Controller{
             $data3 = $this->input->post('dtk_id') ;
             $data4 = $this->input->post('dtk_biaya_personil_pnr');
             $length = count($data3);
-            echo $length;
+            //echo $length;
              //3. Update data pekerjaan
             for( $i = 0; $i < $length; $i++ ) {
                 $ax['dtk_id'] = $data3[$i];
-                echo $ax['dtk_id'];
+                //echo $ax['dtk_id'];
                 $ex['dtk_biaya_personil_pnr'] = $data4[$i];
-                echo $ex['dtk_biaya_personil_pnr'];
+                //echo $ex['dtk_biaya_personil_pnr'];
                 $this->m_konsultan->updateHargaPenawaranKonsultan1( $ax['dtk_id'],$ex);
             }
             
@@ -915,13 +913,13 @@ class Pengadaan extends CI_Controller{
             $data5 = $this->input->post('dtk2_id') ;
             $data6 = $this->input->post('dtk2_hargasatuan_pnr');
             $length = count($data5);
-            echo $length;
+            //echo $length;
              //3. Update data pekerjaan
             for( $i = 0; $i < $length; $i++ ) {
                 $ax1['dtk2_id'] = $data5[$i];
-                echo $ax1['dtk2_id'];
+                //echo $ax1['dtk2_id'];
                 $ex1['dtk2_hargasatuan_pnr'] = $data6[$i];
-                echo $ex1['dtk2_hargasatuan_pnr'];
+                //echo $ex1['dtk2_hargasatuan_pnr'];
                 $this->m_konsultan->updateHargaPenawaranKonsultan2( $ax1['dtk2_id'],$ex1);
             }
            
@@ -933,13 +931,13 @@ class Pengadaan extends CI_Controller{
             $data3 = $this->input->post('dtp_id') ;
             $data4 = $this->input->post('dtp_hargasatuan_pnr');
             $length = count($data3);
-            echo $length;
+            //echo $length;
              //3. Update data pekerjaan
             for( $i = 0; $i < $length; $i++ ) {
                 $ax['dtp_id'] = $data3[$i];
-                echo $ax['dtp_id'];
+                //echo $ax['dtp_id'];
                 $ex['dtp_hargasatuan_pnr'] = $data4[$i];
-                echo $ex['dtp_hargasatuan_pnr'];
+                //echo $ex['dtp_hargasatuan_pnr'];
                 $this->m_pengadaan->updateHargaPenawaran( $ax['dtp_id'],$ex);
             }
             
@@ -1055,13 +1053,13 @@ class Pengadaan extends CI_Controller{
             $data3 = $this->input->post('dtk_id') ;
             $data4 = $this->input->post('dtk_biaya_personil_fix');
             $length = count($data3);
-            echo $length;
+            //echo $length;
              //3. Update data pekerjaan
             for( $i = 0; $i < $length; $i++ ) {
                 $ax['dtk_id'] = $data3[$i];
-                echo $ax['dtk_id'];
+                //echo $ax['dtk_id'];
                 $ex['dtk_biaya_personil_fix'] = $data4[$i];
-                echo $ex['dtk_biaya_personil_fix'];
+                //echo $ex['dtk_biaya_personil_fix'];
                 $this->m_konsultan->updateHargaPenawaranKonsultan1( $ax['dtk_id'],$ex);
             }
             
@@ -1069,13 +1067,13 @@ class Pengadaan extends CI_Controller{
             $data5 = $this->input->post('dtk2_id') ;
             $data6 = $this->input->post('dtk2_hargasatuan_fix');
             $length = count($data5);
-            echo $length;
+            //echo $length;
              //3. Update data pekerjaan
             for( $i = 0; $i < $length; $i++ ) {
                 $ax1['dtk2_id'] = $data5[$i];
-                echo $ax1['dtk2_id'];
+                //echo $ax1['dtk2_id'];
                 $ex1['dtk2_hargasatuan_fix'] = $data6[$i];
-                echo $ex1['dtk2_hargasatuan_fix'];
+                //echo $ex1['dtk2_hargasatuan_fix'];
                 $this->m_konsultan->updateHargaPenawaranKonsultan2( $ax1['dtk2_id'],$ex1);
             }
            
@@ -1085,13 +1083,13 @@ class Pengadaan extends CI_Controller{
             $data3 = $this->input->post('dtp_id') ;
             $data4 = $this->input->post('dtp_hargasatuan_fix');
             $length = count($data3);
-            echo $length;
+            //echo $length;
              //3. Update data pekerjaan
             for( $i = 0; $i < $length; $i++ ) {
                 $ax['dtp_id'] = $data3[$i];
-                echo $ax['dtp_id'];
+                //echo $ax['dtp_id'];
                 $ex['dtp_hargasatuan_fix'] = $data4[$i];
-                echo $ex['dtp_hargasatuan_fix'];
+                //echo $ex['dtp_hargasatuan_fix'];
                 $this->m_pengadaan->updateHargaPenawaran( $ax['dtp_id'],$ex);
             }
             

@@ -66,7 +66,7 @@
                 <h3><?php echo $title; ?> (Master Data)</h3>
             </div>
             <div class="panel-body">
-                <form method="post" id = "pengadaan_form"  action = "<?php if($statuspage =="edit"){ echo base_url()."Pengadaan/proses_edit_pengadaan";}else{echo base_url()."Pengadaan/proses_add_pengadaan1";} ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                <form method="post" id = "pengadaan_form"  action = "<?php if($statuspage =="edit"){ echo base_url()."Pengadaan/proses_edit_pengadaan/".$pgd_id;}else{echo base_url()."Pengadaan/proses_add_pengadaan1";} ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">
 <!--------------------------------------------------------------------------------------------------------->                        
                         <div class="panel panel-default">
@@ -127,9 +127,9 @@
                                             <label for="pgd_supplier" class="col-sm-4 control-label text-left">Supplier</label>
                                             <div class="col-sm-8">
                                                 <select <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> class="supplier-cbbox form-control" style="width: 100%" name="pgd_supplier" data-error="Input tidak boleh kosong" required>
-                                                <?php foreach ($supplierList as $row) {?>
-                                                <option value="<?php echo $row->spl_id; ?>" <?php if ($row->spl_id == $pgd_supplier){echo 'selected';} ?>>
-                                                        <?php echo $row->spl_nama; ?>
+                                                <?php if ($pgd_supplier != "") {?>
+                                                    <option value="<?php echo $pgd_supplier; ?>" selected=>
+                                                        <?php echo $spl_nama; ?>
                                                 </option>
                                                 <?php } ?>
                                                 </select>
@@ -139,7 +139,7 @@
                                         <div class="form-group">
                                             <label for="pgd_smbr_dana" class="col-sm-4 control-label text-left">Sumber Pendanaan (Tahun)</label>
                                             <div class="col-sm-8">
-                                                <select class="supplier-cbbox form-control" style="width: 100%" name="pgd_smbr_dana" data-error="Input tidak boleh kosong" required>
+                                                <select class="form-control" style="width: 100%" name="pgd_smbr_dana" data-error="Input tidak boleh kosong" required>
                                                <?php $nowYear = date("Y")?>
                                                 <?php while ($nowYear <= date("Y")+4) {?>
                                                 <option value="<?php echo $nowYear; ?>" <?php if ($pgd_smbr_dana == $nowYear){echo 'selected';} ?>>
@@ -151,33 +151,32 @@
                                                 <div class="help-block with-errors"></div>
                                             </div>
                                         </div>
+                                        
+                                        
+                                       
+                                        <div class="form-group">
+                                            <label class="col-sm-4 control-label text-left">Uraian Singkat Pekerjaan</label>
+                                                   <div class="col-sm-8">
+                                                    <textarea  class="form-control" id="pgd_uraian_pekerjaan" name="pgd_uraian_pekerjaan" placeholder="Uraian Singkat Pekerjaan" data-error="Input tidak boleh kosong" required><?php echo $pgd_uraian_pekerjaan ?></textarea>
+                                        
+                                                    <div class="help-block with-errors"></div>
+                                                    </div>
+                                        </div>
+                                        
+                                        
+                                    </div>
+                                    <div class="col-md-6">
+                                        
+                                        
+                                        <div class="form-group">
+                                        <label class="col-md-6 col-md-offset-3 control-label text-center">Pemasukkan Dokumen Penawaran</label>
+                                        </div>
                                         <div class="form-group">
                                             <label for="pgd_pembukaan_dok_pnr" class="col-sm-4 control-label text-center">Tanggal Pembukaan Dokumen Penawaran</label>
                                             <div class="col-sm-8">
                                                 <input <?php if($pgd_status_pengadaan!=0){ echo 'disabled';}?> value ="<?php echo $pgd_pembukaan_dok_pnr; ?>" readonly type="text" class="form-control tgl" id="pgd_pembukaan_dok_pnr" name="pgd_pembukaan_dok_pnr" placeholder="Tgl Dok Penawaran" data-error="Input tidak boleh kosong" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" required>
                                                 <div class="help-block with-errors"></div>
                                             </div>
-                                        </div>
-                                        
-                                        
-                                    </div>
-                                    <div class="col-md-6">
-                                        <!--<div class="form-group">
-                                            <label for="pgd_tgl_mulai_pengadaan" class="col-sm-4 control-label text-left">Tanggal Mulai Pengadaan</label>
-                                            <div class="col-sm-8">
-                                                <input required readonly type="text" class="form-control tgl1" id="pgd_tgl_mulai_pengadaan" name="pgd_tgl_mulai_pengadaan" placeholder="Tanggal Mulai Pengadaan" pattern="^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$" data-error="Input tidak boleh kosong">
-                                                <div class="help-block with-errors"></div>
-                                            </div>
-                                        </div>-->
-                                        <div class="form-group">
-                                        <label class="col-md-6 col-md-offset-3 control-label text-center">Uraian Singkat Pekerjaan</label>
-                                        </div>
-                                        <div class="form-group">
-                                        <textarea  class="form-control" id="pgd_uraian_pekerjaan" name="pgd_uraian_pekerjaan" placeholder="Uraian Singkat Pekerjaan" data-error="Input tidak boleh kosong" required><?php echo $pgd_uraian_pekerjaan ?></textarea>
-                                        <div class="help-block with-errors"></div>
-                                        </div>
-                                        <div class="form-group">
-                                        <label class="col-md-6 col-md-offset-3 control-label text-center">Pemasukkan Dokumen Penawaran</label>
                                         </div>
                                         <div class="col-md-12">    
                                         <div class="form-group">
@@ -272,17 +271,17 @@
                                        <h4 class="modal-title" >Insert Anggaran Baru</h4>
                                      </div>
                                      <div class="modal-body">
-                                       <form id = "anggaran_form" method="post" action="<?php echo site_url('Pengadaan/prosesInputAnggaran');?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                                       <form id = "anggaran_form" method="post" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                                          <div class="form-group">
                                              <div class="col-sm-12">
                                                 <label for="ang_kode1" class="control-label">Kode Anggaran:</label>
-                                                <input type="text" class="form-control" id="ang_kode1" name="ang_kode1">
+                                                <input required type="text" class="form-control" id="ang_kode1" name="ang_kode1">
                                             </div>
                                          </div>
                                          <div class="form-group">
                                              <div class="col-sm-12">
                                                 <label for="ang_name" class="control-label">Nama Anggaran:</label>
-                                                <textarea class="form-control" id="ang_name" name="ang_name"></textarea>
+                                                <textarea required class="form-control" id="ang_name" name="ang_name"></textarea>
                                             </div>
                                          </div>
                                            <div class="modal-footer">
@@ -323,7 +322,27 @@ $(document).ready(function() {
        }
     });
    
-    
+    $(".supplier-cbbox").select2({
+       ajax: {
+         url: "<?php echo site_url('Supplier/select2All');?>",
+         dataType: 'json',
+         data: function (params) {
+           return {
+                q: params.term, // search term
+                //page: params.page
+           };
+         },
+         processResults: function (data, params) {
+              //params.page = params.page || 1;
+                    return {
+            results: data,
+        pagination: {
+          more: (params.page * 30) < data.total_count
+        }
+      };
+         }
+       }
+    });
     
     $("#anggaran_form").submit(function(e) {               
                 e.preventDefault();
@@ -332,11 +351,11 @@ $(document).ready(function() {
                     type: "POST",
                     data: $(this).serialize(),
                     success: function(msg) {
-                        if(msg === "0success"){
+                        if(msg === "success"){
                             $('#modalAnggaran').modal('hide');
-                            document.getElementById('ang_kode1').innerHTML = "";
-                            document.getElementById('ang_name').innerHTML = "";
-                        }else if(msg === "1duplicate"){
+                            document.getElementById('ang_kode1').value = "";
+                            document.getElementById('ang_name').value = "";
+                        }else if(msg === "duplicate"){
                             alert("kode anggaran sudah ada");
                         }else if(msg === "empty"){
                            // alert(msg);
@@ -349,30 +368,7 @@ $(document).ready(function() {
               
      });
 
-    $('#anggaran_form').formValidation({
-        framework: 'bootstrap',
-        icon: {
-            valid: 'glyphicon glyphicon-ok',
-            invalid: 'glyphicon glyphicon-remove',
-            validating: 'glyphicon glyphicon-refresh'
-        },
-        fields: {       
-            ang_kode1: {
-                validators: {
-                    notEmpty: {
-                        message: 'Data tidak boleh kosong'
-                    }                    
-                }
-            },
-            ang_name: {
-                validators: {
-                    notEmpty: {
-                        message: 'Data tidak boleh kosong'
-                    }                    
-                }
-            }
-        }
-    });
+    
      
 
 });

@@ -180,7 +180,7 @@
                     <tbody>
                         <tr>
                                 <th>Spesifikasi Teknis yang ditawarkan sesuai dengan yang ditetapkan dalam dokumen pengadaan</th>
-                                <td><div class="col-sm-6" ><input <?php if($pnc_kesesuaian_spec_teknis == 1){echo 'checked';}?> type="checkbox" data-off-label="Tidak Sesuai" data-on-label="Sesuai" id ="pnc_kesesuaian_spec_teknis" name ="pnc_kesesuaian_spec_teknis" value="1" data-style="btn-group-sm"></div></td>
+                                <td><div class="col-sm-10" ><input <?php if($pnc_kesesuaian_spec_teknis == 1){echo 'checked';}?> type="checkbox" data-off-label="Tidak Sesuai" data-on-label="Sesuai" id ="pnc_kesesuaian_spec_teknis" name ="pnc_kesesuaian_spec_teknis" value="1" data-style="btn-group-sm"></div></td>
                         </tr>
                         <tr>
                         	<th>Jadwal Pelaksanaan pekerjaan tidak melampaui batas waktu sebagaimana tercantum dalam LDP</th>

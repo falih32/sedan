@@ -37,6 +37,19 @@
                 $pnc_kesesuaian_jdwl_kerja = $dataPengadaan->pnc_kesesuaian_jdwl_kerja;
                 $pnc_kesesuaian_identitas = $dataPengadaan->pnc_kesesuaian_identitas;
                 
+                if($pgd_tipe_pengadaan == 2){
+                    $unp_id = $dataPengadaan->unp_id;
+                    $unp_bobot_png_prs = $dataPengadaan->unp_bobot_png_prs;
+                    $unp_nilai_png_prs = $dataPengadaan->unp_nilai_png_prs;
+                    $unp_jml_png_prs = $dataPengadaan->unp_jml_png_prs;
+                    $unp_bobot_pnd_mtd = $dataPengadaan->unp_bobot_pnd_mtd;
+                    $unp_nilai_pnd_mtd = $dataPengadaan->unp_nilai_pnd_mtd;
+                    $unp_jml_pnd_mtd = $dataPengadaan->unp_jml_pnd_mtd;
+                    $unp_bobot_kua_tna = $dataPengadaan->unp_bobot_kua_tna;
+                    $unp_nilai_kua_tna = $dataPengadaan->unp_nilai_kua_tna;
+                    $unp_jml_kua_tna = $dataPengadaan->unp_jml_kua_tna;
+                }
+                
 		$nm_ketua = $penyusunlist-> nm_ketua;
 		$nip_ketua = $penyusunlist-> nip_ketua;
                 $jbt_ketua = $penyusunlist->jbt_ketua;
@@ -166,6 +179,94 @@
                         </tr>
                     </tbody>
                 </table>
+                <?php if($status_pengadaan>1){ ?>
+                <h3>Evaluasi Teknis
+                </h3>
+                
+                <table class="table table-striped table-bordered table-hover" >
+      
+                    <thead>
+                        <tr>
+                          <th bgcolor='#BDBDBD'>Unsur Penilaian</th>
+                          <th bgcolor='#BDBDBD'>Bobot Unsur</th>
+                          <th bgcolor='#BDBDBD'>Nilai</th>
+                          <th bgcolor='#BDBDBD'>Jumlah Nilai</th>
+                          <th bgcolor='#BDBDBD'>Aksi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                                <th>Pengalaman Perusahaan</th>
+                                <td><input readonly value="<?php echo $unp_bobot_png_prs;?>" required type="text" class="form-control" id="unp_bobot_png_prs" name="unp_bobot_png_prs"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><label id="unp_nilai_png_prs" class="text-left"><?php echo $unp_nilai_png_prs;?></label></td>
+                                <td><label id="unp_jml_png_prs" class="text-left"><?php echo $unp_jml_png_prs;?></label></td>
+                                <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/PengalamanPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrypp">
+                                    Entry <span class="glyphicon glyphicon-plus"></span>
+                                </button></td>
+                        </tr>
+                        <tr>
+                        	<th>Pendekatan dan Metodologi</th>
+                                <td><input readonly value="<?php echo $unp_bobot_pnd_mtd;?>" required type="text" class="form-control" id="unp_bobot_pnd_mtd" name="unp_bobot_pnd_mtd"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><label id="unp_nilai_pnd_mtd" class="text-left"><?php echo $unp_nilai_pnd_mtd;?></label></td>
+                                <td><label id="unp_jml_pnd_mtd" class="text-left"><?php echo $unp_jml_pnd_mtd;?></label></td>
+                                <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/MetodologiPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrypm">
+                                    Entry <span class="glyphicon glyphicon-plus"></span>
+                                </button></td>
+                        </tr>
+                        <tr>
+                        	<th>Kualifikasi Tenaga Ahli</th>
+                                <td><input readonly value="<?php echo $unp_bobot_kua_tna;?>" required type="text" class="form-control" id="unp_bobot_kua_tna" name="unp_bobot_kua_tna"  data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$"></td>
+                                <td><label id="unp_nilai_kua_tna" class="text-left"><?php echo $unp_nilai_kua_tna;?></label></td>
+                                <td><label id="unp_jml_kua_tna" class="text-left"><?php echo $unp_jml_kua_tna;?></label></td>
+                                <td><button type='button' onclick="window.open('<?php echo site_url('KonsultanTeknis/PersonilPerusahaan').'/'.$unp_id.'/'.$pgd_id;?>')" class='btn btn-primary' id="entrykt">
+                                    Entry <span class="glyphicon glyphicon-plus"></span>
+                                </button></td>
+                        </tr>
+                  
+                    </tbody>
+                </table>
+                    <button type='button' class='btn btn-primary pull-right' id="refreshtableteknis">
+                        Refresh <span class="glyphicon glyphicon-plus"></span>
+                    </button> <br><br>
+                <table class="table table-striped table-bordered table-hover" width="50%">
+                    <col width="50%">
+                    <col width="50%">
+                    <tbody>
+                        <tr>
+                                <th>Apakah Evaluasi Teknis diatas sesuai ?</th>
+                                <td><div class="col-sm-10" ><input <?php if($pnc_evaluasi_teknis_konsultan == 1){echo 'checked';}?> type="checkbox" data-off-label="Tidak Sesuai" data-on-label="Sesuai" id ="pnc_evaluasi_teknis_konsultan" name ="pnc_evaluasi_teknis_konsultan" value="1" data-style="btn-group-sm"></div></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>
+                    <script type="text/javascript">
+                    $(document).ready(function() {
+                        //fungsi untuk refresh 
+                        $('#refreshtableteknis').click(function(){
+                            $.ajax({
+                            url: "<?php echo site_url('KonsultanTeknis/getUnsurPenilaian').'/'.$unp_id;?>",
+                            type: "POST",
+                            data: $(this).serialize(),
+                            success: function(dt) {
+                                var obj = JSON.parse(dt);
+                                document.getElementById('unp_bobot_png_prs').value = obj.unp_bobot_png_prs;
+                                document.getElementById('unp_bobot_pnd_mtd').value = obj.unp_bobot_pnd_mtd;
+                                document.getElementById('unp_bobot_kua_tna').value = obj.unp_bobot_kua_tna;
+                                
+                                document.getElementById('unp_nilai_png_prs').innerHTML = obj.unp_nilai_png_prs;
+                                document.getElementById('unp_nilai_pnd_mtd').innerHTML = obj.unp_nilai_pnd_mtd;
+                                document.getElementById('unp_nilai_kua_tna').innerHTML = obj.unp_nilai_kua_tna;
+                                
+                                document.getElementById('unp_jml_png_prs').innerHTML = obj.unp_jml_png_prs;
+                                document.getElementById('unp_jml_pnd_mtd').innerHTML = obj.unp_jml_pnd_mtd;
+                                document.getElementById('unp_jml_kua_tna').innerHTML = obj.unp_jml_kua_tna;
+                            }
+                        });
+                        });
+                    });
+                    </script>
+                <?php } ?>
+                    <br><br>
                 <br>
                     <h4><b>Biaya Personil</b></h4>
                 <div class="table-responsive">

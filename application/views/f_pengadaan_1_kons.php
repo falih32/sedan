@@ -196,7 +196,7 @@ if($statuspage !="edit"){
                                         <div class="form-group">
                                            <label for="chkBoxJudul2" class="col-sm-4 control-label text-left">Tambah Sub Judul</label> 
                                            <div class="col-sm-8">
-                                                <input data-style="btn-group-sm" id = "chkBoxJudul2" class ="chkBoxJudul pull-right" type="checkbox" data-off-label="Tidak" data-on-label="Ya" name ="dtk2_stat_sub_judul" value="1">
+                                                <input data-style="btn-group-sm" id = "chkBoxJudul2" class ="chkBoxJudul pull-right" type="checkbox" data-off-label="Tidak" data-on-label="Ya" name ="dtk2_stat_sub_judul" value="0">
                                            </div>
                                         </div>
                                         <div id = "frmSubJudul2" hidden class="form-group">

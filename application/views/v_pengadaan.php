@@ -229,10 +229,12 @@
                                   </div>
                                   <div class="modal-body">
                                     <p><?php echo $row->dtp_spesifikasi; ?>
+                                        <?php if($row->dtp_file!="" || $row->dtp_file!=NULL){ ?>
                                         <?php $urlfile = site_url('uploads/file_pengadaan').'/'.$row->dtp_file;?><br>
                                         <img src="<?php echo $urlfile;?>" alt="" style="width:270px;height:228px;">
                                         <?php $tagFile =  "<a href='".$urlfile."' target='_blank'>Full Size Image</a>"?>
                                         <?php if($row->dtp_file!="" || $row->dtp_file!=NULL){echo "<br>".$tagFile;} ?></p>
+                                        <?php } ?>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

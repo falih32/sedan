@@ -73,11 +73,11 @@
                     <?php
                     switch ($pgd_status_pengadaan) {
                     case "0":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
                         break;
                     case "1":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
-                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
                         break;
                     case "2":
                         echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';

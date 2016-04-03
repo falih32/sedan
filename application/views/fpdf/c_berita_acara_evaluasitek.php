@@ -3,11 +3,9 @@ $pdf=new PDF_MC_Table('p','mm','A4');
 $pdf->SetMargins(15,10,10);
 $pdf->AddPage();
 $tanggalK=$tglKudg;
-//Header
-		
+//Header		
 		$pdf->Ln(45);
 		
-
 		$pdf->SetFont('Arial','',12);
 				
 		$pdf->SetLineWidth(0.2);
@@ -19,7 +17,6 @@ $tanggalK=$tglKudg;
 			for($i=0;$i<1;$i++){
 			$pdf->Row1(array('Satuan Kerja Biro Umum Sekretariat Jenderal Kementerian Kelautan dan Perikanan Tahun Anggaran '.$pdf->tanggal("Y",$tanggalK),'Berita Acara Evaluasi Teknis')); 
 			}
-
 		//isi
 		$pdf->SetFont('Arial','',12);
 		$pdf->SetAligns('L');
@@ -405,21 +402,18 @@ if($pdf->getY()>134) {
 //                $pdf->SetFont('Arial','B',11);
 //		$pdf->Cell($w[0],7,'','LTB',0,'c',0); $pdf->Cell($w[1],7,'Total','TB',0,'C',0); $pdf->Cell($w[2],7,'','TB',0,'C',0); $pdf->Cell($w[3],7,'','TB',0,'C',0); $pdf->Cell($w[4],7,'','TB',0,'C',0); $pdf->Cell($w[5],7,'','TB',0,'C',0);$pdf->Cell($w[6],7,'','TB',0,'C',0);$pdf->Cell($w[7],7,'','TB',0,'C',0);$pdf->Cell($w[8],7,'','TB',0,'R',0);$pdf->Cell($w[9],7,'','TB',0,'R',0);$pdf->Cell($w[10],7,'','TB',0,'R',0);$pdf->Cell($w[11],7,'','TB',0,'R',0);$pdf->Cell($w[12],7,'','TB',0,'R',0);$pdf->Cell($w[13],7,'','TB',0,'R',0); $pdf->Cell($w[14],7,$pdf->formatrupiah($jum),1,1,'R',0);
 //
-                if($pdf->getY()>134) {
-		$pdf->AddPage('L');	
-		}
-                $pdf->Ln(10);
-            
-                $pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y", $tanggalK) ,0,3,'L');
-		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L'); 
-		$pdf->Cell(90,6,'Satker Biro Umum Sekretariat Jenderal',0,3,'L');
-		$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
-		$pdf->Ln(15);
-	
-                $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,3,'L');
-                
-                
-                
+//                if($pdf->getY()>134) {
+//		$pdf->AddPage('L');	
+//		}
+//                $pdf->Ln(10);
+//            
+//                $pdf->Cell(100,6,'Jakarta, '.$pdf->tanggal("j M Y", $tanggalK) ,0,3,'L');
+//		$pdf->Cell(90,6,'Pejabat Pengadaan Barang / Jasa',0,3,'L'); 
+//		$pdf->Cell(90,6,'Satker Biro Umum Sekretariat Jenderal',0,3,'L');
+//		$pdf->Cell(90,6,'Kementerian Kelautan dan Perikanan',0,3,'L');
+//		$pdf->Ln(15);
+//	
+//                $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,3,'L');                
                 
 }               
                                 

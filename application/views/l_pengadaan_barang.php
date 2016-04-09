@@ -98,18 +98,18 @@ $(document).ready(function() {
                 { "data": "pgd_anggaran" },             //0
                 { "data": "nmpengadaan_tglbuat" },      //1
                 { "data": "supplier_name" },            //2
-                { "data": "ketua" },                    //3 dihapus
+                { "data": "ketua" },                    //3 dihapus not visi
                 { "data": "total" },                    //4
                 { "data": "konfirm_selesai" },          //5
                 { "data": "aksi" },                     //6
-                { "data": "pgd_perihal" },              //7
-                { "data": "pgd_tanggal_input" },        //8
-                { "data": "pgd_id" },                   //9
+                { "data": "pgd_perihal" },              //7 not visi
+                { "data": "pgd_tanggal_input" },        //8 not visi
+                { "data": "pgd_id" },                   //9 not visi
                 
-                { "data": "pgd_jml_ssdh_ppn_hps" },     //10
-                { "data": "pgd_jml_ssdh_ppn_pnr" },     //11
-                { "data": "pgd_jml_ssdh_ppn_fix" },      //12
-                { "data": "pnr_gagal" }      //13
+                { "data": "pgd_jml_ssdh_ppn_hps" },     //10 not visi
+                { "data": "pgd_jml_ssdh_ppn_pnr" },     //11 not visi
+                { "data": "pgd_jml_ssdh_ppn_fix" },      //12 not visi
+                { "data": "pnr_gagal" }      //13 not visi
               ],
 		"columnDefs": [
 				{ "searchable": false,  "orderable":false, "targets": [1,3,4,5,6] },

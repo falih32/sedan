@@ -1072,9 +1072,9 @@ for($i=13;$i<=15;$i++){
          $this->load->view('fpdf/c_spmk',$datacetak);
      }
      
-     function test(){
-        $data['content'] = 'f_pengadaan_konsultan_pengalaman';
-        $this->load->view('layout',$data);
+     function cetakSumPengadaan(){
+        $datacetak['d']=$this->m_laporan->selectPengSelesai($this->session->tahun)->result();
+        $this->load->view('fpdf/c_sumpeng',$datacetak);
     }
 }
  

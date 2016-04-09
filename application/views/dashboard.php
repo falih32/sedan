@@ -15,9 +15,12 @@ foreach($totalpengadaan as $rowtot) {
 
 ?>
 <div class="container-fluid">
-    <h1>Dashboard</h1><hr>
-    
-   <div class="col-sm-12"><h3>Data Pengadaaan Tahun <?php echo $this->session->userdata('tahun');?></h3></div>
+    <div class="col-sm-9">
+    <h1>Dashboard</h1>
+    </div>
+    <div class="col-sm-3">  <h1> <a  class='btn btn-warning btn-lg btn-aksi pull-right' data-toggle='tooltip' data-placement='top' title='Cetak data pengadaan pertahun' href='<?php echo site_url("Laporan/cetakSumPengadaan"); ?>'><span class='glyphicon glyphicon-pegawai' aria-hidden='true'></span> Cetak</a></h1></div>
+   
+    <div class="col-sm-12"><hr><h3>Data Pengadaaan Tahun <?php echo $this->session->userdata('tahun');?></h3></div>
         <div class="col-sm-4">
             <div class="panel panel-default">
                 <div class="panel-heading panelNotif">

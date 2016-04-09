@@ -229,5 +229,16 @@ class M_laporan extends CI_Model{
                 . "WHERE psi_uns = '$id' ORDER BY sjd_id IS NULL, sjd_sub_judul, pnk_id ")->result();
     }
     
+    function selectPengSelesai($thn){
+        $data = $this->db->query("SELECT pgd_perihal, spl_nama, pgd_jml_ssdh_ppn_fix, pgd_lama_pekerjaan, "
+                . "(SELECT dknt_isi FROM tr_detail_konten LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat WHERE dsrt_idpengadaan = pgd_id and dsrt_jenis_surat='18' and dknt_idkonten='9')as no_spk, "
+                . "(SELECT dknt_isi FROM tr_detail_konten LEFT JOIN tr_detail_surat ON dsrt_id = dknt_detailsurat WHERE dsrt_idpengadaan = pgd_id and dsrt_jenis_surat='18' and dknt_idkonten='3')as tgl_spk "
+                . "FROM t_pengadaan "
+                . "LEFT JOIN t_supplier ON spl_id = pgd_supplier "
+                . "WHERE YEAR(pgd_tanggal_input)='$thn' and pgd_deleted='0' and pgd_status_selesai='1' ORDER BY tgl_spk");
+       return $data;
+    }
+    
+    
 }
 

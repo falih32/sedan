@@ -172,9 +172,12 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
 		$pdf->SetFont('Arial','',11);
 		$pdf->SetAligns('L');
 		$no=0;
+                $subno=0;
 		foreach ($listpeng as $row) {
-		$no++;	
-			$pdf->Row(array('  '.$no,$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 
+		 if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));}
+		$subno++;
+                if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
+			$pdf->Row(array($nomor.'.',$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 
 		}
 		//$format = number_format($jum, 0, '','.');
 		if($d->pgd_dgn_pajak==0){

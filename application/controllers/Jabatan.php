@@ -98,5 +98,5 @@ class Jabatan extends CI_Controller {
         $this->m_jabatan->delete($id);
         $this->writeLog('Jabatan','Delete');
         redirect('Jabatan');
-    }
+    }   
 }

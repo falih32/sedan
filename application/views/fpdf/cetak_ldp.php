@@ -80,7 +80,7 @@ $pdf->AddPage();
 		$pdf->SetFont('Arial','',14);
 		$pdf->Cell(90,6,'E. SYARAT PENYEDIA ',0,0,'L');
 		$pdf->SetFont('Arial','',12);
-		$pdf->Cell(90,6,'Memiliki izin usaha bidang ',0,1,'L');
+		$pdf->Cell(90,6,'',0,1,'L');
 		$pdf->SetFont('Arial','UI',12);
        
                 $w = array(90,0);
@@ -92,7 +92,10 @@ $pdf->AddPage();
                         $pdf->ln(3);
 		}
               	$pdf->ln(5);
-	
-                $pdf->Foot('Standar Dokumen Pengadaan Pengadaan Jasa Lainnya (Dengan Prakualifikasi)');
+
+//	        if($pdf->GetY()>150){
+//                    $pdf->AddPage();
+//                }
+       //        $pdf->Foot('Standar Dokumen Pengadaan Pengadaan Jasa Lainnya (Dengan Prakualifikasi)');
 $pdf->Output();
 ?>

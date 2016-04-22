@@ -6,7 +6,7 @@ $last=-11;
 //Header
 		$pdf->SetFont('Arial','B',12);
 		$pdf->Cell(30,6,'DAFTAR KUANTITAS DAN HARGA',0,3,'L');
-                $pdf->Cell(0,6,strtoupper($perihal),0,3,'l');
+                $pdf->MultiCell(0,6,strtoupper($perihal),0,'L');
 		$pdf->Cell(30,6,'KEMENTERIAN KELAUTAN DAN PERIKANAN',0,3,'L');
 		$pdf->Cell(30,6,'TAHUN '.$pdf->tanggal("Y",$tgl),0,3,'L');
 		$pdf->Ln(6);
@@ -108,7 +108,7 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
  //-----------------------------------pengadaan jasa barang---------------------------------------------------------------------------------------                   
  //header 
    $header = array('No', 'Uraian Pekerjaan', 'Volume','Harga Satuan (Rp.)','     Jumlah      (Rp.)');                 
-    $w = array(10,75,35,30,35);
+    $w = array(12,73,35,30,35);
 		$pdf->SetWidths($w);
 		
 		$pdf->SetAligns('C');
@@ -123,10 +123,10 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
                 $pdf->SetFont('Arial','',12);
  //isi                   
 		foreach ($listpeng as $row) {
-                if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));}
+                if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$pdf->SetFont('Arial','B',12);$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));$last=$row->dtp_sub_judul; $subno=0;}
 		$subno++;
                 if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
-			$pdf->Row(array($nomor.'.',$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, '' ,'')); 
+		$pdf->SetFont('Arial','',12);	$pdf->Row(array($nomor.'.',$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, '' ,'')); 
 		}
 		//$format = number_format($jum, 0, '','.');
 		if($pgd_dgn_pajak==0){

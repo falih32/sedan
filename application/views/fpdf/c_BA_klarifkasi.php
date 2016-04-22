@@ -53,7 +53,7 @@ $tanggalK=$tglklarifikasi;
 		$pdf->Ln(10);
    
                 //header	
-		$w = array(8,55,25,26,25,26,25);
+		$w = array(12,51,25,26,25,26,25);
 		$pdf->SetWidths($w);
 		$pdf->Cell($w[0],7,' ','LTR',0,'L',0); $pdf->Cell($w[1],7,'','LTR',0,'C',0); $pdf->Cell($w[2],7,'','LTR',0,'C',0); $pdf->Cell(51,7,'Harga Penawaran','LTR',0,'C',0); $pdf->Cell(51,7,'Harga Negoisasi','LRT',1,'C',0);
 		$pdf->Cell($w[0],7,'No','LR',0,'c',0); $pdf->Cell($w[1],7,'Uraian Pekerjaan','LR',0,'C',0); $pdf->Cell($w[2],7,'Volume','LR',0,'C',0); $pdf->Cell($w[3],7,'Harga Satuan',1,0,'C',0); $pdf->Cell($w[4],7,'Jumlah',1,0,'C',0);$pdf->Cell($w[5],7,'Harga Satuan',1,0,'C',0); $pdf->Cell($w[6],7,'Jumlah',1,1,'C',0);		
@@ -64,7 +64,7 @@ $tanggalK=$tglklarifikasi;
 		$no=0;
                 $subno=0; 
 		foreach ($listpeng as $row) {
-		if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));}
+		if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $last=$row->dtp_sub_judul; $subno=0; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,'','', '' ));}
 		$subno++;
                 if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
 			$pdf->Row(array($nomor.'.',$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan,$pdf->formatrupiah($row->dtp_hargasatuan_pnr) ,$pdf->formatrupiah($row->dtp_jumlahharga_pnr),$pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 

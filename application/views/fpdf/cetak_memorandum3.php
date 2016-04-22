@@ -41,5 +41,44 @@ $pdf->AddPage();
 		$pdf->MultiCell(0,6,'Atas perhatian dan kerjasamanya diucapkan terima kasih.',0,'J');
 		$pdf->Ln(35);
 		$pdf->Cell(170,10,$namappk,0,3,'R');
+                
+$pdf->AddPage();
+$pdf->Ln(45);
+//$pdf->Cell(80);
+$pdf->SetFont('Arial','B',18);
+		//judul
+		$pdf->Cell(0,10,'PAKTA INTEGRITAS',0,2,'C');
+                $pdf->Ln(6);
+$pdf->SetFont('Arial','',12);
+$pdf->MultiCell(0,6,'Saya yang bertanda tangan dibawah ini, dalam rangka '.$pgd_perihal.', dengan ini menyatakan bahwa saya:',0,'J');
+$pdf->Ln(5);
+$w = array(7,180);
+$pdf->SetWidths($w);
+$no=0;
+$isi=array('Tidak akan melakukan praktek KKN;','Akan melaporkan kepada pihak yang berwajib/berwenang apabila mengetahui  ada indikasi KKN di dalam proses pengadaan ini ;','Dalam Proses pengadaan ini, berjanji akan melaksanakan tugas secara bersih, transparan, dan professional dalam arti akan mengerahkan segala kemampuan dan sumberdaya secara optimal untuk memberikan hasil kerja terbaik mulai dari penyiapan penawaran, pelaksanaan, dan penyelesaian pekerjaan/kegiatan ini;','Apabila saya melanggar hal-hal yang telah saya nyatakan dalam PAKTA INTEGRITAS ini, saya bersedia dikenakan sanksi moral, sanksi adminitrasi serta dituntut ganti rugi dan pidana sesuai dengan ketentuan peraturan perundang-undangan yang berlaku.');
+ for ($i=0;$i<4;$i++) {
+		$no++;
+			$pdf->RowNoLines(array($no.'.',$isi[$i]));
+			$pdf->Ln(3);
+		}
+$pdf->Ln(5);                
+$pdf->Cell(0,10,'Jakarta, '.$pdf->tanggal("j M Y",$tglmem2->dknt_isi),0,3,'R');
+$pdf->Ln(10); 
+$w = array(7,45,45,100);
+$pdf->SetWidths($w);
+$no=0;
+$tdd=array(': ...............................',': ...............................');
+$jabatan=array('Pejabat Pembuat Komitmen','Pejabat Pengadaan Barang/Jasa');
+$nama=array($namappk,$namapejpeng);
+    for ($i=0;$i<2;$i++) {
+		$no++;
+			$pdf->RowNoLines(array($no.'.',$jabatan[$i],$tdd[$i],$nama[$i]));
+			$pdf->Ln(15);
+		}
+
+
+
+
+
 $pdf->Output();
 ?>

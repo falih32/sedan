@@ -157,7 +157,7 @@
                 <form id="f2" method="post" action="<?php echo base_url()."laporan/cetakmemorandum3"; ?>" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data" target="_blank">
                   <div class="col-md-8">                 
                     <div class="form-group">
-                        <label for="mem2" class="control-label text-left">Memorandum III (Kepada Pejabat Pengadaan)</label>
+                        <label for="mem2" class="control-label text-left">Memorandum III (Kepada Pejabat Pengadaan) dan Pakta Integritas</label>
                     </div>
                      <div class="form-group">
                        <label for="" class="col-sm-5 control-label text-left">Nomor Memorandum III</label>

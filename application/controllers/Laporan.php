@@ -257,7 +257,7 @@ class Laporan extends CI_Controller {
          $datacetak['no_mem3']=$this->input->post('no_mem3');
          $datacetak['no_mem2']= $this->m_laporan->selectkonten($this->input->post('idpengadaan'),'9','16'); 
          $datacetak['tglmem2']= $this->m_laporan->selectkonten($this->input->post('idpengadaan'),'3','16');
-         
+         $datacetak['namapejpeng']=$d->pgd_nama_pejpeng;
          $tempnum=$this->m_laporan->selectdetsurat('17',$this->input->post('idpengadaan'))->row();
          $count=count($tempnum);
          if($count>0){

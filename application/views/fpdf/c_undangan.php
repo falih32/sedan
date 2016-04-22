@@ -13,7 +13,7 @@ $pdf->SetAutoPageBreak(5);
 		
 		$pdf->Cell(30,5,'Kepada Yth.',0,2,'L');
 		$pdf->Cell(100,5,$d->spl_nama,0,2,'L');
-		$pdf->Cell(100,5,$d->spl_alamat,0,2,'L');
+		$pdf->MultiCell(0,5,$d->spl_alamat,0,'L');
 		$pdf->Ln(3);
 		$pdf->Cell(20,5,'Perihal :',0,0,'L'); $pdf->MultiCell(0,5,'Pengadaan Langsung Untuk Paket '.$d->pgd_perihal.' pada Satker Biro Umum Setjen KKP Tahun Anggaran '.$pdf->tanggal(" Y",$d->pgd_wkt_awal_penawaran) ,0,'L');
 											 

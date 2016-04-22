@@ -23,7 +23,7 @@ $pdf->AddPage();
 		}
                 $posy=$pdf->GetY();
                 $pdf->SetXY(82, $posy-4); $pdf->MultiCell(125,5,'Alamat Website LPSE'); $pdf->SetXY(137, $posy-4); $pdf->MultiCell(3,5,':'); $pdf->SetXY(140, $posy-4); $pdf->MultiCell(55,5,'www.lpse.kkp.go.id');
-                $pdf->SetXY(82, $posy+1); $pdf->MultiCell(103,5,'Nama pekerjaan : '.$d->pgd_perihal,'','');
+                $pdf->SetXY(82, $posy+1); $pdf->Cell(55,5,'Nama pekerjaan  ',0,0,'L');$pdf->MultiCell(103,5,':  '.$d->pgd_perihal,'','');
                 $pdf->Ln(5);
                 $w = array(7,50,113);
                 $pdf->SetWidths($w);

@@ -59,6 +59,177 @@ Tanggal '.$pdf->tanggal("j M Y",$tglspk),'LR','L');
                 $pdf->Cell(95,5,'','B',0,'L');	$pdf->Cell(90,5,$d->pgd_jbt_perwakilan_spl,'B',1,'L');
                 $xb2=$pdf->GetX(); $yb2=$pdf->GetY();
                 $pdf->Line($xb1, $yb1, $xb2, $yb2); $pdf->Line($xb1+95, $yb1, $xb2+95, $yb2); $pdf->Line($xb1+185, $yb1, $xb2+185, $yb2);
+
+//-------------------------------------terusan---------------------------------------------------
+ $pdf->AddPage();
+ $pdf->Line(15, 10, 200, 10);//horizontal atas
+ $pdf->Line(15, 10, 15, 280);//vertikal kiri
+ $pdf->Line(200, 10, 200, 280);//vertikal kanan
+ $pdf->Line(15, 280, 200, 280);//horizon bawah
+ $pdf->SetFont('Arial','BU',11);
+ $pdf->Cell(0,5,'SYARAT UMUM',0,3,'C');
+ $pdf->SetFont('Arial','B',11);
+ $pdf->Cell(0,5,'SURAT PERINTAH KERJA (SPK)',0,3,'C');
+ $pdf->Ln(5);
+ $pdf->SetFont('Arial','',11);
+ $pdf->Cell(10,5,'1.',0,0,'L'); $pdf->MultiCell(170,5,'LINGKUP PEKERJAAN
+Penyedia yang ditunjuk berkewajiban untuk menyelesaikan pekerjaan dalam jangka waktu yang ditentukan, sesuai dengan volume, spesifikasi teknis dan harga yang tercantum dalam SPK.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'2.',0,0,'L'); $pdf->MultiCell(170,5,'HUKUM YANG BERLAKU 
+Keabsahan, interpretasi, dan pelaksanaan SPK ini didasarkan kepada hukum Republik Indonesia.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'3.',0,0,'L'); $pdf->Cell(170,5,'HARGA SPK',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'PPK membayar kepada penyedia atas pelaksanaan pekerjaan dalam SPK sebesar harga SPK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Harga SPK telah memperhitungkan keuntungan, beban pajak dan biaya overhead serta biaya asuransi (apabila dipersyaratkan).',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Rincian harga SPK sesuai dengan rincian yang tercantum dalam daftar kuantitas dan harga ',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'4.',0,0,'L'); $pdf->Cell(170,5,'HAK KEPEMILIKAN',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'PPK berhak atas kepemilikan semua barang/bahan yang terkait langsung atau disediakan sehubungan dengan jasa yang diberikan oleh penyedia kepada PPK. Jika diminta oleh PPK maka penyedia berkewajiban untuk membantu secara optimal pengalihan hak kepemilikan tersebut kepada PPK sesuai dengan hukum yang berlaku.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Hak kepemilikan atas peralatan dan barang/bahan yang disediakan oleh PPK tetap pada PPK, dan semua peralatan tersebut harus dikembalikan kepada PPK pada saat SPK berakhir atau jika tidak diperlukan lagi oleh penyedia. Semua peralatan tersebut harus dikembalikan dalam kondisi yang sama pada saat diberikan kepada penyedia dengan pengecualian keausan akibat pemakaian yang wajar.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'5.',0,0,'L'); $pdf->MultiCell(170,5,'CACAT MUTU
+PPK akan memeriksa setiap hasil pekerjaan penyedia dan memberitahukan secara tertulis penyedia atas setiap cacat mutu yang ditemukan. PPK dapat memerintahkan penyedia untuk menemukan dan mengungkapkan cacat mutu, serta menguji pekerjaan yang dianggap oleh PPK mengandung cacat mutu. Penyedia bertanggung jawab atas cacat mutu selama 6 (enam) bulan setelah serah terima hasil pekerjaan.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'6.',0,0,'L'); $pdf->MultiCell(170,5,'PERPAJAKAN 
+Penyedia berkewajiban untuk membayar semua pajak, bea, retribusi, dan pungutan lain yang sah yang dibebankan oleh hukum yang berlaku atas pelaksanaan SPK. Semua pengeluaran perpajakan ini dianggap telah termasuk dalam harga SPK.',0,'J');
+$pdf->Ln(3);
+$pdf->Cell(10,5,'7.',0,0,'L'); $pdf->MultiCell(170,5,'PENGALIHAN DAN/ATAU SUBKONTRAK 
+Penyedia dilarang untuk mengalihkan dan/atau mensubkontrakkan sebagian atau seluruh pekerjaan, kecuali kepada penyedia spesialis untuk bagian pekerjaan tertentu. Pengalihan seluruh pekerjaan hanya diperbolehkan dalam hal pergantian nama penyedia, baik sebagai akibat peleburan (merger) atau akibat lainnya.',0,'J');
+$pdf->Ln(3);
+ $pdf->Cell(10,5,'8.',0,0,'L'); $pdf->Cell(170,5,'JADWAL',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'SPK ini berlaku efektif pada tanggal penandatanganan oleh para pihak atau pada tanggal yang ditetapkan dalam SPMK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Waktu pelaksanaan SPK adalah sejak tanggal mulai kerja yang tercantum dalam SPMK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Penyedia harus menyelesaikan pekerjaan sesuai jadwal yang ditentukan',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'Apabila penyedia berpendapat tidak dapat menyelesaikan pekerjaan sesuai jadwal karena keadaan diluar pengendaliannya dan penyedia telah melaporkan kejadian tersebut kepada PPK, maka PPK dapat melakukan penjadwalan kembali pelaksanaan tugas penyedia dengan adendum SPK.',0,'J');
+ $pdf->Ln(3);
+ $pdf->AddPage();
+ $pdf->Line(15, 10, 200, 10);//horizontal atas
+ $pdf->Line(15, 10, 15, 280);//vertikal kiri
+ $pdf->Line(200, 10, 200, 280);//vertikal kanan
+ $pdf->Line(15, 280, 200, 280);//horizon bawah
+ $pdf->Cell(10,5,'9.',0,0,'L'); $pdf->Cell(170,5,'ASURANSI',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Apabila dipersyaratkan, penyedia wajib menyediakan asuransi sejak SP sampai dengan tanggal selesainya pemeliharaan untuk:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'semua Jasa Lainnya dan peralatan yang mempunyai risiko tinggi terjadinya kecelakaan, pelaksanaan pekerjaan, serta pekerja untuk pelaksanaan pekerjaan, atas segala risiko terhadap kecelakaan, kerusakan, kehilangan, serta risiko lain yang tidak dapat diduga;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'pihak ketiga sebagai akibat kecelakaan di tempat kerjanya; dan',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Besarnya asuransi sudah diperhitungkan dalam penawaran dan termasuk dalam harga SPK',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'10.',0,0,'L'); $pdf->Cell(170,5,'PENANGGUNGAN DAN RISIKO',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Penyedia berkewajiban untuk melindungi, membebaskan, dan menanggung tanpa batas PPK beserta instansinya terhadap semua bentuk tuntutan, tanggung jawab, kewajiban, kehilangan, kerugian, denda, gugatan atau tuntutan hukum, proses pemeriksaan hukum, dan biaya yang dikenakan terhadap PPK beserta instansinya (kecuali kerugian yang mendasari tuntutan tersebut disebabkan kesalahan atau kelalaian berat PPK) sehubungan dengan klaim yang timbul dari hal-hal berikut terhitung sejak Tanggal Mulai Kerja sampai dengan tanggal penandatanganan berita acara penyerahan akhir:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'kehilangan atau kerusakan peralatan dan harta benda penyedia dan Personil;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'cidera tubuh, sakit atau kematian Personil;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'3)',0,0,'L');$pdf->MultiCell(156,5,'3)	kehilangan atau kerusakan harta benda, dan cidera tubuh, sakit atau kematian pihak ketiga;',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Terhitung sejak Tanggal Mulai Kerja sampai dengan tanggal penandatanganan berita acara penyerahan awal, semua risiko kehilangan atau kerusakan Hasil Pekerjaan ini, Bahan dan Perlengkapan merupakan risiko penyedia, kecuali kerugian atau kerusakan tersebut diakibatkan oleh kesalahan atau kelalaian PPK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Pertanggungan asuransi yang dimiliki oleh penyedia tidak membatasi kewajiban penanggungan dalam syarat ini.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'Kehilangan atau kerusakan terhadap Hasil Pekerjaan atau Bahan yang menyatu dengan Hasil Pekerjaan selama Tanggal Mulai Kerja dan batas akhir Masa Pemeliharaan harus diganti atau diperbaiki oleh penyedia atas tanggungannya sendiri jika kehilangan atau kerusakan tersebut terjadi akibat tindakan atau kelalaian penyedia.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'11.',0,0,'L'); $pdf->MultiCell(170,5,'PENGAWASAN DAN PEMERIKSAAN
+PPK berwenang melakukan pengawasan dan pemeriksaan terhadap pelaksanaan pekerjaan yang dilaksanakan oleh penyedia. Apabila diperlukan, PPK dapat memerintahkan kepada pihak ketiga untuk melakukan pengawasan dan pemeriksaan atas semua pelaksanaan pekerjaan yang dilaksanakan oleh penyedia.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'12.',0,0,'L'); $pdf->MultiCell(170,5,'PENGUJIAN
+Jika PPK atau Pengawas Pekerjaan memerintahkan penyedia untuk melakukan pengujian Cacat Mutu yang tidak tercantum dalam Spesifikasi Teknis dan Gambar, dan hasil uji coba menunjukkan adanya Cacat Mutu maka penyedia berkewajiban untuk menanggung biaya pengujian tersebut. Jika tidak ditemukan adanya Cacat Mutu maka uji coba tersebut dianggap sebagai Peristiwa Kompensasi.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'13.',0,0,'L'); $pdf->Cell(170,5,'LAPORAN HASIL PEKERJAAN',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Pemeriksaan pekerjaan dilakukan selama pelaksanaan SPK untuk menetapkan volume pekerjaan atau kegiatan yang telah dilaksanakan guna pembayaran hasil pekerjaan. Hasil pemeriksaan pekerjaan dituangkan dalam laporan kemajuan hasil pekerjaan.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Untuk merekam kegiatan pelaksanaan proyek, PPK menugaskan Pejabat Penerima Hasil Pekerjaan membuat foto-foto dokumentasi pelaksanaan pekerjaan di lokasi pekerjaan.',0,'J');
+ $pdf->Ln(3);
+ $pdf->AddPage();
+ $pdf->Line(15, 10, 200, 10);//horizontal atas
+ $pdf->Line(15, 10, 15, 280);//vertikal kiri
+ $pdf->Line(200, 10, 200, 280);//vertikal kanan
+ $pdf->Line(15, 280, 200, 280);//horizon bawah
+ $pdf->Cell(10,5,'14.',0,0,'L'); $pdf->Cell(170,5,'WAKTU PENYELESAIAN PEKERJAAN',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Kecuali SPK diputuskan lebih awal, penyedia berkewajiban untuk memulai pelaksanaan pekerjaan pada Tanggal Mulai Kerja, dan melaksanakan pekerjaan sesuai dengan program mutu, serta menyelesaikan pekerjaan selambat-lambatnya pada Tanggal Penyelesaian yang ditetapkan dalam SP.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Jika pekerjaan tidak selesai pada Tanggal Penyelesaian bukan akibat Keadaan Kahar atau Peristiwa Kompensasi atau karena kesalahan atau kelalaian penyedia maka penyedia dikenakan denda.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Jika keterlambatan tersebut semata-mata disebabkan oleh Peristiwa Kompensasi maka PPK dikenakan kewajiban pembayaran ganti rugi. Denda atau ganti rugi tidak dikenakan jika Tanggal Penyelesaian disepakati oleh Para Pihak untuk diperpanjang.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'Tanggal Penyelesaian yang dimaksud dalam ketentuan ini adalah tanggal penyelesaian semua pekerjaan.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'15.',0,0,'L'); $pdf->Cell(170,5,'SERAH TERIMA PEKERJAAN',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Setelah pekerjaan selesai 100% (seratus perseratus), penyedia mengajukan permintaan secara tertulis kepada PPK untuk penyerahan pekerjaan.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Dalam rangka penilaian hasil pekerjaan, PPK menugaskan Pejabat Penerima Hasil Pekerjaan.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Pejabat Penerima Hasil Pekerjaan melakukan penilaian terhadap hasil pekerjaan yang telah diselesaikan oleh penyedia. Apabila terdapat kekurangan-kekurangan dan/atau cacat hasil pekerjaan, penyedia wajib memperbaiki/menyelesaikannya, atas perintah PPK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'PPK menerima penyerahan pertama pekerjaan setelah seluruh hasil pekerjaan dilaksanakan sesuai dengan ketentuan SPK dan diterima oleh Pejabat Penerima Hasil Pekerjaan.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'e.',0,0,'L');$pdf->MultiCell(163,5,'Pembayaran dilakukan sebesar 100% (seratus perseratus) dari harga SPK dan penyedia harus menyerahkan Sertifikat Garansi sebesar 5% (lima perseratus) dari harga SPK.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'16.',0,0,'L'); $pdf->Cell(170,5,'JAMINAN BEBAS CACAT MUTU/GARANSI',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Penyedia dengan jaminan pabrikan dari produsen pabrikan (jika ada) berkewajiban untuk menjamin bahwa selama penggunaan secara wajar oleh PPK, Jasa Lainnya tidak mengandung cacat mutu yang disebabkan oleh tindakan atau kelalaian Penyedia, atau cacat mutu akibat desain, bahan, dan cara kerja.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'PPK akan menyampaikan pemberitahuan cacat mutu kepada Penyedia segera setelah ditemukan cacat mutu tersebut selama Masa Layanan Purnajual.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Terhadap pemberitahuan cacat mutu oleh PPK, Penyedia berkewajiban untuk memperbaiki atau mengganti Jasa Lainnya dalam jangka waktu yang ditetapkan dalam pemberitahuan tersebut.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'Jika Penyedia tidak memperbaiki atau mengganti Jasa Lainnya akibat cacat mutu dalam jangka waktu yang ditentukan maka PPK akan menghitung biaya perbaikan yang diperlukan, dan PPK secara langsung atau melalui pihak ketiga yang ditunjuk oleh PPK akan melakukan perbaikan tersebut. Penyedia berkewajiban untuk membayar biaya perbaikan atau penggantian tersebut sesuai dengan klaim yang diajukan secara tertulis oleh PPK. Biaya tersebut dapat dipotong oleh PPK dari nilai tagihan Penyedia.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'e.',0,0,'L');$pdf->MultiCell(163,5,'Terlepas dari kewajiban penggantian biaya,  PPK dapat memasukkan Penyedia yang lalai memperbaiki cacat mutu ke dalam daftar hitam.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'17.',0,0,'L'); $pdf->Cell(170,5,'PERUBAHAN SPK',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'SPK hanya dapat diubah melalui adendum SPK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Perubahan SPK bisa dilaksanakan apabila disetujui oleh para pihak, meliputi:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(156,5,'perubahan pekerjaan disebabkan oleh sesuatu hal yang dilakukan oleh para pihak dalam SPK sehingga mengubah lingkup pekerjaan dalam SPK;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(156,5,'perubahan jadwal pelaksanaan pekerjaan akibat adanya perubahan pekerjaan; ',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(156,5,'perubahan harga SPK akibat adanya perubahan pekerjaan dan/atau perubahan pelaksanaan pekerjaan.',0,'J');
+ $pdf->AddPage();
+ $pdf->Line(15, 10, 200, 10);//horizontal atas
+ $pdf->Line(15, 10, 15, 280);//vertikal kiri
+ $pdf->Line(200, 10, 200, 280);//vertikal kanan
+ $pdf->Line(15, 280, 200, 280);//horizon bawah
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Untuk kepentingan perubahan SPK, PA/KPA dapat membentuk Pejabat Peneliti Pelaksanaan Kontrak atas usul PPK.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'18.',0,0,'L'); $pdf->Cell(170,5,'PERISTIWA KOMPENSASI',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Peristiwa Kompensasi dapat diberikan kepada penyedia dalam hal sebagai berikut:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'PPK mengubah jadwal yang dapat mempengaruhi pelaksanaan pekerjaan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'keterlambatan pembayaran kepada penyedia;  ',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'3)',0,0,'L');$pdf->MultiCell(156,5,'PPK tidak memberikan gambar-gambar, spesifikasi dan/atau instruksi sesuai jadwal yang dibutuhkan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'4)',0,0,'L');$pdf->MultiCell(156,5,'penyedia belum bisa masuk ke lokasi sesuai jadwal;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'5)',0,0,'L');$pdf->MultiCell(156,5,'PPK menginstruksikan kepada pihak penyedia untuk melakukan pengujian tambahan yang setelah dilaksanakan pengujian ternyata tidak ditemukan kerusakan/kegagalan/penyimpangan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'6)',0,0,'L');$pdf->MultiCell(156,5,'PPK memerintahkan penundaan pelaksanaan pekerjaan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'7)',0,0,'L');$pdf->MultiCell(156,5,'PPK memerintahkan untuk mengatasi kondisi tertentu yang tidak dapat diduga sebelumnya dan disebabkan oleh PPK;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'8)',0,0,'L');$pdf->MultiCell(156,5,'ketentuan lain dalam SPK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Jika Peristiwa Kompensasi mengakibatkan pengeluaran tambahan dan/atau keterlambatan penyelesaian pekerjaan maka PPK berkewajiban untuk membayar ganti rugi dan/atau memberikan perpanjangan waktu penyelesaian pekerjaan.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Ganti rugi hanya dapat dibayarkan jika berdasarkan data penunjang dan perhitungan kompensasi yang diajukan oleh penyedia kepada PPK, dapat dibuktikan kerugian nyata akibat Peristiwa Kompensasi.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'Perpanjangan waktu penyelesaian pekerjaan hanya dapat diberikan jika berdasarkan data penunjang dan perhitungan kompensasi yang diajukan oleh penyedia kepada PPK, dapat dibuktikan perlunya tambahan waktu akibat Peristiwa Kompensasi.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'e.',0,0,'L');$pdf->MultiCell(163,5,'Penyedia tidak berhak atas ganti rugi dan/atau perpanjangan waktu penyelesaian pekerjaan jika penyedia gagal atau lalai untuk memberikan peringatan dini dalam mengantisipasi atau mengatasi dampak Peristiwa Kompensasi.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'19.',0,0,'L'); $pdf->Cell(170,5,'PERPANJANGAN WAKTU',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Jika terjadi Peristiwa Kompensasi sehingga penyelesaian pekerjaan akan melampaui Tanggal Penyelesaian maka penyedia berhak untuk meminta perpanjangan Tanggal Penyelesaian berdasarkan data penunjang. PPK berdasarkan pertimbangan Pengawas Pekerjaan memperpanjang Tanggal Penyelesaian Pekerjaan secara tertulis. Perpanjangan Tanggal Penyelesaian harus dilakukan melalui adendum SPK jika perpanjangan tersebut mengubah Masa SPK.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'PPK dapat menyetujui perpanjangan waktu pelaksanaan setelah melakukan penelitian terhadap usulan tertulis yang diajukan oleh penyedia.',0,'J');
+$pdf->Ln(3);
+ $pdf->Cell(10,5,'20.',0,0,'L'); $pdf->Cell(170,5,'PENGHENTIAN DAN PEMUTUSAN SPK',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'Penghentian SPK dapat dilakukan karena pekerjaan sudah selesai atau terjadi Keadaan Kahar.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'Dalam hal SPK dihentikan, maka PPK wajib membayar kepada penyedia sesuai dengan prestasi pekerjaan yang telah dicapai, termasuk:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'biaya langsung pengadaan bahan dan perlengkapan untuk pekerjaan ini. Bahan dan perlengkapan ini harus diserahkan oleh Penyedia kepada PPK, dan selanjutnya menjadi hak milik PPK;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'biaya langsung pembongkaran dan demobilisasi hasil pekerjaan sementara dan peralatan; ',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'3)',0,0,'L');$pdf->MultiCell(156,5,'biaya langsung demobilisasi personil.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'Pemutusan SPK dapat dilakukan oleh pihak penyedia atau pihak PPK.',0,'J');
+ $pdf->AddPage();
+ $pdf->Line(15, 10, 200, 10);//horizontal atas
+ $pdf->Line(15, 10, 15, 280);//vertikal kiri
+ $pdf->Line(200, 10, 200, 280);//vertikal kanan
+ $pdf->Line(15, 280, 200, 280);//horizon bawah
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'Menyimpang dari Pasal 1266 dan 1267 Kitab Undang-Undang Hukum Perdata, pemutusan SPK melalui pemberitahuan tertulis dapat dilakukan apabila:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'penyedia lalai/cidera janji dalam melaksanakan kewajibannya dan tidak memperbaiki kelalaiannya dalam jangka waktu yang telah ditetapkan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'penyedia tanpa persetujuan Pengawas Pekerjaan, tidak memulai pelaksanaan pekerjaan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'3)',0,0,'L');$pdf->MultiCell(156,5,'penyedia menghentikan pekerjaan selama 28 (dua puluh delapan) hari dan penghentian ini tidak tercantum dalam program mutu serta tanpa persetujuan Pengawas Pekerjaan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'4)',0,0,'L');$pdf->MultiCell(156,5,'penyedia berada dalam keadaan pailit;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'5)',0,0,'L');$pdf->MultiCell(156,5,'penyedia selama Masa SPK gagal memperbaiki Cacat Mutu dalam jangka waktu yang ditetapkan oleh PPK;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'6)',0,0,'L');$pdf->MultiCell(156,5,'denda keterlambatan pelaksanaan pekerjaan akibat kesalahan penyedia sudah melampaui 5% (lima perseratus) dari harga SPK dan PPK menilai bahwa Penyedia tidak akan sanggup menyelesaikan sisa pekerjaan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'7)',0,0,'L');$pdf->MultiCell(156,5,'Pengawas Pekerjaan memerintahkan penyedia untuk menunda pelaksanaan atau kelanjutan pekerjaan, dan perintah tersebut tidak ditarik selama 28 (dua puluh delapan) hari;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'8)',0,0,'L');$pdf->MultiCell(156,5,'PPK tidak menerbitkan SPP untuk pembayaran tagihan angsuran sesuai dengan yang disepakati sebagaimana tercantum dalam SPK;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'9)',0,0,'L');$pdf->MultiCell(156,5,'penyedia terbukti melakukan KKN, kecurangan dan/atau pemalsuan dalam proses Pengadaan yang diputuskan oleh instansi yang berwenang; dan/atau',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'10)',0,0,'L');$pdf->MultiCell(156,5,'pengaduan tentang penyimpangan prosedur, dugaan KKN dan/atau pelanggaran persaingan sehat dalam pelaksanaan pengadaan dinyatakan benar oleh instansi yang berwenang.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'e.',0,0,'L');$pdf->MultiCell(163,5,'Dalam hal pemutusan SPK dilakukan karena kesalahan penyedia:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'penyedia membayar denda; dan/atau',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'penyedia dimasukkan dalam Daftar Hitam.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'f.',0,0,'L');$pdf->MultiCell(163,5,'Dalam hal pemutusan SPK dilakukan karena PPK terlibat penyimpangan prosedur, melakukan KKN dan/atau pelanggaran persaingan sehat dalam pelaksanaan pengadaan, maka PPK dikenakan sanksi berdasarkan peraturan perundang-undangan.',0,'J'); 
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'21.',0,0,'L'); $pdf->Cell(170,5,'PEMBAYARAN',0,3,'L');$pdf->Cell(7,5,'a.',0,0,'L');$pdf->MultiCell(163,5,'pembayaran prestasi hasil pekerjaan yang disepakati dilakukan oleh PPK, dengan ketentuan:',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'1)',0,0,'L');$pdf->MultiCell(156,5,'penyedia telah mengajukan tagihan disertai laporan kemajuan hasil pekerjaan;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'2)',0,0,'L');$pdf->MultiCell(156,5,'pembayaran dilakukan dengan pembayaran secara sekaligus;',0,'J');
+ $pdf->Cell(17,5,'',0,0,'L');                                       $pdf->Cell(7,5,'3)',0,0,'L');$pdf->MultiCell(156,5,'pembayaran harus dipotong denda (apabila ada), dan pajak;',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'b.',0,0,'L');$pdf->MultiCell(163,5,'pembayaran terakhir hanya dilakukan setelah pekerjaan selesai 100% (seratus perseratus) dan Berita Acara penyerahan pekerjaan diterbitkan.',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'c.',0,0,'L');$pdf->MultiCell(163,5,'PPK dalam kurun waktu 7 (tujuh) hari kerja setelah pengajuan permintaan pembayaran dari penyedia harus sudah mengajukan surat permintaan pembayaran kepada Pejabat Penandatangan Surat Perintah Membayar (PPSPM).',0,'J');
+ $pdf->Cell(10,5,'',0,0,'L');                                       $pdf->Cell(7,5,'d.',0,0,'L');$pdf->MultiCell(163,5,'bila terdapat ketidaksesuaian dalam perhitungan angsuran, tidak akan menjadi alasan untuk menunda pembayaran. PPK dapat meminta penyedia untuk menyampaikan perhitungan prestasi sementara dengan mengesampingkan hal-hal yang sedang menjadi perselisihan. ',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'22.',0,0,'L'); $pdf->MultiCell(170,5,'DENDA
+Penyedia berkewajiban untuk membayar sanksi finansial berupa Denda sebagai akibat wanprestasi atau cidera janji terhadap kewajiban-kewajiban penyedia dalam SPK ini. PPK mengenakan Denda dengan memotong angsuran pembayaran prestasi pekerjaan penyedia. Pembayaran Denda tidak mengurangi tanggung jawab kontraktual penyedia.',0,'J');
+ $pdf->Ln(3);
+$pdf->AddPage();
+ $pdf->Line(15, 10, 200, 10);//horizontal atas
+ $pdf->Line(15, 10, 15, 280);//vertikal kiri
+ $pdf->Line(200, 10, 200, 280);//vertikal kanan
+ $pdf->Line(15, 280, 200, 280);//horizon bawah 
+ $pdf->Cell(10,5,'23.',0,0,'L'); $pdf->MultiCell(170,5,'PENYELESAIAN PERSELISIHAN
+PPK dan penyedia berkewajiban untuk berupaya sungguh-sungguh menyelesaikan secara damai semua perselisihan yang timbul dari atau berhubungan dengan SPK ini atau interpretasinya selama atau setelah pelaksanaan pekerjaan.  Jika perselisihan tidak dapat diselesaikan secara musyawarah maka perselisihan akan diselesaikan melalui pengadilan negeri dalam wilayah hukum Republik Indonesia.',0,'J');
+ $pdf->Ln(3);
+ $pdf->Cell(10,5,'24.',0,0,'L'); $pdf->MultiCell(170,5,'LARANGAN PEMBERIAN KOMISI 
+Penyedia menjamin bahwa tidak satu pun personil satuan kerja PPK telah atau akan menerima komisi atau keuntungan tidak sah lainnya baik langsung maupun tidak langsung dari SPK ini. Penyedia menyetujui bahwa pelanggaran syarat ini merupakan pelanggaran yang mendasar terhadap SPK ini.',0,'J');
+ $pdf->Ln(3);
+ 
+
+
+
 //-------------------------------------lampiran---------------------------------------------------
  $pdf->AddPage();
  $pdf->Ln(7);
@@ -174,7 +345,7 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
 		$no=0;
                 $subno=0;
 		foreach ($listpeng as $row) {
-		 if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));}
+		 if(($row->dtp_sub_judul != '-99')&&($row->dtp_sub_judul !=$last)){$last=$row->dtp_sub_judul; $subno=0;$no++; $pdf->Row(array($no.'.',$row->sjd_sub_judul,'', '' ,''));}
 		$subno++;
                 if($no!=0 && $row->dtp_sub_judul != '-99') {$nomor=$no.'.'.$subno;} else {$nomor=$subno;}
 			$pdf->Row(array($nomor.'.',$row->dtp_pekerjaan,($row->dtp_volume+0).' '.$row->dtp_satuan, $pdf->formatrupiah($row->dtp_hargasatuan_fix) ,$pdf->formatrupiah($row->dtp_jumlahharga_fix))); 

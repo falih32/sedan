@@ -23,7 +23,7 @@ class M_pengadaan extends CI_Model{
         $data = $this->db->query("SELECT pgw_nama "
                 . "FROM t_pegawai "
                 . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
-                . "WHERE jbt_id = '30' ")->row();
+                . "WHERE jbt_id = '30' AND pgw_deleted = '0' ")->row();
        return $data;
     }
     
@@ -31,7 +31,7 @@ class M_pengadaan extends CI_Model{
         $data = $this->db->query("SELECT pgw_nama "
                 . "FROM t_pegawai "
                 . "LEFT JOIN t_jabatan ON jbt_id = pgw_jabatan "
-                . "WHERE jbt_id = '33' ")->row();
+                . "WHERE jbt_id = '33' AND pgw_deleted = '0' ")->row();
        return $data;
     }
     

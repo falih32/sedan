@@ -368,5 +368,5 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
                 }
                 
                 
-                $pdf->Output();         
+                $pdf->Output('SPK '.$d->pgd_perihal.'.pdf','I');         
 ?>		

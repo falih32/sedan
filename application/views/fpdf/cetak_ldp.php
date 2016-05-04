@@ -97,5 +97,5 @@ $pdf->AddPage();
 //                    $pdf->AddPage();
 //                }
        //        $pdf->Foot('Standar Dokumen Pengadaan Pengadaan Jasa Lainnya (Dengan Prakualifikasi)');
-$pdf->Output();
+$pdf->Output('LDP '.$d->pgd_perihal.'.pdf','I');
 ?>

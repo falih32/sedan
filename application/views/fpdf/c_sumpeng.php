@@ -24,5 +24,5 @@ $pdf->SetWidths($w);
      $pdf->Row(array($no.'.',$p->pgd_perihal,$p->spl_nama,$p->no_spk, $pdf->tanggal(" j M Y",$p->tgl_spk), $p->pgd_lama_pekerjaan." hari", $pdf->formatrupiah($p->pgd_jml_ssdh_ppn_fix)));   
  }   
 		
-$pdf->Output();	
+$pdf->Output('summary_pengadaan_selesai_'.$tahun.'.pdf','I');	
 ?>		

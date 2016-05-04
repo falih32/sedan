@@ -57,5 +57,5 @@ $pdf->AddPage();
 	   $pdf->Cell(110); $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,2,'L');
 		
            
-	$pdf->Output();	
+	$pdf->Output('BA hasil pengadaan '.$d->pgd_perihal.'.pdf','I');	
 ?>		

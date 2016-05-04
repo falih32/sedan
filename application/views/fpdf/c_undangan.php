@@ -65,5 +65,5 @@ $pdf->SetAutoPageBreak(5);
 		$pdf->Ln(11); 
 		$pdf->Cell(100,10,$d->pgd_nama_pejpeng,0,3,'L');
 		
-	$pdf->Output();	
+	$pdf->Output('Undangan '.$d->pgd_perihal.'.pdf','I');	
 ?>		

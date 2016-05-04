@@ -1073,6 +1073,7 @@ for($i=13;$i<=15;$i++){
      }
      
      function cetakSumPengadaan(){
+        $datacetak['tahun']=$this->session->tahun;
         $datacetak['d']=$this->m_laporan->selectPengSelesai($this->session->tahun)->result();
         $this->load->view('fpdf/c_sumpeng',$datacetak);
     }

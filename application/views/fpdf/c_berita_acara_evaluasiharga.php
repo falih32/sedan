@@ -61,5 +61,5 @@ Tanggal : '.$pdf->tanggal("j M Y", $tanggalK)));
 		$pdf->Cell(100);
 		$pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,1,'L');                
 		
-	$pdf->Output();	
+	$pdf->Output('BA evaluasi harga '.$d->pgd_perihal.'.pdf','I');	
 ?>		

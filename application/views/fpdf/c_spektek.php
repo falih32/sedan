@@ -46,5 +46,5 @@ $last=-11;
 		$pdf->Cell(105); 
 		$pdf->Cell(100,10,$namappk,0,3,'L');
 		
-	$pdf->Output();	
+	$pdf->Output('Spesifikasi Teknis '.$perihal.'.pdf','I');	
 ?>		

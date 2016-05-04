@@ -172,5 +172,5 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
 		$pdf->Cell(108); 
 		$pdf->Cell(100,10,$namappk,0,3,'L');
 		
-	$pdf->Output();	
+	$pdf->Output('hps '.$perihal.'.pdf','I');	
 ?>		

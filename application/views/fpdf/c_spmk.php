@@ -61,5 +61,5 @@ $pdf->AddPage();
                 $pdf->Ln(25);
                 $pdf->Cell(0,6,$d->pgd_perwakilan_spl,0,2,'L');
                 $pdf->Cell(0,5,$d->pgd_jbt_perwakilan_spl,0,2,'L');
-        $pdf->Output();	
+        $pdf->Output('SPMK '.$d->pgd_perihal.'.pdf','I');	
 ?>		

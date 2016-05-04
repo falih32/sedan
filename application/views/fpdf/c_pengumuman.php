@@ -42,5 +42,5 @@ $pdf->AddPage();
 		$pdf->Ln(15);
 	   $pdf->Cell(110); $pdf->Cell(90,6,$d->pgd_nama_pejpeng,0,2,'L');           
            
-	$pdf->Output();	
+	$pdf->Output('Surat Pengumuman '.$d->pgd_perihal.'.pdf','I');	
 ?>		

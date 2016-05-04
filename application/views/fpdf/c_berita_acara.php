@@ -102,5 +102,5 @@ $pdf->AddPage();
 		$pdf->Ln(20);
 		$pdf->Cell(105); 
 		$pdf->Cell(100,10,$d->pgd_nama_pejpeng,0,3,'L');                
-	$pdf->Output();	
+	$pdf->Output('BA pemasukan & pembukaan dok pnr '.$d->pgd_perihal.'.pdf','I');	
 ?>		

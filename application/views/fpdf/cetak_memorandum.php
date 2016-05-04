@@ -43,5 +43,5 @@ $pdf->AddPage();
 		$pdf->Ln(35);
 		$pdf->Cell(170,10,$ttd,0,3,'R');
  
-$pdf->Output();
+$pdf->Output('Memo1 '.$pgd_perihal.'.pdf','I');
 ?>

@@ -216,5 +216,5 @@ $bx= array('Jangka waktu pelaksanaan Evaluasi Biaya: 1 (satu) hari','Unit biaya 
 		}
 
 
-$pdf->Output();
+$pdf->Output('LDP '.$d->pgd_perihal.'.pdf','I');
 ?>

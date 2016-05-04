@@ -210,5 +210,5 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah','Jumlah');
                  
              }
                               
-	$pdf->Output();	
+	$pdf->Output('BA klarifikasi '.$d->pgd_perihal.'.pdf','I');	
 ?>		

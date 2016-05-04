@@ -75,10 +75,5 @@ $nama=array($namappk,$namapejpeng);
 			$pdf->RowNoLines(array($no.'.',$jabatan[$i],$tdd[$i],$nama[$i]));
 			$pdf->Ln(15);
 		}
-
-
-
-
-
-$pdf->Output();
+$pdf->Output('Memo3 & Pakta Integritas '.$pgd_perihal.'.pdf','I');
 ?>

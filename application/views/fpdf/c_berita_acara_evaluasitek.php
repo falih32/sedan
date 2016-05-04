@@ -417,5 +417,5 @@ if($pdf->getY()>134) {
                 
 }               
                                 
-	$pdf->Output();	
+	$pdf->Output('BA evaluasi teknis '.$d->pgd_perihal.'.pdf','I');	
 ?>		

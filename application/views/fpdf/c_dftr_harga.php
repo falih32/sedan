@@ -154,5 +154,5 @@ $header = array('No', 'Uraian Pekerjaan', 'Jumlah');
 		$pdf->Cell(105); 
 		$pdf->Cell(100,10,$namapejpeng,0,3,'L');
 		
-	$pdf->Output();	
+	$pdf->Output('daftar harga '.$perihal.'.pdf','I');	
 ?>		

@@ -16,7 +16,7 @@
                     <div class="form-group">
                         <label for="nama" class="col-sm-4 control-label">Nama</label>
                         <div class="col-sm-8">
-                            <p class="form-control-static"><?php echo $userData->usr_nama; ?></p>
+                            <p class="form-control-static"><?php echo $userData->usr_username; ?></p>
                         </div>
                     </div>
                     <div class="form-group">

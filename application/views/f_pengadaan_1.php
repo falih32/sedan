@@ -178,7 +178,7 @@ if($statuspage !="edit"){
                 
                 
  <!------Syarat penyedia--------------------------------------------------------------------------------------------------->                         
-                    <form id = "pengadaan_form"  action = '<?php if($statuspage =="edit"){ echo base_url()."Pengadaan/proses_edit_pengadaan2";}else{echo base_url()."Pengadaan/proses_add_pengadaan2";} ?>' onsubmit="submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
+                    <form id = "pengadaan_form"  action = '<?php if($statuspage =="edit"){ echo base_url()."Pengadaan/proses_edit_pengadaan2";}else{echo base_url()."Pengadaan/proses_add_pengadaan2";} ?>' onsubmit="return submitFormPengadaan();" class="form-horizontal" data-toggle="validator" enctype="multipart/form-data">
                     <div class="col-md-12">    
                         <br>
                         <div class="panel panel-default">
@@ -290,12 +290,16 @@ function submitFormPengadaan() {
             }    
            }); 
            TableDataSurat.shift();  // first row will be empty - so remove
-           TableDataSurat = JSON.stringify(TableDataSurat);
-           //alert(TableDataSurat);
-
-           document.getElementById('list_suratizin').value = TableDataSurat;
-           //document.pengadaan_form.list_pekerjaan.value = TableDataPekerjaan;
-           return true;
+           if(TableDataSurat.length > 0){
+               TableDataSurat = JSON.stringify(TableDataSurat);
+               document.getElementById('list_suratizin').value = TableDataSurat;
+                //document.pengadaan_form.list_pekerjaan.value = TableDataPekerjaan;
+                return true;
+           }else{
+                alert("Maaf, Syarat Penyedia tidak Boleh Kosong !");
+                return false;
+           }
+           
 }
 
   $(':checkbox').checkboxpicker();    

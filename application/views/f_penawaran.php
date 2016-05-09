@@ -241,7 +241,7 @@
                                     <input type="hidden" class="form-control" id="dtp_id<?php echo $row->dtp_id; ?>" name="dtp_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtp_id; ?>">
                                     <input type="hidden" class="form-control" id="dtp_volume<?php echo $row->dtp_id; ?>" value="<?php echo $row->dtp_volume; ?>"> 
                                     <input type="hidden" class="hargasatuan_hps form-control" id="dtp_hargasatuan_hps<?php echo $row->dtp_id; ?>" value="<?php echo $row->dtp_hargasatuan_hps; ?>">    
-                                    <input value ="<?php if($row->dtp_hargasatuan_pnr>0){echo ($row->dtp_hargasatuan_pnr+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>" name="dtp_hargasatuan_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
+                                    <input value ="<?php if($row->dtp_hargasatuan_pnr>0){echo ($row->dtp_hargasatuan_pnr+0);}else{echo ($row->dtp_hargasatuan_hps+0);} ?>" type="text" class="hargasatuan_pnr form-control" id="dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>" name="dtp_hargasatuan_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
                                     <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-2">         

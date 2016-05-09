@@ -340,7 +340,7 @@
                                     <input type="hidden" class="form-control" id="dtk_id<?php echo $row->dtk_id; ?>" name="dtk_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtk_id; ?>">
                                     <input type="hidden" class="form-control" id="dtk_kuantitas<?php echo $row->dtk_id; ?>" value="<?php echo $row->dtk_kuantitas; ?>"> 
                                     <input type="hidden" class="hargasatuan_hps form-control" id="dtk_biaya_personil_hps<?php echo $row->dtk_id; ?>" value="<?php echo $row->dtk_biaya_personil_hps; ?>">    
-                                    <input value ="<?php if($row->dtk_biaya_personil_pnr>0){echo ($row->dtk_biaya_personil_pnr+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>" name="dtk_biaya_personil_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
+                                    <input value ="<?php if($row->dtk_biaya_personil_pnr>0){echo ($row->dtk_biaya_personil_pnr+0);}else{echo ($row->dtk_biaya_personil_hps+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtk_biaya_personil_pnr<?php echo $row->dtk_id; ?>" name="dtk_biaya_personil_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
                                     <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-2">         
@@ -450,7 +450,7 @@
                                     <input type="hidden" class="form-control" id="dtk2_id<?php echo $row->dtk2_id; ?>" name="dtk2_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtk2_id; ?>">
                                     <input type="hidden" class="form-control" id="dtk2_volume<?php echo $row->dtk2_id; ?>" value="<?php echo $row->dtk2_volume; ?>"> 
                                     <input type="hidden" class="hargasatuan_hps form-control" id="dtk2_hargasatuan_hps<?php echo $row->dtk2_id; ?>" value="<?php echo $row->dtk2_hargasatuan_hps; ?>">    
-                                    <input value ="<?php if($row->dtk2_hargasatuan_pnr>0){echo ($row->dtk2_hargasatuan_pnr+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>" name="dtk2_hargasatuan_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
+                                    <input value ="<?php if($row->dtk2_hargasatuan_pnr>0){echo ($row->dtk2_hargasatuan_pnr+0);}else{echo ($row->dtk2_hargasatuan_hps+0);}?>" type="text" class="hargasatuan_pnr form-control" id="dtk2_hargasatuan_pnr<?php echo $row->dtk2_id; ?>" name="dtk2_hargasatuan_pnr[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
                                     <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-2">         

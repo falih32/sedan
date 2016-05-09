@@ -122,7 +122,7 @@
                                     <input type="hidden" class="form-control" id="dtp_id<?php echo $row->dtp_id; ?>" name="dtp_id[<?php echo $totRowPekerjaan; ?>]" value="<?php echo $row->dtp_id; ?>">
                                     <input type="hidden" class="form-control" id="dtp_volume<?php echo $row->dtp_id; ?>" value="<?php echo $row->dtp_volume; ?>"> 
                                     <input type="hidden" class="hargasatuan_pnr form-control" id="dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>" value="<?php echo $row->dtp_hargasatuan_pnr; ?>">    
-                                    <input type="text" class="hargasatuan_fix form-control" id="dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>" name="dtp_hargasatuan_fix[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
+                                    <input type="text" value ="<?php echo ($row->dtp_hargasatuan_pnr+0);?>" class="hargasatuan_fix form-control" id="dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>" name="dtp_hargasatuan_fix[<?php echo $totRowPekerjaan; ?>]" placeholder="Harga satuan" data-error="Data yang dimasukkan harus angka, jika terdapat koma gunakan titik(.) sebagai koma" pattern="^[0-9.\s]*$" required>
                                     <div class="help-block with-errors"></div>
                                     </div>
                                     <div class="col-sm-2">
@@ -140,7 +140,7 @@
                             <td style='display:none;'><span id="jml_fix<?php echo $row->dtp_id; ?>"></span></td>
                             <script type="text/javascript">
                                     $(document).ready(function() {                          
-                                            $('#dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>').bind('input', function() {
+                                            function cekHrg<?php echo $row->dtp_id; ?>() {
                                                 //$(this).next().stop(true, true).fadeIn(0).html('dsdsd ' + $(this).val()).fadeOut(2000);
                                                 var fixHarga = parseFloat(document.getElementById('dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>').value);
                                                 var pnrHarga = parseFloat(document.getElementById('dtp_hargasatuan_pnr<?php echo $row->dtp_id; ?>').value);
@@ -165,13 +165,16 @@
                                                     document.getElementById("lbl_dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>").innerHTML = 'Rp.-';
                                                 }
                                                 
-                                            });
+                                            }
                                             Number.prototype.format = function(n, x, s, c) {
                                                 var re = '\\d(?=(\\d{' + (x || 3) + '})+' + (n > 0 ? '\\D' : '$') + ')',
                                                     num = this.toFixed(Math.max(0, ~~n));
 
                                                 return (c ? num.replace('.', c) : num).replace(new RegExp(re, 'g'), '$&' + (s || ','));
                                             };
+                                            
+                                            cekHrg<?php echo $row->dtp_id; ?>();
+                                            $('#dtp_hargasatuan_fix<?php echo $row->dtp_id; ?>').bind('input', cekHrg<?php echo $row->dtp_id; ?>);
 
                                     });
                             </script>

@@ -14,8 +14,18 @@ class M_konsultan extends CI_Model{
         $this->db->insert('t_detail_konsultan2', $data);
     }
     
+    function deletePengalamanPerusahaanByUNP($id){
+        $this->db->where('pnp_unp', $id);
+        $this->db->delete('t_pengalaman_prs');
+    }
+    
     function insertPengalamanPerusahaan($data){
         $this->db->insert('t_pengalaman_prs', $data);
+    }
+    
+    function deleteMetodePerusahaanByUNP($id){
+        $this->db->where('mtd_unp', $id);
+        $this->db->delete('t_metode');
     }
     
     function insertMetodePerusahaan($data){

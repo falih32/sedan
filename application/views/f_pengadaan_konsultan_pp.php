@@ -2,6 +2,7 @@
     $spl_nama = $dataPengadaan->spl_nama;
     $unp_nilai_png_prs = $dataPengadaan->unp_nilai_png_prs;
     $unp_id = $dataPengadaan->unp_id;
+    $pgd_id = $dataPengadaan->pgd_id;
     if($dataPnp != NULL){
         foreach($dataPnp as $row){
             if($row->pnp_kd_sub == 'NP'){
@@ -227,11 +228,11 @@
                     </tbody>
                     </table>
                 </div>
-                 
+                 <input type="hidden" class="form-control" id="pgd_id" name="pgd_id" value= "<?php echo $pgd_id;?>">
                 <div class="col-md-12 text-center"><hr>
                     <div class="form-group">
                         <div class="btn-group" role="group" aria-label="...">
-                            <a class="btn btn-lg btn-danger" href="javascript:history.back()"><span class="glyphicon glyphicon-backward" aria-hidden="true"></span> Kembali</a>
+                            
                             <button type="submit" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-floppy-disk" aria-hidden="true"></span> Simpan</button>
                         </div>
                     </div>

@@ -73,34 +73,34 @@
                     <?php
                     switch ($pgd_status_pengadaan) {
                     case "0":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer HPS</a>';
                         break;
                     case "1":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
-                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Penawaran</a>';
                         break;
                     case "2":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
-                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
-                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Penawaran</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Negoisasi</a>';
                         break;
                     case "3":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
-                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
-                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
-                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNG</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Penawaran</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Negoisasi</a>';
+                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Setelah Pengumuman</a>';
                         break;
                     case "4":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
-                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
-                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
-                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNG</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Penawaran</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Negoisasi</a>';
+                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Pengumuman</a>';
                         break;
                     case "5":
-                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak HPS</a>';
-                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNR</a>';
-                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak NEGO</a>';
-                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Cetak PNG</a>';
+                        echo '<a title="Cetak Laporan Setelah HPS" class="btn btn-lg btn-primary" href="'.site_url("Laporan/cetaklaporan/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer HPS</a>';
+                        echo '<a title="Cetak Laporan Setelah Penawaran" class="btn btn-lg btn-success" href="'.site_url("Laporan/LaporanPenawaran/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Penawaran</a>';
+                        echo '<a title="Cetak Laporan Setelah Negoisasi" class="btn btn-lg btn-info" href="'.site_url("Laporan/LaporanFix/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Negoisasi</a>';
+                        echo '<a title="Cetak Laporan Setelah Pengumuman" class="btn btn-lg btn-warning" href="'.site_url("Laporan/LaporanAkhir/").'/'.$pgd_id.'"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Printer Setelah Pengumuman</a>';
                         break;
                     default:
                         

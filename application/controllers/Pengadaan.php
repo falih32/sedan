@@ -695,6 +695,7 @@ class Pengadaan extends CI_Controller{
         $pgd['pgd_anggaran']   = $this->input->post('ang_kode');
         $pgd['pgd_tipe_pengadaan'] = $this->input->post('pgd_tipe_pengadaan');
         $pgd['pgd_status_pengadaan'] = $this->input->post('pgd_status_pengadaan');
+        $pgd['pgd_dgn_pajak'] = -99;
         if($pgd['pgd_status_pengadaan'] ==0){
             $pgd['pgd_lama_penawaran']        = $this->input->post('pgd_lama_penawaran');
             $pgd['pgd_supplier'] = $this->input->post('pgd_supplier');
@@ -716,7 +717,9 @@ class Pengadaan extends CI_Controller{
         $barang = $data['Judul']= $this->input->post('Judul');
         //cek dengan pajak atau ngga
         $statusPajak = $pgd['pgd_dgn_pajak'];
-        $this->hitungTotalPengadaan($statusPajak, $idPengadaan, $pgd['pgd_tipe_pengadaan']);
+        if($statusPajak <> -99){
+            $this->hitungTotalPengadaan($statusPajak, $idPengadaan, $pgd['pgd_tipe_pengadaan']);
+        }
         $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
         redirect(site_url('Pengadaan/edit_pengadaan1/'.$barang.'/'.$idPengadaan));
         

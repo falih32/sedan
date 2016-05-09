@@ -212,6 +212,7 @@ class KonsultanTeknis extends CI_Controller {
     public function proses_tambah_pengalamanPerusahaan($unp_id){
         // insert data
         $pp['pnp_unp'] = $unp_id;
+        $this->m_konsultan->deletePengalamanPerusahaanByUNP($unp_id);
         //a. NP
         $pp['pnp_kd_sub'] = 'NP';
         $pp['pnp_nm_sub'] = 'Sub unsur pengalaman melaksanakan kegiatan sejenis (NP)';
@@ -266,12 +267,14 @@ class KonsultanTeknis extends CI_Controller {
         $up['unp_jml_png_prs'] =$data->unp_bobot_png_prs*$up['unp_nilai_png_prs'];
         $this->m_konsultan->updateUnsurPenilaianTeknis($unp_id,$up);
         $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-        redirect(site_url('Pengadaan/PengadaanKonsultanHPS'));
+        $idPengadaan = $this->input->post('pgd_id');
+        redirect(site_url('KonsultanTeknis/PengalamanPerusahaan/'.$pp['pnp_unp'].'/'.$idPengadaan));
     }
     
     public function proses_tambah_metodePerusahaan($unp_id){
         // insert data
         $pp['mtd_unp'] = $unp_id;
+        $this->m_konsultan->deleteMetodePerusahaanByUNP($unp_id);
         //a. PEM
         $pp['mtd_kd_sub'] = 'PEM';
         $pp['mtd_nm_sub'] = 'pemahaman atas jasa layanan yang tercantum dalam KAK';
@@ -404,7 +407,8 @@ class KonsultanTeknis extends CI_Controller {
         $up['unp_jml_pnd_mtd'] =$data->unp_bobot_pnd_mtd*$up['unp_nilai_pnd_mtd'];
         $this->m_konsultan->updateUnsurPenilaianTeknis($unp_id,$up);
         $this->session->set_flashdata('message', array('msg' => 'Data telah dimasukkan','class' => 'success'));
-        redirect(site_url('Pengadaan/PengadaanKonsultanHPS'));
+        $idPengadaan = $this->input->post('pgd_id');
+        redirect(site_url('KonsultanTeknis/MetodologiPerusahaan/'.$pp['mtd_unp'].'/'.$idPengadaan));
     }
     
     
